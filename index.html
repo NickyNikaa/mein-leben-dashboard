@@ -120,15 +120,12 @@
   .moods button.on { border-color: var(--accent); background: #f1efff; }
   .savednote { font-size: 12px; color: var(--aufgaben); margin-top: 8px; height: 14px; }
 
-  /* calendar */
-  .calbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
-  .calbar .cal-view { padding: 7px 14px; font-size: 13px; }
-  .calbar .cal-view.active { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .calbar #open-gcal { margin-left: auto; text-decoration: none; font-size: 13px; padding: 7px 14px; }
-  .calwrap { position: relative; width: 100%; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
-  .calwrap iframe { width: 100%; height: 600px; display: block; }
-  .calhint { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.45; }
-  @media (max-width: 560px) { .calwrap iframe { height: 460px; } .calbar #open-gcal { margin-left: 0; } }
+  /* calendar agenda */
+  #cal-updated { font-size: 12px; }
+  .agenda-day { margin-bottom: 16px; }
+  .agenda-date { font-size: 13px; font-weight: 700; color: var(--ink); margin: 14px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .agenda-date.is-today { color: var(--accent); }
+  .row .time { font-size: 13px; font-weight: 700; color: var(--beruf); white-space: nowrap; min-width: 92px; }
 
   .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
   @media (max-width: 560px) { .stats { grid-template-columns: repeat(2,1fr); } }
@@ -182,20 +179,10 @@
   <!-- KALENDER -->
   <section class="panel" id="panel-kalender">
     <div class="card">
-      <h2>📅 Mein Google Kalender</h2>
-      <div class="sub">Deine Termine aus Gmail (nicky.nikaaa@gmail.com) — sie laufen hier automatisch ein, sobald du im Browser bei Google eingeloggt bist.</div>
-      <div class="calbar">
-        <button class="btn ghost cal-view active" data-mode="MONTH">Monat</button>
-        <button class="btn ghost cal-view" data-mode="WEEK">Woche</button>
-        <button class="btn ghost cal-view" data-mode="AGENDA">Liste</button>
-        <a class="btn" id="open-gcal" href="https://calendar.google.com/calendar/u/0/r" target="_blank" rel="noopener">In Google Kalender öffnen ↗</a>
-      </div>
-      <div class="calwrap">
-        <iframe id="gcal" title="Google Kalender" loading="lazy"
-          src="https://calendar.google.com/calendar/embed?src=nicky.nikaaa%40gmail.com&ctz=Europe%2FBerlin&mode=MONTH&wkst=2&showTitle=0&showPrint=0&showCalendars=0&showTz=0&hl=de"
-          style="border:0" frameborder="0" scrolling="no"></iframe>
-      </div>
-      <div class="calhint" id="calhint">Falls der Kalender leer bleibt oder nach Login fragt: Du musst in <b>diesem</b> Browser bei deinem Google-Konto (nicky.nikaaa@gmail.com) eingeloggt sein. Tipp: einmal „In Google Kalender öffnen" klicken, einloggen, dann diese Seite neu laden.</div>
+      <h2>📅 Meine Termine</h2>
+      <div class="sub">Automatisch aus deinem Google Kalender (nicky.nikaaa@gmail.com). <span id="cal-updated"></span></div>
+      <div id="agenda"><div class="empty">Lädt…</div></div>
+      <a class="btn" href="https://calendar.google.com/calendar/u/0/r" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;margin-top:14px">In Google Kalender öffnen ↗</a>
     </div>
   </section>
 
@@ -514,6 +501,7 @@
       document.querySelectorAll(".panel").forEach(function(x){x.classList.remove("active");});
       b.classList.add("active");
       document.getElementById("panel-"+b.dataset.tab).classList.add("active");
+      if(b.dataset.tab === "kalender") renderAgenda();
     });
   });
 
@@ -572,15 +560,38 @@
     var n=document.getElementById("reflect-saved"); n.textContent="Gespeichert ✓"; setTimeout(function(){ n.textContent=""; }, 1800);
   });
 
-  // calendar view toggle
-  document.querySelectorAll(".cal-view").forEach(function(b){
-    b.addEventListener("click", function(){
-      document.querySelectorAll(".cal-view").forEach(function(x){x.classList.remove("active");});
-      b.classList.add("active");
-      var f = document.getElementById("gcal");
-      f.src = f.src.replace(/mode=[A-Z]+/, "mode=" + b.dataset.mode);
+  // calendar agenda (loads events.json written by the daily sync)
+  function dayLabel(d){
+    var dt = new Date(d + "T00:00:00"); var tom = new Date(); tom.setDate(tom.getDate()+1);
+    var prefix = "";
+    if(d === todayStr()) prefix = "Heute · ";
+    else if(d === dateKey(tom)) prefix = "Morgen · ";
+    return prefix + niceDate(dt);
+  }
+  function renderAgenda(){
+    var box = document.getElementById("agenda");
+    fetch("events.json?cb=" + Date.now()).then(function(r){ return r.json(); }).then(function(data){
+      var today = todayStr();
+      var evs = (data.events || []).filter(function(e){ return e.date >= today; });
+      var up = document.getElementById("cal-updated");
+      if(data.updated && up){ try { up.textContent = "Stand: " + new Date(data.updated).toLocaleString("de-DE"); } catch(e){} }
+      if(!evs.length){ box.innerHTML = '<div class="empty">Keine kommenden Termine.</div>'; return; }
+      var byDay = {}; var order = [];
+      evs.forEach(function(e){ if(!byDay[e.date]){ byDay[e.date]=[]; order.push(e.date); } byDay[e.date].push(e); });
+      var html = "";
+      order.forEach(function(d){
+        html += '<div class="agenda-day"><div class="agenda-date'+(d===today?' is-today':'')+'">'+dayLabel(d)+'</div>';
+        byDay[d].forEach(function(e){
+          var t = e.allDay ? "ganztägig" : (e.start + (e.end ? "–"+e.end : ""));
+          html += '<div class="row"><div class="time">'+esc(t)+'</div><div class="body"><div class="name">'+esc(e.title)+'</div></div></div>';
+        });
+        html += '</div>';
+      });
+      box.innerHTML = html;
+    }).catch(function(){
+      box.innerHTML = '<div class="empty">Termine konnten gerade nicht geladen werden. Bitte öffne die Seite über deine Live-URL (nickynikaa.github.io/mein-leben-dashboard) und lade neu.</div>';
     });
-  });
+  }
 
   // one-time seeded to-dos (added once, even for existing users)
   var seedTasks = [
@@ -599,6 +610,7 @@
 
   setHeader();
   renderAll();
+  renderAgenda();
 })();
 </script>
 </body>
