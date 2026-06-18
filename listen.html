@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nickys Liste</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#f6f7fb; --card:#fff; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f0;
+    --accent:#6d5efc; --ok:#10b981; --pink:#ec4899;
+    --shadow:0 1px 2px rgba(20,20,40,.04), 0 8px 30px rgba(20,20,40,.07);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,#efeefe 0%, var(--bg) 220px);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:620px;margin:0 auto;padding:32px 18px 80px;}
+  .hero{text-align:center;margin-bottom:6px;}
+  .hero .emoji{font-size:38px;}
+  .hero h1{font-size:25px;margin:8px 0 6px;letter-spacing:-.4px;}
+  .hero p{color:var(--muted);font-size:14px;margin:0 auto;max-width:440px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-top:20px;}
+  .row{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff;}
+  .row .tag{width:8px;align-self:stretch;border-radius:6px;flex:none;}
+  .row .body{flex:1;min-width:0;}
+  .row .name{font-weight:600;font-size:15px;}
+  .row .meta{font-size:12px;color:var(--muted);margin-top:1px;}
+  .row .meta a{color:var(--accent);}
+  .row.got .name{text-decoration:line-through;color:var(--muted);}
+  .check{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:#fff;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;transition:all .12s;}
+  .check.on{background:var(--ok);border-color:var(--ok);}
+  .reserve{flex:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;color:var(--ink);white-space:nowrap;}
+  .reserve:hover{border-color:var(--pink);color:var(--pink);}
+  .empty{color:var(--muted);font-size:15px;text-align:center;padding:20px;}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;}
+  .hint{font-size:12px;color:var(--muted);margin-top:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="emoji" id="emoji">📝</div>
+    <h1 id="title">Nickys Liste</h1>
+    <p id="intro"></p>
+  </div>
+  <div class="card">
+    <div id="list"><div class="empty">Lädt…</div></div>
+  </div>
+  <div class="foot">Geteilt aus Nickys Dashboard 💜</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var EMAIL = "nicky.nikaaa@gmail.com";
+
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  function decode(){
+    var h = location.hash || "";
+    var m = h.match(/d=([^&]+)/);
+    if(!m) return null;
+    try { return JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1]))))); }
+    catch(e){ return null; }
+  }
+
+  var data = decode();
+  var listBox = document.getElementById("list");
+
+  if(!data || !data.items || !data.items.length){
+    document.getElementById("intro").textContent = "";
+    listBox.innerHTML = '<div class="empty">Diese Liste ist leer oder der Link ist unvollständig. Bitte Nicky um einen neuen Link.</div>';
+    return;
+  }
+
+  var isWish = data.type === "wishlist";
+  document.getElementById("title").textContent = data.t || (isWish ? "Nickys Wunschliste" : "Nickys Einkaufsliste");
+  document.getElementById("emoji").textContent = isWish ? "🎁" : "🛒";
+  document.getElementById("intro").textContent = isWish
+    ? "Das wünscht sich Nicky. Wenn du etwas besorgen möchtest, klick auf „Das besorge ich“ — dann bekommt Nicky kurz Bescheid."
+    : "Nickys Einkaufsliste. Du kannst Erledigtes für dich abhaken (nur auf deinem Gerät sichtbar).";
+
+  var html = "";
+  data.items.forEach(function(it, idx){
+    var name = esc(it.x || "");
+    var note = it.n || "";
+    var metaHtml = "";
+    if(note){ metaHtml = /^https?:\/\//.test(note) ? '<a href="'+esc(note)+'" target="_blank" rel="noopener">Link ↗</a>' : esc(note); }
+    var color = isWish ? "var(--pink)" : "var(--ok)";
+    html += '<div class="row" id="row'+idx+'"><div class="tag" style="background:'+color+'"></div>'+
+            '<div class="body"><div class="name">'+name+'</div>'+(metaHtml?'<div class="meta">'+metaHtml+'</div>':'')+'</div>';
+    if(isWish){
+      var subject = "Wunschliste: Das besorge ich – " + (it.x || "");
+      var body = "Hi Nicky,\n\nich übernehme von deiner Wunschliste: " + (it.x || "") + (note ? ("\n("+note+")") : "") + "\n\nLiebe Grüße";
+      var mail = "mailto:"+EMAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+      html += '<a class="reserve" href="'+mail+'">Das besorge ich ✋</a>';
+    } else {
+      html += '<button class="check" data-i="'+idx+'"></button>';
+    }
+    html += '</div>';
+  });
+  listBox.innerHTML = html;
+
+  if(!isWish){
+    listBox.querySelectorAll(".check").forEach(function(b){
+      b.addEventListener("click", function(){
+        var row = document.getElementById("row"+b.dataset.i);
+        var on = b.classList.toggle("on");
+        b.textContent = on ? "✓" : "";
+        row.classList.toggle("got", on);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

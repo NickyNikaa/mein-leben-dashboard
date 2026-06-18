@@ -150,6 +150,7 @@
     <button data-tab="kalender">📅 Kalender</button>
     <button data-tab="gewohnheiten">🔁 Gewohnheiten</button>
     <button data-tab="aufgaben">✅ Aufgaben</button>
+    <button data-tab="listen">🛒 Listen</button>
     <button data-tab="mut">🚀 Mut</button>
     <button data-tab="reflexion">🌙 Reflexion</button>
   </nav>
@@ -221,6 +222,33 @@
         </select>
         <button class="btn" id="add-task">Hinzufügen</button>
       </div>
+    </div>
+  </section>
+
+  <!-- LISTEN -->
+  <section class="panel" id="panel-listen">
+    <div class="card">
+      <h2>🛒 Einkaufsliste</h2>
+      <div class="sub">Pflege deine Liste hier. Mit „teilen" bekommst du einen Link für z.B. deine Eltern.</div>
+      <div id="shopping-list"></div>
+      <div class="addbar">
+        <input type="text" id="shop-name" placeholder="Artikel, z.B. Milch">
+        <button class="btn" id="add-shop">Hinzufügen</button>
+      </div>
+      <button class="btn ghost" id="share-shop" style="margin-top:12px">🔗 Einkaufsliste teilen</button>
+      <div class="savednote" id="share-shop-note"></div>
+    </div>
+    <div class="card">
+      <h2>🎁 Wunschliste</h2>
+      <div class="sub">Wünsche mit optionalem Link/Notiz. Geteilte Personen können dir melden „das besorge ich".</div>
+      <div id="wish-list"></div>
+      <div class="addbar">
+        <input type="text" id="wish-name" placeholder="Wunsch, z.B. Buch „...“">
+        <input type="text" id="wish-note" placeholder="Link oder Notiz (optional)">
+        <button class="btn" id="add-wish">Hinzufügen</button>
+      </div>
+      <button class="btn ghost" id="share-wish" style="margin-top:12px">🔗 Wunschliste teilen</button>
+      <div class="savednote" id="share-wish-note"></div>
     </div>
   </section>
 
@@ -305,7 +333,9 @@
     ],
     reflections: {},
     mutCount: 0,
-    challengeToday: { date: "", text: "" }
+    challengeToday: { date: "", text: "" },
+    shopping: [],
+    wishlist: []
   };
 
   var quotes = [
@@ -435,6 +465,44 @@
     }).join("");
   }
 
+  function renderShopping(){
+    var box = document.getElementById("shopping-list");
+    if(!state.shopping.length){ box.innerHTML = '<div class="empty">Noch keine Artikel. Trag unten etwas ein.</div>'; return; }
+    box.innerHTML = state.shopping.map(function(it){
+      return '<div class="row '+(it.done?'done':'')+'"><div class="tag" style="background:var(--aufgaben)"></div>'+
+        '<div class="body"><div class="name">'+esc(it.text)+'</div></div>'+
+        '<button class="check '+(it.done?'on':'')+'" data-shop="'+it.id+'">'+(it.done?'✓':'')+'</button>'+
+        '<button class="x" data-delshop="'+it.id+'">×</button></div>';
+    }).join("");
+  }
+
+  function renderWishlist(){
+    var box = document.getElementById("wish-list");
+    if(!state.wishlist.length){ box.innerHTML = '<div class="empty">Noch keine Wünsche.</div>'; return; }
+    box.innerHTML = state.wishlist.map(function(it){
+      var meta = "";
+      if(it.note){ meta = /^https?:\/\//.test(it.note) ? '<a href="'+esc(it.note)+'" target="_blank" rel="noopener">Link ↗</a>' : esc(it.note); }
+      return '<div class="row '+(it.done?'done':'')+'"><div class="tag" style="background:var(--soziales)"></div>'+
+        '<div class="body"><div class="name">'+esc(it.text)+'</div>'+(meta?'<div class="meta">'+meta+'</div>':'')+'</div>'+
+        '<button class="check '+(it.done?'on':'')+'" data-wish="'+it.id+'">'+(it.done?'✓':'')+'</button>'+
+        '<button class="x" data-delwish="'+it.id+'">×</button></div>';
+    }).join("");
+  }
+
+  function buildShareUrl(title, type, items){
+    var payload = { t: title, type: type, items: items.map(function(it){ return { x: it.text, n: it.note || "" }; }) };
+    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+    return new URL("listen.html", location.href).href + "#d=" + encodeURIComponent(b64);
+  }
+  function shareList(title, type, items, noteEl){
+    if(!items.length){ noteEl.textContent = "Liste ist noch leer."; setTimeout(function(){ noteEl.textContent=""; }, 3000); return; }
+    var url = buildShareUrl(title, type, items);
+    function ok(){ noteEl.textContent = "Link kopiert ✓ – jetzt an Familie/Freunde senden."; setTimeout(function(){ noteEl.textContent=""; }, 5000); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(ok, function(){ window.prompt("Link zum Teilen (kopieren):", url); });
+    } else { window.prompt("Link zum Teilen (kopieren):", url); }
+  }
+
   function renderReflection(){
     document.getElementById("reflect-date").textContent = niceDate(new Date());
     var r = state.reflections[todayStr()] || {};
@@ -474,7 +542,7 @@
     document.getElementById("daily-challenge").textContent = state.challengeToday.text;
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderReflection(); renderStats(); renderChallenge(); }
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -513,6 +581,32 @@
     else if(t.dataset.deltask){ state.tasks = state.tasks.filter(function(x){return x.id!==t.dataset.deltask;}); save(); renderAll(); }
     else if(t.dataset.mut){ var m=state.mut.find(function(x){return x.id===t.dataset.mut;}); if(m){ m.done=!m.done; state.mutCount += m.done?1:-1; if(state.mutCount<0) state.mutCount=0; save(); renderAll(); } }
     else if(t.dataset.delmut){ state.mut = state.mut.filter(function(x){return x.id!==t.dataset.delmut;}); save(); renderAll(); }
+    else if(t.dataset.shop){ var sh=state.shopping.find(function(x){return x.id===t.dataset.shop;}); if(sh){ sh.done=!sh.done; save(); renderAll(); } }
+    else if(t.dataset.delshop){ state.shopping = state.shopping.filter(function(x){return x.id!==t.dataset.delshop;}); save(); renderAll(); }
+    else if(t.dataset.wish){ var w=state.wishlist.find(function(x){return x.id===t.dataset.wish;}); if(w){ w.done=!w.done; save(); renderAll(); } }
+    else if(t.dataset.delwish){ state.wishlist = state.wishlist.filter(function(x){return x.id!==t.dataset.delwish;}); save(); renderAll(); }
+  });
+
+  document.getElementById("add-shop").addEventListener("click", function(){
+    var n = document.getElementById("shop-name").value.trim(); if(!n) return;
+    state.shopping.push({ id: uid(), text: n, done: false });
+    document.getElementById("shop-name").value = ""; save(); renderAll();
+  });
+  document.getElementById("shop-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-shop").click(); });
+
+  document.getElementById("add-wish").addEventListener("click", function(){
+    var n = document.getElementById("wish-name").value.trim(); if(!n) return;
+    state.wishlist.push({ id: uid(), text: n, note: document.getElementById("wish-note").value.trim(), done: false });
+    document.getElementById("wish-name").value = ""; document.getElementById("wish-note").value = ""; save(); renderAll();
+  });
+  document.getElementById("wish-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-wish").click(); });
+  document.getElementById("wish-note").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-wish").click(); });
+
+  document.getElementById("share-shop").addEventListener("click", function(){
+    shareList("Nickys Einkaufsliste", "shopping", state.shopping, document.getElementById("share-shop-note"));
+  });
+  document.getElementById("share-wish").addEventListener("click", function(){
+    shareList("Nickys Wunschliste", "wishlist", state.wishlist, document.getElementById("share-wish-note"));
   });
 
   document.getElementById("add-habit").addEventListener("click", function(){
