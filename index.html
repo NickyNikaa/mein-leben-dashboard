@@ -120,6 +120,16 @@
   .moods button.on { border-color: var(--accent); background: #f1efff; }
   .savednote { font-size: 12px; color: var(--aufgaben); margin-top: 8px; height: 14px; }
 
+  /* calendar */
+  .calbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+  .calbar .cal-view { padding: 7px 14px; font-size: 13px; }
+  .calbar .cal-view.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .calbar #open-gcal { margin-left: auto; text-decoration: none; font-size: 13px; padding: 7px 14px; }
+  .calwrap { position: relative; width: 100%; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
+  .calwrap iframe { width: 100%; height: 600px; display: block; }
+  .calhint { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.45; }
+  @media (max-width: 560px) { .calwrap iframe { height: 460px; } .calbar #open-gcal { margin-left: 0; } }
+
   .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
   @media (max-width: 560px) { .stats { grid-template-columns: repeat(2,1fr); } }
 </style>
@@ -140,6 +150,7 @@
 
   <nav class="tabs">
     <button data-tab="heute" class="active">☀️ Heute</button>
+    <button data-tab="kalender">📅 Kalender</button>
     <button data-tab="gewohnheiten">🔁 Gewohnheiten</button>
     <button data-tab="aufgaben">✅ Aufgaben</button>
     <button data-tab="mut">🚀 Mut</button>
@@ -165,6 +176,26 @@
     </div>
     <div class="card">
       <div class="quote" id="quote"></div>
+    </div>
+  </section>
+
+  <!-- KALENDER -->
+  <section class="panel" id="panel-kalender">
+    <div class="card">
+      <h2>📅 Mein Google Kalender</h2>
+      <div class="sub">Deine Termine aus Gmail (nicky.nikaaa@gmail.com) — sie laufen hier automatisch ein, sobald du im Browser bei Google eingeloggt bist.</div>
+      <div class="calbar">
+        <button class="btn ghost cal-view active" data-mode="MONTH">Monat</button>
+        <button class="btn ghost cal-view" data-mode="WEEK">Woche</button>
+        <button class="btn ghost cal-view" data-mode="AGENDA">Liste</button>
+        <a class="btn" id="open-gcal" href="https://calendar.google.com/calendar/u/0/r" target="_blank" rel="noopener">In Google Kalender öffnen ↗</a>
+      </div>
+      <div class="calwrap">
+        <iframe id="gcal" title="Google Kalender" loading="lazy"
+          src="https://calendar.google.com/calendar/embed?src=nicky.nikaaa%40gmail.com&ctz=Europe%2FBerlin&mode=MONTH&wkst=2&showTitle=0&showPrint=0&showCalendars=0&showTz=0&hl=de"
+          style="border:0" frameborder="0" scrolling="no"></iframe>
+      </div>
+      <div class="calhint" id="calhint">Falls der Kalender leer bleibt oder nach Login fragt: Du musst in <b>diesem</b> Browser bei deinem Google-Konto (nicky.nikaaa@gmail.com) eingeloggt sein. Tipp: einmal „In Google Kalender öffnen" klicken, einloggen, dann diese Seite neu laden.</div>
     </div>
   </section>
 
@@ -540,6 +571,31 @@
     state.reflections[todayStr()] = r; save(); renderReflection();
     var n=document.getElementById("reflect-saved"); n.textContent="Gespeichert ✓"; setTimeout(function(){ n.textContent=""; }, 1800);
   });
+
+  // calendar view toggle
+  document.querySelectorAll(".cal-view").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll(".cal-view").forEach(function(x){x.classList.remove("active");});
+      b.classList.add("active");
+      var f = document.getElementById("gcal");
+      f.src = f.src.replace(/mode=[A-Z]+/, "mode=" + b.dataset.mode);
+    });
+  });
+
+  // one-time seeded to-dos (added once, even for existing users)
+  var seedTasks = [
+    { key: "steuerberater", name: "Dem Steuerberater antworten", area: "aufgaben" },
+    { key: "thailand", name: "Thailand-Reise für November planen ✈️", area: "aufgaben" }
+  ];
+  if(!state.seeded) state.seeded = [];
+  var seededChanged = false;
+  seedTasks.forEach(function(s){
+    if(state.seeded.indexOf(s.key) === -1){
+      state.tasks.push({ id: uid(), name: s.name, area: s.area, done: false, added: todayStr() });
+      state.seeded.push(s.key); seededChanged = true;
+    }
+  });
+  if(seededChanged){ save(); renderAll(); }
 
   // first-run: ask name once (optional)
   if(!state.name){
