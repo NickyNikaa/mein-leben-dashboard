@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lass uns treffen — Nicky</title>
+<title>Schedule your time with Nicky</title>
 <style>
   :root{
     color-scheme: light;
@@ -33,6 +33,10 @@
   label{font-size:13px;font-weight:600;display:block;margin:14px 0 5px;}
   input,select,textarea{font:inherit;width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);}
   textarea{resize:vertical;min-height:64px;}
+  .placewrap{display:flex;gap:8px;}
+  .placewrap input{flex:1;}
+  .maps{flex:none;border:1px solid var(--line);background:#fff;border-radius:11px;padding:0 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .maps:hover{border-color:var(--accent);}
   .types{display:flex;flex-wrap:wrap;gap:8px;}
   .type{flex:1;min-width:120px;text-align:center;border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .12s;}
   .type:hover{border-color:var(--pink);}
@@ -54,15 +58,15 @@
 <div class="wrap">
   <div class="hero">
     <div class="emoji">🌿✨</div>
-    <h1>Lust, dich mit mir zu treffen?</h1>
-    <p>Schön, dass du da bist! Such dir unten eine freie Zeit aus, die dir passt, sag mir kurz worum's geht — und ich bekomme deine Anfrage. Es sind nur Zeiten zu sehen, an denen ich wirklich frei bin.</p>
+    <h1>Schedule your time with Nicky</h1>
+    <p>Schön, dass du da bist! Such dir unten eine Zeit aus, die dir passt, sag mir kurz worum's geht und wo wir uns treffen — und ich bekomme deine Anfrage.</p>
     <div class="tz">Alle Zeiten in deutscher Zeit (Europe/Berlin)</div>
   </div>
 
   <div class="card">
     <div class="step">Schritt 1</div>
-    <h2>Wähle eine freie Zeit</h2>
-    <div class="sub">Die nächsten zwei Wochen — nur freie 60-Minuten-Fenster.</div>
+    <h2>Wähle eine Zeit</h2>
+    <div class="sub">Die nächsten zwei Wochen — freie 2-Stunden-Fenster.</div>
     <div id="slotbox"><div class="empty">Lädt freie Zeiten…</div></div>
   </div>
 
@@ -78,8 +82,13 @@
     </div>
     <label for="name">Dein Name</label>
     <input id="name" type="text" placeholder="Wie heißt du?">
-    <label for="contact">So erreiche ich dich (optional)</label>
-    <input id="contact" type="text" placeholder="E-Mail oder Handynummer">
+    <label for="place">Wo wollt ihr euch treffen?</label>
+    <div class="placewrap">
+      <input id="place" type="text" placeholder="Ort oder Adresse, z.B. Café Schmidt, München">
+      <button type="button" class="maps" id="mapsBtn">📍 Auf Google Maps suchen</button>
+    </div>
+    <label for="email">Deine E-Mail (optional)</label>
+    <input id="email" type="text" placeholder="Damit ich dir antworten kann">
     <label for="msg">Nachricht (optional)</label>
     <textarea id="msg" placeholder="Worauf freust du dich? Vorschlag fürs Treffen?"></textarea>
   </div>
@@ -87,12 +96,12 @@
   <div class="card">
     <div class="step">Schritt 3</div>
     <h2>Anfrage senden</h2>
-    <div class="picked" id="picked">Bitte oben zuerst eine Zeit und einen Namen wählen.</div>
+    <div class="picked" id="picked">Bitte oben zuerst eine Zeit, deinen Namen und einen Ort wählen.</div>
     <div class="btns">
       <button class="btn primary" id="sendCal" disabled>Per Google Kalender anfragen</button>
       <button class="btn ghost" id="sendMail" disabled>Stattdessen per E-Mail anfragen</button>
     </div>
-    <div class="note">Deine Anfrage erreicht mich als Termin-Vorschlag bzw. E-Mail. Ich bestätige dir dann persönlich — der Slot ist also erst fix, wenn ich zusage. 💜</div>
+    <div class="note">Deine Anfrage erreicht mich als Termin-Vorschlag bzw. E-Mail. Ich bestätige dir dann persönlich. 💜</div>
   </div>
 
   <div class="foot">Diese Seite teilt nur freie Zeiten — keine Details meiner Termine.</div>
@@ -102,15 +111,14 @@
 (function(){
   "use strict";
   var EMAIL = "nicky.nikaaa@gmail.com";
-  var SLOT_MIN = 60;
   var DAYS_AHEAD = 14;
-  // Verfügbarkeit (Stunden, lokale/deutsche Zeit). Wochentag: Mo-Fr=1..5
+  // Verfügbarkeit als feste 2-Stunden-Blöcke (lokale/deutsche Zeit). Mo-Fr = 1..5
   function windowsFor(dow){
-    if(dow === 0 || dow === 6) return [[11,21]];   // Sa/So 11-21
-    return [[18,21]];                               // Mo-Fr 18-21
+    if(dow === 0 || dow === 6) return [[11,13],[13,15],[15,17],[17,19],[19,21]]; // Sa/So
+    return [[17,19],[19,21]];                                                    // Mo-Fr
   }
 
-  var sel = { date:null, start:null, end:null, label:null };
+  var sel = { date:null, start:null, end:null, label:null, nice:null };
   var selType = null;
 
   var WD = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
@@ -119,9 +127,8 @@
   function dstr(y,m,d){ return y+"-"+pad(m)+"-"+pad(d); }
   function niceDate(y,m,d){ var dt=new Date(y,m-1,d); return WD[dt.getDay()]+", "+d+". "+MO[m-1]; }
 
-  function overlaps(date, sh, busy){
-    // slot [sh:00, sh+1:00) vs busy intervals on date
-    var s0 = sh*60, s1 = sh*60 + SLOT_MIN;
+  function overlaps(date, s, e, busy){
+    var s0 = s*60, s1 = e*60;
     for(var i=0;i<busy.length;i++){
       var b = busy[i];
       if(b.date !== date) continue;
@@ -143,16 +150,15 @@
       var d = new Date(); d.setDate(d.getDate()+i);
       var y=d.getFullYear(), m=d.getMonth()+1, day=d.getDate(), dow=d.getDay();
       var date = dstr(y,m,day);
-      var wins = windowsFor(dow);
+      var blocks = windowsFor(dow);
       var chips = "";
-      wins.forEach(function(w){
-        for(var h=w[0]; h+1<=w[1]; h++){
-          if(date===today && h*60 <= nowMin) continue;       // heute vergangene Slots raus
-          if(overlaps(date, h, busy)) continue;               // belegte raus
-          var lbl = pad(h)+":00–"+pad(h+1)+":00";
-          chips += '<button class="slot" data-date="'+date+'" data-h="'+h+'" data-lbl="'+lbl+'" '+
-                   'data-nice="'+niceDate(y,m,day)+'">'+lbl+'</button>';
-        }
+      blocks.forEach(function(b){
+        var s=b[0], e=b[1];
+        if(date===today && s*60 <= nowMin) return;   // heute vergangene Slots raus
+        if(overlaps(date, s, e, busy)) return;        // belegte raus
+        var lbl = pad(s)+":00–"+pad(e)+":00";
+        chips += '<button class="slot" data-date="'+date+'" data-s="'+s+'" data-e="'+e+'" data-lbl="'+lbl+'" '+
+                 'data-nice="'+niceDate(y,m,day)+'">'+lbl+'</button>';
       });
       if(chips){
         anyDay = true;
@@ -165,8 +171,7 @@
       b.addEventListener("click", function(){
         box.querySelectorAll(".slot").forEach(function(x){x.classList.remove("sel");});
         b.classList.add("sel");
-        var h = parseInt(b.dataset.h,10);
-        sel = { date:b.dataset.date, start:h, end:h+1, label:b.dataset.lbl, nice:b.dataset.nice };
+        sel = { date:b.dataset.date, start:parseInt(b.dataset.s,10), end:parseInt(b.dataset.e,10), label:b.dataset.lbl, nice:b.dataset.nice };
         update();
       });
     });
@@ -179,36 +184,49 @@
     });
   });
   document.getElementById("name").addEventListener("input", update);
+  document.getElementById("place").addEventListener("input", update);
+
+  document.getElementById("mapsBtn").addEventListener("click", function(){
+    var p = document.getElementById("place").value.trim();
+    var url = "https://www.google.com/maps/search/?api=1" + (p ? "&query="+encodeURIComponent(p) : "");
+    window.open(url, "_blank");
+  });
 
   function update(){
     var name = document.getElementById("name").value.trim();
+    var place = document.getElementById("place").value.trim();
     var picked = document.getElementById("picked");
-    var ready = sel.date && name;
+    var ready = sel.date && name && place;
     if(sel.date){
       picked.innerHTML = "Gewählt: <b>"+sel.nice+", "+sel.label+"</b>"+
-        (selType?(" · "+selType):"")+(name?(" · für "+name):" · (bitte noch Namen eingeben)");
+        (selType?(" · "+selType):"")+
+        (place?(" · 📍 "+place):" · (bitte noch Ort eingeben)")+
+        (name?(" · für "+name):" · (bitte noch Namen eingeben)");
     } else {
-      picked.textContent = "Bitte oben zuerst eine Zeit und einen Namen wählen.";
+      picked.textContent = "Bitte oben zuerst eine Zeit, deinen Namen und einen Ort wählen.";
     }
     document.getElementById("sendCal").disabled = !ready;
     document.getElementById("sendMail").disabled = !ready;
   }
 
-  function pad2(n){ return String(n).padStart(2,"0"); }
   function gcalDates(){
-    var p = sel.date.split("-"); // YYYY-MM-DD
+    var p = sel.date.split("-");
     var base = p[0]+p[1]+p[2]+"T";
-    return base+pad2(sel.start)+"0000/"+base+pad2(sel.end)+"0000";
+    return base+pad(sel.start)+"0000/"+base+pad(sel.end)+"0000";
   }
+  function placeVal(){ return document.getElementById("place").value.trim(); }
+  function mapsUrl(){ return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(placeVal()); }
   function details(){
     var name = document.getElementById("name").value.trim();
-    var contact = document.getElementById("contact").value.trim();
+    var email = document.getElementById("email").value.trim();
     var msg = document.getElementById("msg").value.trim();
     var lines = [];
     lines.push("Treffen-Anfrage über Nickys Seite.");
     lines.push("Von: "+name);
     if(selType) lines.push("Art: "+selType);
-    if(contact) lines.push("Kontakt: "+contact);
+    lines.push("Ort: "+placeVal());
+    lines.push("Karte: "+mapsUrl());
+    if(email) lines.push("E-Mail: "+email);
     if(msg) lines.push("Nachricht: "+msg);
     return lines.join("\n");
   }
@@ -224,6 +242,7 @@
       "&text="+encodeURIComponent(title())+
       "&dates="+gcalDates()+
       "&ctz=Europe/Berlin"+
+      "&location="+encodeURIComponent(placeVal())+
       "&details="+encodeURIComponent(details())+
       "&add="+encodeURIComponent(EMAIL);
     window.open(url, "_blank");
