@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mein Leben — Dashboard</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --ink: #1f2430;
+    --muted: #6b7280;
+    --line: #e7e9f0;
+    --beruf: #3b82f6;
+    --beruf-bg: #eaf2ff;
+    --soziales: #ec4899;
+    --soziales-bg: #fdedf6;
+    --mut: #f59e0b;
+    --mut-bg: #fff4e0;
+    --aufgaben: #10b981;
+    --aufgaben-bg: #e6f8f1;
+    --accent: #6d5efc;
+    --shadow: 0 1px 2px rgba(20,20,40,.04), 0 6px 24px rgba(20,20,40,.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 18px 80px; }
+
+  header.top { margin-bottom: 18px; }
+  .greet { font-size: 26px; font-weight: 700; letter-spacing: -.4px; }
+  .date { color: var(--muted); font-size: 14px; margin-top: 2px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0 20px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; box-shadow: var(--shadow); }
+  .stat .n { font-size: 22px; font-weight: 700; }
+  .stat .l { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  nav.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+  nav.tabs button {
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    padding: 9px 15px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all .15s;
+  }
+  nav.tabs button:hover { border-color: #cfd3e0; }
+  nav.tabs button.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: fade .2s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .card h2 { margin: 0 0 4px; font-size: 17px; }
+  .card .sub { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+  h3.sec { font-size: 13px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin: 22px 0 10px; }
+
+  /* habit / task rows */
+  .row { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 8px; background: #fff; }
+  .row .tag { width: 8px; align-self: stretch; border-radius: 6px; flex: none; }
+  .row .body { flex: 1; min-width: 0; }
+  .row .name { font-weight: 600; font-size: 15px; }
+  .row .meta { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  .row.done .name { text-decoration: line-through; color: var(--muted); }
+  .pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+  .pill.beruf { background: var(--beruf-bg); color: var(--beruf); }
+  .pill.soziales { background: var(--soziales-bg); color: var(--soziales); }
+  .pill.mut { background: var(--mut-bg); color: #c2740a; }
+  .pill.aufgaben { background: var(--aufgaben-bg); color: var(--aufgaben); }
+
+  .streak { font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .check {
+    width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--line); background: #fff;
+    cursor: pointer; flex: none; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #fff;
+    transition: all .15s;
+  }
+  .check.on { background: var(--aufgaben); border-color: var(--aufgaben); }
+  .check:hover { border-color: #bcc1d2; }
+
+  .x { margin-left: 6px; border: none; background: none; color: #c3c8d4; cursor: pointer; font-size: 18px; line-height: 1; padding: 4px; }
+  .x:hover { color: #ef4444; }
+
+  /* forms */
+  .addbar { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  input[type=text], select, textarea {
+    font: inherit; padding: 9px 11px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink);
+  }
+  input[type=text] { flex: 1; min-width: 160px; }
+  textarea { width: 100%; resize: vertical; min-height: 60px; }
+  .btn { border: none; background: var(--accent); color: #fff; font-weight: 600; padding: 9px 16px; border-radius: 10px; cursor: pointer; font-size: 14px; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+
+  .empty { color: var(--muted); font-size: 14px; padding: 10px 2px; }
+
+  /* weekly grid */
+  .week { display: flex; gap: 5px; margin-top: 4px; }
+  .week .d { flex: 1; text-align: center; }
+  .week .d .dl { font-size: 10px; color: var(--muted); }
+  .week .d .dot { width: 100%; height: 22px; border-radius: 6px; background: #eef0f6; margin-top: 3px; }
+  .week .d .dot.on { background: var(--aufgaben); }
+  .week .d.today .dl { color: var(--ink); font-weight: 700; }
+
+  /* mut challenge */
+  .challenge { border-left: 4px solid var(--mut); padding: 14px 16px; background: var(--mut-bg); border-radius: 0 12px 12px 0; }
+  .challenge .lab { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #c2740a; }
+  .challenge .txt { font-size: 16px; font-weight: 600; margin: 4px 0 12px; }
+
+  .quote { font-style: italic; color: var(--muted); font-size: 14px; }
+
+  .reflect label { font-size: 13px; font-weight: 600; display: block; margin: 12px 0 5px; }
+  .moods { display: flex; gap: 8px; }
+  .moods button { font-size: 22px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 6px 10px; cursor: pointer; }
+  .moods button.on { border-color: var(--accent); background: #f1efff; }
+  .savednote { font-size: 12px; color: var(--aufgaben); margin-top: 8px; height: 14px; }
+
+  .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
+  @media (max-width: 560px) { .stats { grid-template-columns: repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="greet" id="greet">Hallo!</div>
+    <div class="date" id="dateline"></div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="n" id="s-today">0/0</div><div class="l">Heute erledigt</div></div>
+    <div class="stat"><div class="n" id="s-streak">0</div><div class="l">Längster Streak</div></div>
+    <div class="stat"><div class="n" id="s-open">0</div><div class="l">Offene Aufgaben</div></div>
+    <div class="stat"><div class="n" id="s-mut">0</div><div class="l">Mut gezeigt</div></div>
+  </div>
+
+  <nav class="tabs">
+    <button data-tab="heute" class="active">☀️ Heute</button>
+    <button data-tab="gewohnheiten">🔁 Gewohnheiten</button>
+    <button data-tab="aufgaben">✅ Aufgaben</button>
+    <button data-tab="mut">🚀 Mut</button>
+    <button data-tab="reflexion">🌙 Reflexion</button>
+  </nav>
+
+  <!-- HEUTE -->
+  <section class="panel active" id="panel-heute">
+    <div class="card">
+      <h2>Heute dran</h2>
+      <div class="sub">Hak ab, was du heute geschafft hast. Jeder Haken zählt für deinen Streak.</div>
+      <div id="today-habits"></div>
+    </div>
+    <div class="card">
+      <h2>🚀 Mut-Challenge des Tages</h2>
+      <div class="sub">Ein kleiner Schritt aus der Komfortzone.</div>
+      <div class="challenge">
+        <div class="lab">Heute trauen</div>
+        <div class="txt" id="daily-challenge">…</div>
+        <button class="btn" id="did-challenge">Gemacht! 💪</button>
+        <button class="btn ghost" id="new-challenge">Andere Idee</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="quote" id="quote"></div>
+    </div>
+  </section>
+
+  <!-- GEWOHNHEITEN -->
+  <section class="panel" id="panel-gewohnheiten">
+    <div class="card">
+      <h2>Meine Gewohnheiten</h2>
+      <div class="sub">Kleine tägliche Schritte in deinen vier Bereichen — mit Streak-Zähler.</div>
+      <div id="habit-list"></div>
+      <div class="addbar">
+        <input type="text" id="habit-name" placeholder="Neue Gewohnheit, z.B. 20 Min lesen">
+        <select id="habit-area">
+          <option value="beruf">Beruf</option>
+          <option value="soziales">Soziales</option>
+          <option value="mut">Mut</option>
+          <option value="aufgaben">Aufgaben</option>
+        </select>
+        <button class="btn" id="add-habit">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUFGABEN -->
+  <section class="panel" id="panel-aufgaben">
+    <div class="card">
+      <h2>Aufschieberitis-Liste</h2>
+      <div class="sub">Die Dinge, die du schon lange rumschleppst. Sortiert nach: was am längsten wartet.</div>
+      <div id="task-list"></div>
+      <div class="addbar">
+        <input type="text" id="task-name" placeholder="Was schiebst du auf?">
+        <select id="task-area">
+          <option value="aufgaben">Aufgaben</option>
+          <option value="beruf">Beruf</option>
+          <option value="soziales">Soziales</option>
+          <option value="mut">Mut</option>
+        </select>
+        <button class="btn" id="add-task">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MUT -->
+  <section class="panel" id="panel-mut">
+    <div class="card">
+      <h2>Über den eigenen Schatten springen</h2>
+      <div class="sub">Hak ab, was du dich getraut hast. Eigene Mutproben kannst du unten ergänzen.</div>
+      <div id="mut-list"></div>
+      <div class="addbar">
+        <input type="text" id="mut-name" placeholder="Eigene Mutprobe, z.B. jemanden ansprechen">
+        <button class="btn" id="add-mut">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLEXION -->
+  <section class="panel" id="panel-reflexion">
+    <div class="card reflect">
+      <h2>Tages-Reflexion</h2>
+      <div class="sub" id="reflect-date"></div>
+      <label>Wie war dein Tag?</label>
+      <div class="moods" id="moods">
+        <button data-m="1">😞</button><button data-m="2">😐</button>
+        <button data-m="3">🙂</button><button data-m="4">😄</button><button data-m="5">🤩</button>
+      </div>
+      <label>Worauf bist du heute stolz? (ein kleiner Win)</label>
+      <textarea id="r-win" placeholder="Auch Kleinigkeiten zählen…"></textarea>
+      <label>Wofür bist du dankbar?</label>
+      <textarea id="r-grateful" placeholder="Eine Sache reicht."></textarea>
+      <div style="margin-top:12px"><button class="btn" id="save-reflect">Speichern</button></div>
+      <div class="savednote" id="reflect-saved"></div>
+    </div>
+    <div class="card">
+      <h2>Rückblick</h2>
+      <div class="sub">Deine letzten Einträge.</div>
+      <div id="reflect-history"></div>
+    </div>
+  </section>
+
+  <div class="footer">Alles wird nur lokal in deinem Browser gespeichert. 💜 Dein privater Raum.</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var LS = "meinlebenDashboard_v1";
+  var todayStr = function(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+  var dateKey = function(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+  var areaLabel = { beruf:"Beruf", soziales:"Soziales", mut:"Mut", aufgaben:"Aufgaben" };
+
+  var defaults = {
+    name: "",
+    habits: [
+      { id: uid(), name: "20 Minuten weiterbilden / lernen", area: "beruf", hist: [] },
+      { id: uid(), name: "Eine Person anschreiben oder anrufen", area: "soziales", hist: [] },
+      { id: uid(), name: "Eine kleine Sache tun, die mich nervös macht", area: "mut", hist: [] },
+      { id: uid(), name: "Eine aufgeschobene Aufgabe anpacken (10 Min)", area: "aufgaben", hist: [] }
+    ],
+    tasks: [
+      { id: uid(), name: "Beispiel: Steuerunterlagen sortieren", area: "aufgaben", done: false, added: todayStr() }
+    ],
+    mut: [
+      { id: uid(), name: "Jemand Fremdes ein Kompliment machen", done: false },
+      { id: uid(), name: "Bei einem Date / Treffen zusagen", done: false },
+      { id: uid(), name: "Im Meeting als Erste/r etwas sagen", done: false },
+      { id: uid(), name: "Eine alte Freundschaft wieder anschreiben", done: false },
+      { id: uid(), name: "Nach Feedback oder einer Gehaltserhöhung fragen", done: false },
+      { id: uid(), name: "Allein etwas Schönes unternehmen", done: false }
+    ],
+    challengesPool: [
+      "Sprich heute eine fremde Person freundlich an.",
+      "Schreibe einer alten Freundin/einem alten Freund: „Ich musste an dich denken.“",
+      "Melde dich zu einem Kurs oder Event an, das dich reizt.",
+      "Sag im Gespräch einmal ehrlich deine Meinung.",
+      "Lade jemanden auf einen Kaffee ein.",
+      "Stelle eine Frage, vor der du dich sonst drückst.",
+      "Mach den ersten Schritt bei etwas, das du aufschiebst.",
+      "Bedanke dich bei jemandem, der dir wichtig ist.",
+      "Geh allein an einen Ort, an den du sonst nur in Begleitung gehst.",
+      "Sag einmal Nein, ohne dich zu rechtfertigen."
+    ],
+    reflections: {},
+    mutCount: 0,
+    challengeToday: { date: "", text: "" }
+  };
+
+  var quotes = [
+    "Ein kleiner Schritt heute ist mehr als ein perfekter Plan für morgen.",
+    "Mut heißt nicht, keine Angst zu haben — sondern es trotzdem zu tun.",
+    "Du musst nicht alles auf einmal schaffen. Nur das Nächste.",
+    "Die Dinge, die wir aufschieben, sind selten so schlimm wie das Aufschieben selbst.",
+    "Freundschaften wachsen durch den ersten Schritt, nicht durch den perfekten Moment.",
+    "Fortschritt ist Fortschritt — egal wie klein.",
+    "Sei heute ein bisschen mutiger als gestern."
+  ];
+
+  function uid(){ return Math.random().toString(36).slice(2,9); }
+
+  var state = load();
+  function load(){
+    try {
+      var raw = localStorage.getItem(LS);
+      if(!raw) return JSON.parse(JSON.stringify(defaults));
+      var s = JSON.parse(raw);
+      // backfill any missing keys
+      for(var k in defaults){ if(!(k in s)) s[k] = JSON.parse(JSON.stringify(defaults[k])); }
+      return s;
+    } catch(e){ return JSON.parse(JSON.stringify(defaults)); }
+  }
+  function save(){ try { localStorage.setItem(LS, JSON.stringify(state)); } catch(e){} }
+
+  // ---------- streak helpers ----------
+  function streakOf(habit){
+    var set = {}; (habit.hist||[]).forEach(function(d){ set[d]=true; });
+    var streak = 0; var d = new Date();
+    // if not done today, start counting from yesterday (streak still valid)
+    if(!set[dateKey(d)]) d.setDate(d.getDate()-1);
+    while(set[dateKey(d)]){ streak++; d.setDate(d.getDate()-1); }
+    return streak;
+  }
+  function doneToday(habit){ return (habit.hist||[]).indexOf(todayStr()) !== -1; }
+  function toggleHabit(id){
+    var h = state.habits.find(function(x){return x.id===id;}); if(!h) return;
+    var t = todayStr(); var i = h.hist.indexOf(t);
+    if(i===-1) h.hist.push(t); else h.hist.splice(i,1);
+    save(); renderAll();
+  }
+
+  // ---------- renderers ----------
+  function pill(area){ return '<span class="pill '+area+'">'+areaLabel[area]+'</span>'; }
+
+  function habitRow(h, compact){
+    var s = streakOf(h); var on = doneToday(h);
+    var html = '<div class="row '+(on?'done':'')+'">';
+    html += '<div class="tag" style="background:var(--'+h.area+')"></div>';
+    html += '<div class="body"><div class="name">'+esc(h.name)+'</div>';
+    html += '<div class="meta">'+pill(h.area)+' &nbsp; 🔥 '+s+' Tag'+(s===1?'':'e')+' am Stück</div></div>';
+    html += '<button class="check '+(on?'on':'')+'" data-habit="'+h.id+'">'+(on?'✓':'')+'</button>';
+    if(!compact) html += '<button class="x" data-delhabit="'+h.id+'" title="Löschen">×</button>';
+    html += '</div>';
+    return html;
+  }
+
+  function renderToday(){
+    var box = document.getElementById("today-habits");
+    if(!state.habits.length){ box.innerHTML = '<div class="empty">Noch keine Gewohnheiten. Lege welche im Tab „Gewohnheiten“ an.</div>'; return; }
+    box.innerHTML = state.habits.map(function(h){ return habitRow(h, true); }).join("");
+  }
+
+  function renderHabits(){
+    var box = document.getElementById("habit-list");
+    if(!state.habits.length){ box.innerHTML = '<div class="empty">Noch keine Gewohnheiten angelegt.</div>'; return; }
+    var html = state.habits.map(function(h){
+      var r = habitRow(h, false);
+      // weekly mini grid
+      var days = ["Mo","Di","Mi","Do","Fr","Sa","So"];
+      var set = {}; h.hist.forEach(function(d){ set[d]=true; });
+      var today = new Date(); var dow = (today.getDay()+6)%7; // Mon=0
+      var grid = '<div class="week">';
+      for(var i=0;i<7;i++){
+        var d = new Date(); d.setDate(today.getDate()-(dow-i));
+        var k = dateKey(d); var isToday = (i===dow);
+        grid += '<div class="d '+(isToday?'today':'')+'"><div class="dl">'+days[i]+'</div><div class="dot '+(set[k]?'on':'')+'"></div></div>';
+      }
+      grid += '</div>';
+      return r + grid + '<div style="height:6px"></div>';
+    }).join("");
+    box.innerHTML = html;
+  }
+
+  function renderTasks(){
+    var box = document.getElementById("task-list");
+    var open = state.tasks.filter(function(t){return !t.done;});
+    var done = state.tasks.filter(function(t){return t.done;});
+    open.sort(function(a,b){ return (a.added||"").localeCompare(b.added||""); });
+    if(!state.tasks.length){ box.innerHTML = '<div class="empty">Keine Aufgaben. Trag unten ein, was du vor dir herschiebst.</div>'; return; }
+    function ageDays(d){ if(!d) return 0; var ms = Date.now()-new Date(d+"T00:00:00").getTime(); return Math.max(0, Math.floor(ms/86400000)); }
+    var html = "";
+    open.forEach(function(t){
+      var a = ageDays(t.added);
+      html += '<div class="row">';
+      html += '<div class="tag" style="background:var(--'+t.area+')"></div>';
+      html += '<div class="body"><div class="name">'+esc(t.name)+'</div>';
+      html += '<div class="meta">'+pill(t.area)+' &nbsp; ⏳ wartet seit '+a+' Tag'+(a===1?'':'en')+'</div></div>';
+      html += '<button class="check" data-task="'+t.id+'"></button>';
+      html += '<button class="x" data-deltask="'+t.id+'">×</button></div>';
+    });
+    if(done.length){
+      html += '<h3 class="sec">Erledigt ('+done.length+') 🎉</h3>';
+      done.forEach(function(t){
+        html += '<div class="row done">';
+        html += '<div class="tag" style="background:var(--'+t.area+')"></div>';
+        html += '<div class="body"><div class="name">'+esc(t.name)+'</div></div>';
+        html += '<button class="check on" data-task="'+t.id+'">✓</button>';
+        html += '<button class="x" data-deltask="'+t.id+'">×</button></div>';
+      });
+    }
+    box.innerHTML = html;
+  }
+
+  function renderMut(){
+    var box = document.getElementById("mut-list");
+    if(!state.mut.length){ box.innerHTML = '<div class="empty">Noch keine Mutproben.</div>'; return; }
+    box.innerHTML = state.mut.map(function(m){
+      var html = '<div class="row '+(m.done?'done':'')+'">';
+      html += '<div class="tag" style="background:var(--mut)"></div>';
+      html += '<div class="body"><div class="name">'+esc(m.name)+'</div></div>';
+      html += '<button class="check '+(m.done?'on':'')+'" data-mut="'+m.id+'">'+(m.done?'✓':'')+'</button>';
+      html += '<button class="x" data-delmut="'+m.id+'">×</button></div>';
+      return html;
+    }).join("");
+  }
+
+  function renderReflection(){
+    document.getElementById("reflect-date").textContent = niceDate(new Date());
+    var r = state.reflections[todayStr()] || {};
+    document.querySelectorAll("#moods button").forEach(function(b){ b.classList.toggle("on", String(r.mood)===b.dataset.m); });
+    document.getElementById("r-win").value = r.win || "";
+    document.getElementById("r-grateful").value = r.grateful || "";
+    // history
+    var keys = Object.keys(state.reflections).sort().reverse().slice(0,10);
+    var hbox = document.getElementById("reflect-history");
+    if(!keys.length){ hbox.innerHTML = '<div class="empty">Noch keine Einträge.</div>'; return; }
+    var moodEmoji = {1:"😞",2:"😐",3:"🙂",4:"😄",5:"🤩"};
+    hbox.innerHTML = keys.map(function(k){
+      var e = state.reflections[k];
+      var parts = [];
+      if(e.win) parts.push("🏆 "+esc(e.win));
+      if(e.grateful) parts.push("🙏 "+esc(e.grateful));
+      return '<div class="row"><div class="body"><div class="name">'+(moodEmoji[e.mood]||"")+' '+niceDate(new Date(k+"T00:00:00"))+'</div>'+
+             '<div class="meta">'+(parts.join(" &nbsp;·&nbsp; ")||"—")+'</div></div></div>';
+    }).join("");
+  }
+
+  function renderStats(){
+    var doneCount = state.habits.filter(doneToday).length;
+    document.getElementById("s-today").textContent = doneCount+"/"+state.habits.length;
+    var longest = 0; state.habits.forEach(function(h){ var s=streakOf(h); if(s>longest) longest=s; });
+    document.getElementById("s-streak").textContent = longest;
+    document.getElementById("s-open").textContent = state.tasks.filter(function(t){return !t.done;}).length;
+    document.getElementById("s-mut").textContent = state.mutCount;
+  }
+
+  function renderChallenge(){
+    var t = todayStr();
+    if(state.challengeToday.date !== t || !state.challengeToday.text){
+      state.challengeToday = { date: t, text: pick(state.challengesPool) };
+      save();
+    }
+    document.getElementById("daily-challenge").textContent = state.challengeToday.text;
+  }
+
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderReflection(); renderStats(); renderChallenge(); }
+
+  // ---------- helpers ----------
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function niceDate(d){
+    var days=["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+    var months=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+    return days[d.getDay()]+", "+d.getDate()+". "+months[d.getMonth()]+" "+d.getFullYear();
+  }
+
+  // ---------- header ----------
+  function setHeader(){
+    var h = new Date().getHours();
+    var g = h<11?"Guten Morgen":h<17?"Hallo":h<22?"Guten Abend":"Hey Nachtschwärmer";
+    document.getElementById("greet").textContent = state.name ? (g+", "+state.name+"!") : (g+"!");
+    document.getElementById("dateline").textContent = niceDate(new Date());
+    document.getElementById("quote").textContent = "„"+pick(quotes)+"“";
+  }
+
+  // ---------- events ----------
+  document.querySelectorAll("nav.tabs button").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("nav.tabs button").forEach(function(x){x.classList.remove("active");});
+      document.querySelectorAll(".panel").forEach(function(x){x.classList.remove("active");});
+      b.classList.add("active");
+      document.getElementById("panel-"+b.dataset.tab).classList.add("active");
+    });
+  });
+
+  document.body.addEventListener("click", function(e){
+    var t = e.target;
+    if(t.dataset.habit){ toggleHabit(t.dataset.habit); }
+    else if(t.dataset.delhabit){ if(confirm("Diese Gewohnheit löschen?")){ state.habits = state.habits.filter(function(h){return h.id!==t.dataset.delhabit;}); save(); renderAll(); } }
+    else if(t.dataset.task){ var tk=state.tasks.find(function(x){return x.id===t.dataset.task;}); if(tk){ tk.done=!tk.done; save(); renderAll(); } }
+    else if(t.dataset.deltask){ state.tasks = state.tasks.filter(function(x){return x.id!==t.dataset.deltask;}); save(); renderAll(); }
+    else if(t.dataset.mut){ var m=state.mut.find(function(x){return x.id===t.dataset.mut;}); if(m){ m.done=!m.done; state.mutCount += m.done?1:-1; if(state.mutCount<0) state.mutCount=0; save(); renderAll(); } }
+    else if(t.dataset.delmut){ state.mut = state.mut.filter(function(x){return x.id!==t.dataset.delmut;}); save(); renderAll(); }
+  });
+
+  document.getElementById("add-habit").addEventListener("click", function(){
+    var n = document.getElementById("habit-name").value.trim(); if(!n) return;
+    state.habits.push({ id: uid(), name: n, area: document.getElementById("habit-area").value, hist: [] });
+    document.getElementById("habit-name").value = ""; save(); renderAll();
+  });
+  document.getElementById("habit-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-habit").click(); });
+
+  document.getElementById("add-task").addEventListener("click", function(){
+    var n = document.getElementById("task-name").value.trim(); if(!n) return;
+    state.tasks.push({ id: uid(), name: n, area: document.getElementById("task-area").value, done:false, added: todayStr() });
+    document.getElementById("task-name").value = ""; save(); renderAll();
+  });
+  document.getElementById("task-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-task").click(); });
+
+  document.getElementById("add-mut").addEventListener("click", function(){
+    var n = document.getElementById("mut-name").value.trim(); if(!n) return;
+    state.mut.push({ id: uid(), name: n, done:false });
+    document.getElementById("mut-name").value = ""; save(); renderAll();
+  });
+  document.getElementById("mut-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-mut").click(); });
+
+  document.getElementById("did-challenge").addEventListener("click", function(){
+    state.mutCount++; save(); renderStats();
+    var btn=this; var old=btn.textContent; btn.textContent="Stark! 🎉"; setTimeout(function(){ btn.textContent=old; }, 1500);
+  });
+  document.getElementById("new-challenge").addEventListener("click", function(){
+    state.challengeToday = { date: todayStr(), text: pick(state.challengesPool) }; save();
+    document.getElementById("daily-challenge").textContent = state.challengeToday.text;
+  });
+
+  document.querySelectorAll("#moods button").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("#moods button").forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on");
+      var r = state.reflections[todayStr()] || {}; r.mood = Number(b.dataset.m); state.reflections[todayStr()]=r; save(); renderStats();
+    });
+  });
+  document.getElementById("save-reflect").addEventListener("click", function(){
+    var r = state.reflections[todayStr()] || {};
+    r.win = document.getElementById("r-win").value.trim();
+    r.grateful = document.getElementById("r-grateful").value.trim();
+    state.reflections[todayStr()] = r; save(); renderReflection();
+    var n=document.getElementById("reflect-saved"); n.textContent="Gespeichert ✓"; setTimeout(function(){ n.textContent=""; }, 1800);
+  });
+
+  // first-run: ask name once (optional)
+  if(!state.name){
+    setTimeout(function(){
+      var nm = prompt("Wie soll ich dich nennen? (kannst du leer lassen)");
+      if(nm){ state.name = nm.trim(); save(); setHeader(); }
+    }, 300);
+  }
+
+  setHeader();
+  renderAll();
+})();
+</script>
+</body>
+</html>
