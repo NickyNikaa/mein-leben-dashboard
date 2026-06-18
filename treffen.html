@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lass uns treffen — Nicky</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#f6f7fb; --card:#fff; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f0;
+    --accent:#6d5efc; --accent-bg:#f1efff; --ok:#10b981; --pink:#ec4899;
+    --shadow:0 1px 2px rgba(20,20,40,.04), 0 8px 30px rgba(20,20,40,.07);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,#efeefe 0%, var(--bg) 240px);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:32px 18px 80px;}
+  .hero{text-align:center;margin-bottom:8px;}
+  .hero .emoji{font-size:40px;}
+  .hero h1{font-size:28px;margin:8px 0 6px;letter-spacing:-.5px;}
+  .hero p{color:var(--muted);font-size:15px;margin:0 auto;max-width:460px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-top:20px;}
+  .card h2{font-size:16px;margin:0 0 4px;}
+  .card .sub{color:var(--muted);font-size:13px;margin-bottom:14px;}
+  .step{font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--accent);}
+  .day{margin-bottom:14px;}
+  .day-h{font-size:13px;font-weight:700;margin:14px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  .slots{display:flex;flex-wrap:wrap;gap:8px;}
+  .slot{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px;font-size:14px;font-weight:600;cursor:pointer;transition:all .12s;}
+  .slot:hover{border-color:var(--accent);}
+  .slot.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .empty{color:var(--muted);font-size:14px;padding:8px 0;}
+  label{font-size:13px;font-weight:600;display:block;margin:14px 0 5px;}
+  input,select,textarea{font:inherit;width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);}
+  textarea{resize:vertical;min-height:64px;}
+  .types{display:flex;flex-wrap:wrap;gap:8px;}
+  .type{flex:1;min-width:120px;text-align:center;border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .12s;}
+  .type:hover{border-color:var(--pink);}
+  .type.sel{background:#fdedf6;border-color:var(--pink);color:var(--pink);}
+  .picked{background:var(--accent-bg);border:1px solid #ddd8ff;border-radius:12px;padding:12px 14px;font-size:14px;margin-top:4px;}
+  .picked b{color:var(--accent);}
+  .btns{display:flex;flex-direction:column;gap:10px;margin-top:18px;}
+  .btn{border:none;border-radius:12px;padding:14px 18px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:block;}
+  .btn.primary{background:var(--accent);color:#fff;}
+  .btn.primary[disabled]{opacity:.45;cursor:not-allowed;}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .btn.ghost[disabled]{opacity:.45;cursor:not-allowed;}
+  .note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5;text-align:center;}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;}
+  .tz{display:inline-block;background:#eef0f6;border-radius:999px;padding:2px 10px;font-size:11px;color:var(--muted);margin-top:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="emoji">🌿✨</div>
+    <h1>Lust, dich mit mir zu treffen?</h1>
+    <p>Schön, dass du da bist! Such dir unten eine freie Zeit aus, die dir passt, sag mir kurz worum's geht — und ich bekomme deine Anfrage. Es sind nur Zeiten zu sehen, an denen ich wirklich frei bin.</p>
+    <div class="tz">Alle Zeiten in deutscher Zeit (Europe/Berlin)</div>
+  </div>
+
+  <div class="card">
+    <div class="step">Schritt 1</div>
+    <h2>Wähle eine freie Zeit</h2>
+    <div class="sub">Die nächsten zwei Wochen — nur freie 60-Minuten-Fenster.</div>
+    <div id="slotbox"><div class="empty">Lädt freie Zeiten…</div></div>
+  </div>
+
+  <div class="card">
+    <div class="step">Schritt 2</div>
+    <h2>Worum geht's?</h2>
+    <div class="sub">Damit ich weiß, was dich erwartet.</div>
+    <div class="types" id="types">
+      <div class="type" data-type="Kennenlern-Date 💕">Date 💕</div>
+      <div class="type" data-type="Freundschaftliches Treffen ☕">Freundschaftlich ☕</div>
+      <div class="type" data-type="Beruflich / Netzwerken 💼">Beruflich 💼</div>
+      <div class="type" data-type="Sonstiges 🙂">Sonstiges 🙂</div>
+    </div>
+    <label for="name">Dein Name</label>
+    <input id="name" type="text" placeholder="Wie heißt du?">
+    <label for="contact">So erreiche ich dich (optional)</label>
+    <input id="contact" type="text" placeholder="E-Mail oder Handynummer">
+    <label for="msg">Nachricht (optional)</label>
+    <textarea id="msg" placeholder="Worauf freust du dich? Vorschlag fürs Treffen?"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="step">Schritt 3</div>
+    <h2>Anfrage senden</h2>
+    <div class="picked" id="picked">Bitte oben zuerst eine Zeit und einen Namen wählen.</div>
+    <div class="btns">
+      <button class="btn primary" id="sendCal" disabled>Per Google Kalender anfragen</button>
+      <button class="btn ghost" id="sendMail" disabled>Stattdessen per E-Mail anfragen</button>
+    </div>
+    <div class="note">Deine Anfrage erreicht mich als Termin-Vorschlag bzw. E-Mail. Ich bestätige dir dann persönlich — der Slot ist also erst fix, wenn ich zusage. 💜</div>
+  </div>
+
+  <div class="foot">Diese Seite teilt nur freie Zeiten — keine Details meiner Termine.</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var EMAIL = "nicky.nikaaa@gmail.com";
+  var SLOT_MIN = 60;
+  var DAYS_AHEAD = 14;
+  // Verfügbarkeit (Stunden, lokale/deutsche Zeit). Wochentag: Mo-Fr=1..5
+  function windowsFor(dow){
+    if(dow === 0 || dow === 6) return [[11,21]];   // Sa/So 11-21
+    return [[18,21]];                               // Mo-Fr 18-21
+  }
+
+  var sel = { date:null, start:null, end:null, label:null };
+  var selType = null;
+
+  var WD = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+  var MO = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+  function pad(n){ return String(n).padStart(2,"0"); }
+  function dstr(y,m,d){ return y+"-"+pad(m)+"-"+pad(d); }
+  function niceDate(y,m,d){ var dt=new Date(y,m-1,d); return WD[dt.getDay()]+", "+d+". "+MO[m-1]; }
+
+  function overlaps(date, sh, busy){
+    // slot [sh:00, sh+1:00) vs busy intervals on date
+    var s0 = sh*60, s1 = sh*60 + SLOT_MIN;
+    for(var i=0;i<busy.length;i++){
+      var b = busy[i];
+      if(b.date !== date) continue;
+      var bs = parseInt(b.start.slice(0,2),10)*60 + parseInt(b.start.slice(3,5),10);
+      var be = parseInt(b.end.slice(0,2),10)*60 + parseInt(b.end.slice(3,5),10);
+      if(s0 < be && s1 > bs) return true;
+    }
+    return false;
+  }
+
+  function render(busy){
+    var box = document.getElementById("slotbox");
+    var now = new Date();
+    var today = dstr(now.getFullYear(), now.getMonth()+1, now.getDate());
+    var nowMin = now.getHours()*60 + now.getMinutes();
+    var html = ""; var anyDay = false;
+
+    for(var i=0;i<DAYS_AHEAD;i++){
+      var d = new Date(); d.setDate(d.getDate()+i);
+      var y=d.getFullYear(), m=d.getMonth()+1, day=d.getDate(), dow=d.getDay();
+      var date = dstr(y,m,day);
+      var wins = windowsFor(dow);
+      var chips = "";
+      wins.forEach(function(w){
+        for(var h=w[0]; h+1<=w[1]; h++){
+          if(date===today && h*60 <= nowMin) continue;       // heute vergangene Slots raus
+          if(overlaps(date, h, busy)) continue;               // belegte raus
+          var lbl = pad(h)+":00–"+pad(h+1)+":00";
+          chips += '<button class="slot" data-date="'+date+'" data-h="'+h+'" data-lbl="'+lbl+'" '+
+                   'data-nice="'+niceDate(y,m,day)+'">'+lbl+'</button>';
+        }
+      });
+      if(chips){
+        anyDay = true;
+        html += '<div class="day"><div class="day-h">'+niceDate(y,m,day)+'</div><div class="slots">'+chips+'</div></div>';
+      }
+    }
+    box.innerHTML = anyDay ? html : '<div class="empty">Gerade sind keine freien Zeiten verfügbar. Schau bald wieder vorbei.</div>';
+
+    box.querySelectorAll(".slot").forEach(function(b){
+      b.addEventListener("click", function(){
+        box.querySelectorAll(".slot").forEach(function(x){x.classList.remove("sel");});
+        b.classList.add("sel");
+        var h = parseInt(b.dataset.h,10);
+        sel = { date:b.dataset.date, start:h, end:h+1, label:b.dataset.lbl, nice:b.dataset.nice };
+        update();
+      });
+    });
+  }
+
+  document.querySelectorAll("#types .type").forEach(function(t){
+    t.addEventListener("click", function(){
+      document.querySelectorAll("#types .type").forEach(function(x){x.classList.remove("sel");});
+      t.classList.add("sel"); selType = t.dataset.type; update();
+    });
+  });
+  document.getElementById("name").addEventListener("input", update);
+
+  function update(){
+    var name = document.getElementById("name").value.trim();
+    var picked = document.getElementById("picked");
+    var ready = sel.date && name;
+    if(sel.date){
+      picked.innerHTML = "Gewählt: <b>"+sel.nice+", "+sel.label+"</b>"+
+        (selType?(" · "+selType):"")+(name?(" · für "+name):" · (bitte noch Namen eingeben)");
+    } else {
+      picked.textContent = "Bitte oben zuerst eine Zeit und einen Namen wählen.";
+    }
+    document.getElementById("sendCal").disabled = !ready;
+    document.getElementById("sendMail").disabled = !ready;
+  }
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function gcalDates(){
+    var p = sel.date.split("-"); // YYYY-MM-DD
+    var base = p[0]+p[1]+p[2]+"T";
+    return base+pad2(sel.start)+"0000/"+base+pad2(sel.end)+"0000";
+  }
+  function details(){
+    var name = document.getElementById("name").value.trim();
+    var contact = document.getElementById("contact").value.trim();
+    var msg = document.getElementById("msg").value.trim();
+    var lines = [];
+    lines.push("Treffen-Anfrage über Nickys Seite.");
+    lines.push("Von: "+name);
+    if(selType) lines.push("Art: "+selType);
+    if(contact) lines.push("Kontakt: "+contact);
+    if(msg) lines.push("Nachricht: "+msg);
+    return lines.join("\n");
+  }
+  function title(){
+    var name = document.getElementById("name").value.trim();
+    var t = selType ? selType.replace(/[^\p{L}\s&\/]+/gu,"").trim() : "Treffen";
+    return t+": "+name+" & Nicky";
+  }
+
+  document.getElementById("sendCal").addEventListener("click", function(){
+    if(this.disabled) return;
+    var url = "https://calendar.google.com/calendar/render?action=TEMPLATE"+
+      "&text="+encodeURIComponent(title())+
+      "&dates="+gcalDates()+
+      "&ctz=Europe/Berlin"+
+      "&details="+encodeURIComponent(details())+
+      "&add="+encodeURIComponent(EMAIL);
+    window.open(url, "_blank");
+  });
+  document.getElementById("sendMail").addEventListener("click", function(){
+    if(this.disabled) return;
+    var subject = "Treffen-Anfrage: "+(selType||"")+" am "+sel.nice+", "+sel.label;
+    var url = "mailto:"+EMAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(details());
+    location.href = url;
+  });
+
+  fetch("busy.json?cb="+Date.now()).then(function(r){return r.json();})
+    .then(function(data){ render(data.busy || []); })
+    .catch(function(){ render([]); });
+})();
+</script>
+</body>
+</html>
