@@ -502,7 +502,7 @@
   function setHeader(){
     var h = new Date().getHours();
     var g = h<11?"Guten Morgen":h<17?"Hallo":h<22?"Guten Abend":"Hey Nachtschwärmer";
-    document.getElementById("greet").textContent = state.name ? (g+", "+state.name+"!") : (g+"!");
+    document.getElementById("greet").textContent = g+", Nicky!";
     document.getElementById("dateline").textContent = niceDate(new Date());
     document.getElementById("quote").textContent = "„"+pick(quotes)+"“";
   }
@@ -596,14 +596,6 @@
     }
   });
   if(seededChanged){ save(); renderAll(); }
-
-  // first-run: ask name once (optional)
-  if(!state.name){
-    setTimeout(function(){
-      var nm = prompt("Wie soll ich dich nennen? (kannst du leer lassen)");
-      if(nm){ state.name = nm.trim(); save(); setHeader(); }
-    }, 300);
-  }
 
   setHeader();
   renderAll();
