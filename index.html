@@ -186,6 +186,11 @@
       <div id="words"></div>
     </div>
     <div class="card">
+      <h2>🇬🇧 3 English words for today</h2>
+      <div class="sub">Improve your English — mit deutscher Bedeutung und englischem Beispielsatz, jeden Tag neu.</div>
+      <div id="words-en"></div>
+    </div>
+    <div class="card">
       <h2>💬 Kommunikationstipp des Tages</h2>
       <div class="sub">Klarer sprechen — weniger Füllwörter, weniger Konjunktiv.</div>
       <div class="commtip" id="commtip"></div>
@@ -415,6 +420,57 @@
     {w:"stimmig", m:"passend, in sich schlüssig", e:"Das Gesamtbild ist stimmig."},
     {w:"initiieren", m:"in Gang setzen, anstoßen", e:"Sie hat das Projekt eigenständig initiiert."},
     {w:"konziliant", m:"entgegenkommend, versöhnlich", e:"Trotz Kritik blieb sie konziliant im Ton."}
+  ];
+
+  var vocabEn = [
+    {w:"to leverage", m:"nutzen, ausschöpfen", e:"We can leverage our existing network to reach new clients."},
+    {w:"to streamline", m:"verschlanken, effizienter machen", e:"We streamlined the process to save time."},
+    {w:"concise", m:"prägnant, knapp", e:"Please keep your summary concise."},
+    {w:"to align", m:"abstimmen, in Einklang bringen", e:"Let's align on the goals before we start."},
+    {w:"insightful", m:"aufschlussreich, tiefgründig", e:"That was a very insightful comment."},
+    {w:"to advocate (for)", m:"sich einsetzen für", e:"She advocates for clearer communication in meetings."},
+    {w:"compelling", m:"überzeugend, fesselnd", e:"He made a compelling argument."},
+    {w:"to facilitate", m:"erleichtern, moderieren", e:"I'll facilitate tomorrow's workshop."},
+    {w:"thorough", m:"gründlich", e:"We did a thorough review of the numbers."},
+    {w:"to prioritize", m:"priorisieren", e:"Let's prioritize the most urgent tasks first."},
+    {w:"nuance", m:"feine Abstufung, Nuance", e:"There's an important nuance here that we shouldn't miss."},
+    {w:"to reconcile", m:"in Einklang bringen, abgleichen", e:"We need to reconcile the two reports."},
+    {w:"pragmatic", m:"pragmatisch, sachlich", e:"Let's take a pragmatic approach."},
+    {w:"to elaborate", m:"näher ausführen", e:"Could you elaborate on that point?"},
+    {w:"diligent", m:"sorgfältig, gewissenhaft", e:"She is diligent about details."},
+    {w:"to mitigate", m:"abschwächen, mindern", e:"We took steps to mitigate the risk."},
+    {w:"coherent", m:"schlüssig, zusammenhängend", e:"The plan is coherent and clear."},
+    {w:"to endorse", m:"befürworten, unterstützen", e:"I fully endorse this proposal."},
+    {w:"versatile", m:"vielseitig", e:"He's a versatile team member."},
+    {w:"to convey", m:"vermitteln, ausdrücken", e:"Try to convey your point clearly."},
+    {w:"candid", m:"offen, ehrlich", e:"I appreciate your candid feedback."},
+    {w:"to iterate", m:"schrittweise verbessern", e:"We'll iterate on the design next week."},
+    {w:"substantial", m:"beträchtlich, wesentlich", e:"We saw a substantial improvement this quarter."},
+    {w:"to delegate", m:"delegieren, abgeben", e:"Learn to delegate tasks you can't do alone."},
+    {w:"articulate", m:"sich klar ausdrückend", e:"She is remarkably articulate under pressure."},
+    {w:"to consolidate", m:"zusammenführen, festigen", e:"Let's consolidate the feedback into one document."},
+    {w:"proactive", m:"vorausschauend handelnd", e:"Be proactive and raise concerns early."},
+    {w:"to underscore", m:"unterstreichen, betonen", e:"I want to underscore how important this is."},
+    {w:"resilient", m:"widerstandsfähig, belastbar", e:"A resilient team adapts quickly."},
+    {w:"to clarify", m:"klarstellen", e:"Let me clarify what I meant."},
+    {w:"meticulous", m:"akribisch, sehr sorgfältig", e:"She's meticulous about deadlines."},
+    {w:"to expedite", m:"beschleunigen", e:"Can we expedite the approval?"},
+    {w:"tangible", m:"greifbar, konkret", e:"We need tangible results, not just ideas."},
+    {w:"to reinforce", m:"verstärken, bekräftigen", e:"This data reinforces our decision."},
+    {w:"pertinent", m:"sachdienlich, relevant", e:"That's a pertinent question."},
+    {w:"to accommodate", m:"entgegenkommen, berücksichtigen", e:"We can accommodate your schedule."},
+    {w:"astute", m:"scharfsinnig, clever", e:"That was an astute observation."},
+    {w:"to spearhead", m:"anführen, vorantreiben", e:"She spearheaded the new initiative."},
+    {w:"seamless", m:"nahtlos, reibungslos", e:"We aim for a seamless experience."},
+    {w:"to substantiate", m:"belegen, untermauern", e:"Can you substantiate that claim?"},
+    {w:"eloquent", m:"redegewandt, wortgewandt", e:"Her eloquent speech impressed everyone."},
+    {w:"to foster", m:"fördern, pflegen", e:"We foster open communication in the team."},
+    {w:"robust", m:"robust, belastbar", e:"We built a robust plan for next year."},
+    {w:"to navigate", m:"bewältigen, sich zurechtfinden", e:"She navigated the negotiation skillfully."},
+    {w:"prudent", m:"umsichtig, klug", e:"It's prudent to keep a backup."},
+    {w:"to resonate", m:"Anklang finden, nachhallen", e:"Your message really resonated with the team."},
+    {w:"succinct", m:"knapp, bündig", e:"Keep the email succinct."},
+    {w:"to empower", m:"befähigen, stärken", e:"Good leaders empower their teams."}
   ];
 
   var commtips = [
@@ -647,6 +703,17 @@
       html += '<div class="word"><div class="w">'+esc(it.w)+'</div><div class="m">'+esc(it.m)+'</div><div class="e">„'+esc(it.e)+'“</div></div>';
     }
     box.innerHTML = html;
+
+    var boxEn = document.getElementById("words-en");
+    if(boxEn){
+      var htmlEn = "";
+      for(var j=0;j<3;j++){
+        var en = vocabEn[((n*3)+j) % vocabEn.length];
+        htmlEn += '<div class="word"><div class="w">'+esc(en.w)+'</div><div class="m">'+esc(en.m)+'</div><div class="e">"'+esc(en.e)+'"</div></div>';
+      }
+      boxEn.innerHTML = htmlEn;
+    }
+
     var tip = document.getElementById("commtip");
     if(tip) tip.textContent = commtips[n % commtips.length];
   }
