@@ -114,6 +114,14 @@
 
   .quote { font-style: italic; color: var(--muted); font-size: 14px; }
 
+  /* lernen: woerter + tipp */
+  .word { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+  .word:last-child { margin-bottom: 0; }
+  .word .w { font-weight: 700; font-size: 16px; }
+  .word .m { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .word .e { font-size: 13px; margin-top: 7px; font-style: italic; color: var(--ink); }
+  .commtip { font-size: 15px; border-left: 4px solid var(--accent); background: var(--accent-bg); padding: 13px 15px; border-radius: 0 12px 12px 0; }
+
   .reflect label { font-size: 13px; font-weight: 600; display: block; margin: 12px 0 5px; }
   .moods { display: flex; gap: 8px; }
   .moods button { font-size: 22px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 6px 10px; cursor: pointer; }
@@ -171,6 +179,16 @@
         <button class="btn" id="did-challenge">Gemacht! 💪</button>
         <button class="btn ghost" id="new-challenge">Andere Idee</button>
       </div>
+    </div>
+    <div class="card">
+      <h2>📚 3 Wörter für heute</h2>
+      <div class="sub">Eloquent & professionell — mit Bedeutung und Beispiel, jeden Tag neu.</div>
+      <div id="words"></div>
+    </div>
+    <div class="card">
+      <h2>💬 Kommunikationstipp des Tages</h2>
+      <div class="sub">Klarer sprechen — weniger Füllwörter, weniger Konjunktiv.</div>
+      <div class="commtip" id="commtip"></div>
     </div>
     <div class="card">
       <div class="quote" id="quote"></div>
@@ -346,6 +364,82 @@
     "Freundschaften wachsen durch den ersten Schritt, nicht durch den perfekten Moment.",
     "Fortschritt ist Fortschritt — egal wie klein.",
     "Sei heute ein bisschen mutiger als gestern."
+  ];
+
+  var vocab = [
+    {w:"pragmatisch", m:"sachlich und lösungsorientiert", e:"Lass uns pragmatisch bleiben und die einfachste Lösung zuerst testen."},
+    {w:"sukzessive", m:"nach und nach, schrittweise", e:"Wir rollen die Funktion sukzessive in allen Märkten aus."},
+    {w:"stringent", m:"logisch schlüssig und konsequent", e:"Deine Argumentation war heute wirklich stringent."},
+    {w:"konzis", m:"knapp und präzise", e:"Fass es bitte konzis zusammen, in drei Sätzen."},
+    {w:"prägnant", m:"treffend, knapp und einprägsam", e:"Ihr Statement war kurz, aber prägnant."},
+    {w:"substanziell", m:"wesentlich, gehaltvoll", e:"Das ist ein substanzieller Fortschritt gegenüber dem letzten Quartal."},
+    {w:"nuanciert", m:"fein abgestuft, differenziert", e:"Sie hat das Thema sehr nuanciert dargestellt."},
+    {w:"dezidiert", m:"entschieden, klar in der Haltung", e:"Ich vertrete dezidiert die Meinung, dass wir jetzt handeln sollten."},
+    {w:"kohärent", m:"in sich stimmig, zusammenhängend", e:"Die Strategie wirkt kohärent und gut durchdacht."},
+    {w:"adäquat", m:"angemessen, passend", e:"Wir brauchen eine adäquate Antwort auf die Nachfrage."},
+    {w:"antizipieren", m:"vorausahnen, vorwegnehmen", e:"Ein gutes Team antizipiert Probleme, bevor sie entstehen."},
+    {w:"konsolidieren", m:"festigen, zusammenführen", e:"Wir konsolidieren die Zahlen aus beiden Abteilungen."},
+    {w:"fundiert", m:"gut begründet, sachlich untermauert", e:"Ihre Entscheidung war fundiert und nachvollziehbar."},
+    {w:"versiert", m:"erfahren, geübt, kenntnisreich", e:"Er ist im Umgang mit Kunden sehr versiert."},
+    {w:"souverän", m:"sicher, überlegen, gelassen", e:"Sie hat die kritische Frage souverän beantwortet."},
+    {w:"verbindlich", m:"zuverlässig und zugewandt; auch: bindend", e:"Ich melde mich verbindlich bis Freitag."},
+    {w:"differenziert", m:"abwägend, unterscheidend", e:"Lass uns das differenziert betrachten, nicht schwarz-weiß."},
+    {w:"explizit", m:"ausdrücklich, klar benannt", e:"Ich sage es ganz explizit: Das ist meine Priorität."},
+    {w:"profund", m:"tiefgehend, gründlich", e:"Sie hat ein profundes Verständnis des Marktes."},
+    {w:"pointiert", m:"zugespitzt, treffend formuliert", e:"Er hat seine Kritik pointiert auf den Punkt gebracht."},
+    {w:"reziprok", m:"wechselseitig, auf Gegenseitigkeit", e:"Vertrauen im Team ist reziprok."},
+    {w:"eloquent", m:"redegewandt, sprachlich ausdrucksstark", e:"Sie präsentiert eloquent und mit klarer Struktur."},
+    {w:"resilient", m:"widerstandsfähig, belastbar", e:"Ein resilientes Team erholt sich schnell von Rückschlägen."},
+    {w:"transparent", m:"offen, nachvollziehbar", e:"Ich kommuniziere unsere Entscheidung transparent."},
+    {w:"proaktiv", m:"vorausschauend handelnd", e:"Sei proaktiv und sprich das Thema an, bevor es eskaliert."},
+    {w:"konstruktiv", m:"aufbauend, lösungsorientiert", e:"Danke für das konstruktive Feedback."},
+    {w:"evident", m:"offensichtlich, klar erkennbar", e:"Der Nutzen dieser Maßnahme ist evident."},
+    {w:"plausibel", m:"nachvollziehbar, einleuchtend", e:"Deine Erklärung klingt plausibel."},
+    {w:"akkurat", m:"genau, sorgfältig", e:"Die Daten wurden akkurat erfasst."},
+    {w:"diszipliniert", m:"konsequent, selbstbeherrscht", e:"Sie arbeitet sehr diszipliniert auf das Ziel hin."},
+    {w:"fokussiert", m:"konzentriert auf das Wesentliche", e:"Lass uns fokussiert bei einem Thema bleiben."},
+    {w:"präzise", m:"exakt, genau", e:"Formuliere deine Bitte präzise."},
+    {w:"sachlich", m:"nüchtern, objektiv", e:"Bleiben wir sachlich und bei den Fakten."},
+    {w:"überzeugend", m:"schlüssig und mitreißend", e:"Ihr Argument war überzeugend."},
+    {w:"initiativ", m:"aus eigenem Antrieb handelnd", e:"Sie ist sehr initiativ und wartet nicht auf Anweisungen."},
+    {w:"belastbar", m:"stabil unter Druck; tragfähig", e:"Die Prognose ist belastbar."},
+    {w:"zielführend", m:"auf das Ziel gerichtet, wirksam", e:"Diese Diskussion ist gerade nicht zielführend."},
+    {w:"wertschätzend", m:"respektvoll anerkennend", e:"Gib Feedback wertschätzend, aber ehrlich."},
+    {w:"authentisch", m:"echt, glaubwürdig", e:"Sie wirkt authentisch, weil sie zu ihrer Meinung steht."},
+    {w:"konsequent", m:"folgerichtig, beständig", e:"Er verfolgt seine Ziele konsequent."},
+    {w:"umsichtig", m:"vorausschauend und sorgfältig", e:"Eine umsichtige Planung verhindert Fehler."},
+    {w:"schlüssig", m:"logisch nachvollziehbar", e:"Dein Konzept ist schlüssig."},
+    {w:"maßgeblich", m:"entscheidend, bestimmend", e:"Ihr Beitrag war maßgeblich für den Erfolg."},
+    {w:"forcieren", m:"vorantreiben, beschleunigen", e:"Wir sollten das Projekt jetzt forcieren."},
+    {w:"elaboriert", m:"ausgearbeitet, kunstvoll differenziert", e:"Der Plan ist elaboriert, vielleicht etwas zu komplex."},
+    {w:"stimmig", m:"passend, in sich schlüssig", e:"Das Gesamtbild ist stimmig."},
+    {w:"initiieren", m:"in Gang setzen, anstoßen", e:"Sie hat das Projekt eigenständig initiiert."},
+    {w:"konziliant", m:"entgegenkommend, versöhnlich", e:"Trotz Kritik blieb sie konziliant im Ton."}
+  ];
+
+  var commtips = [
+    "Streiche Füllwörter wie „eigentlich“, „irgendwie“, „quasi“. Ein Satz ohne sie wirkt sofort klarer und selbstbewusster.",
+    "Ersetze „ich würde sagen“ durch „ich sage“. Der Indikativ macht deine Aussagen verbindlicher als der Konjunktiv.",
+    "„Ich könnte mir vorstellen, dass…“ → „Ich schlage vor, dass…“. Weg vom Konjunktiv, hin zur klaren Position.",
+    "Mach eine bewusste Pause statt „äh“. Stille wirkt souveräner als ein Fülllaut.",
+    "Sag, was du willst, nicht was du nicht willst: „Bitte bis Freitag“ statt „es wäre nicht schlecht, wenn…“.",
+    "Ein Gedanke pro Satz. Kurze Sätze zwingen zu Klarheit.",
+    "Streiche „eigentlich“ ganz — es schwächt fast jede Aussage ab.",
+    "Beginne mit der Kernaussage, dann die Begründung. Nicht umgekehrt.",
+    "„Vielleicht“, „eventuell“, „unter Umständen“: nutze höchstens eines pro Absatz.",
+    "Ersetze „man“ durch „ich“ oder „wir“. Das macht dich greifbarer und verbindlicher.",
+    "Frag dich vor dem Sprechen: Was ist mein einer Satz? Sag den zuerst.",
+    "„Ich glaube, dass es vielleicht sein könnte“ → „Ich denke, es ist so“. Ein Abschwächer reicht, nicht drei.",
+    "Beende Aussagesätze bestimmt, nicht mit fragender Melodie. Dann klingen Aussagen auch wie Aussagen.",
+    "„Entschuldigung, dass ich störe“ → „Hast du kurz zwei Minuten?“. Streiche unnötige Entschuldigungen.",
+    "Nutze aktive Verben: „Ich entscheide“ statt „es wird entschieden“.",
+    "Sprich eine Sprachnachricht an dich selbst und zähle deine Füllwörter. Bewusstsein ist der erste Schritt.",
+    "Sag „und“ statt „aber“, wenn du nichts relativieren willst. „Aber“ löscht oft das Gesagte davor.",
+    "Konkret statt vage: „nächste Woche“ → „Dienstag, 14 Uhr“. Zahlen und Namen schaffen Klarheit.",
+    "„Ich würde vorschlagen“ → „Mein Vorschlag ist“. Substantiv plus Indikativ wirkt entschlossener.",
+    "Atme, bevor du antwortest. Ein ruhiger Start verhindert Füllwörter am Satzanfang.",
+    "Weniger ist mehr: lieber ein klarer Satz als drei, die ihn abschwächen.",
+    "Ersetze „ganz gut“, „eigentlich schon“ durch eine klare Wertung: „Das überzeugt mich“ oder „Das überzeugt mich noch nicht“."
   ];
 
   function uid(){ return Math.random().toString(36).slice(2,9); }
@@ -542,7 +636,22 @@
     document.getElementById("daily-challenge").textContent = state.challengeToday.text;
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); }
+  function renderLearn(){
+    var d = new Date();
+    var n = Math.floor(new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 86400000);
+    var W = vocab.length;
+    var box = document.getElementById("words"); if(!box) return;
+    var html = "";
+    for(var k=0;k<3;k++){
+      var it = vocab[((n*3)+k) % W];
+      html += '<div class="word"><div class="w">'+esc(it.w)+'</div><div class="m">'+esc(it.m)+'</div><div class="e">„'+esc(it.e)+'“</div></div>';
+    }
+    box.innerHTML = html;
+    var tip = document.getElementById("commtip");
+    if(tip) tip.textContent = commtips[n % commtips.length];
+  }
+
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
