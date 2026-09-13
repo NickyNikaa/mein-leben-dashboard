@@ -121,6 +121,8 @@
   .word .m { font-size: 13px; color: var(--muted); margin-top: 2px; }
   .word .e { font-size: 13px; margin-top: 7px; font-style: italic; color: var(--ink); }
   .commtip { font-size: 15px; border-left: 4px solid var(--accent); background: var(--accent-bg); padding: 13px 15px; border-radius: 0 12px 12px 0; }
+  .subhead { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin: 16px 0 8px; }
+  .subhead:first-of-type { margin-top: 0; }
 
   .reflect label { font-size: 13px; font-weight: 600; display: block; margin: 12px 0 5px; }
   .moods { display: flex; gap: 8px; }
@@ -191,9 +193,22 @@
       <div id="words-en"></div>
     </div>
     <div class="card">
-      <h2>💬 Kommunikationstipp des Tages</h2>
-      <div class="sub">Klarer sprechen — weniger Füllwörter, weniger Konjunktiv.</div>
+      <h2>💬🧠 Kommunikation &amp; Einfluss</h2>
+      <div class="sub">Klarer sprechen, bewusster wirken &mdash; dein täglicher Kommunikationstipp und ein Chase-Hughes-Learning zusammen.</div>
+      <div class="subhead">Kommunikationstipp</div>
       <div class="commtip" id="commtip"></div>
+      <div class="subhead">Chase Hughes Learning</div>
+      <div id="chword"></div>
+    </div>
+    <div class="card">
+      <h2>❓ 2 Fragen für tiefere Gespräche</h2>
+      <div class="sub">Weg vom Smalltalk &mdash; Fragen, die echte Gespräche öffnen, jeden Tag neu.</div>
+      <div id="deepq"></div>
+    </div>
+    <div class="card">
+      <h2>✨ 2 Sätze, um zu beeindrucken</h2>
+      <div class="sub">Klare, souveräne Formulierungen für Meetings und Gespräche, jeden Tag neu.</div>
+      <div id="impress"></div>
     </div>
     <div class="card">
       <div class="quote" id="quote"></div>
@@ -473,6 +488,94 @@
     {w:"to empower", m:"befähigen, stärken", e:"Good leaders empower their teams."}
   ];
 
+  var chaseHughes = [
+    {w:"Six-Minute-X-Ray", m:"Chase Hughes' Kernmethode, um in wenigen Minuten ein Verhaltensprofil einer Person zu erstellen – Körpersprache, Sprache und Motivation kombiniert.", e:"Beobachte in den ersten Minuten eines Gesprächs bewusst Körpersprache UND Wortwahl, nicht nur den Inhalt."},
+    {w:"Behavioral Table of Elements", m:"Eine Referenztabelle, die menschliche Verhaltensweisen nach Körperregion, Stresslevel und Kontext ordnet – wie ein Periodensystem für Körpersprache.", e:"Achte auf Cluster von Signalen statt auf ein einzelnes Zeichen – eine Geste allein sagt wenig aus."},
+    {w:"Human Needs Map", m:"Sechs soziale Grundbedürfnisse, die wie Verhaltenstreiber wirken: Bedeutung, Anerkennung, Zugehörigkeit, Intelligenz, Mitleid, Stärke.", e:"Frag dich bei schwierigen Personen: Welches dieser sechs Bedürfnisse versuchen sie gerade zu stillen?"},
+    {w:"Decision Map", m:"Sechs Filter, nach denen Menschen Entscheidungen treffen: Abweichung, Neuheit, Sozial, Konformität, Investition, Notwendigkeit.", e:"Finde heraus, welcher Filter bei deinem Gegenüber dominiert, bevor du argumentierst."},
+    {w:"Vier Gesetze des Verhaltens", m:"Hughes' Grundannahme: Jede·r leidet, trägt eine Maske, leugnet das – und beides wurzelt oft in der Kindheit.", e:"Nimm abwehrendes Verhalten weniger persönlich – meist steckt eine ältere Geschichte dahinter."},
+    {w:"Blinzelrate", m:"Normal sind 9–12 Lidschläge/Minute; Stress treibt sie bis auf 70 hoch, tiefe Konzentration senkt sie auf etwa 3.", e:"Beobachte Veränderungen der Blinzelrate im Gesprächsverlauf – die Abweichung vom Ausgangswert zählt, nicht die absolute Zahl."},
+    {w:"Eye Home (Blick-Basislinie)", m:"Der Punkt, wohin jemand im Ruhezustand normalerweise blickt.", e:"Stelle erst mit neutralen Fragen eine Baseline her, bevor du auf Abweichungen bei wichtigen Fragen achtest."},
+    {w:"Gestural Hemispheric Tendency", m:"Viele Menschen blicken beim Erinnern an Positives konsistent in eine Richtung, bei Negativem in die andere.", e:"Nutze das nur als einen von vielen Datenpunkten, nie als alleinigen Beweis."},
+    {w:"Shutter Speed (Lid-Geschwindigkeit)", m:"Wie schnell sich Augenlider schließen – schnelleres Schließen kann auf Angst hindeuten.", e:"Ein einzelnes schnelles Blinzeln beweist nichts; achte auf wiederkehrende Muster."},
+    {w:"Lippenkompression", m:"Zusammengepresste Lippen als mögliches Zeichen für einen zurückgehaltenen Einwand.", e:"Wenn du das siehst, frag aktiv nach: „Was denkst du gerade wirklich?“"},
+    {w:"Digitale Flexion/Extension", m:"Eingekrümmte Finger deuten auf Unbehagen oder Zweifel, entspannt geöffnete Finger auf Zustimmung und Interesse.", e:"Beobachte Hände genauso wie das Gesicht – sie verstellen sich seltener bewusst."},
+    {w:"Deception Rating Scale", m:"Ein Punktesystem, das mehrere Stresssignale summiert, um die Wahrscheinlichkeit von Täuschung grob einzuschätzen.", e:"Ein einzelnes Signal reicht nie als Beweis – erst die Summe mehrerer Signale ist aussagekräftig."},
+    {w:"Attribution Error", m:"Der klassische Anfängerfehler: einer einzelnen Geste eine feste Bedeutung zuschreiben, ohne den Kontext zu kennen.", e:"Frag dich immer: Was könnte dieses Verhalten noch erklären, außer dem, was ich gerade vermute?"},
+    {w:"Psychologische Distanzierung", m:"Menschen, die etwas beschönigen oder verschweigen, wählen oft weichere Worte und lassen Namen von Betroffenen weg.", e:"Achte in Erzählungen darauf, ob konkrete Namen und klare Worte plötzlich verschwinden."},
+    {w:"Pronomen-Auslassung", m:"Unwahre oder ausweichende Aussagen enthalten im Schnitt weniger Ich-/Wir-Bezüge als ehrliche.", e:"Achte darauf, ob sich jemand plötzlich aus der eigenen Geschichte „herausschreibt“."},
+    {w:"Resume-Statements", m:"Statt eine Frage direkt zu beantworten, zählt die Person lieber ihre guten Eigenschaften auf.", e:"Wenn dir das auffällt, wiederhole die ursprüngliche Frage ruhig noch einmal."},
+    {w:"Mini-Confessions", m:"Ein kleines Fehlverhalten wird zugegeben, um insgesamt glaubwürdiger zu wirken und von einem größeren Thema abzulenken.", e:"Bleib bei Auffälligkeiten am eigentlichen Thema, statt dich vom kleinen Geständnis ablenken zu lassen."},
+    {w:"Elicitation (Gesprächs-Extraktion)", m:"Informationen über Aussagen statt über direkte Fragen gewinnen – wirkt weniger wie ein Verhör.", e:"Formuliere eine Beobachtung statt einer Frage: „Das muss stressig gewesen sein“ öffnet oft mehr als „Was ist passiert?“"},
+    {w:"Hourglass-Methode", m:"Die eigentlich wichtige Frage in die Mitte eines Gesprächs legen, umrahmt von unverfänglichem Smalltalk.", e:"Steig nicht sofort mit dem heiklen Thema ein – baue erst eine lockere Gesprächsbasis auf."},
+    {w:"Provokative Aussage", m:"Eine bewusst ungenaue Behauptung aufstellen, um eine spontane Korrektur – und damit echte Information – zu provozieren.", e:"Zum Beispiel: „Das hast du sicher allein gemacht“ – wenn jemand Hilfe hatte, wird oft spontan korrigiert."},
+    {w:"Disbelief-Technik", m:"Bewusste Skepsis äußern, um eine ausführlichere, verteidigende Erklärung zu provozieren.", e:"„Das kann ich mir kaum vorstellen“ bringt oft mehr Details als eine direkte Nachfrage."},
+    {w:"Naivitäts-Ansatz", m:"Unwissenheit vortäuschen, um jemanden zu einer ausführlicheren Erklärung einzuladen.", e:"„Erklär mir das nochmal wie einem Anfänger“ öffnet oft mehr, als Fachwissen zu zeigen."},
+    {w:"Bracketing", m:"Eine Zahlenspanne anbieten, um durch die Korrektur die genaue Zahl zu erfahren.", e:"„War das eher 5.000 oder 50.000?“ bringt die echte Zahl oft schneller als direktes Fragen."},
+    {w:"Linguistic Harvesting", m:"Systematisch registrieren, welche Sinnesbegriffe, Pronomen und Adjektive jemand verwendet.", e:"Spiegel die Wortwahl deines Gegenübers leicht zurück, statt deine eigene aufzudrängen."},
+    {w:"Sensory Preference Matching", m:"Sprache an visuelle, auditive oder kinästhetische Vorlieben des Gegenübers anpassen.", e:"Hört jemand oft „ich sehe“ statt „ich fühle“? Nutze dieselbe Sinnessprache in deiner Antwort."},
+    {w:"Fünf Qualitäten von Autorität", m:"Selbstvertrauen, Disziplin, Führung, Dankbarkeit und Freude an dem, was man tut – die Basis sozialer Wirkung nach Hughes.", e:"Frag dich vor wichtigen Terminen: Welche dieser fünf Qualitäten zeige ich gerade am wenigsten?"},
+    {w:"Authority Mastery Zones", m:"Fünf Lebensbereiche, die Glaubwürdigkeit untergraben, wenn sie unkontrolliert sind: Umgebung, Zeit, Erscheinung, Sozialleben, Finanzen.", e:"Miste diese Woche gezielt einen dieser fünf Bereiche auf – das wirkt stärker als jede Rhetorik."},
+    {w:"Agentic Shift", m:"In Gegenwart von Autoritätspersonen geben Menschen Verantwortung für ihr Handeln leichter ab (siehe Milgram-Experiment).", e:"Übernimm bewusst Verantwortung für eigene Entscheidungen, statt sie an eine „Autorität“ abzugeben."},
+    {w:"Nonverbal Leakage", m:"Unbewusste Signale, die einen inneren Zweifel verraten, obwohl die Worte selbstbewusst klingen.", e:"Wenn Wort und Körpersprache nicht zusammenpassen, glaub eher dem Körper."},
+    {w:"X-Ray-Fragen", m:"Sechs Leitfragen, um die Motivation eines Gegenübers zu verstehen: Welches Bedürfnis zeigt sich? Was schmeichelt ihm? Was macht ihn stark? Was vermeidet er? Welche Sprache zeigt Zufriedenheit? Wohin will er?", e:"Nimm dir bei einem neuen Kontakt bewusst eine dieser Fragen vor, statt oberflächlichem Smalltalk."},
+    {w:"Compliance Wedge", m:"Kleine, schrittweise Zustimmungen (z. B. Mitnicken, kleine Ja's), die unbewusst zu größerer psychischer Zustimmung führen.", e:"Beginne mit kleinen, unstrittigen Zustimmungen, bevor du um eine größere Entscheidung bittest."},
+  ];
+
+  var deepQuestions = [
+    "Was hat dich in den letzten Jahren am meisten verändert?",
+    "Wofür bist du bereit, unbequem zu sein?",
+    "Welche Entscheidung hat dein Leben am stärksten geprägt?",
+    "Was würdest du tun, wenn du wüsstest, dass du nicht scheitern kannst?",
+    "Woran erkennst du, dass du wirklich glücklich bist – nicht nur zufrieden?",
+    "Was hast du dir selbst noch nicht verziehen?",
+    "Welchen Rat würdest du deinem 18-jährigen Ich geben?",
+    "Was bewunderst du an Menschen, die du eigentlich kritisch siehst?",
+    "Wovor hast du mehr Angst: zu scheitern oder nie etwas riskiert zu haben?",
+    "Was ist dir wichtiger geworden, seit du älter geworden bist?",
+    "Welche Geschichte aus deiner Kindheit erklärt am meisten, wer du heute bist?",
+    "Was würdest du tun, wenn niemand dich dafür beurteilen würde?",
+    "Wann hast du dich zuletzt wirklich lebendig gefühlt?",
+    "Was ist der größte Unterschied zwischen dem Menschen, der du sein willst, und dem, der du gerade bist?",
+    "Welche Beziehung in deinem Leben hat dich am meisten geformt?",
+    "Was glaubst du über dich selbst, das du nie laut aussprichst?",
+    "Wofür würdest du gerne mehr Anerkennung bekommen, bekommst sie aber nicht?",
+    "Was hast du aufgegeben, um dorthin zu kommen, wo du heute bist?",
+    "Welche Frage stellst du dir selbst zu selten?",
+    "Was bedeutet für dich echter Erfolg – ganz ohne Geld und Titel?",
+    "Wann hast du zuletzt etwas getan, das dich wirklich stolz gemacht hat?",
+    "Was würdest du sofort ändern, wenn Geld keine Rolle spielen würde?",
+    "Welchen Moment würdest du gerne noch einmal erleben – und warum?",
+    "Was traust du dich in Gesprächen selten zu sagen?"
+  ];
+
+  var impressiveSentences = [
+    "Ich treffe lieber eine klare Entscheidung, die man revidieren kann, als gar keine.",
+    "Für mich zählt nicht, wer recht hat, sondern was uns weiterbringt.",
+    "Ich messe Fortschritt lieber an Taten als an Ankündigungen.",
+    "Komplexität ist kein Zeichen von Kompetenz – Klarheit ist es.",
+    "Ich bevorzuge unbequeme Wahrheiten gegenüber bequemen Illusionen.",
+    "Druck zeigt mir nicht, wer ich bin, sondern was mir wirklich wichtig ist.",
+    "Ich investiere lieber in Menschen, die Fragen stellen, als in solche, die nur Antworten geben.",
+    "Mein Ziel ist nicht, gehört zu werden, sondern verstanden zu werden.",
+    "Ich verwechsle Aktivität selten mit Fortschritt.",
+    "Vertrauen entsteht für mich nicht durch Worte, sondern durch Wiederholung von Verhalten.",
+    "Ich treffe Entscheidungen lieber mit unvollständigen Daten schnell, als mit vollständigen Daten zu spät.",
+    "Kritik nehme ich als Rohstoff, nicht als Urteil.",
+    "Ich will nicht der lauteste Mensch im Raum sein, sondern der klarste.",
+    "Konsequenz beeindruckt mich mehr als Talent.",
+    "Ich frage lieber zweimal nach, als einmal falsch zu handeln.",
+    "Für mich ist Ruhe unter Druck die eigentliche Form von Stärke.",
+    "Ich verhandle nicht, um recht zu haben, sondern um eine bessere Lösung zu finden.",
+    "Wachstum beginnt für mich genau dort, wo Komfort endet.",
+    "Ich vertraue Menschen, die zugeben können, wenn sie etwas nicht wissen.",
+    "Perfektion ist für mich der Feind von Fortschritt.",
+    "Ich handle lieber aus Überzeugung als aus Gewohnheit.",
+    "Meine beste Entscheidung war oft die, die im ersten Moment am unbequemsten wirkte.",
+    "Ich möchte lieber respektiert als gemocht werden – im Idealfall beides.",
+    "Ich sehe Verantwortung nicht als Last, sondern als Vertrauensbeweis."
+  ];
+
   var commtips = [
     "Streiche Füllwörter wie „eigentlich“, „irgendwie“, „quasi“. Ein Satz ohne sie wirkt sofort klarer und selbstbewusster.",
     "Ersetze „ich würde sagen“ durch „ich sage“. Der Indikativ macht deine Aussagen verbindlicher als der Konjunktiv.",
@@ -714,8 +817,34 @@
       boxEn.innerHTML = htmlEn;
     }
 
+    var boxCh = document.getElementById("chword");
+    if(boxCh){
+      var ch = chaseHughes[n % chaseHughes.length];
+      boxCh.innerHTML = '<div class="word"><div class="w">'+esc(ch.w)+'</div><div class="m">'+esc(ch.m)+'</div><div class="e">'+esc(ch.e)+'</div></div>';
+    }
+
     var tip = document.getElementById("commtip");
     if(tip) tip.textContent = commtips[n % commtips.length];
+
+    var boxQ = document.getElementById("deepq");
+    if(boxQ){
+      var htmlQ = "";
+      for(var q=0;q<2;q++){
+        var qq = deepQuestions[((n*2)+q) % deepQuestions.length];
+        htmlQ += '<div class="word"><div class="w">'+esc(qq)+'</div></div>';
+      }
+      boxQ.innerHTML = htmlQ;
+    }
+
+    var boxI = document.getElementById("impress");
+    if(boxI){
+      var htmlI = "";
+      for(var ix=0;ix<2;ix++){
+        var ii = impressiveSentences[((n*2)+ix) % impressiveSentences.length];
+        htmlI += '<div class="word"><div class="w">'+esc(ii)+'</div></div>';
+      }
+      boxI.innerHTML = htmlI;
+    }
   }
 
   function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); }
