@@ -197,6 +197,41 @@
 
   .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
   @media (max-width: 560px) { .stats { grid-template-columns: repeat(2,1fr); } }
+
+  .briefing { background: linear-gradient(135deg,#eef2ff,#fdf4ff); border: 1px solid #e0d7fa; }
+  .briefing .bline { padding: 6px 0; border-bottom: 1px dashed #ddd; font-size: 14px; }
+  .briefing .bline:last-child { border-bottom: none; }
+  .quickadd { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .quickadd input { flex:1; min-width:200px; }
+  .quickadd-hint { font-size:12px; color:#7a7a90; margin-top:6px; min-height:16px; }
+  .weekday-chips { display:flex; gap:4px; flex-wrap:wrap; margin:4px 0; }
+  .weekday-chips button { border:1px solid var(--line); background:#fff; border-radius:6px; padding:2px 7px; font-size:11px; cursor:pointer; }
+  .weekday-chips button.on { background:#4f46e5; color:#fff; border-color:#4f46e5; }
+  .dist-btns { display:flex; gap:8px; flex-wrap:wrap; }
+  .dist-btns button { border:1px solid var(--line); background:#fff; border-radius:10px; padding:8px 12px; cursor:pointer; font-size:13px; }
+  .dist-btns button.on { background:#4f46e5; color:#fff; border-color:#4f46e5; }
+  .bline { padding: 6px 0; border-bottom: 1px dashed #ddd; font-size: 14px; }
+  .bline:last-child { border-bottom: none; }
+  .hours-bar { display:flex; height:28px; border-radius:8px; overflow:hidden; border:1px solid var(--line); }
+  .hours-bar div { display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; white-space:nowrap; overflow:hidden; }
+  .hours-legend { display:flex; gap:14px; margin-top:8px; font-size:12px; flex-wrap:wrap; }
+  .hours-legend span { display:inline-flex; align-items:center; gap:5px; }
+  .hours-legend i { width:10px; height:10px; border-radius:3px; display:inline-block; }
+  .goal-item { margin-bottom:14px; }
+  .goal-item .gname { font-weight:600; font-size:14px; margin-bottom:4px; }
+  .goal-bar { background:#eee; border-radius:8px; height:16px; overflow:hidden; }
+  .goal-bar-fill { background:linear-gradient(90deg,#7c3aed,#4f46e5); height:100%; border-radius:8px; }
+  .goal-meta { font-size:12px; color:#7a7a90; margin-top:3px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+  .heatmap { display:grid; grid-auto-flow:column; grid-template-rows:repeat(7,12px); gap:3px; overflow-x:auto; padding-bottom:6px; }
+  .heatmap .hcell { width:12px; height:12px; border-radius:3px; background:#eee; }
+  .heatmap .hcell[data-lvl="1"] { background:#c7d2fe; }
+  .heatmap .hcell[data-lvl="2"] { background:#a5b4fc; }
+  .heatmap .hcell[data-lvl="3"] { background:#818cf8; }
+  .heatmap .hcell[data-lvl="4"] { background:#4f46e5; }
+  .emergency-card { background:#fff7ed; border:1px solid #fed7aa; }
+  .emergency-card h2 { color:#c2410c; }
+  .flashback-box { font-size:14px; padding:8px 0; border-bottom:1px dashed #ddd; }
+  .flashback-box:last-child { border-bottom:none; }
 </style>
 </head>
 <body>
@@ -221,10 +256,25 @@
     <button data-tab="listen">🛒 Listen</button>
     <button data-tab="mut">🚀 Mut</button>
     <button data-tab="reflexion">🌙 Reflexion</button>
+    <button data-tab="insights">📊 Insights</button>
   </nav>
 
   <!-- HEUTE -->
   <section class="panel active" id="panel-heute">
+    <div class="card briefing">
+      <h2>🌅 Morgen-Briefing</h2>
+      <div class="sub">Dein Tag auf einen Blick.</div>
+      <div id="briefing-content">Lädt…</div>
+    </div>
+    <div class="card">
+      <h2>⚡ Schnelleingabe</h2>
+      <div class="sub">Schreib einfach, was ansteht. Ich sortiere es automatisch ein (Termin, Aufgabe oder Liste).</div>
+      <div class="quickadd">
+        <input type="text" id="quickadd-input" placeholder="z.B. „Morgen um 15 Uhr Zahnarzt“ oder „Milch kaufen“">
+        <button class="btn" id="quickadd-btn">Hinzufügen</button>
+      </div>
+      <div class="quickadd-hint" id="quickadd-hint"></div>
+    </div>
     <div class="card">
       <h2>Heute dran</h2>
       <div class="sub">Hak ab, was du heute geschafft hast. Jeder Haken zählt für deinen Streak.</div>
@@ -349,6 +399,24 @@
         <button class="btn" id="add-task">Hinzufügen</button>
       </div>
     </div>
+    <div class="card">
+      <h2>🔁 Wiederkehrende Routinen</h2>
+      <div class="sub">Vorlagen, die automatisch an den passenden Wochentagen als Aufgabe erscheinen.</div>
+      <div id="routine-list"></div>
+      <div class="addbar">
+        <input type="text" id="routine-name" placeholder="z.B. Rechnungen prüfen">
+        <select id="routine-area">
+          <option value="aufgaben">Aufgaben</option>
+          <option value="beruf">Beruf</option>
+          <option value="soziales">Soziales</option>
+          <option value="mut">Mut</option>
+        </select>
+        <button class="btn" id="add-routine">Hinzufügen</button>
+      </div>
+      <div class="weekday-chips" id="routine-days">
+        <button type="button" data-day="0">Mo</button><button type="button" data-day="1">Di</button><button type="button" data-day="2">Mi</button><button type="button" data-day="3">Do</button><button type="button" data-day="4">Fr</button><button type="button" data-day="5">Sa</button><button type="button" data-day="6">So</button>
+      </div>
+    </div>
   </section>
 
   <!-- LISTEN -->
@@ -415,6 +483,79 @@
     </div>
   </section>
 
+  <!-- INSIGHTS -->
+  <section class="panel" id="panel-insights">
+    <div class="card">
+      <h2>📊 Wochenrückblick</h2>
+      <div class="sub">Automatische Zusammenfassung deiner aktuellen Woche.</div>
+      <div id="review-content"></div>
+    </div>
+    <div class="card">
+      <h2>⏱️ Wo geht deine Zeit hin?</h2>
+      <div class="sub">Stunden dieser Woche, aufgeteilt nach Termine, Fokuszeit/Ziele und frei.</div>
+      <div id="hours-content"></div>
+    </div>
+    <div class="card">
+      <h2>🎯 Was hat dich heute abgelenkt?</h2>
+      <div class="sub">Ein Klick reicht, so erkennst du mit der Zeit Muster.</div>
+      <div class="dist-btns" id="dist-btns">
+        <button type="button" data-dist="Social Media">📱 Social Media</button>
+        <button type="button" data-dist="Meetings ohne Agenda">🗓️ Meetings ohne Agenda</button>
+        <button type="button" data-dist="Prokrastination">🌀 Prokrastination</button>
+        <button type="button" data-dist="Perfektionismus">🔍 Perfektionismus</button>
+      </div>
+      <div id="dist-history" style="margin-top:12px"></div>
+    </div>
+    <div class="card">
+      <h2>🕳️ Größter Zeitfresser der Woche</h2>
+      <div class="sub">Woran hast du diese Woche am meisten Zeit verloren?</div>
+      <div class="addbar">
+        <input type="text" id="timewaster-input" placeholder="z.B. Instagram-Scrollen am Abend">
+        <button class="btn" id="add-timewaster">Speichern</button>
+      </div>
+      <div id="timewaster-list" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h2>🏆 Erfolgstagebuch</h2>
+      <div class="sub">Größere und kleinere Erfolge, getrennt von der täglichen Reflexion.</div>
+      <div class="addbar">
+        <input type="text" id="win-input" placeholder="Worauf bist du stolz?">
+        <button class="btn" id="add-win">Speichern</button>
+      </div>
+      <div id="wins-list" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h2>🔮 Vor 30 / 90 Tagen</h2>
+      <div class="sub">Ein Blick zurück, damit du deinen Fortschritt siehst.</div>
+      <div id="flashback-content"></div>
+    </div>
+    <div class="card">
+      <h2>📈 Große Ziele</h2>
+      <div class="sub">Sichtbarer Fortschritt für das, was dir wichtig ist.</div>
+      <div id="goals-list"></div>
+      <div class="addbar">
+        <input type="text" id="goal-name" placeholder="Ziel, z.B. Clero Meilenstein">
+        <input type="number" id="goal-target" placeholder="Zielwert" min="1">
+        <input type="text" id="goal-unit" placeholder="Einheit, z.B. Kunden">
+        <button class="btn" id="add-goal">Hinzufügen</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>🔥 Streak-Heatmap</h2>
+      <div class="sub">Deine Gewohnheiten der letzten 12 Wochen.</div>
+      <div id="heatmap-content"></div>
+    </div>
+    <div class="card emergency-card">
+      <h2>🆘 Notfallkarte</h2>
+      <div class="sub">Dinge, die dir schon einmal geholfen haben, für Tage, an denen du sie brauchst.</div>
+      <div id="emergency-list"></div>
+      <div class="addbar">
+        <input type="text" id="emergency-input" placeholder="Was hilft dir?">
+        <button class="btn" id="add-emergency">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
   <div class="footer">Alles wird nur lokal in deinem Browser gespeichert. 💜 Dein privater Raum.</div>
 </div>
 
@@ -464,7 +605,13 @@
     wishlist: [],
     calCustom: [],
     calOverrides: {},
-    calSkips: []
+    calSkips: [],
+    routines: [],
+    distractions: {},
+    timewasters: [],
+    wins: [],
+    goals: [],
+    emergency: []
   };
 
   var quotes = [
@@ -864,7 +1011,9 @@
       if(e.win) parts.push("🏆 "+esc(e.win));
       if(e.grateful) parts.push("🙏 "+esc(e.grateful));
       return '<div class="row"><div class="body"><div class="name">'+(moodEmoji[e.mood]||"")+' '+niceDate(new Date(k+"T00:00:00"))+'</div>'+
-             '<div class="meta">'+(parts.join(" &nbsp;·&nbsp; ")||"—")+'</div></div></div>';
+             '<div class="meta">'+(parts.join(" &nbsp;·&nbsp; ")||"—")+'</div></div>'+
+             (e.win?'<button class="btn ghost" data-emergencyfrom="'+k+'" style="padding:2px 8px;font-size:11px">🆘 merken</button>':'')+
+             '</div>';
     }).join("");
   }
 
@@ -938,7 +1087,216 @@
     }
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); }
+
+  // ---------- v5: Morgen-Briefing / Schnelleingabe / Routinen / Insights ----------
+  function classifyQuickAdd(text){
+    var t = text.trim();
+    if(!t) return null;
+    var lower = t.toLowerCase();
+    var weekdays = {"montag":1,"dienstag":2,"mittwoch":3,"donnerstag":4,"freitag":5,"samstag":6,"sonntag":0};
+    var timeMatch = t.match(/(\d{1,2})[:\.](\d{2})\s*uhr?/i) || t.match(/um\s+(\d{1,2})\s*uhr/i);
+    var hasDateWord = /heute|morgen|übermorgen/i.test(t);
+    if(!hasDateWord){ for(var w in weekdays){ if(lower.indexOf(w)!==-1){ hasDateWord=true; break; } } }
+    if(timeMatch || hasDateWord){
+      var d = new Date();
+      if(/übermorgen/i.test(t)) d.setDate(d.getDate()+2);
+      else if(/morgen/i.test(t)) d.setDate(d.getDate()+1);
+      else {
+        for(var w2 in weekdays){
+          if(lower.indexOf(w2)!==-1){
+            var target = weekdays[w2]; var cur = d.getDay(); var diff = (target - cur + 7)%7; if(diff===0) diff=7;
+            d.setDate(d.getDate()+diff); break;
+          }
+        }
+      }
+      var hh = "09", mm = "00";
+      if(timeMatch){ hh = String(timeMatch[1]).padStart(2,"0"); mm = timeMatch[2]?String(timeMatch[2]).padStart(2,"0"):"00"; }
+      var title = t.replace(/(\d{1,2})[:\.](\d{2})\s*uhr?/i,"").replace(/um\s+(\d{1,2})\s*uhr/i,"").replace(/heute|morgen|übermorgen/i,"");
+      for(var w3 in weekdays){ title = title.replace(new RegExp(w3,"i"),""); }
+      title = title.replace(/\s+/g," ").trim();
+      if(!title) title = t;
+      return { type:"cal", date: dateKey(d), time: hh+":"+mm, title: title };
+    }
+    if(/kaufen|einkauf|besorgen/i.test(lower)) return { type:"shop", text: t.replace(/kaufen/i,"").replace(/\s+/g," ").trim() || t };
+    if(/wunsch|wünsche mir|geschenk/i.test(lower)) return { type:"wish", text: t };
+    return { type:"task", text: t };
+  }
+
+  function renderBriefing(){
+    var box = document.getElementById("briefing-content"); if(!box) return;
+    var lines = [];
+    if(lastEventsData){
+      var today = todayStr();
+      var todays = (lastEventsData.events||[]).filter(function(e){ return e.date===today; });
+      if(todays.length){
+        lines.push('<div class="bline">📅 '+todays.length+' Termin'+(todays.length===1?'':'e')+' heute: '+todays.map(function(e){return esc(e.title||"Termin");}).slice(0,4).join(", ")+'</div>');
+      } else {
+        lines.push('<div class="bline">📅 Keine festen Termine heute. Guter Tag für Fokuszeit.</div>');
+      }
+    } else {
+      lines.push('<div class="bline">📅 Kalender wird geladen…</div>');
+    }
+    var openTasks = state.tasks.filter(function(t){return !t.done;}).slice().sort(function(a,b){return (a.added||"").localeCompare(b.added||"");}).slice(0,3);
+    if(openTasks.length){
+      lines.push('<div class="bline">✅ Wichtigste Aufgaben: '+openTasks.map(function(t){return esc(t.name);}).join(", ")+'</div>');
+    } else {
+      lines.push('<div class="bline">✅ Keine offenen Aufgaben, stark!</div>');
+    }
+    var d = new Date(); var n = Math.floor(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/86400000);
+    var word = vocab[(n*3) % vocab.length];
+    lines.push('<div class="bline">📚 Wort des Tages: <b>'+esc(word.w)+'</b>: '+esc(word.m)+'</div>');
+    lines.push('<div class="bline">💜 „'+esc(pick(quotes))+'“</div>');
+    box.innerHTML = lines.join("");
+  }
+
+  function generateRoutineTasks(){
+    var t = todayStr();
+    var dow = (new Date().getDay()+6)%7;
+    var changed = false;
+    (state.routines||[]).forEach(function(r){
+      if(r.lastGenerated === t) return;
+      if((r.weekdays||[]).indexOf(dow) !== -1){
+        var already = state.tasks.some(function(x){ return x.routineId===r.id && x.added===t; });
+        if(!already){ state.tasks.push({ id: uid(), name: r.name, area: r.area, done:false, added: t, routineId: r.id }); }
+      }
+      r.lastGenerated = t; changed = true;
+    });
+    if(changed) save();
+  }
+
+  function renderRoutines(){
+    var box = document.getElementById("routine-list"); if(!box) return;
+    if(!(state.routines||[]).length){ box.innerHTML = '<div class="empty">Noch keine Routinen angelegt.</div>'; return; }
+    var dayNames=["Mo","Di","Mi","Do","Fr","Sa","So"];
+    box.innerHTML = state.routines.map(function(r){
+      var days = (r.weekdays||[]).slice().sort().map(function(i){return dayNames[i];}).join(", ") || "kein Tag gewählt";
+      return '<div class="row"><div class="tag" style="background:var(--'+r.area+')"></div>'+
+        '<div class="body"><div class="name">'+esc(r.name)+'</div><div class="meta">'+pill(r.area)+' &nbsp; 🔁 '+days+'</div></div>'+
+        '<button class="x" data-delroutine="'+r.id+'" title="Löschen">×</button></div>';
+    }).join("");
+  }
+
+  function weekKeysOfCurrentWeek(){
+    var m = mondayOf(new Date()); var arr=[]; for(var i=0;i<7;i++) arr.push(dateKey(addDays(m,i))); return arr;
+  }
+
+  function renderReview(){
+    var box = document.getElementById("review-content"); if(!box) return;
+    var wk = weekKeysOfCurrentWeek();
+    var habitsDone = 0;
+    state.habits.forEach(function(h){ (h.hist||[]).forEach(function(d){ if(wk.indexOf(d)!==-1) habitsDone++; }); });
+    var tasksDone = state.tasks.filter(function(t){ return t.done && t.doneDate && wk.indexOf(t.doneDate)!==-1; }).length;
+    var moods=[]; var reflCount=0;
+    wk.forEach(function(k){ var r=state.reflections[k]; if(r && (r.win||r.grateful||r.mood)){ reflCount++; if(r.mood) moods.push(r.mood); } });
+    var avgMood = moods.length ? (moods.reduce(function(a,b){return a+b;},0)/moods.length).toFixed(1) : null;
+    var lines = [];
+    lines.push('<div class="bline">🔁 '+habitsDone+' Gewohnheiten abgehakt</div>');
+    lines.push('<div class="bline">✅ '+tasksDone+' Aufgaben erledigt</div>');
+    lines.push('<div class="bline">🌙 '+reflCount+' Reflexion'+(reflCount===1?'':'en')+' geschrieben'+(avgMood?' (Ø Stimmung '+avgMood+'/5)':'')+'</div>');
+    box.innerHTML = lines.join("");
+  }
+
+  function computeCalStats(plan){
+    var meetings=0, focus=0;
+    Object.keys(plan.blocksByDate).forEach(function(dk){
+      plan.blocksByDate[dk].forEach(function(b){
+        if(b.allDay) return;
+        var dur = (b.end||0)-(b.start||0);
+        if(b.type==="event") meetings += dur;
+        else if(b.type==="goal" || b.type==="todo" || b.type==="custom") focus += dur;
+      });
+    });
+    var totalWindow = 7*(CAL_END_MIN-CAL_START_MIN);
+    var free = Math.max(0, totalWindow - meetings - focus);
+    calStats = { meetings:meetings, focus:focus, free:free };
+  }
+
+  function renderHours(){
+    var box = document.getElementById("hours-content"); if(!box) return;
+    if(!calStats){ box.innerHTML = '<div class="empty">Kalenderdaten werden geladen…</div>'; return; }
+    var total = calStats.meetings + calStats.focus + calStats.free;
+    if(total<=0){ box.innerHTML = '<div class="empty">Keine Daten für diese Woche.</div>'; return; }
+    function pct(v){ return (v/total*100).toFixed(1); }
+    var html = '<div class="hours-bar">';
+    if(calStats.meetings>0) html += '<div style="width:'+pct(calStats.meetings)+'%;background:#ef4444" title="Termine">'+(calStats.meetings/60).toFixed(1)+'h</div>';
+    if(calStats.focus>0) html += '<div style="width:'+pct(calStats.focus)+'%;background:#4f46e5" title="Fokuszeit/Ziele">'+(calStats.focus/60).toFixed(1)+'h</div>';
+    if(calStats.free>0) html += '<div style="width:'+pct(calStats.free)+'%;background:#d1d5db;color:#333" title="Frei">'+(calStats.free/60).toFixed(1)+'h</div>';
+    html += '</div>';
+    html += '<div class="hours-legend"><span><i style="background:#ef4444"></i>Termine ('+(calStats.meetings/60).toFixed(1)+'h)</span><span><i style="background:#4f46e5"></i>Fokuszeit/Ziele ('+(calStats.focus/60).toFixed(1)+'h)</span><span><i style="background:#d1d5db"></i>Frei ('+(calStats.free/60).toFixed(1)+'h)</span></div>';
+    box.innerHTML = html;
+  }
+
+  function renderDistraction(){
+    var wrap = document.getElementById("dist-btns"); if(!wrap) return;
+    var today = state.distractions[todayStr()];
+    Array.prototype.slice.call(wrap.querySelectorAll("button")).forEach(function(b){ b.classList.toggle("on", b.dataset.dist===today); });
+    var hist = document.getElementById("dist-history");
+    var keys = Object.keys(state.distractions).sort().reverse().slice(0,7);
+    if(!keys.length){ hist.innerHTML = '<div class="empty">Noch keine Einträge.</div>'; return; }
+    hist.innerHTML = keys.map(function(k){ return '<div class="bline">'+niceDate(new Date(k+"T00:00:00"))+': '+esc(state.distractions[k])+'</div>'; }).join("");
+  }
+
+  function renderTimewasters(){
+    var box = document.getElementById("timewaster-list"); if(!box) return;
+    var items = (state.timewasters||[]).slice().sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+    if(!items.length){ box.innerHTML = '<div class="empty">Noch keine Einträge.</div>'; return; }
+    box.innerHTML = items.map(function(it){ return '<div class="row"><div class="body"><div class="name">'+esc(it.text)+'</div><div class="meta">'+niceDate(new Date(it.date+"T00:00:00"))+'</div></div><button class="x" data-deltimewaster="'+it.id+'">×</button></div>'; }).join("");
+  }
+
+  function renderWins(){
+    var box = document.getElementById("wins-list"); if(!box) return;
+    var items = (state.wins||[]).slice().sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+    if(!items.length){ box.innerHTML = '<div class="empty">Noch keine Einträge.</div>'; return; }
+    box.innerHTML = items.map(function(it){ return '<div class="row"><div class="body"><div class="name">🏆 '+esc(it.text)+'</div><div class="meta">'+niceDate(new Date(it.date+"T00:00:00"))+'</div></div><button class="x" data-delwin="'+it.id+'">×</button></div>'; }).join("");
+  }
+
+  function renderFlashback(){
+    var box = document.getElementById("flashback-content"); if(!box) return;
+    var html = "";
+    [30,90].forEach(function(days){
+      var d = new Date(); d.setDate(d.getDate()-days);
+      var k = dateKey(d);
+      var r = state.reflections[k];
+      if(r && (r.win||r.grateful)){
+        html += '<div class="flashback-box"><b>Vor '+days+' Tagen</b> ('+niceDate(d)+'): '+(r.win?'🏆 '+esc(r.win):'')+(r.win&&r.grateful?' &middot; ':'')+(r.grateful?'🙏 '+esc(r.grateful):'')+'</div>';
+      }
+    });
+    box.innerHTML = html || '<div class="empty">Noch keine Einträge von vor 30 oder 90 Tagen.</div>';
+  }
+
+  function renderGoals(){
+    var box = document.getElementById("goals-list"); if(!box) return;
+    if(!(state.goals||[]).length){ box.innerHTML = '<div class="empty">Noch keine großen Ziele angelegt.</div>'; return; }
+    box.innerHTML = state.goals.map(function(g){
+      var p = g.target>0 ? Math.min(100, Math.round((g.current||0)/g.target*100)) : 0;
+      return '<div class="goal-item"><div class="gname">'+esc(g.name)+'</div>'+
+        '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+p+'%"></div></div>'+
+        '<div class="goal-meta"><span>'+(g.current||0)+' / '+g.target+' '+esc(g.unit||"")+' ('+p+'%)</span>'+
+        '<span><button class="btn ghost" data-goalplus="'+g.id+'" style="padding:2px 8px">+1</button> <button class="x" data-delgoal="'+g.id+'">×</button></span></div></div>';
+    }).join("");
+  }
+
+  function renderHeatmap(){
+    var box = document.getElementById("heatmap-content"); if(!box) return;
+    var counts = {};
+    state.habits.forEach(function(h){ (h.hist||[]).forEach(function(d){ counts[d] = (counts[d]||0)+1; }); });
+    var days = []; var today = new Date();
+    for(var i=83;i>=0;i--){ var d = new Date(); d.setDate(today.getDate()-i); days.push(dateKey(d)); }
+    function lvl(c){ if(!c) return 0; if(c===1) return 1; if(c===2) return 2; if(c===3) return 3; return 4; }
+    box.innerHTML = '<div class="heatmap">' + days.map(function(k){ return '<div class="hcell" data-lvl="'+lvl(counts[k])+'" title="'+k+': '+(counts[k]||0)+'"></div>'; }).join("") + '</div>';
+  }
+
+  function renderEmergency(){
+    var box = document.getElementById("emergency-list"); if(!box) return;
+    if(!(state.emergency||[]).length){ box.innerHTML = '<div class="empty">Noch nichts hinzugefügt.</div>'; return; }
+    box.innerHTML = state.emergency.map(function(it){ return '<div class="row"><div class="body"><div class="name">'+esc(it.text)+'</div></div><button class="x" data-delemergency="'+it.id+'">×</button></div>'; }).join("");
+  }
+
+  function renderInsights(){
+    renderReview(); renderHours(); renderDistraction(); renderTimewasters(); renderWins(); renderFlashback(); renderGoals(); renderHeatmap(); renderEmergency();
+  }
+
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderBriefing(); renderRoutines(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -966,6 +1324,7 @@
       b.classList.add("active");
       document.getElementById("panel-"+b.dataset.tab).classList.add("active");
       if(b.dataset.tab === "kalender") renderAgenda();
+      if(b.dataset.tab === "insights") renderInsights();
     });
   });
 
@@ -973,7 +1332,7 @@
     var t = e.target;
     if(t.dataset.habit){ toggleHabit(t.dataset.habit); }
     else if(t.dataset.delhabit){ if(confirm("Diese Gewohnheit löschen?")){ state.habits = state.habits.filter(function(h){return h.id!==t.dataset.delhabit;}); save(); renderAll(); } }
-    else if(t.dataset.task){ var tk=state.tasks.find(function(x){return x.id===t.dataset.task;}); if(tk){ tk.done=!tk.done; save(); renderAll(); } }
+    else if(t.dataset.task){ var tk=state.tasks.find(function(x){return x.id===t.dataset.task;}); if(tk){ tk.done=!tk.done; tk.doneDate = tk.done ? todayStr() : null; save(); renderAll(); } }
     else if(t.dataset.deltask){ state.tasks = state.tasks.filter(function(x){return x.id!==t.dataset.deltask;}); save(); renderAll(); }
     else if(t.dataset.mut){ var m=state.mut.find(function(x){return x.id===t.dataset.mut;}); if(m){ m.done=!m.done; state.mutCount += m.done?1:-1; if(state.mutCount<0) state.mutCount=0; save(); renderAll(); } }
     else if(t.dataset.delmut){ state.mut = state.mut.filter(function(x){return x.id!==t.dataset.delmut;}); save(); renderAll(); }
@@ -981,6 +1340,14 @@
     else if(t.dataset.delshop){ state.shopping = state.shopping.filter(function(x){return x.id!==t.dataset.delshop;}); save(); renderAll(); }
     else if(t.dataset.wish){ var w=state.wishlist.find(function(x){return x.id===t.dataset.wish;}); if(w){ w.done=!w.done; save(); renderAll(); } }
     else if(t.dataset.delwish){ state.wishlist = state.wishlist.filter(function(x){return x.id!==t.dataset.delwish;}); save(); renderAll(); }
+    else if(t.dataset.delroutine){ state.routines = state.routines.filter(function(x){return x.id!==t.dataset.delroutine;}); save(); renderRoutines(); }
+    else if(t.dataset.dist){ state.distractions[todayStr()] = t.dataset.dist; save(); renderDistraction(); }
+    else if(t.dataset.deltimewaster){ state.timewasters = state.timewasters.filter(function(x){return x.id!==t.dataset.deltimewaster;}); save(); renderTimewasters(); }
+    else if(t.dataset.delwin){ state.wins = state.wins.filter(function(x){return x.id!==t.dataset.delwin;}); save(); renderWins(); }
+    else if(t.dataset.delgoal){ state.goals = state.goals.filter(function(x){return x.id!==t.dataset.delgoal;}); save(); renderGoals(); }
+    else if(t.dataset.goalplus){ var gg=state.goals.find(function(x){return x.id===t.dataset.goalplus;}); if(gg){ gg.current=(gg.current||0)+1; save(); renderGoals(); } }
+    else if(t.dataset.delemergency){ state.emergency = state.emergency.filter(function(x){return x.id!==t.dataset.delemergency;}); save(); renderEmergency(); }
+    else if(t.dataset.emergencyfrom){ var rk=t.dataset.emergencyfrom; var rr=state.reflections[rk]; if(rr && rr.win){ state.emergency=state.emergency||[]; state.emergency.push({id:uid(), text:rr.win}); save(); renderEmergency(); t.textContent="✓ hinzugefügt"; } }
   });
 
   document.getElementById("add-shop").addEventListener("click", function(){
@@ -1004,6 +1371,76 @@
   document.getElementById("share-wish").addEventListener("click", function(){
     shareList("Nickys Wunschliste", "wishlist", state.wishlist, document.getElementById("share-wish-note"));
   });
+
+  document.getElementById("quickadd-btn").addEventListener("click", function(){
+    var input = document.getElementById("quickadd-input");
+    var v = input.value.trim(); if(!v) return;
+    var c = classifyQuickAdd(v);
+    var hint = document.getElementById("quickadd-hint");
+    if(c.type==="cal"){
+      state.calCustom.push({ id: uid(), title: c.title, date: c.date, start: c.time, duration: 30 });
+      hint.textContent = "📅 Als Termin eingetragen: "+c.title+" am "+c.date+" um "+c.time+" Uhr.";
+    } else if(c.type==="shop"){
+      state.shopping.push({ id: uid(), text: c.text, done:false });
+      hint.textContent = "🛒 Zur Einkaufsliste hinzugefügt.";
+    } else if(c.type==="wish"){
+      state.wishlist.push({ id: uid(), text: c.text, note:"", done:false });
+      hint.textContent = "🎁 Zur Wunschliste hinzugefügt.";
+    } else {
+      state.tasks.push({ id: uid(), name: c.text, area:"aufgaben", done:false, added: todayStr() });
+      hint.textContent = "✅ Als Aufgabe hinzugefügt.";
+    }
+    input.value = ""; save(); renderAll(); renderAgenda();
+    setTimeout(function(){ hint.textContent=""; }, 4000);
+  });
+  document.getElementById("quickadd-input").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("quickadd-btn").click(); });
+
+  document.getElementById("routine-days").addEventListener("click", function(e){
+    if(e.target.tagName==="BUTTON" && e.target.dataset.day !== undefined){ e.target.classList.toggle("on"); }
+  });
+  document.getElementById("add-routine").addEventListener("click", function(){
+    var n = document.getElementById("routine-name").value.trim(); if(!n) return;
+    var days = Array.prototype.slice.call(document.querySelectorAll("#routine-days button.on")).map(function(b){return Number(b.dataset.day);});
+    if(!days.length){ alert("Bitte mindestens einen Wochentag auswählen."); return; }
+    state.routines = state.routines || [];
+    state.routines.push({ id: uid(), name: n, area: document.getElementById("routine-area").value, weekdays: days, lastGenerated: "" });
+    document.getElementById("routine-name").value = "";
+    document.querySelectorAll("#routine-days button.on").forEach(function(b){b.classList.remove("on");});
+    save(); renderRoutines();
+  });
+  document.getElementById("routine-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-routine").click(); });
+
+  document.getElementById("add-timewaster").addEventListener("click", function(){
+    var v = document.getElementById("timewaster-input").value.trim(); if(!v) return;
+    state.timewasters = state.timewasters || [];
+    state.timewasters.push({ id: uid(), text: v, date: todayStr(), weekKey: dateKey(mondayOf(new Date())) });
+    document.getElementById("timewaster-input").value=""; save(); renderTimewasters();
+  });
+  document.getElementById("timewaster-input").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-timewaster").click(); });
+
+  document.getElementById("add-win").addEventListener("click", function(){
+    var v = document.getElementById("win-input").value.trim(); if(!v) return;
+    state.wins = state.wins || [];
+    state.wins.push({ id: uid(), text: v, date: todayStr() });
+    document.getElementById("win-input").value=""; save(); renderWins();
+  });
+  document.getElementById("win-input").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-win").click(); });
+
+  document.getElementById("add-goal").addEventListener("click", function(){
+    var n = document.getElementById("goal-name").value.trim(); var tgt = Number(document.getElementById("goal-target").value); if(!n || !tgt) return;
+    state.goals = state.goals || [];
+    state.goals.push({ id: uid(), name:n, target:tgt, current:0, unit: document.getElementById("goal-unit").value.trim() });
+    document.getElementById("goal-name").value=""; document.getElementById("goal-target").value=""; document.getElementById("goal-unit").value="";
+    save(); renderGoals();
+  });
+
+  document.getElementById("add-emergency").addEventListener("click", function(){
+    var v = document.getElementById("emergency-input").value.trim(); if(!v) return;
+    state.emergency = state.emergency || [];
+    state.emergency.push({ id: uid(), text: v });
+    document.getElementById("emergency-input").value=""; save(); renderEmergency();
+  });
+  document.getElementById("emergency-input").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-emergency").click(); });
 
   document.getElementById("add-habit").addEventListener("click", function(){
     var n = document.getElementById("habit-name").value.trim(); if(!n) return;
@@ -1061,6 +1498,8 @@
   ];
   var calState = { view:"week", weekOffset:0, monthOffset:0, listeners:false, modalReady:false };
   var calEditCtx = null;
+  var calStats = null;
+  var lastEventsData = null;
 
   function mondayOf(d){
     var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -1482,6 +1921,7 @@
       fetch("busy.json?cb=" + Date.now()).then(function(r){ return r.json(); }).catch(function(){ return {busy:[]}; })
     ]).then(function(results){
       var eventsData = results[0], busyData = results[1];
+      lastEventsData = eventsData;
       var up = document.getElementById("cal-updated");
       if(eventsData.updated && up){ try { up.textContent = "Stand: " + new Date(eventsData.updated).toLocaleString("de-DE"); } catch(e){} }
 
@@ -1494,6 +1934,9 @@
       var openTasks = state.tasks.filter(function(t){ return !t.done; }).slice().sort(function(a,b){ return (a.added||"").localeCompare(b.added||""); });
       var plan = buildWeekPlan(weekMonday, eventsData, busyData, openTasks, calState.weekOffset===0);
       renderWeekGrid(plan);
+      if(calState.weekOffset===0){ computeCalStats(plan); }
+      renderBriefing();
+      renderInsights();
 
       var monthBase = new Date(); monthBase.setDate(1); monthBase.setMonth(monthBase.getMonth()+calState.monthOffset);
       renderMonthGrid(monthBase, eventsData);
@@ -1521,6 +1964,7 @@
   });
   if(seededChanged){ save(); renderAll(); }
 
+  generateRoutineTasks();
   setHeader();
   renderAll();
   renderAgenda();
