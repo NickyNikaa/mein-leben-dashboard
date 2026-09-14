@@ -26,6 +26,8 @@
     --goal-meet: #0891b2; --goal-meet-bg: #e0f6fa;
     --goal-recap: #7c3aed; --goal-recap-bg: #f1eafe;
     --goal-learn: #b45309; --goal-learn-bg: #fdf1e0;
+    --gesundheit: #0d9488; --gesundheit-bg: #dcfbf3;
+    --goal-kraft: #dc2626; --goal-kraft-bg: #fde3e3;
   }
   * { box-sizing: border-box; }
   body {
@@ -77,6 +79,7 @@
   .pill.soziales { background: var(--soziales-bg); color: var(--soziales); }
   .pill.mut { background: var(--mut-bg); color: #c2740a; }
   .pill.aufgaben { background: var(--aufgaben-bg); color: var(--aufgaben); }
+  .pill.gesundheit { background: var(--gesundheit-bg); color: var(--gesundheit); }
 
   .streak { font-size: 13px; font-weight: 700; white-space: nowrap; }
   .check {
@@ -165,6 +168,7 @@
   .cal-block.cb-goal-meet { background: var(--goal-meet-bg); border-color: var(--goal-meet); color: var(--goal-meet); }
   .cal-block.cb-goal-recap { background: var(--goal-recap-bg); border-color: var(--goal-recap); color: var(--goal-recap); }
   .cal-block.cb-goal-learn { background: var(--goal-learn-bg); border-color: var(--goal-learn); color: var(--goal-learn); }
+  .cal-block.cb-goal-kraft { background: var(--goal-kraft-bg); border-color: var(--goal-kraft); color: var(--goal-kraft); }
   .cal-block.cb-todo { background: var(--aufgaben-bg); border-color: var(--aufgaben); color: #0a6b4e; }
 
   .cal-month { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
@@ -376,6 +380,7 @@
           <option value="soziales">Soziales</option>
           <option value="mut">Mut</option>
           <option value="aufgaben">Aufgaben</option>
+          <option value="gesundheit">Gesundheit</option>
         </select>
         <button class="btn" id="add-habit">Hinzufügen</button>
       </div>
@@ -395,6 +400,15 @@
           <option value="beruf">Beruf</option>
           <option value="soziales">Soziales</option>
           <option value="mut">Mut</option>
+          <option value="gesundheit">Gesundheit</option>
+        </select>
+        <select id="task-duration" title="Geschätzte Dauer">
+          <option value="15">15 Min</option>
+          <option value="30" selected>30 Min</option>
+          <option value="45">45 Min</option>
+          <option value="60">60 Min</option>
+          <option value="90">90 Min</option>
+          <option value="120">120 Min</option>
         </select>
         <button class="btn" id="add-task">Hinzufügen</button>
       </div>
@@ -410,6 +424,7 @@
           <option value="beruf">Beruf</option>
           <option value="soziales">Soziales</option>
           <option value="mut">Mut</option>
+          <option value="gesundheit">Gesundheit</option>
         </select>
         <button class="btn" id="add-routine">Hinzufügen</button>
       </div>
@@ -565,7 +580,7 @@
   var LS = "meinlebenDashboard_v1";
   var todayStr = function(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
   var dateKey = function(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
-  var areaLabel = { beruf:"Beruf", soziales:"Soziales", mut:"Mut", aufgaben:"Aufgaben" };
+  var areaLabel = { beruf:"Beruf", soziales:"Soziales", mut:"Mut", aufgaben:"Aufgaben", gesundheit:"Gesundheit" };
 
   var defaults = {
     name: "",
@@ -926,7 +941,7 @@
       html += '<div class="row">';
       html += '<div class="tag" style="background:var(--'+t.area+')"></div>';
       html += '<div class="body"><div class="name">'+esc(t.name)+'</div>';
-      html += '<div class="meta">'+pill(t.area)+' &nbsp; ⏳ wartet seit '+a+' Tag'+(a===1?'':'en')+'</div></div>';
+      html += '<div class="meta">'+pill(t.area)+' &nbsp; ⏳ wartet seit '+a+' Tag'+(a===1?'':'en')+' &nbsp; ⏱️ '+(t.duration||estimateTaskDuration(t.name))+' Min</div></div>';
       html += '<button class="check" data-task="'+t.id+'"></button>';
       html += '<button class="x" data-deltask="'+t.id+'">×</button></div>';
     });
@@ -1089,6 +1104,12 @@
 
 
   // ---------- v5: Morgen-Briefing / Schnelleingabe / Routinen / Insights ----------
+  function estimateTaskDuration(name){
+    var n = String(name||"").toLowerCase();
+    if(/planen|buchen|organisieren|vorbereiten|recherchieren|reise|umzug|renovier|konzept|strategie/.test(n)) return 60;
+    if(/kurz|schnell|anrufen|antworten|prüfen|check/.test(n)) return 15;
+    return 30;
+  }
   function classifyQuickAdd(text){
     var t = text.trim();
     if(!t) return null;
@@ -1157,7 +1178,7 @@
       if(r.lastGenerated === t) return;
       if((r.weekdays||[]).indexOf(dow) !== -1){
         var already = state.tasks.some(function(x){ return x.routineId===r.id && x.added===t; });
-        if(!already){ state.tasks.push({ id: uid(), name: r.name, area: r.area, done:false, added: t, routineId: r.id }); }
+        if(!already){ state.tasks.push({ id: uid(), name: r.name, area: r.area, done:false, added: t, routineId: r.id, duration: estimateTaskDuration(r.name) }); }
       }
       r.lastGenerated = t; changed = true;
     });
@@ -1387,7 +1408,7 @@
       state.wishlist.push({ id: uid(), text: c.text, note:"", done:false });
       hint.textContent = "🎁 Zur Wunschliste hinzugefügt.";
     } else {
-      state.tasks.push({ id: uid(), name: c.text, area:"aufgaben", done:false, added: todayStr() });
+      state.tasks.push({ id: uid(), name: c.text, area:"aufgaben", done:false, added: todayStr(), duration: estimateTaskDuration(c.text) });
       hint.textContent = "✅ Als Aufgabe hinzugefügt.";
     }
     input.value = ""; save(); renderAll(); renderAgenda();
@@ -1451,8 +1472,9 @@
 
   document.getElementById("add-task").addEventListener("click", function(){
     var n = document.getElementById("task-name").value.trim(); if(!n) return;
-    state.tasks.push({ id: uid(), name: n, area: document.getElementById("task-area").value, done:false, added: todayStr() });
-    document.getElementById("task-name").value = ""; save(); renderAll();
+    var dur = Number(document.getElementById("task-duration").value) || 30;
+    state.tasks.push({ id: uid(), name: n, area: document.getElementById("task-area").value, done:false, added: todayStr(), duration: dur });
+    document.getElementById("task-name").value = ""; save(); renderAll(); renderAgenda();
   });
   document.getElementById("task-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-task").click(); });
 
@@ -1489,12 +1511,14 @@
 
   // ===== calendar: week/month grid + weekly goals + to-do slots + manual entries (dashboard-only overlay) =====
   var CAL_START_MIN = 7*60, CAL_END_MIN = 23*60, CAL_ROW_H = 56;
+  var TODO_EARLIEST_MIN = 9*60;
   var TODO_DURATION = 30;
   var WEEK_GOALS = [
     {key:"newnight", label:"NewNight", emoji:"🌃", timesPerWeek:1, duration:120, cls:"cb-goal-newnight", days:[4,5,3,6,2,1,0]},
     {key:"meet", label:"Jemanden Neues treffen", emoji:"🤝", timesPerWeek:1, duration:90, cls:"cb-goal-meet", days:[2,3,1,4,5,6,0]},
     {key:"recap", label:"Recap", emoji:"🔄", timesPerWeek:2, duration:45, cls:"cb-goal-recap", days:[6,2,0,3,5,1,4]},
-    {key:"learn", label:"Learnings vertiefen", emoji:"🧠", timesPerWeek:1, duration:30, cls:"cb-goal-learn", days:[1,0,3,2,4,5,6]}
+    {key:"learn", label:"Learnings vertiefen", emoji:"🧠", timesPerWeek:1, duration:30, cls:"cb-goal-learn", days:[1,0,3,2,4,5,6]},
+    {key:"kraft", label:"Krafttraining", emoji:"💪", timesPerWeek:3, duration:45, cls:"cb-goal-kraft", days:[0,2,4,1,3,5,6]}
   ];
   var calState = { view:"week", weekOffset:0, monthOffset:0, listeners:false, modalReady:false };
   var calEditCtx = null;
@@ -1606,6 +1630,7 @@
         if(dk < today) lb = CAL_END_MIN;
         else if(dk === today) lb = nowMin;
       }
+      lb = Math.max(lb, TODO_EARLIEST_MIN);
       freeByDate[dk] = freeIntervalsForDay(dk, busyByDate, lb);
     });
 
@@ -1636,7 +1661,9 @@
             occupySlot(freeByDate, ov.date, os, oe);
             placed = { date: ov.date, start: os, end: oe };
           } else {
-            var order = g.days.map(function(idx){ return dks[idx]; });
+            var rot = n % g.days.length;
+            var rotatedDays = g.days.slice(rot).concat(g.days.slice(0, rot));
+            var order = rotatedDays.map(function(idx){ return dks[idx]; });
             placed = placeInFree(freeByDate, order, g.duration);
           }
           if(placed){
@@ -1648,17 +1675,18 @@
       var cursor = 0;
       tasksOpen.forEach(function(t){
         var moveKey = "t_"+t.id;
+        var dur = t.duration || estimateTaskDuration(t.name) || TODO_DURATION;
         var ov = (state.calOverrides||{})[moveKey];
         var placed = null;
         if(ov && dks.indexOf(ov.date) !== -1){
           var os = calClip(toMin(ov.start), CAL_START_MIN, CAL_END_MIN);
-          var oe = calClip(os+TODO_DURATION, CAL_START_MIN, CAL_END_MIN);
+          var oe = calClip(os+dur, CAL_START_MIN, CAL_END_MIN);
           occupySlot(freeByDate, ov.date, os, oe);
           placed = { date: ov.date, start: os, end: oe };
         } else {
           var order2 = [];
           for(var k=0;k<7;k++) order2.push(dks[(cursor+k)%7]);
-          placed = placeInFree(freeByDate, order2, TODO_DURATION);
+          placed = placeInFree(freeByDate, order2, dur);
         }
         if(placed){
           blocksByDate[placed.date].push({type:"todo", allDay:false, title:"✅ "+t.name, start:placed.start, end:placed.end, moveKey:moveKey, moveLabel:"✅ "+t.name, moveable:true});
@@ -1783,6 +1811,7 @@
       {label:"Jemanden Neues treffen", color:"#0891b2"},
       {label:"Recap", color:"#7c3aed"},
       {label:"Learnings vertiefen", color:"#b45309"},
+      {label:"Krafttraining", color:"#dc2626"},
       {label:"To-Do (diese Woche)", color:"#10b981"},
       {label:"Eigener Eintrag", color:"#4f46e5"}
     ];
@@ -1951,17 +1980,27 @@
 
   // one-time seeded to-dos (added once, even for existing users)
   var seedTasks = [
-    { key: "steuerberater", name: "Dem Steuerberater antworten", area: "aufgaben" },
-    { key: "thailand", name: "Thailand-Reise für November planen ✈️", area: "aufgaben" }
+    { key: "steuerberater", name: "Dem Steuerberater antworten", area: "aufgaben", duration: 15 },
+    { key: "thailand", name: "Thailand-Reise für November planen ✈️", area: "aufgaben", duration: 60 }
   ];
   if(!state.seeded) state.seeded = [];
   var seededChanged = false;
   seedTasks.forEach(function(s){
     if(state.seeded.indexOf(s.key) === -1){
-      state.tasks.push({ id: uid(), name: s.name, area: s.area, done: false, added: todayStr() });
+      state.tasks.push({ id: uid(), name: s.name, area: s.area, done: false, added: todayStr(), duration: s.duration || 30 });
       state.seeded.push(s.key); seededChanged = true;
     }
   });
+  var seedHabits = [
+    { key: "habit_schritte", name: "10.000 Schritte gehen", area: "gesundheit" }
+  ];
+  seedHabits.forEach(function(s){
+    if(state.seeded.indexOf(s.key) === -1){
+      state.habits.push({ id: uid(), name: s.name, area: s.area, hist: [] });
+      state.seeded.push(s.key); seededChanged = true;
+    }
+  });
+
   if(seededChanged){ save(); renderAll(); }
 
   generateRoutineTasks();
