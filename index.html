@@ -272,12 +272,17 @@
     </div>
     <div class="card">
       <h2>⚡ Schnelleingabe</h2>
-      <div class="sub">Schreib einfach, was ansteht. Ich sortiere es automatisch ein (Termin, Aufgabe oder Liste).</div>
+      <div class="sub">Schreib einfach, was ansteht. Ich sortiere es automatisch ein (Termin, Aufgabe, Liste, langfristiges Ziel oder Erinnerung).</div>
       <div class="quickadd">
-        <input type="text" id="quickadd-input" placeholder="z.B. „Morgen um 15 Uhr Zahnarzt“ oder „Milch kaufen“">
+        <input type="text" id="quickadd-input" placeholder="z.B. „Morgen um 15 Uhr Zahnarzt“, „Ziel: Marathon laufen“ oder „Erinnere mich, die Reise zu buchen“">
         <button class="btn" id="quickadd-btn">Hinzufügen</button>
       </div>
       <div class="quickadd-hint" id="quickadd-hint"></div>
+    </div>
+    <div class="card">
+      <h2>🔔 Erinnerungen</h2>
+      <div class="sub">Dinge, an die du dich nicht selbst erinnern willst.</div>
+      <div id="reminders-list"></div>
     </div>
     <div class="card">
       <h2>Heute dran</h2>
@@ -546,7 +551,7 @@
     </div>
     <div class="card">
       <h2>📈 Große Ziele</h2>
-      <div class="sub">Sichtbarer Fortschritt für das, was dir wichtig ist.</div>
+      <div class="sub">Sichtbarer Fortschritt für das, was dir wichtig ist. Schritte, die du bei einem Ziel einträgst, werden automatisch nach und nach als Aufgabe in deinen Alltag eingebaut.</div>
       <div id="goals-list"></div>
       <div class="addbar">
         <input type="text" id="goal-name" placeholder="Ziel, z.B. Clero Meilenstein">
@@ -626,6 +631,7 @@
     timewasters: [],
     wins: [],
     goals: [],
+    reminders: [],
     emergency: []
   };
 
@@ -1110,33 +1116,65 @@
     if(/kurz|schnell|anrufen|antworten|prüfen|check/.test(n)) return 15;
     return 30;
   }
-  function classifyQuickAdd(text){
-    var t = text.trim();
-    if(!t) return null;
+  function extractDateTitle(t){
     var lower = t.toLowerCase();
     var weekdays = {"montag":1,"dienstag":2,"mittwoch":3,"donnerstag":4,"freitag":5,"samstag":6,"sonntag":0};
     var timeMatch = t.match(/(\d{1,2})[:\.](\d{2})\s*uhr?/i) || t.match(/um\s+(\d{1,2})\s*uhr/i);
     var hasDateWord = /heute|morgen|übermorgen/i.test(t);
     if(!hasDateWord){ for(var w in weekdays){ if(lower.indexOf(w)!==-1){ hasDateWord=true; break; } } }
-    if(timeMatch || hasDateWord){
-      var d = new Date();
-      if(/übermorgen/i.test(t)) d.setDate(d.getDate()+2);
-      else if(/morgen/i.test(t)) d.setDate(d.getDate()+1);
-      else {
-        for(var w2 in weekdays){
-          if(lower.indexOf(w2)!==-1){
-            var target = weekdays[w2]; var cur = d.getDay(); var diff = (target - cur + 7)%7; if(diff===0) diff=7;
-            d.setDate(d.getDate()+diff); break;
-          }
+    if(!timeMatch && !hasDateWord) return null;
+    var d = new Date();
+    if(/übermorgen/i.test(t)) d.setDate(d.getDate()+2);
+    else if(/morgen/i.test(t)) d.setDate(d.getDate()+1);
+    else {
+      for(var w2 in weekdays){
+        if(lower.indexOf(w2)!==-1){
+          var target = weekdays[w2]; var cur = d.getDay(); var diff = (target - cur + 7)%7; if(diff===0) diff=7;
+          d.setDate(d.getDate()+diff); break;
         }
       }
-      var hh = "09", mm = "00";
-      if(timeMatch){ hh = String(timeMatch[1]).padStart(2,"0"); mm = timeMatch[2]?String(timeMatch[2]).padStart(2,"0"):"00"; }
-      var title = t.replace(/(\d{1,2})[:\.](\d{2})\s*uhr?/i,"").replace(/um\s+(\d{1,2})\s*uhr/i,"").replace(/heute|morgen|übermorgen/i,"");
-      for(var w3 in weekdays){ title = title.replace(new RegExp(w3,"i"),""); }
-      title = title.replace(/\s+/g," ").trim();
-      if(!title) title = t;
-      return { type:"cal", date: dateKey(d), time: hh+":"+mm, title: title };
+    }
+    var hh = "", mm = "";
+    if(timeMatch){ hh = String(timeMatch[1]).padStart(2,"0"); mm = timeMatch[2]?String(timeMatch[2]).padStart(2,"0"):"00"; }
+    var title = t.replace(/(\d{1,2})[:\.](\d{2})\s*uhr?/i,"").replace(/um\s+(\d{1,2})\s*uhr/i,"").replace(/heute|morgen|übermorgen/i,"");
+    for(var w3 in weekdays){ title = title.replace(new RegExp(w3,"i"),""); }
+    title = title.replace(/\s+/g," ").trim();
+    return { date: dateKey(d), time: hh+":"+mm, title: title || t };
+  }
+
+  function classifyQuickAdd(text){
+    var t = text.trim();
+    if(!t) return null;
+    var lower = t.toLowerCase();
+
+    // Erinnerungen: "erinnere mich...", "denk daran...", "nicht vergessen...", "merk dir..."
+    var reminderTrigger = /erinner(e|ung)?|denk\s+(bitte\s+|doch\s+)?daran|nicht\s+vergessen|vergiss\s+nicht|merk(e)?\s+dir/i;
+    if(reminderTrigger.test(t)){
+      var rtext = t
+        .replace(/erinnerung:?/i,"")
+        .replace(/erinnere\s+mich\s+(bitte\s+)?(daran,?\s*(dass)?)?/i,"")
+        .replace(/denk\s+(bitte\s+|doch\s+)?daran,?\s*(dass)?/i,"")
+        .replace(/nicht\s+vergessen,?\s*(dass)?:?/i,"")
+        .replace(/vergiss\s+nicht,?\s*(dass)?/i,"")
+        .replace(/merk(e)?\s+dir,?\s*(dass)?/i,"")
+        .replace(/\s+/g," ").trim();
+      var rd = extractDateTitle(rtext);
+      if(rd) return { type:"reminder", date: rd.date, time: rd.time, text: rd.title || rtext || t };
+      return { type:"reminder", date:"", time:"", text: rtext || t };
+    }
+
+    // Langfristige Ziele: "Ziel: ...", "Vorhaben: ...", "langfristig ...", "irgendwann möchte ich...", "Meilenstein ..."
+    var goalTrigger = /^ziel:|^ziel\s|langfristig|mein\s+ziel\s+ist|irgendwann\s+möchte|irgendwann\s+will|will\s+ich\s+(langfristig\s+)?(irgendwann\s+)?erreichen|träume?\s+von|^vorhaben:|^projekt:|meilenstein/i;
+    if(goalTrigger.test(lower)){
+      var gtext = t.replace(/^ziel:\s*/i,"").replace(/^ziel\s+/i,"").replace(/^vorhaben:\s*/i,"").replace(/^projekt:\s*/i,"").trim();
+      return { type:"goal", text: gtext || t };
+    }
+
+    var dt = extractDateTitle(t);
+    if(dt){
+      var hh = dt.time ? dt.time.split(":")[0] : "09";
+      var mm = dt.time ? dt.time.split(":")[1] : "00";
+      return { type:"cal", date: dt.date, time: hh+":"+mm, title: dt.title };
     }
     if(/kaufen|einkauf|besorgen/i.test(lower)) return { type:"shop", text: t.replace(/kaufen/i,"").replace(/\s+/g," ").trim() || t };
     if(/wunsch|wünsche mir|geschenk/i.test(lower)) return { type:"wish", text: t };
@@ -1163,6 +1201,14 @@
     } else {
       lines.push('<div class="bline">✅ Keine offenen Aufgaben, stark!</div>');
     }
+    var dueReminders = (state.reminders||[]).filter(function(r){ return !r.done && r.date && r.date<=todayStr(); });
+    if(dueReminders.length){
+      lines.push('<div class="bline">🔔 '+dueReminders.length+' Erinnerung'+(dueReminders.length===1?'':'en')+' fällig: '+dueReminders.map(function(r){return esc(r.text);}).slice(0,3).join(", ")+'</div>');
+    }
+    var openGoalSteps = (state.goals||[]).filter(function(g){ return (g.steps||[]).some(function(s){return !s.done;}); });
+    if(openGoalSteps.length){
+      lines.push('<div class="bline">🎯 '+openGoalSteps.length+' Ziel'+(openGoalSteps.length===1?'':'e')+' mit offenen Schritten – heute ist automatisch je ein Schritt als Aufgabe eingeplant.</div>');
+    }
     var d = new Date(); var n = Math.floor(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/86400000);
     var word = vocab[(n*3) % vocab.length];
     lines.push('<div class="bline">📚 Wort des Tages: <b>'+esc(word.w)+'</b>: '+esc(word.m)+'</div>');
@@ -1181,6 +1227,22 @@
         if(!already){ state.tasks.push({ id: uid(), name: r.name, area: r.area, done:false, added: t, routineId: r.id, duration: estimateTaskDuration(r.name) }); }
       }
       r.lastGenerated = t; changed = true;
+    });
+    if(changed) save();
+  }
+
+  // Ein großes Ziel mit Schritten bekommt jeden Tag automatisch seinen nächsten offenen
+  // Schritt als Aufgabe in "Heute dran" – so wandert das Ziel Stück für Stück in den Alltag.
+  function generateGoalStepTasks(){
+    var t = todayStr();
+    var changed = false;
+    (state.goals||[]).forEach(function(g){
+      var nextStep = (g.steps||[]).find(function(s){ return !s.done; });
+      if(!nextStep) return;
+      var alreadyToday = state.tasks.some(function(x){ return x.goalId===g.id && x.added===t; });
+      if(alreadyToday) return;
+      state.tasks.push({ id: uid(), name: "🎯 "+g.name+": "+nextStep.text, area:"aufgaben", done:false, added: t, duration: estimateTaskDuration(nextStep.text), goalId: g.id, goalStepId: nextStep.id });
+      changed = true;
     });
     if(changed) save();
   }
@@ -1289,11 +1351,51 @@
     var box = document.getElementById("goals-list"); if(!box) return;
     if(!(state.goals||[]).length){ box.innerHTML = '<div class="empty">Noch keine großen Ziele angelegt.</div>'; return; }
     box.innerHTML = state.goals.map(function(g){
-      var p = g.target>0 ? Math.min(100, Math.round((g.current||0)/g.target*100)) : 0;
-      return '<div class="goal-item"><div class="gname">'+esc(g.name)+'</div>'+
-        '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+p+'%"></div></div>'+
-        '<div class="goal-meta"><span>'+(g.current||0)+' / '+g.target+' '+esc(g.unit||"")+' ('+p+'%)</span>'+
-        '<span><button class="btn ghost" data-goalplus="'+g.id+'" style="padding:2px 8px">+1</button> <button class="x" data-delgoal="'+g.id+'">×</button></span></div></div>';
+      var steps = g.steps || [];
+      var doneSteps = steps.filter(function(s){return s.done;}).length;
+      var barHtml = "";
+      if(g.target>0){
+        var p = Math.min(100, Math.round((g.current||0)/g.target*100));
+        barHtml = '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+p+'%"></div></div>'+
+          '<div class="goal-meta"><span>'+(g.current||0)+' / '+g.target+' '+esc(g.unit||"")+' ('+p+'%)</span>'+
+          '<span><button class="btn ghost" data-goalplus="'+g.id+'" style="padding:2px 8px">+1</button></span></div>';
+      } else if(steps.length){
+        var p2 = Math.round(doneSteps/steps.length*100);
+        barHtml = '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+p2+'%"></div></div>'+
+          '<div class="goal-meta"><span>'+doneSteps+' / '+steps.length+' Schritte ('+p2+'%)</span><span></span></div>';
+      }
+      var stepsHtml = steps.length ? steps.map(function(s){
+        return '<div class="row '+(s.done?'done':'')+'" style="padding:7px 10px;margin:8px 0 0">'+
+          '<div class="body"><div class="name" style="font-size:13px">'+esc(s.text)+'</div></div>'+
+          '<button class="check '+(s.done?'on':'')+'" data-goalstep="'+g.id+'|'+s.id+'">'+(s.done?'✓':'')+'</button>'+
+          '<button class="x" data-delgoalstep="'+g.id+'|'+s.id+'">×</button></div>';
+      }).join("") : "";
+      return '<div class="goal-item"><div class="gname">🎯 '+esc(g.name)+'</div>'+barHtml+stepsHtml+
+        '<div class="addbar" style="margin-top:8px">'+
+        '<input type="text" data-stepinput="'+g.id+'" placeholder="Schritt hinzufügen, z.B. Trainingsplan aufstellen" style="flex:1;min-width:160px">'+
+        '<button class="btn ghost" data-addstep="'+g.id+'">+ Schritt</button>'+
+        '<button class="x" data-delgoal="'+g.id+'" title="Ziel löschen">×</button></div></div>';
+    }).join("");
+  }
+
+  function renderReminders(){
+    var box = document.getElementById("reminders-list"); if(!box) return;
+    var items = (state.reminders||[]).filter(function(r){ return !r.done; });
+    if(!items.length){ box.innerHTML = '<div class="empty">Keine offenen Erinnerungen.</div>'; return; }
+    var today = todayStr();
+    items = items.slice().sort(function(a,b){ return (a.date||"9999-99-99").localeCompare(b.date||"9999-99-99"); });
+    box.innerHTML = items.map(function(r){
+      var meta;
+      if(r.date){
+        var overdue = r.date < today, isToday = r.date === today;
+        meta = (overdue ? "⚠️ war fällig am " : isToday ? "📌 heute fällig, " : "📅 fällig am ") + niceDate(new Date(r.date+"T00:00:00")) + (r.time ? " um "+r.time+" Uhr" : "");
+      } else {
+        meta = "Ohne festes Datum";
+      }
+      return '<div class="row"><div class="tag" style="background:var(--mut)"></div>'+
+        '<div class="body"><div class="name">'+esc(r.text)+'</div><div class="meta">'+meta+'</div></div>'+
+        '<button class="check" data-reminder="'+r.id+'" title="Erledigt">✓</button>'+
+        '<button class="x" data-delreminder="'+r.id+'">×</button></div>';
     }).join("");
   }
 
@@ -1317,7 +1419,7 @@
     renderReview(); renderHours(); renderDistraction(); renderTimewasters(); renderWins(); renderFlashback(); renderGoals(); renderHeatmap(); renderEmergency();
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderBriefing(); renderRoutines(); }
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderBriefing(); renderRoutines(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -1353,7 +1455,18 @@
     var t = e.target;
     if(t.dataset.habit){ toggleHabit(t.dataset.habit); }
     else if(t.dataset.delhabit){ if(confirm("Diese Gewohnheit löschen?")){ state.habits = state.habits.filter(function(h){return h.id!==t.dataset.delhabit;}); save(); renderAll(); } }
-    else if(t.dataset.task){ var tk=state.tasks.find(function(x){return x.id===t.dataset.task;}); if(tk){ tk.done=!tk.done; tk.doneDate = tk.done ? todayStr() : null; save(); renderAll(); } }
+    else if(t.dataset.task){
+      var tk=state.tasks.find(function(x){return x.id===t.dataset.task;});
+      if(tk){
+        tk.done=!tk.done; tk.doneDate = tk.done ? todayStr() : null;
+        if(tk.goalId && tk.goalStepId){
+          var gForTask = state.goals.find(function(x){return x.id===tk.goalId;});
+          var stepForTask = gForTask && (gForTask.steps||[]).find(function(x){return x.id===tk.goalStepId;});
+          if(stepForTask) stepForTask.done = tk.done;
+        }
+        save(); renderAll();
+      }
+    }
     else if(t.dataset.deltask){ state.tasks = state.tasks.filter(function(x){return x.id!==t.dataset.deltask;}); save(); renderAll(); }
     else if(t.dataset.mut){ var m=state.mut.find(function(x){return x.id===t.dataset.mut;}); if(m){ m.done=!m.done; state.mutCount += m.done?1:-1; if(state.mutCount<0) state.mutCount=0; save(); renderAll(); } }
     else if(t.dataset.delmut){ state.mut = state.mut.filter(function(x){return x.id!==t.dataset.delmut;}); save(); renderAll(); }
@@ -1365,8 +1478,30 @@
     else if(t.dataset.dist){ state.distractions[todayStr()] = t.dataset.dist; save(); renderDistraction(); }
     else if(t.dataset.deltimewaster){ state.timewasters = state.timewasters.filter(function(x){return x.id!==t.dataset.deltimewaster;}); save(); renderTimewasters(); }
     else if(t.dataset.delwin){ state.wins = state.wins.filter(function(x){return x.id!==t.dataset.delwin;}); save(); renderWins(); }
-    else if(t.dataset.delgoal){ state.goals = state.goals.filter(function(x){return x.id!==t.dataset.delgoal;}); save(); renderGoals(); }
+    else if(t.dataset.delgoal){ if(confirm("Dieses Ziel wirklich löschen?")){ state.goals = state.goals.filter(function(x){return x.id!==t.dataset.delgoal;}); save(); renderGoals(); } }
     else if(t.dataset.goalplus){ var gg=state.goals.find(function(x){return x.id===t.dataset.goalplus;}); if(gg){ gg.current=(gg.current||0)+1; save(); renderGoals(); } }
+    else if(t.dataset.addstep){
+      var gidAdd = t.dataset.addstep;
+      var stepInp = document.querySelector('[data-stepinput="'+gidAdd+'"]');
+      var stepVal = stepInp ? stepInp.value.trim() : "";
+      if(stepVal){
+        var ggAdd = state.goals.find(function(x){return x.id===gidAdd;});
+        if(ggAdd){ ggAdd.steps = ggAdd.steps || []; ggAdd.steps.push({ id: uid(), text: stepVal, done:false }); save(); renderGoals(); }
+      }
+    }
+    else if(t.dataset.goalstep){
+      var gsParts = t.dataset.goalstep.split("|");
+      var ggStep = state.goals.find(function(x){return x.id===gsParts[0];});
+      var stepObj = ggStep && (ggStep.steps||[]).find(function(x){return x.id===gsParts[1];});
+      if(stepObj){ stepObj.done = !stepObj.done; save(); renderGoals(); renderAll(); }
+    }
+    else if(t.dataset.delgoalstep){
+      var dgsParts = t.dataset.delgoalstep.split("|");
+      var ggDelStep = state.goals.find(function(x){return x.id===dgsParts[0];});
+      if(ggDelStep){ ggDelStep.steps = (ggDelStep.steps||[]).filter(function(x){return x.id!==dgsParts[1];}); save(); renderGoals(); }
+    }
+    else if(t.dataset.reminder){ var rem=state.reminders.find(function(x){return x.id===t.dataset.reminder;}); if(rem){ rem.done=true; save(); renderReminders(); renderBriefing(); } }
+    else if(t.dataset.delreminder){ state.reminders = (state.reminders||[]).filter(function(x){return x.id!==t.dataset.delreminder;}); save(); renderReminders(); renderBriefing(); }
     else if(t.dataset.delemergency){ state.emergency = state.emergency.filter(function(x){return x.id!==t.dataset.delemergency;}); save(); renderEmergency(); }
     else if(t.dataset.emergencyfrom){ var rk=t.dataset.emergencyfrom; var rr=state.reflections[rk]; if(rr && rr.win){ state.emergency=state.emergency||[]; state.emergency.push({id:uid(), text:rr.win}); save(); renderEmergency(); t.textContent="✓ hinzugefügt"; } }
   });
@@ -1407,6 +1542,14 @@
     } else if(c.type==="wish"){
       state.wishlist.push({ id: uid(), text: c.text, note:"", done:false });
       hint.textContent = "🎁 Zur Wunschliste hinzugefügt.";
+    } else if(c.type==="reminder"){
+      state.reminders = state.reminders || [];
+      state.reminders.push({ id: uid(), text: c.text, date: c.date||"", time: c.time||"", done:false, added: todayStr() });
+      hint.textContent = c.date ? ("🔔 Als Erinnerung gespeichert – fällig am "+c.date+(c.time?" um "+c.time+" Uhr":"")+".") : "🔔 Als Erinnerung gespeichert.";
+    } else if(c.type==="goal"){
+      state.goals = state.goals || [];
+      state.goals.push({ id: uid(), name: c.text, target:0, current:0, unit:"", steps: [] });
+      hint.textContent = "🎯 Als langfristiges Ziel angelegt. Trag bei „Große Ziele“ Schritte ein – die werden automatisch nach und nach in deinen Alltag eingebaut.";
     } else {
       state.tasks.push({ id: uid(), name: c.text, area:"aufgaben", done:false, added: todayStr(), duration: estimateTaskDuration(c.text) });
       hint.textContent = "✅ Als Aufgabe hinzugefügt.";
@@ -1415,6 +1558,13 @@
     setTimeout(function(){ hint.textContent=""; }, 4000);
   });
   document.getElementById("quickadd-input").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("quickadd-btn").click(); });
+
+  document.body.addEventListener("keydown", function(e){
+    if(e.key==="Enter" && e.target && e.target.dataset && e.target.dataset.stepinput){
+      var addBtn = document.querySelector('[data-addstep="'+e.target.dataset.stepinput+'"]');
+      if(addBtn) addBtn.click();
+    }
+  });
 
   document.getElementById("routine-days").addEventListener("click", function(e){
     if(e.target.tagName==="BUTTON" && e.target.dataset.day !== undefined){ e.target.classList.toggle("on"); }
@@ -2004,6 +2154,7 @@
   if(seededChanged){ save(); renderAll(); }
 
   generateRoutineTasks();
+  generateGoalStepTasks();
   setHeader();
   renderAll();
   renderAgenda();
