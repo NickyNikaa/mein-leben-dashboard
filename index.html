@@ -137,7 +137,12 @@
   .challenge .lab { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #c2740a; }
   .challenge .txt { font-size: 16px; font-weight: 600; margin: 4px 0 12px; }
 
-  .quote { font-style: italic; color: var(--muted); font-size: 14px; }
+  .quote { font-style: italic; color: var(--ink); font-size: 16px; line-height: 1.5; border-left: 4px solid var(--accent); background: #f1efff; padding: 13px 15px; border-radius: 0 12px 12px 0; }
+  .evening { background: linear-gradient(135deg,#fff7ed,#fef2f2); border: 1px solid #fde3c8; }
+  .evening .bline { padding: 6px 0; border-bottom: 1px dashed #ddd; font-size: 14px; }
+  .evening .bline:last-child { border-bottom: none; }
+  .evening .closing { margin-top: 8px; font-weight: 600; font-style: italic; }
+  .affirmation { font-style: italic; font-size: 15px; line-height: 1.5; border-left: 4px solid var(--gesundheit); background: var(--gesundheit-bg); padding: 13px 15px; border-radius: 0 12px 12px 0; margin-bottom: 16px; }
 
   /* lernen: woerter + tipp */
   .word { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
@@ -284,10 +289,20 @@
 
   <!-- HEUTE -->
   <section class="panel active" id="panel-heute">
+    <div class="card quoteday">
+      <h2>💭 Gedanke des Tages</h2>
+      <div class="sub">Motivation &amp; Tiefes Denken — jeden Tag neu.</div>
+      <div class="quote" id="quote"></div>
+    </div>
     <div class="card briefing">
       <h2>🌅 Morgen-Briefing</h2>
       <div class="sub">Dein Tag auf einen Blick.</div>
       <div id="briefing-content">Lädt…</div>
+    </div>
+    <div class="card evening">
+      <h2>🌙 Dein Tag im Rückblick</h2>
+      <div class="sub">Was du heute schon geschafft hast — mach dir bewusst, dass es zählt.</div>
+      <div id="evening-content">Lädt…</div>
     </div>
     <div class="card">
       <h2>⚡ Schnelleingabe</h2>
@@ -345,9 +360,6 @@
       <h2>✨ 2 Sätze, um zu beeindrucken</h2>
       <div class="sub">Klare, souveräne Formulierungen für Meetings und Gespräche, jeden Tag neu.</div>
       <div id="impress"></div>
-    </div>
-    <div class="card">
-      <div class="quote" id="quote"></div>
     </div>
   </section>
 
@@ -530,6 +542,7 @@
     <div class="card reflect">
       <h2>Tages-Reflexion</h2>
       <div class="sub" id="reflect-date"></div>
+      <div class="affirmation" id="affirmation"></div>
       <label>Wie war dein Tag?</label>
       <div class="moods" id="moods">
         <button data-m="1">😞</button><button data-m="2">😐</button>
@@ -539,6 +552,8 @@
       <textarea id="r-win" placeholder="Auch Kleinigkeiten zählen…"></textarea>
       <label>Wofür bist du dankbar?</label>
       <textarea id="r-grateful" placeholder="Eine Sache reicht."></textarea>
+      <label>Was gibt dir gerade ein Gefühl von Sicherheit?</label>
+      <textarea id="r-security" placeholder="Ein Mensch, ein Ort, eine Fähigkeit, ein Gedanke…"></textarea>
       <div style="margin-top:12px"><button class="btn" id="save-reflect">Speichern</button></div>
       <div class="savednote" id="reflect-saved"></div>
     </div>
@@ -689,8 +704,55 @@
     "Die Dinge, die wir aufschieben, sind selten so schlimm wie das Aufschieben selbst.",
     "Freundschaften wachsen durch den ersten Schritt, nicht durch den perfekten Moment.",
     "Fortschritt ist Fortschritt — egal wie klein.",
-    "Sei heute ein bisschen mutiger als gestern."
+    "Sei heute ein bisschen mutiger als gestern.",
+    "Was du jeden Tag tust, formt dich mehr als das, was du gelegentlich tust.",
+    "Nicht jede Entscheidung muss sofort feststehen. Klarheit kommt oft beim Tun, nicht beim Grübeln.",
+    "Ruhe ist keine Pause vom Weg, sie ist Teil des Wegs.",
+    "Die Frage ist selten, ob du es kannst, sondern ob du bereit bist, es dir zuzutrauen.",
+    "Ein volles Leben braucht nicht jeden Tag ein Feuerwerk, nur ehrliche Momente.",
+    "Wachstum fühlt sich selten bequem an, solange es passiert.",
+    "Du darfst Dinge auch einfach gut genug machen, statt perfekt.",
+    "Was dich heute stört, zeigt dir oft, was dir wirklich wichtig ist.",
+    "Manchmal ist der mutigste Schritt, einen Moment nichts zu tun und durchzuatmen.",
+    "Vergleich raubt dir die Sicht auf das, was du selbst schon erreicht hast.",
+    "Du kannst nicht alles kontrollieren — aber wie du heute reagierst, das schon."
   ];
+
+  var affirmations = [
+    "Du machst das gerade richtig gut, auch wenn es sich nicht immer so anfühlt.",
+    "Du darfst auch mal langsamer machen, ohne das schlecht zu finden.",
+    "Was du heute geschafft hast, zählt, auch wenn es klein war.",
+    "Du musst gerade nichts beweisen. Du bist schon genug.",
+    "Ruhe ist kein Rückschritt, sie ist Teil davon, stark zu bleiben.",
+    "Du hast schon oft bewiesen, dass du schwierige Phasen meisterst.",
+    "Es ist okay, nicht alles unter Kontrolle zu haben.",
+    "Dein Tempo ist das richtige Tempo für dich.",
+    "Du wächst, auch wenn du es gerade nicht siehst.",
+    "Du darfst dir vertrauen. Bisher hast du jeden Tag gemeistert.",
+    "Unsicherheit heißt nicht, dass etwas falsch läuft. Sie gehört dazu.",
+    "Du bist erlaubt, stolz auf dich zu sein, auch ohne großen Anlass."
+  ];
+
+  var eveningHigh = [
+    "Das war ein richtig starker Tag — sei stolz auf dich.",
+    "Schau dir an, was du heute alles bewegt hast. Das ist keine Selbstverständlichkeit.",
+    "Du hast heute geliefert. Gönn dir jetzt bewusst eine Pause.",
+    "So sieht ein guter Tag aus. Nimm dir einen Moment, das anzuerkennen."
+  ];
+  var eveningMid = [
+    "Du hast heute etwas geschafft — das zählt, auch wenn noch mehr offen ist.",
+    "Ein Schritt nach dem anderen. Heute ist einer gelungen.",
+    "Nicht jeder Tag muss vollgepackt sein. Was du gemacht hast, war genug."
+  ];
+  var eveningLow = [
+    "Auch ein ruhiger Tag ist ein guter Tag. Du musst nicht ständig liefern.",
+    "Manchmal ist einfach durchkommen schon die Leistung. Das ist völlig in Ordnung.",
+    "Morgen ist ein neuer Tag. Heute darfst du auch einfach zur Ruhe kommen."
+  ];
+  function eveningMessage(count){
+    var pool = count>=3 ? eveningHigh : count>=1 ? eveningMid : eveningLow;
+    return pool[dayIndex() % pool.length];
+  }
 
   var vocab = [
     {w:"pragmatisch", m:"sachlich und lösungsorientiert", e:"Lass uns pragmatisch bleiben und die einfachste Lösung zuerst testen."},
@@ -1064,10 +1126,14 @@
 
   function renderReflection(){
     document.getElementById("reflect-date").textContent = niceDate(new Date());
+    var affEl = document.getElementById("affirmation");
+    if(affEl) affEl.textContent = "🕊️ "+affirmations[dayIndex() % affirmations.length];
     var r = state.reflections[todayStr()] || {};
     document.querySelectorAll("#moods button").forEach(function(b){ b.classList.toggle("on", String(r.mood)===b.dataset.m); });
     document.getElementById("r-win").value = r.win || "";
     document.getElementById("r-grateful").value = r.grateful || "";
+    var secEl = document.getElementById("r-security");
+    if(secEl) secEl.value = r.security || "";
     // history
     var keys = Object.keys(state.reflections).sort().reverse().slice(0,10);
     var hbox = document.getElementById("reflect-history");
@@ -1078,6 +1144,7 @@
       var parts = [];
       if(e.win) parts.push("🏆 "+esc(e.win));
       if(e.grateful) parts.push("🙏 "+esc(e.grateful));
+      if(e.security) parts.push("🕊️ "+esc(e.security));
       return '<div class="row"><div class="body"><div class="name">'+(moodEmoji[e.mood]||"")+' '+niceDate(new Date(k+"T00:00:00"))+'</div>'+
              '<div class="meta">'+(parts.join(" &nbsp;·&nbsp; ")||"—")+'</div></div>'+
              (e.win?'<button class="btn ghost" data-emergencyfrom="'+k+'" style="padding:2px 8px;font-size:11px">🆘 merken</button>':'')+
@@ -1259,7 +1326,28 @@
     var d = new Date(); var n = Math.floor(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/86400000);
     var word = vocab[(n*3) % vocab.length];
     lines.push('<div class="bline">📚 Wort des Tages: <b>'+esc(word.w)+'</b>: '+esc(word.m)+'</div>');
-    lines.push('<div class="bline">💜 „'+esc(pick(quotes))+'“</div>');
+    box.innerHTML = lines.join("");
+  }
+
+  function renderEvening(){
+    var box = document.getElementById("evening-content"); if(!box) return;
+    var lines = [];
+    var habitsDoneToday = state.habits.filter(doneToday);
+    if(state.habits.length){
+      lines.push('<div class="bline">🔁 '+habitsDoneToday.length+' von '+state.habits.length+' Gewohnheiten abgehakt'+(habitsDoneToday.length?': '+habitsDoneToday.map(function(h){return esc(h.name);}).join(", "):'')+'</div>');
+    }
+    var tasksToday = state.tasks.filter(function(t){ return t.done && t.doneDate===todayStr(); });
+    if(tasksToday.length){
+      lines.push('<div class="bline">✅ '+tasksToday.length+' Aufgabe'+(tasksToday.length===1?'':'n')+' erledigt: '+tasksToday.map(function(t){return esc(t.name);}).join(", ")+'</div>');
+    }
+    if(state.challengeToday.doneDate===todayStr()){
+      lines.push('<div class="bline">🚀 Mut-Challenge heute gemeistert: „'+esc(state.challengeToday.text)+'“</div>');
+    }
+    var r = state.reflections[todayStr()] || {};
+    if(r.win){ lines.push('<div class="bline">🏆 Dein Win von heute: '+esc(r.win)+'</div>'); }
+    var total = habitsDoneToday.length + tasksToday.length + (state.challengeToday.doneDate===todayStr()?1:0) + (r.win?1:0);
+    if(!lines.length){ lines.push('<div class="bline">Heute steht noch nichts da — und das ist okay, der Tag ist noch nicht vorbei.</div>'); }
+    lines.push('<div class="closing">'+esc(eveningMessage(total))+'</div>');
     box.innerHTML = lines.join("");
   }
 
@@ -1521,11 +1609,12 @@
     box.innerHTML = list.map(contactCard).join("");
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderBriefing(); renderRoutines(); renderContacts(); }
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderBriefing(); renderEvening(); renderRoutines(); renderContacts(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function dayIndex(){ var d = new Date(); return Math.floor(new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 86400000); }
   function niceDate(d){
     var days=["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
     var months=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
@@ -1538,7 +1627,8 @@
     var g = h<11?"Guten Morgen":h<17?"Hallo":h<22?"Guten Abend":"Hey Nachtschwärmer";
     document.getElementById("greet").textContent = g+", Nicky!";
     document.getElementById("dateline").textContent = niceDate(new Date());
-    document.getElementById("quote").textContent = "„"+pick(quotes)+"“";
+    var qEl = document.getElementById("quote");
+    if(qEl) qEl.textContent = "„"+quotes[dayIndex() % quotes.length]+"“";
   }
 
   // ---------- events ----------
@@ -1763,7 +1853,7 @@
   document.getElementById("contact-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-contact").click(); });
 
   document.getElementById("did-challenge").addEventListener("click", function(){
-    state.mutCount++; save(); renderStats();
+    state.mutCount++; state.challengeToday.doneDate = todayStr(); save(); renderStats(); renderEvening();
     var btn=this; var old=btn.textContent; btn.textContent="Stark! 🎉"; setTimeout(function(){ btn.textContent=old; }, 1500);
   });
   document.getElementById("new-challenge").addEventListener("click", function(){
@@ -1782,7 +1872,9 @@
     var r = state.reflections[todayStr()] || {};
     r.win = document.getElementById("r-win").value.trim();
     r.grateful = document.getElementById("r-grateful").value.trim();
-    state.reflections[todayStr()] = r; save(); renderReflection();
+    var secEl = document.getElementById("r-security");
+    if(secEl) r.security = secEl.value.trim();
+    state.reflections[todayStr()] = r; save(); renderReflection(); renderEvening();
     var n=document.getElementById("reflect-saved"); n.textContent="Gespeichert ✓"; setTimeout(function(){ n.textContent=""; }, 1800);
   });
 
