@@ -28,6 +28,9 @@
     --goal-learn: #b45309; --goal-learn-bg: #fdf1e0;
     --gesundheit: #0d9488; --gesundheit-bg: #dcfbf3;
     --goal-kraft: #dc2626; --goal-kraft-bg: #fde3e3;
+    --familie: #dc2626; --familie-bg: #fde3e3;
+    --freunde: #ec4899; --freunde-bg: #fdedf6;
+    --netzwerk: #3b82f6; --netzwerk-bg: #eaf2ff;
   }
   * { box-sizing: border-box; }
   body {
@@ -80,6 +83,21 @@
   .pill.mut { background: var(--mut-bg); color: #c2740a; }
   .pill.aufgaben { background: var(--aufgaben-bg); color: var(--aufgaben); }
   .pill.gesundheit { background: var(--gesundheit-bg); color: var(--gesundheit); }
+  .pill.familie { background: var(--familie-bg); color: var(--familie); }
+  .pill.freunde { background: var(--freunde-bg); color: var(--freunde); }
+  .pill.netzwerk { background: var(--netzwerk-bg); color: var(--netzwerk); }
+  .pill.sonstigekontakt { background: #eceef2; color: #6b7280; }
+
+  .contact-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; box-shadow: var(--shadow); }
+  .contact-top { display: flex; align-items: flex-start; gap: 12px; }
+  .contact-top .tagdot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; flex: none; }
+  .contact-main { flex: 1; min-width: 0; }
+  .contact-name { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .contact-meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .contact-meta .due { color: #dc2626; font-weight: 700; }
+  .contact-notes { width: 100%; margin-top: 10px; min-height: 56px; }
+  .contact-savebar { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+  .btn.small { padding: 6px 11px; font-size: 12.5px; white-space: nowrap; }
 
   .streak { font-size: 13px; font-weight: 700; white-space: nowrap; }
   .check {
@@ -258,6 +276,7 @@
     <button data-tab="gewohnheiten">🔁 Gewohnheiten</button>
     <button data-tab="aufgaben">✅ Aufgaben</button>
     <button data-tab="listen">🛒 Listen</button>
+    <button data-tab="kontakte">🧑‍🤝‍🧑 Kontakte</button>
     <button data-tab="mut">🚀 Mut</button>
     <button data-tab="reflexion">🌙 Reflexion</button>
     <button data-tab="insights">📊 Insights</button>
@@ -466,6 +485,33 @@
     </div>
   </section>
 
+  <!-- KONTAKTE -->
+  <section class="panel" id="panel-kontakte">
+    <div class="card">
+      <h2>🧑‍🤝‍🧑 Kontakte &amp; Beziehungen</h2>
+      <div class="sub">Erinnerungen, dich bei bestimmten Personen wieder zu melden — plus Notizen, die dir beim nächsten Anschreiben helfen.</div>
+      <div id="contact-list"></div>
+      <div class="addbar">
+        <input type="text" id="contact-name" placeholder="Name, z.B. Julia">
+        <select id="contact-category">
+          <option value="familie">Familie</option>
+          <option value="freunde" selected>Freunde</option>
+          <option value="netzwerk">Netzwerk</option>
+          <option value="sonstige">Sonstige</option>
+        </select>
+        <select id="contact-interval" title="Wie oft möchtest du dich melden?">
+          <option value="14">alle 2 Wochen</option>
+          <option value="30" selected>monatlich</option>
+          <option value="60">alle 2 Monate</option>
+          <option value="90">quartalsweise</option>
+          <option value="180">halbjährlich</option>
+          <option value="365">jährlich</option>
+        </select>
+        <button class="btn" id="add-contact">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
   <!-- MUT -->
   <section class="panel" id="panel-mut">
     <div class="card">
@@ -632,7 +678,8 @@
     wins: [],
     goals: [],
     reminders: [],
-    emergency: []
+    emergency: [],
+    contacts: []
   };
 
   var quotes = [
@@ -1419,7 +1466,62 @@
     renderReview(); renderHours(); renderDistraction(); renderTimewasters(); renderWins(); renderFlashback(); renderGoals(); renderHeatmap(); renderEmergency();
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderBriefing(); renderRoutines(); }
+  // ---------- kontakte ----------
+  var contactCatLabel = { familie:"Familie", freunde:"Freunde", netzwerk:"Netzwerk", sonstige:"Sonstige" };
+  var contactCatClass = { familie:"familie", freunde:"freunde", netzwerk:"netzwerk", sonstige:"sonstigekontakt" };
+  var contactCatColorVar = { familie:"familie", freunde:"freunde", netzwerk:"netzwerk", sonstige:"muted" };
+
+  function daysSince(dateStr){
+    if(!dateStr) return null;
+    var ms = Date.now() - new Date(dateStr+"T00:00:00").getTime();
+    return Math.max(0, Math.floor(ms/86400000));
+  }
+
+  function contactCard(c){
+    var dsl = daysSince(c.lastContact);
+    var overdue = (dsl===null) ? true : (dsl - c.intervalDays >= 0);
+    var metaLast = (dsl===null) ? "Noch kein Kontakt erfasst" : ("Letzter Kontakt: vor "+dsl+" Tag"+(dsl===1?"":"en"));
+    var statusHtml;
+    if(overdue){
+      var overdueBy = (dsl===null) ? 0 : Math.max(0, dsl - c.intervalDays);
+      statusHtml = '<span class="due">🔔 Fällig'+(overdueBy>0?(" ("+overdueBy+" Tag"+(overdueBy===1?"":"e")+" überfällig)"):"")+'</span>';
+    } else {
+      var remain = c.intervalDays - dsl;
+      statusHtml = '<span>in '+remain+' Tag'+(remain===1?"":"e")+' wieder melden</span>';
+    }
+    var catCls = contactCatClass[c.category] || "sonstigekontakt";
+    var catLbl = contactCatLabel[c.category] || "Sonstige";
+    var colorVar = contactCatColorVar[c.category] || "muted";
+    var html = '<div class="contact-card">';
+    html += '<div class="contact-top">';
+    html += '<div class="tagdot" style="background:var(--'+colorVar+')"></div>';
+    html += '<div class="contact-main">';
+    html += '<div class="contact-name">'+esc(c.name)+' <span class="pill '+catCls+'">'+catLbl+'</span></div>';
+    html += '<div class="contact-meta">'+metaLast+' &nbsp; '+statusHtml+'</div>';
+    html += '</div>';
+    html += '<button class="btn ghost small" data-contactping="'+c.id+'" title="Heute gemeldet">✓ Gemeldet</button>';
+    html += '<button class="x" data-delcontact="'+c.id+'" title="Löschen">×</button>';
+    html += '</div>';
+    html += '<textarea class="contact-notes" id="note-'+c.id+'" placeholder="Notizen zu '+esc(c.name)+': worüber ihr zuletzt gesprochen habt, was sie/ihn gerade beschäftigt, Ideen für die nächste Nachricht…">'+esc(c.notes||"")+'</textarea>';
+    html += '<div class="contact-savebar"><button class="btn ghost small" data-savecontactnote="'+c.id+'">📝 Notiz speichern</button><span class="savednote" id="notesaved-'+c.id+'"></span></div>';
+    html += '</div>';
+    return html;
+  }
+
+  function renderContacts(){
+    var box = document.getElementById("contact-list"); if(!box) return;
+    var list = (state.contacts||[]).slice();
+    if(!list.length){ box.innerHTML = '<div class="empty">Noch keine Kontakte hinterlegt. Trag unten jemanden ein, bei dem du dich wieder melden willst.</div>'; return; }
+    list.sort(function(a,b){
+      var da = daysSince(a.lastContact); var db = daysSince(b.lastContact);
+      var oa = (da===null) ? Infinity : (da - a.intervalDays);
+      var ob = (db===null) ? Infinity : (db - b.intervalDays);
+      return ob - oa;
+    });
+    box.innerHTML = list.map(contactCard).join("");
+  }
+
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderBriefing(); renderRoutines(); renderContacts(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -1448,6 +1550,7 @@
       document.getElementById("panel-"+b.dataset.tab).classList.add("active");
       if(b.dataset.tab === "kalender") renderAgenda();
       if(b.dataset.tab === "insights") renderInsights();
+      if(b.dataset.tab === "kontakte") renderContacts();
     });
   });
 
@@ -1504,6 +1607,19 @@
     else if(t.dataset.delreminder){ state.reminders = (state.reminders||[]).filter(function(x){return x.id!==t.dataset.delreminder;}); save(); renderReminders(); renderBriefing(); }
     else if(t.dataset.delemergency){ state.emergency = state.emergency.filter(function(x){return x.id!==t.dataset.delemergency;}); save(); renderEmergency(); }
     else if(t.dataset.emergencyfrom){ var rk=t.dataset.emergencyfrom; var rr=state.reflections[rk]; if(rr && rr.win){ state.emergency=state.emergency||[]; state.emergency.push({id:uid(), text:rr.win}); save(); renderEmergency(); t.textContent="✓ hinzugefügt"; } }
+    else if(t.dataset.contactping){ var cPing=(state.contacts||[]).find(function(x){return x.id===t.dataset.contactping;}); if(cPing){ cPing.lastContact = todayStr(); save(); renderContacts(); } }
+    else if(t.dataset.delcontact){ if(confirm("Diesen Kontakt löschen?")){ state.contacts = (state.contacts||[]).filter(function(x){return x.id!==t.dataset.delcontact;}); save(); renderContacts(); } }
+    else if(t.dataset.savecontactnote){
+      var cnId = t.dataset.savecontactnote;
+      var cNote = (state.contacts||[]).find(function(x){return x.id===cnId;});
+      if(cNote){
+        var taNote = document.getElementById("note-"+cnId);
+        cNote.notes = taNote ? taNote.value : "";
+        save();
+        var snNote = document.getElementById("notesaved-"+cnId);
+        if(snNote){ snNote.textContent = "Gespeichert ✓"; setTimeout(function(){ if(snNote) snNote.textContent = ""; }, 1500); }
+      }
+    }
   });
 
   document.getElementById("add-shop").addEventListener("click", function(){
@@ -1634,6 +1750,17 @@
     document.getElementById("mut-name").value = ""; save(); renderAll();
   });
   document.getElementById("mut-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-mut").click(); });
+
+  document.getElementById("add-contact").addEventListener("click", function(){
+    var n = document.getElementById("contact-name").value.trim(); if(!n) return;
+    var cat = document.getElementById("contact-category").value;
+    var interval = Number(document.getElementById("contact-interval").value) || 30;
+    state.contacts = state.contacts || [];
+    state.contacts.push({ id: uid(), name: n, category: cat, intervalDays: interval, lastContact: null, notes: "" });
+    document.getElementById("contact-name").value = "";
+    save(); renderContacts();
+  });
+  document.getElementById("contact-name").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-contact").click(); });
 
   document.getElementById("did-challenge").addEventListener("click", function(){
     state.mutCount++; save(); renderStats();
