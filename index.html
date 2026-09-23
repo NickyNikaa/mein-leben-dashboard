@@ -20,6 +20,8 @@
     --mut-bg: #fff4e0;
     --aufgaben: #10b981;
     --aufgaben-bg: #e6f8f1;
+    --angst: #6366f1;
+    --angst-bg: #eef0ff;
     --accent: #6d5efc;
     --shadow: 0 1px 2px rgba(20,20,40,.04), 0 6px 24px rgba(20,20,40,.06);
     --goal-newnight: #c026d3; --goal-newnight-bg: #fbe7fb;
@@ -283,6 +285,7 @@
     <button data-tab="listen">🛒 Listen</button>
     <button data-tab="kontakte">🧑‍🤝‍🧑 Kontakte</button>
     <button data-tab="mut">🚀 Mut</button>
+    <button data-tab="angst">😨 Ängste</button>
     <button data-tab="reflexion">🌙 Reflexion</button>
     <button data-tab="insights">📊 Insights</button>
   </nav>
@@ -537,6 +540,21 @@
     </div>
   </section>
 
+  <!-- ANGST -->
+  <section class="panel" id="panel-angst">
+    <div class="card">
+      <h2>😨 Ängste Schritt für Schritt</h2>
+      <div class="sub">Trag ein, was dir gerade Angst macht, und zerlege es in kleine, machbare Schritte. Kleine, wiederholte Schritte verändern mehr, wie dein Kopf die Angst bewertet, als jedes Grübeln.</div>
+      <div class="affirmation" id="feartip"></div>
+      <div id="fears-list"></div>
+      <div class="addbar">
+        <input type="text" id="fear-name" placeholder="Wovor hast du Angst, z.B. Networking-Event">
+        <input type="text" id="fear-note" placeholder="Was macht es schwer? (optional)">
+        <button class="btn" id="add-fear">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
   <!-- REFLEXION -->
   <section class="panel" id="panel-reflexion">
     <div class="card reflect">
@@ -692,6 +710,7 @@
     timewasters: [],
     wins: [],
     goals: [],
+    fears: [],
     reminders: [],
     emergency: [],
     contacts: []
@@ -731,6 +750,23 @@
     "Du darfst dir vertrauen. Bisher hast du jeden Tag gemeistert.",
     "Unsicherheit heißt nicht, dass etwas falsch läuft. Sie gehört dazu.",
     "Du bist erlaubt, stolz auf dich zu sein, auch ohne großen Anlass."
+  ];
+
+  var fearTips = [
+    "Zerlege die Angst in den kleinstmöglichen ersten Schritt \u2013 einen, der sich fast zu klein anf\u00fchlt, um zu z\u00e4hlen. Genau der ist der richtige.",
+    "Angst schrumpft selten durchs Nachdenken, sondern durchs Tun. Ein kleiner, wiederholter Schritt wirkt st\u00e4rker als ein gro\u00dfer, einmaliger.",
+    "Du musst die Angst nicht loswerden, bevor du den Schritt machst. Du gehst mit ihr los, nicht erst, wenn sie weg ist.",
+    "Frag dich: Was ist der n\u00e4chste Schritt, den ich mir zu 80% zutraue? Das ist meist die richtige Gr\u00f6\u00dfe.",
+    "Vermeidung f\u00fchlt sich kurzfristig sicher an, h\u00e4lt die Angst aber langfristig am Leben. Ein kleiner Schritt in ihre Richtung tut mehr f\u00fcr dich als jede Vermeidung.",
+    "Wiederholung ist wichtiger als Gr\u00f6\u00dfe. Lieber denselben kleinen Schritt f\u00fcnfmal als einen gro\u00dfen einmal und dann aufgeben.",
+    "Angst ist ein Gef\u00fchl, keine Tatsache. Sie sagt dir, dass etwas unbekannt ist \u2013 nicht, dass es gef\u00e4hrlich ist.",
+    "Schreib auf, was du bef\u00fcrchtest, das passiert \u2013 und sp\u00e4ter, was tats\u00e4chlich passiert ist. Der Unterschied ist oft aufschlussreich.",
+    "Atme vor dem Schritt ein paarmal bewusst langsam aus. Ein ruhiger K\u00f6rper macht der Angst weniger Raum.",
+    "Beloh dich f\u00fcr den Versuch, nicht nur f\u00fcr das perfekte Ergebnis. Der Mut, es zu probieren, z\u00e4hlt schon.",
+    "Wenn ein Schritt zu gro\u00df wirkt, ist er zu gro\u00df. Teile ihn nochmal \u2013 es gibt fast immer eine kleinere Version.",
+    "Angst und Aufregung f\u00fchlen sich im K\u00f6rper \u00e4hnlich an. Manchmal hilft es, sie bewusst als Aufregung zu benennen.",
+    "Du musst niemandem erkl\u00e4ren, warum dir etwas Angst macht, um trotzdem den ersten kleinen Schritt zu gehen.",
+    "Jeder abgehakte Schritt ist ein Beweis f\u00fcr dein zuk\u00fcnftiges Ich: Ich habe das schon einmal geschafft, ich schaffe es wieder."
   ];
 
   var eveningHigh = [
@@ -1284,6 +1320,13 @@
       return { type:"goal", text: gtext || t };
     }
 
+    // Ängste: "Angst: ...", "habe Angst vor...", "macht mir Angst", "ängstigt mich"
+    var fearTrigger = /^angst:|^angst\s|habe\s+angst\s+vor|macht\s+mir\s+angst|ängstigt\s+mich/i;
+    if(fearTrigger.test(lower)){
+      var ftext = t.replace(/^angst:\s*/i,"").replace(/^angst\s+vor\s*/i,"").trim();
+      return { type:"fear", text: ftext || t };
+    }
+
     var dt = extractDateTitle(t);
     if(dt){
       var hh = dt.time ? dt.time.split(":")[0] : "09";
@@ -1513,6 +1556,35 @@
     }).join("");
   }
 
+  function renderFears(){
+    var tipEl = document.getElementById("feartip");
+    if(tipEl) tipEl.textContent = "\ud83d\udca1 " + fearTips[dayIndex() % fearTips.length];
+    var box = document.getElementById("fears-list"); if(!box) return;
+    if(!(state.fears||[]).length){ box.innerHTML = '<div class="empty">Noch keine Angst eingetragen. Fang unten mit einer an \u2013 auch eine kleine z\u00e4hlt.</div>'; return; }
+    box.innerHTML = state.fears.map(function(fe){
+      var steps = fe.steps || [];
+      var doneSteps = steps.filter(function(s){return s.done;}).length;
+      var barHtml = "";
+      if(steps.length){
+        var p = Math.round(doneSteps/steps.length*100);
+        barHtml = '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+p+'%;background:linear-gradient(90deg,var(--angst),#a5b4fc)"></div></div>'+
+          '<div class="goal-meta"><span>'+doneSteps+' / '+steps.length+' Schritte ('+p+'%)</span><span></span></div>';
+      }
+      var stepsHtml = steps.length ? steps.map(function(s){
+        return '<div class="row '+(s.done?'done':'')+'" style="padding:7px 10px;margin:8px 0 0">'+
+          '<div class="body"><div class="name" style="font-size:13px">'+esc(s.text)+'</div></div>'+
+          '<button class="check '+(s.done?'on':'')+'" data-fearstep="'+fe.id+'|'+s.id+'">'+(s.done?'\u2713':'')+'</button>'+
+          '<button class="x" data-delfearstep="'+fe.id+'|'+s.id+'">\u00d7</button></div>';
+      }).join("") : "";
+      var noteHtml = fe.note ? '<div class="sub" style="margin:2px 0 8px">'+esc(fe.note)+'</div>' : "";
+      return '<div class="goal-item"><div class="gname">\ud83d\ude28 '+esc(fe.name)+'</div>'+noteHtml+barHtml+stepsHtml+
+        '<div class="addbar" style="margin-top:8px">'+
+        '<input type="text" data-fearstepinput="'+fe.id+'" placeholder="Kleiner n\u00e4chster Schritt, z.B. 5 Minuten hingehen und wieder gehen" style="flex:1;min-width:160px">'+
+        '<button class="btn ghost" data-addfearstep="'+fe.id+'">+ Schritt</button>'+
+        '<button class="x" data-delfear="'+fe.id+'" title="Angst l\u00f6schen">\u00d7</button></div></div>';
+    }).join("");
+  }
+
   function renderReminders(){
     var box = document.getElementById("reminders-list"); if(!box) return;
     var items = (state.reminders||[]).filter(function(r){ return !r.done; });
@@ -1609,7 +1681,7 @@
     box.innerHTML = list.map(contactCard).join("");
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderBriefing(); renderEvening(); renderRoutines(); renderContacts(); }
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderFears(); renderBriefing(); renderEvening(); renderRoutines(); renderContacts(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -1693,6 +1765,27 @@
       var ggDelStep = state.goals.find(function(x){return x.id===dgsParts[0];});
       if(ggDelStep){ ggDelStep.steps = (ggDelStep.steps||[]).filter(function(x){return x.id!==dgsParts[1];}); save(); renderGoals(); }
     }
+    else if(t.dataset.delfear){ if(confirm("Diese Angst wirklich l\u00f6schen?")){ state.fears = (state.fears||[]).filter(function(x){return x.id!==t.dataset.delfear;}); save(); renderFears(); } }
+    else if(t.dataset.addfearstep){
+      var feidAdd = t.dataset.addfearstep;
+      var feStepInp = document.querySelector('[data-fearstepinput="'+feidAdd+'"]');
+      var feStepVal = feStepInp ? feStepInp.value.trim() : "";
+      if(feStepVal){
+        var feAdd = (state.fears||[]).find(function(x){return x.id===feidAdd;});
+        if(feAdd){ feAdd.steps = feAdd.steps || []; feAdd.steps.push({ id: uid(), text: feStepVal, done:false }); save(); renderFears(); }
+      }
+    }
+    else if(t.dataset.fearstep){
+      var fsParts = t.dataset.fearstep.split("|");
+      var feStep = (state.fears||[]).find(function(x){return x.id===fsParts[0];});
+      var feStepObj = feStep && (feStep.steps||[]).find(function(x){return x.id===fsParts[1];});
+      if(feStepObj){ feStepObj.done = !feStepObj.done; save(); renderFears(); }
+    }
+    else if(t.dataset.delfearstep){
+      var dfsParts = t.dataset.delfearstep.split("|");
+      var feDelStep = (state.fears||[]).find(function(x){return x.id===dfsParts[0];});
+      if(feDelStep){ feDelStep.steps = (feDelStep.steps||[]).filter(function(x){return x.id!==dfsParts[1];}); save(); renderFears(); }
+    }
     else if(t.dataset.reminder){ var rem=state.reminders.find(function(x){return x.id===t.dataset.reminder;}); if(rem){ rem.done=true; save(); renderReminders(); renderBriefing(); } }
     else if(t.dataset.delreminder){ state.reminders = (state.reminders||[]).filter(function(x){return x.id!==t.dataset.delreminder;}); save(); renderReminders(); renderBriefing(); }
     else if(t.dataset.delemergency){ state.emergency = state.emergency.filter(function(x){return x.id!==t.dataset.delemergency;}); save(); renderEmergency(); }
@@ -1756,6 +1849,10 @@
       state.goals = state.goals || [];
       state.goals.push({ id: uid(), name: c.text, target:0, current:0, unit:"", steps: [] });
       hint.textContent = "🎯 Als langfristiges Ziel angelegt. Trag bei „Große Ziele“ Schritte ein – die werden automatisch nach und nach in deinen Alltag eingebaut.";
+    } else if(c.type==="fear"){
+      state.fears = state.fears || [];
+      state.fears.push({ id: uid(), name: c.text, note:"", steps: [] });
+      hint.textContent = "😨 Bei „Ängste“ eingetragen. Trag dort kleine Schritte ein, um sie nach und nach anzugehen.";
     } else {
       state.tasks.push({ id: uid(), name: c.text, area:"aufgaben", done:false, added: todayStr(), duration: estimateTaskDuration(c.text) });
       hint.textContent = "✅ Als Aufgabe hinzugefügt.";
@@ -1809,6 +1906,14 @@
     state.goals.push({ id: uid(), name:n, target:tgt, current:0, unit: document.getElementById("goal-unit").value.trim() });
     document.getElementById("goal-name").value=""; document.getElementById("goal-target").value=""; document.getElementById("goal-unit").value="";
     save(); renderGoals();
+  });
+
+  document.getElementById("add-fear").addEventListener("click", function(){
+    var fn = document.getElementById("fear-name").value.trim(); if(!fn) return;
+    state.fears = state.fears || [];
+    state.fears.push({ id: uid(), name: fn, note: document.getElementById("fear-note").value.trim(), steps: [] });
+    document.getElementById("fear-name").value=""; document.getElementById("fear-note").value="";
+    save(); renderFears();
   });
 
   document.getElementById("add-emergency").addEventListener("click", function(){
