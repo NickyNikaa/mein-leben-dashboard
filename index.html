@@ -982,7 +982,35 @@
       return s;
     } catch(e){ return JSON.parse(JSON.stringify(defaults)); }
   }
-  function save(){ try { localStorage.setItem(LS, JSON.stringify(state)); } catch(e){} }
+  function saveLocal(){ try { localStorage.setItem(LS, JSON.stringify(state)); } catch(e){} }
+  function save(){ saveLocal(); syncShoppingPush(); }
+
+  // ---------- Einkaufsliste: geräteübergreifender Sync über Netlify Function ----------
+  // Grund: localStorage ist pro Gerät/Browser getrennt, dadurch wirkte die Liste auf
+  // einem anderen Gerät "geleert". Die Liste wird jetzt zusätzlich in einem kleinen
+  // Server-Speicher (Netlify Blobs) abgelegt und bei jedem Laden von dort geholt.
+  var SHOP_API = "/api/shopping";
+  var shopSyncTimer = null;
+  function syncShoppingPush(){
+    clearTimeout(shopSyncTimer);
+    shopSyncTimer = setTimeout(function(){
+      fetch(SHOP_API, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(state.shopping)
+      }).catch(function(){ /* offline oder Funktion nicht erreichbar: lokal bleibt es trotzdem gespeichert */ });
+    }, 500);
+  }
+  function syncShoppingPull(){
+    fetch(SHOP_API, { cache: "no-store" }).then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(data){
+        if(Array.isArray(data)){
+          state.shopping = data;
+          saveLocal();
+          renderShopping();
+        }
+      }).catch(function(){ /* kein Netz / Funktion noch nicht deployt: einfach lokalen Stand behalten */ });
+  }
 
   // ---------- streak helpers ----------
   function streakOf(habit){
@@ -2378,6 +2406,7 @@
   setHeader();
   renderAll();
   renderAgenda();
+  syncShoppingPull();
 })();
 </script>
 </body>
