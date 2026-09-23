@@ -286,6 +286,7 @@
     <button data-tab="kontakte">🧑‍🤝‍🧑 Kontakte</button>
     <button data-tab="mut">🚀 Mut</button>
     <button data-tab="angst">😨 Ängste</button>
+    <button data-tab="vertrieb">🎯 Vertrieb</button>
     <button data-tab="reflexion">🌙 Reflexion</button>
     <button data-tab="insights">📊 Insights</button>
   </nav>
@@ -555,6 +556,42 @@
     </div>
   </section>
 
+  <!-- VERTRIEB -->
+  <section class="panel" id="panel-vertrieb">
+    <div class="card">
+      <h2>🎯 Vertrieb &amp; Verkaufen trainieren</h2>
+      <div class="sub">Konkrete Sätze statt Theorie – orientiert an Chase-Hughes-Prinzipien (Human Needs Map, Decision Map, Elicitation, Compliance Wedge u.a.).</div>
+      <div id="salesprinciple"></div>
+    </div>
+    <div class="card">
+      <h2>🧑‍💼 Allgemein: Dich &amp; deine Ideen verkaufen</h2>
+      <div class="sub">Job, Meetings, Verhandeln, Netzwerken.</div>
+      <div id="sales-general"></div>
+    </div>
+    <div class="card">
+      <h2>🏠 Privat: Verhandeln &amp; Grenzen setzen</h2>
+      <div class="sub">Alltagssituationen, in denen du auch gerade "verkaufst" – dich, eine Bitte, eine Grenze.</div>
+      <div id="sales-private"></div>
+    </div>
+    <div class="card">
+      <h2>🚀 Clero: Mission &amp; Vision verkaufen</h2>
+      <div class="sub">An Hosts und Creator – Clero als Zuhause für ihre Community, nicht als weiteres Tool.</div>
+      <div class="subhead">Hosts</div>
+      <div id="sales-clero-hosts"></div>
+      <div class="subhead">Creator</div>
+      <div id="sales-clero-creator"></div>
+    </div>
+    <div class="card">
+      <h2>✍️ Meine eigenen Sätze</h2>
+      <div class="sub">Was für dich funktioniert hat – trag es ein, damit es beim nächsten Mal sitzt.</div>
+      <div id="salesnotes-list"></div>
+      <div class="addbar">
+        <input type="text" id="salesnote-input" placeholder="z.B. eigener Satz + wo er funktioniert hat">
+        <button class="btn" id="add-salesnote">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
   <!-- REFLEXION -->
   <section class="panel" id="panel-reflexion">
     <div class="card reflect">
@@ -711,6 +748,7 @@
     wins: [],
     goals: [],
     fears: [],
+    salesNotes: [],
     reminders: [],
     emergency: [],
     contacts: []
@@ -924,6 +962,41 @@
     {w:"Nonverbal Leakage", m:"Unbewusste Signale, die einen inneren Zweifel verraten, obwohl die Worte selbstbewusst klingen.", e:"Wenn Wort und Körpersprache nicht zusammenpassen, glaub eher dem Körper."},
     {w:"X-Ray-Fragen", m:"Sechs Leitfragen, um die Motivation eines Gegenübers zu verstehen: Welches Bedürfnis zeigt sich? Was schmeichelt ihm? Was macht ihn stark? Was vermeidet er? Welche Sprache zeigt Zufriedenheit? Wohin will er?", e:"Nimm dir bei einem neuen Kontakt bewusst eine dieser Fragen vor, statt oberflächlichem Smalltalk."},
     {w:"Compliance Wedge", m:"Kleine, schrittweise Zustimmungen (z. B. Mitnicken, kleine Ja's), die unbewusst zu größerer psychischer Zustimmung führen.", e:"Beginne mit kleinen, unstrittigen Zustimmungen, bevor du um eine größere Entscheidung bittest."},
+  ];
+
+  var salesGeneral = [
+    {w:"Gehaltsgespräch eröffnen", m:"Prinzip: klare Erwartungshaltung statt Konjunktiv", e:"Ich gehe davon aus, dass wir uns beim Gehalt schnell einig werden, weil die Zahlen für sich sprechen."},
+    {w:"Idee im Meeting pitchen", m:"Prinzip: Human Needs Map – Bedeutung ansprechen", e:"Das hier würde uns als Team sichtbar machen, nicht nur mir."},
+    {w:"Jemanden von einem Vorschlag überzeugen, der zögert", m:"Prinzip: Bracketing", e:"Denkst du, das dauert eher zwei Wochen oder eher zwei Monate, bis wir Ergebnisse sehen?"},
+    {w:"Einwand „kein Budget“ entkräften", m:"Prinzip: Decision Map – Notwendigkeit", e:"Wenn das Budget das einzige Thema wäre, wäre der Rest für dich stimmig?"},
+    {w:"Netzwerken, Kontakt vertiefen", m:"Prinzip: Elicitation statt direkter Frage", e:"Das muss ja gerade ziemlich viel bei euch los sein."},
+    {w:"Zusage einholen, ohne zu drängen", m:"Prinzip: Compliance Wedge – kleine Zustimmung zuerst", e:"Macht das grundsätzlich für dich Sinn? … Dann lass uns das diese Woche fixieren."},
+    {w:"Preis oder Konditionen verhandeln", m:"Prinzip: Autorität durch Ruhe – Pause statt Nachschieben", e:"Ich lass die Zahl kurz so stehen."},
+    {w:"Nach dem Abschluss fragen", m:"Prinzip: X-Ray-Frage – wohin will die Person", e:"Was müsste noch passieren, damit das für dich eine klare Sache ist?"}
+  ];
+
+  var salesPrivate = [
+    {w:"Auf dem Flohmarkt / beim Second-Hand-Kauf verhandeln", m:"Prinzip: Bracketing", e:"Ist das eher bei 30 oder eher bei 15?"},
+    {w:"Freund:in um einen Gefallen bitten", m:"Prinzip: kleine Zustimmung zuerst, dann erst die Bitte", e:"Hättest du diese Woche überhaupt Zeit für sowas?"},
+    {w:"Grenzen setzen, ohne dich zu rechtfertigen", m:"Prinzip: Autorität durch Klarheit statt Erklärung", e:"Das passt für mich gerade nicht."},
+    {w:"Konfliktgespräch öffnen (Familie/Partner)", m:"Prinzip: Disbelief-Technik, um echte Motive rauszuholen", e:"Ich kann mir kaum vorstellen, dass es dir nur darum ging – was war wirklich los?"},
+    {w:"Vermieter:in bei der Wohnungsbesichtigung überzeugen", m:"Prinzip: Mini-Confession für Glaubwürdigkeit", e:"Ehrlich, ich bin bei sowas manchmal zu ordentlich – aber verlässlich zahle ich garantiert pünktlich."},
+    {w:"Jemanden zu einem Date oder Treffen einladen", m:"Prinzip: provokative Aussage", e:"Du wirkst wie jemand, der eigentlich schon zu viele Pläne hat für nächste Woche."},
+    {w:"Hilfe bekommen, ohne zu betteln", m:"Prinzip: Naivitäts-Ansatz", e:"Erklär mir das nochmal ganz von vorne, ich hab davon keine Ahnung."}
+  ];
+
+  var salesCleroHosts = [
+    {w:"Host für Founding 30 gewinnen", m:"Prinzip: Bedeutung + Zugehörigkeit", e:"Du baust gerade schon eine Community auf – wir geben ihr nur ein Zuhause, das mitwächst, ohne dass du bei null anfängst."},
+    {w:"Einwand „ich hab schon eine WhatsApp-Gruppe / Instagram“", m:"Prinzip: Decision Map – Notwendigkeit", e:"Genau die Leute aus deiner Gruppe suchen wahrscheinlich schon jetzt woanders nach mehr davon – bei Clero finden sie dich zuerst."},
+    {w:"Vision statt Feature-Liste vermitteln", m:"Prinzip: Bedeutung über Funktionen stellen", e:"Wir bauen die Plattform, auf der man Communities in München nicht mehr zufällig findet, sondern gezielt sucht – und du bist von Anfang an einer der Namen dahinter."},
+    {w:"Dringlichkeit, ohne zu drängeln", m:"Prinzip: begrenzte Plätze = Bedeutung", e:"Wir nehmen aktuell nur 30 Hosts mit rein, bevor wir breiter aufmachen, genau damit jeder Host wirklich sichtbar bleibt."}
+  ];
+
+  var salesCleroCreator = [
+    {w:"Creator ohne klaren Themenfokus ansprechen", m:"Prinzip: Human Needs Map – Stärke/Anerkennung", e:"Du musst dafür kein Nischen-Account sein. Du brauchst nur Leute, die dir schon folgen, weil sie dich mögen – das reicht als Startpunkt für eine Community."},
+    {w:"Monetarisierung ansprechen", m:"Prinzip: Decision Map – Notwendigkeit", e:"Langfristig verdienst du über Events und Brand-Kooperationen direkt an deiner Community, nicht nur über Likes."},
+    {w:"Einwand „ich hab doch schon Reichweite auf Insta/TikTok“", m:"Prinzip: Reframing – Kontrolle statt Reichweite", e:"Reichweite gehört Instagram. Deine Community auf Clero gehört dir."},
+    {w:"Zum Founding-30-Signup bewegen", m:"Prinzip: Compliance Wedge", e:"Würde das grundsätzlich zu dir passen? … Dann lass uns das Letter of Intent kurz durchgehen, das ist in 10 Minuten erledigt."}
   ];
 
   var deepQuestions = [
@@ -1585,6 +1658,36 @@
     }).join("");
   }
 
+  function wordList(box, arr){
+    if(!box) return;
+    box.innerHTML = arr.map(function(it){
+      return '<div class="word"><div class="w">'+esc(it.w)+'</div><div class="m">'+esc(it.m)+'</div><div class="e">„'+esc(it.e)+'“</div></div>';
+    }).join("");
+  }
+
+  function renderVertrieb(){
+    var n = dayIndex();
+    var pbox = document.getElementById("salesprinciple");
+    if(pbox){
+      var ch = chaseHughes[n % chaseHughes.length];
+      pbox.innerHTML = '<div class="word"><div class="w">💡 '+esc(ch.w)+'</div><div class="m">'+esc(ch.m)+'</div><div class="e">'+esc(ch.e)+'</div></div>';
+    }
+    wordList(document.getElementById("sales-general"), salesGeneral);
+    wordList(document.getElementById("sales-private"), salesPrivate);
+    wordList(document.getElementById("sales-clero-hosts"), salesCleroHosts);
+    wordList(document.getElementById("sales-clero-creator"), salesCleroCreator);
+
+    var box = document.getElementById("salesnotes-list");
+    if(box){
+      if(!(state.salesNotes||[]).length){ box.innerHTML = '<div class="empty">Noch nichts eingetragen.</div>'; }
+      else {
+        box.innerHTML = state.salesNotes.map(function(it){
+          return '<div class="row"><div class="body"><div class="name">'+esc(it.text)+'</div></div><button class="x" data-delsalesnote="'+it.id+'">×</button></div>';
+        }).join("");
+      }
+    }
+  }
+
   function renderReminders(){
     var box = document.getElementById("reminders-list"); if(!box) return;
     var items = (state.reminders||[]).filter(function(r){ return !r.done; });
@@ -1681,7 +1784,7 @@
     box.innerHTML = list.map(contactCard).join("");
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderFears(); renderBriefing(); renderEvening(); renderRoutines(); renderContacts(); }
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderFears(); renderVertrieb(); renderBriefing(); renderEvening(); renderRoutines(); renderContacts(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -1789,6 +1892,7 @@
     else if(t.dataset.reminder){ var rem=state.reminders.find(function(x){return x.id===t.dataset.reminder;}); if(rem){ rem.done=true; save(); renderReminders(); renderBriefing(); } }
     else if(t.dataset.delreminder){ state.reminders = (state.reminders||[]).filter(function(x){return x.id!==t.dataset.delreminder;}); save(); renderReminders(); renderBriefing(); }
     else if(t.dataset.delemergency){ state.emergency = state.emergency.filter(function(x){return x.id!==t.dataset.delemergency;}); save(); renderEmergency(); }
+    else if(t.dataset.delsalesnote){ state.salesNotes = (state.salesNotes||[]).filter(function(x){return x.id!==t.dataset.delsalesnote;}); save(); renderVertrieb(); }
     else if(t.dataset.emergencyfrom){ var rk=t.dataset.emergencyfrom; var rr=state.reflections[rk]; if(rr && rr.win){ state.emergency=state.emergency||[]; state.emergency.push({id:uid(), text:rr.win}); save(); renderEmergency(); t.textContent="✓ hinzugefügt"; } }
     else if(t.dataset.contactping){ var cPing=(state.contacts||[]).find(function(x){return x.id===t.dataset.contactping;}); if(cPing){ cPing.lastContact = todayStr(); save(); renderContacts(); } }
     else if(t.dataset.delcontact){ if(confirm("Diesen Kontakt löschen?")){ state.contacts = (state.contacts||[]).filter(function(x){return x.id!==t.dataset.delcontact;}); save(); renderContacts(); } }
@@ -1915,6 +2019,15 @@
     document.getElementById("fear-name").value=""; document.getElementById("fear-note").value="";
     save(); renderFears();
   });
+
+  document.getElementById("add-salesnote").addEventListener("click", function(){
+    var sn = document.getElementById("salesnote-input").value.trim(); if(!sn) return;
+    state.salesNotes = state.salesNotes || [];
+    state.salesNotes.push({ id: uid(), text: sn });
+    document.getElementById("salesnote-input").value = "";
+    save(); renderVertrieb();
+  });
+  document.getElementById("salesnote-input").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-salesnote").click(); });
 
   document.getElementById("add-emergency").addEventListener("click", function(){
     var v = document.getElementById("emergency-input").value.trim(); if(!v) return;
