@@ -289,6 +289,7 @@
     <button data-tab="vertrieb">🎯 Vertrieb</button>
     <button data-tab="reflexion">🌙 Reflexion</button>
     <button data-tab="insights">📊 Insights</button>
+    <button data-tab="reddit">🤖 Reddit</button>
   </nav>
 
   <!-- HEUTE -->
@@ -689,6 +690,15 @@
         <input type="text" id="emergency-input" placeholder="Was hilft dir?">
         <button class="btn" id="add-emergency">Hinzufügen</button>
       </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-reddit">
+    <div class="card">
+      <h2>🤖 Reddit Feed</h2>
+      <div class="sub" id="reddit-updated">Wird beim ersten Automatik-Lauf befüllt …</div>
+      <div id="reddit-filter" style="margin-bottom:12px;"></div>
+      <div id="reddit-list"></div>
     </div>
   </section>
 
@@ -2591,11 +2601,57 @@
 
   if(seededChanged){ save(); renderAll(); }
 
+  function renderReddit(){
+    fetch("reddit.json?cb=" + Date.now()).then(function(r){ return r.json(); }).then(function(data){
+      var updEl = document.getElementById("reddit-updated");
+      var posts = data.posts || [];
+      if(updEl){
+        if(!posts.length){
+          updEl.textContent = "Wird beim ersten Automatik-Lauf befüllt …";
+        } else if(data.updated){
+          try { updEl.textContent = "Stand: " + new Date(data.updated).toLocaleString("de-DE"); } catch(e){ updEl.textContent = ""; }
+        }
+      }
+      var subs = [];
+      posts.forEach(function(p){ if(subs.indexOf(p.subreddit)===-1) subs.push(p.subreddit); });
+      subs.sort();
+      var filterEl = document.getElementById("reddit-filter");
+      if(filterEl){
+        if(subs.length){
+          var opts = '<option value="">Alle Subreddits</option>' + subs.map(function(s){ return '<option value="'+esc(s)+'">r/'+esc(s)+'</option>'; }).join("");
+          filterEl.innerHTML = '<select id="reddit-sub-select" style="padding:6px 10px;border-radius:8px;border:1px solid var(--line);">' + opts + '</select>';
+          document.getElementById("reddit-sub-select").addEventListener("change", function(){ drawRedditList(posts, this.value); });
+        } else {
+          filterEl.innerHTML = "";
+        }
+      }
+      drawRedditList(posts, "");
+    }).catch(function(){
+      var el = document.getElementById("reddit-list");
+      if(el) el.innerHTML = '<div class="empty">Reddit-Feed konnte gerade nicht geladen werden.</div>';
+    });
+  }
+
+  function drawRedditList(posts, filterSub){
+    var el = document.getElementById("reddit-list");
+    if(!el) return;
+    var filtered = filterSub ? posts.filter(function(p){ return p.subreddit===filterSub; }) : posts;
+    if(!filtered.length){ el.innerHTML = '<div class="empty">Noch keine Posts. Der Feed füllt sich mit dem nächsten Automatik-Lauf.</div>'; return; }
+    el.innerHTML = filtered.map(function(p){
+      return '<div class="card" style="margin-bottom:10px;padding:14px;">' +
+        '<div style="font-size:12px;color:var(--muted);margin-bottom:4px;">r/' + esc(p.subreddit) + (p.author ? ' · u/' + esc(p.author) : '') + '</div>' +
+        '<a href="' + esc(p.permalink) + '" target="_blank" rel="noopener" style="font-weight:600;text-decoration:none;color:inherit;">' + esc(p.title) + '</a>' +
+        '<div style="font-size:12px;color:var(--muted);margin-top:6px;">⬆️ ' + p.score + ' · 💬 ' + p.num_comments + '</div>' +
+      '</div>';
+    }).join("");
+  }
+
   generateRoutineTasks();
   generateGoalStepTasks();
   setHeader();
   renderAll();
   renderAgenda();
+  renderReddit();
 })();
 </script>
 </body>

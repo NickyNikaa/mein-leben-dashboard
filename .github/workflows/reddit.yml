@@ -1,0 +1,34 @@
+name: Reddit-Feed aktualisieren
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # alle 6 Stunden
+  workflow_dispatch: {}      # manuell startbar über den "Run workflow"-Button
+
+permissions:
+  contents: write
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Reddit-Feed holen
+        run: python3 build_reddit.py
+
+      - name: Änderungen committen und pushen
+        run: |
+          git config user.name "reddit-feed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reddit.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen am Reddit-Feed."
+          else
+            git commit -m "Reddit-Feed aktualisiert"
+            git push
+          fi
