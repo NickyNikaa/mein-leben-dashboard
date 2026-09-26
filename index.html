@@ -2641,7 +2641,7 @@
       return '<div class="card" style="margin-bottom:10px;padding:14px;">' +
         '<div style="font-size:12px;color:var(--muted);margin-bottom:4px;">r/' + esc(p.subreddit) + (p.author ? ' · u/' + esc(p.author) : '') + '</div>' +
         '<a href="' + esc(p.permalink) + '" target="_blank" rel="noopener" style="font-weight:600;text-decoration:none;color:inherit;">' + esc(p.title) + '</a>' +
-        '<div style="font-size:12px;color:var(--muted);margin-top:6px;">⬆️ ' + p.score + ' · 💬 ' + p.num_comments + '</div>' +
+        ((p.score || p.num_comments) ? '<div style="font-size:12px;color:var(--muted);margin-top:6px;">⬆️ ' + p.score + ' · 💬 ' + p.num_comments + '</div>' : '') +
       '</div>';
     }).join("");
   }
