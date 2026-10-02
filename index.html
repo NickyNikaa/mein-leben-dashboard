@@ -261,6 +261,208 @@
   .emergency-card h2 { color:#c2410c; }
   .flashback-box { font-size:14px; padding:8px 0; border-bottom:1px dashed #ddd; }
   .flashback-box:last-child { border-bottom:none; }
+
+  /* ================= v2: modernes Layout, Gruppen-Navigation, Clero & WPP ================= */
+  :root {
+    --accent-bg: #f1efff;
+    --clero: #7c3aed; --clero-bg: #f1eafe;
+    --wpp: #0f766e; --wpp-bg: #dcf5f1;
+    --karriere: #be185d; --karriere-bg: #fde7f1;
+    --radius: 18px;
+  }
+  body { background: radial-gradient(1200px 500px at 10% -10%, #ece9ff 0%, rgba(236,233,255,0) 60%), radial-gradient(900px 400px at 100% 0%, #fde8f3 0%, rgba(253,232,243,0) 55%), var(--bg); background-attachment: fixed; }
+  .wrap { max-width: 1040px; }
+  .card { border-radius: var(--radius); }
+
+  /* Hero */
+  header.top {
+    background: linear-gradient(135deg, #6d5efc 0%, #8b5cf6 55%, #d946ef 115%);
+    color: #fff; border-radius: 24px; padding: 22px 24px 20px; margin-bottom: 14px;
+    box-shadow: 0 10px 30px rgba(109,94,252,.28);
+  }
+  header.top .greet { color: #fff; font-size: 28px; }
+  header.top .date { color: rgba(255,255,255,.82); }
+  .hero-quote { margin-top: 12px; font-size: 14px; font-style: italic; color: rgba(255,255,255,.95); max-width: 640px; }
+  .hero-quote:empty { display: none; }
+
+  .stats { gap: 10px; margin: 0 0 14px; }
+  .stat { border-radius: 16px; display: flex; flex-direction: column; justify-content: center; }
+  .stat .n { font-size: 24px; letter-spacing: -.5px; }
+
+  /* Navigation: Gruppen + Unter-Reiter */
+  .navbar {
+    position: sticky; top: 0; z-index: 50; margin: 0 -18px 16px; padding: 10px 18px 8px;
+    background: rgba(246,247,251,.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.groups { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+  nav.groups::-webkit-scrollbar, nav.tabs::-webkit-scrollbar { display: none; }
+  nav.groups button {
+    flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    padding: 9px 16px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all .15s;
+  }
+  nav.groups button:hover { border-color: #cfd3e0; }
+  nav.groups button.active { color: #fff; border-color: transparent; background: var(--ink); box-shadow: 0 4px 14px rgba(20,20,40,.18); }
+  nav.groups button[data-group="clero"].active { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+  nav.groups button[data-group="wpp"].active { background: linear-gradient(135deg, #0f766e, #14b8a6); }
+  nav.groups button[data-group="heute"].active { background: linear-gradient(135deg, #6d5efc, #8b5cf6); }
+
+  nav.tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 4px; margin: 8px 0 0; }
+  nav.tabs button { flex: none; border: none; background: transparent; color: var(--muted); padding: 6px 12px; font-size: 13px; border-radius: 999px; font-weight: 600; }
+  nav.tabs button:hover { background: #eceef6; border: none; }
+  nav.tabs button.active { background: var(--accent-bg); color: var(--accent); border: none; }
+  nav.tabs button[hidden] { display: none; }
+
+  /* Pills & Farben für neue Bereiche */
+  .pill.clero { background: var(--clero-bg); color: var(--clero); }
+  .pill.wpp { background: var(--wpp-bg); color: var(--wpp); }
+  .pill.karriere { background: var(--karriere-bg); color: var(--karriere); }
+  .pill.privat { background: #eceef2; color: #4b5563; }
+  .pill.grey { background: #eceef2; color: #4b5563; }
+  .pill.warn { background: #fee2e2; color: #b91c1c; }
+  .pill.good { background: var(--aufgaben-bg); color: #047857; }
+
+  /* Layout-Helfer */
+  .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .grid2 > .card, .grid3 > .card { margin-bottom: 0; }
+  @media (max-width: 760px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+  .card h2 .hint { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 6px; }
+  .cardhead { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .cardhead .tools { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* Bereichs-Überblick */
+  .overview .mini { cursor: pointer; border-radius: 16px; padding: 14px 16px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform .12s; position: relative; overflow: hidden; }
+  .overview .mini:hover { transform: translateY(-2px); }
+  .overview .mini::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--c, var(--accent)); }
+  .overview .mini .t { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); }
+  .overview .mini .big { font-size: 26px; font-weight: 800; margin: 2px 0; letter-spacing: -.5px; }
+  .overview .mini .s { font-size: 12.5px; color: var(--muted); }
+  .overview .mini .nx { font-size: 13px; margin-top: 6px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Fokus */
+  .focus-card { border: 1px solid #e0d7fa; background: linear-gradient(135deg, #ffffff, #f7f3ff); }
+  .focus-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--line); margin-bottom: 8px; }
+  .focus-item .num { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .focus-item.done .nm { text-decoration: line-through; color: var(--muted); }
+  .focus-item .nm { font-weight: 600; font-size: 15px; }
+  .focus-item .mt { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .star { border: none; background: none; cursor: pointer; font-size: 18px; color: #d1d5db; padding: 2px 4px; line-height: 1; flex: none; }
+  .star.on { color: #f59e0b; }
+  .star:hover { color: #f59e0b; }
+
+  /* Filter-Chips */
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 12px; }
+  .chipbtn { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 999px; padding: 5px 12px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  .chipbtn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .chipbtn .cnt { opacity: .6; margin-left: 4px; font-weight: 500; }
+
+  /* Ziele */
+  .goalcard { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin-bottom: 12px; background: #fff; position: relative; }
+  .goalcard::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--gc, var(--accent)); }
+  .goalcard .gtop { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .goalcard .gtitle { font-weight: 700; font-size: 16px; }
+  .goalcard .gwhy { font-size: 13px; font-style: italic; color: #4b5563; margin: 4px 0 8px; }
+  .goalcard .gtoday { margin-top: 10px; border-radius: 12px; padding: 10px 12px; background: var(--accent-bg); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .goalcard .gtoday.ok { background: var(--aufgaben-bg); }
+  .goalcard .gtoday .gt-l { font-size: 13.5px; font-weight: 600; }
+  .goalcard .gtoday .gt-s { font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+  .goalcard .gmile { font-size: 12.5px; color: #6d28d9; font-weight: 600; margin-top: 8px; }
+  .goalcard .goal-bar { height: 12px; }
+  .goalform { border: 1px dashed #d6d9e5; border-radius: 14px; padding: 12px; margin-top: 8px; background: #fafbff; }
+  .goalform .addbar { margin: 0 0 8px; }
+  .goalform input[type=date], input[type=date], input[type=number], textarea.plain { font: inherit; padding: 9px 11px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); }
+  input[type=number] { width: 110px; }
+  .group-h { font-size: 12px; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); font-weight: 800; margin: 18px 0 8px; display: flex; align-items: center; gap: 8px; }
+  .group-h::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .group-h .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gc, var(--accent)); }
+
+  /* Task-Board */
+  .row .due { font-weight: 700; }
+  .row .due.late { color: #dc2626; }
+  .row .due.soon { color: #c2740a; }
+  details.fold { border: 1px solid var(--line); background: var(--card); border-radius: var(--radius); margin-bottom: 16px; box-shadow: var(--shadow); }
+  details.fold > summary { cursor: pointer; padding: 16px 18px; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  details.fold > summary::-webkit-details-marker { display: none; }
+  details.fold > summary::after { content: "▾"; color: var(--muted); transition: transform .2s; }
+  details.fold[open] > summary::after { transform: rotate(180deg); }
+  details.fold > summary .hint { font-size: 12px; font-weight: 500; color: var(--muted); }
+  details.fold > .foldbody { padding: 0 18px 8px; }
+  details.fold .card { box-shadow: none; border-radius: 14px; background: #fcfcfe; }
+  details.fold.inner { box-shadow: none; margin-top: 12px; }
+  details.fold.inner > summary { font-size: 14px; padding: 10px 14px; }
+
+  /* Kennzahlen (Clero) */
+  .metric { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; background: #fff; }
+  .metric .mn { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); display: flex; justify-content: space-between; gap: 6px; }
+  .metric .mv { font-size: 34px; font-weight: 800; letter-spacing: -1px; margin: 4px 0 0; line-height: 1.1; }
+  .metric .mv small { font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 4px; }
+  .metric .md { font-size: 12.5px; color: var(--muted); margin: 2px 0 8px; }
+  .metric .md b.up { color: #059669; }
+  .metric .md b.down { color: #dc2626; }
+  .metric .mctl { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+  .metric .mctl input[type=number] { width: 80px; padding: 6px 8px; }
+  .metric svg.spark { width: 100%; height: 34px; display: block; margin-top: 6px; }
+  .metricgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+
+  /* Ideen / Potenziale */
+  .pot { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; background: #fff; margin-bottom: 8px; }
+  .pot .ptop { display: flex; align-items: flex-start; gap: 10px; }
+  .pot .ptx { flex: 1; min-width: 0; font-weight: 600; font-size: 14.5px; }
+  .pot .pm { font-size: 12px; color: var(--muted); margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .pot.done .ptx { color: var(--muted); text-decoration: line-through; }
+  .pot.drop { opacity: .55; }
+  .pot .pnote { font-size: 12.5px; color: #4b5563; margin-top: 6px; }
+  .statusbtn { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  .statusbtn.idee { background: #fff7e6; border-color: #fde2a8; color: #a16207; }
+  .statusbtn.work { background: #e8f1ff; border-color: #bcd5ff; color: #1d4ed8; }
+  .statusbtn.done { background: var(--aufgaben-bg); border-color: #a7ecd0; color: #047857; }
+  .statusbtn.drop { background: #f3f4f6; color: #6b7280; }
+  .radar { display: grid; gap: 8px; margin-bottom: 14px; }
+  .radar .rr { display: grid; grid-template-columns: 150px 1fr 70px; gap: 10px; align-items: center; font-size: 13px; }
+  .radar .rr .bar { height: 10px; border-radius: 6px; background: #eceef6; overflow: hidden; }
+  .radar .rr .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--wpp), #14b8a6); border-radius: 6px; }
+  .radar .rr .pc { text-align: right; color: var(--muted); font-size: 12px; }
+  @media (max-width: 560px) { .radar .rr { grid-template-columns: 100px 1fr 54px; } }
+
+  /* Wochenroutine */
+  .weekgrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+  .weekgrid .wd { border: 1px solid var(--line); border-radius: 14px; padding: 8px; background: #fff; min-height: 110px; }
+  .weekgrid .wd.today { border-color: var(--accent); background: #faf9ff; box-shadow: 0 0 0 2px rgba(109,94,252,.12); }
+  .weekgrid .wd .wh { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); margin-bottom: 6px; }
+  .weekgrid .wd.today .wh { color: var(--accent); }
+  .wchip { display: flex; gap: 6px; align-items: flex-start; font-size: 11.5px; line-height: 1.3; padding: 5px 6px; border-radius: 8px; background: #f3f4f9; margin-bottom: 5px; cursor: default; }
+  .wchip .ck { flex: none; width: 15px; height: 15px; border-radius: 50%; border: 2px solid #c6cbe0; margin-top: 1px; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; cursor: pointer; padding: 0; }
+  .wchip.done { background: var(--aufgaben-bg); color: #065f46; }
+  .wchip.done .ck { background: var(--aufgaben); border-color: var(--aufgaben); }
+  .wchip.future .ck { cursor: default; opacity: .4; }
+  .wchip.missed { opacity: .55; }
+  @media (max-width: 900px) { .weekgrid { grid-template-columns: 1fr; } .weekgrid .wd { min-height: 0; } }
+
+  /* Skills */
+  .skill { display: grid; grid-template-columns: 1fr auto auto auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .skill:last-child { border-bottom: none; }
+  .skill .sn { font-weight: 600; font-size: 14px; }
+  .skill .sg { font-size: 11.5px; color: var(--muted); }
+  .seg { display: inline-flex; gap: 3px; }
+  .seg button { width: 22px; height: 14px; border-radius: 4px; border: 1px solid #d3d7e6; background: #fff; cursor: pointer; padding: 0; }
+  .seg button.on { background: linear-gradient(90deg, #14b8a6, #0f766e); border-color: #0f766e; }
+  .seg button.tg { box-shadow: 0 0 0 2px rgba(190,24,93,.35); }
+  select.mini { padding: 4px 6px; font-size: 12px; border-radius: 8px; }
+  .qline { border-left: 4px solid var(--karriere); background: var(--karriere-bg); padding: 12px 14px; border-radius: 0 12px 12px 0; font-size: 14.5px; font-weight: 600; }
+  .logline { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 13.5px; align-items: flex-start; }
+  .logline:last-child { border-bottom: none; }
+  .logline .ld { color: var(--muted); font-size: 12px; min-width: 52px; padding-top: 1px; }
+  .logline .lx { flex: 1; }
+  .logline .lx small { display: block; color: var(--muted); }
+  .team-open { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 12px; background: #fff7ed; border: 1px solid #fed7aa; margin-bottom: 6px; font-size: 14px; }
+  .team-open.done { background: #f3f4f6; border-color: var(--line); text-decoration: line-through; color: var(--muted); }
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 13px; z-index: 2000; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  @media (max-width: 560px) {
+    header.top .greet { font-size: 23px; }
+    .wrap { padding: 14px 14px 80px; }
+    .navbar { margin: 0 -14px 14px; padding: 8px 14px 6px; }
+  }
 </style>
 </head>
 <body>
@@ -268,66 +470,111 @@
   <header class="top">
     <div class="greet" id="greet">Hallo!</div>
     <div class="date" id="dateline"></div>
+    <div class="hero-quote" id="quote"></div>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="n" id="s-today">0/0</div><div class="l">Heute erledigt</div></div>
+    <div class="stat"><div class="n" id="s-today">0/0</div><div class="l">Gewohnheiten heute</div></div>
     <div class="stat"><div class="n" id="s-streak">0</div><div class="l">Längster Streak</div></div>
     <div class="stat"><div class="n" id="s-open">0</div><div class="l">Offene Aufgaben</div></div>
     <div class="stat"><div class="n" id="s-mut">0</div><div class="l">Mut gezeigt</div></div>
   </div>
 
-  <nav class="tabs">
-    <button data-tab="heute" class="active">☀️ Heute</button>
-    <button data-tab="kalender">📅 Kalender</button>
-    <button data-tab="gewohnheiten">🔁 Gewohnheiten</button>
-    <button data-tab="aufgaben">✅ Aufgaben</button>
-    <button data-tab="listen">🛒 Listen</button>
-    <button data-tab="kontakte">🧑‍🤝‍🧑 Kontakte</button>
-    <button data-tab="mut">🚀 Mut</button>
-    <button data-tab="angst">😨 Ängste</button>
-    <button data-tab="vertrieb">🎯 Vertrieb</button>
-    <button data-tab="reflexion">🌙 Reflexion</button>
-    <button data-tab="insights">📊 Insights</button>
-    <button data-tab="reddit">🤖 Reddit</button>
-  </nav>
+  <div class="navbar">
+    <nav class="groups" id="groups">
+      <button data-group="heute" class="active">☀️ Heute</button>
+      <button data-group="privat">🏠 Privat</button>
+      <button data-group="clero">🚀 Clero</button>
+      <button data-group="wpp">💼 WPP</button>
+      <button data-group="mehr">📊 Mehr</button>
+    </nav>
+    <nav class="tabs" id="subtabs">
+      <button data-tab="heute" data-group="heute" class="active">☀️ Heute</button>
+      <button data-tab="ziele" data-group="heute">🎯 Ziele</button>
+      <button data-tab="aufgaben" data-group="heute">✅ Aufgaben</button>
+      <button data-tab="kalender" data-group="heute">📅 Kalender</button>
+      <button data-tab="gewohnheiten" data-group="heute">🔁 Gewohnheiten</button>
+
+      <button data-tab="kontakte" data-group="privat" hidden>🧑‍🤝‍🧑 Kontakte</button>
+      <button data-tab="listen" data-group="privat" hidden>🛒 Listen</button>
+      <button data-tab="mut" data-group="privat" hidden>🚀 Mut</button>
+      <button data-tab="angst" data-group="privat" hidden>😨 Ängste</button>
+      <button data-tab="reflexion" data-group="privat" hidden>🌙 Reflexion</button>
+
+      <button data-tab="clero-aufgaben" data-group="clero" hidden>📋 Aufgaben</button>
+      <button data-tab="clero-zahlen" data-group="clero" hidden>📈 Zahlen</button>
+      <button data-tab="clero-ideen" data-group="clero" hidden>💡 Potenziale &amp; Ideen</button>
+      <button data-tab="clero-team" data-group="clero" hidden>🤝 Team &amp; Meetings</button>
+
+      <button data-tab="wpp-aufgaben" data-group="wpp" hidden>📋 Aufgaben</button>
+      <button data-tab="wpp-potenziale" data-group="wpp" hidden>💎 Potenziale</button>
+      <button data-tab="wpp-routine" data-group="wpp" hidden>🗓️ Wochenroutine</button>
+      <button data-tab="wpp-karriere" data-group="wpp" hidden>🌱 Karriere</button>
+
+      <button data-tab="insights" data-group="mehr" hidden>📊 Insights</button>
+      <button data-tab="vertrieb" data-group="mehr" hidden>🎯 Vertrieb</button>
+      <button data-tab="reddit" data-group="mehr" hidden>🤖 Reddit</button>
+    </nav>
+  </div>
 
   <!-- HEUTE -->
   <section class="panel active" id="panel-heute">
-    <div class="card quoteday">
-      <h2>💭 Gedanke des Tages</h2>
-      <div class="sub">Motivation &amp; Tiefes Denken — jeden Tag neu.</div>
-      <div class="quote" id="quote"></div>
+    <div class="grid3 overview" id="overview" style="margin-bottom:16px"></div>
+
+    <div class="card focus-card">
+      <h2>⭐ Dein Fokus heute</h2>
+      <div class="sub">Die drei wichtigsten Dinge, bereichsübergreifend. Mit dem Stern legst du selbst fest, was dazugehört, sonst schlägt das Dashboard etwas vor.</div>
+      <div id="focus-list"></div>
     </div>
-    <div class="card briefing">
-      <h2>🌅 Morgen-Briefing</h2>
-      <div class="sub">Dein Tag auf einen Blick.</div>
-      <div id="briefing-content">Lädt…</div>
-    </div>
-    <div class="card evening">
-      <h2>🌙 Dein Tag im Rückblick</h2>
-      <div class="sub">Was du heute schon geschafft hast — mach dir bewusst, dass es zählt.</div>
-      <div id="evening-content">Lädt…</div>
-    </div>
+
     <div class="card">
-      <h2>⚡ Schnelleingabe</h2>
-      <div class="sub">Schreib einfach, was ansteht. Ich sortiere es automatisch ein (Termin, Aufgabe, Liste, langfristiges Ziel oder Erinnerung).</div>
-      <div class="quickadd">
-        <input type="text" id="quickadd-input" placeholder="z.B. „Morgen um 15 Uhr Zahnarzt“, „Ziel: Marathon laufen“ oder „Erinnere mich, die Reise zu buchen“">
-        <button class="btn" id="quickadd-btn">Hinzufügen</button>
-      </div>
-      <div class="quickadd-hint" id="quickadd-hint"></div>
+      <h2>🎯 Dein Weg heute</h2>
+      <div class="sub">Deine großen Ziele, heruntergebrochen auf das, was heute dran ist. Kleine Schritte zählen, und man sieht sie hier.</div>
+      <div id="goal-today"></div>
     </div>
-    <div class="card">
-      <h2>🔔 Erinnerungen</h2>
-      <div class="sub">Dinge, an die du dich nicht selbst erinnern willst.</div>
-      <div id="reminders-list"></div>
-    </div>
+
     <div class="card">
       <h2>Heute dran</h2>
       <div class="sub">Hak ab, was du heute geschafft hast. Jeder Haken zählt für deinen Streak.</div>
       <div id="today-habits"></div>
     </div>
+
+    <div class="card">
+      <div class="cardhead">
+        <div><h2>✅ Offene Aufgaben</h2><div class="sub">Privat, Clero und WPP an einem Ort.</div></div>
+      </div>
+      <div class="chips" id="today-task-chips"></div>
+      <div id="today-tasks"></div>
+    </div>
+
+    <div class="card" id="potday-card">
+      <h2>💎 Potenzial des Tages</h2>
+      <div class="sub">Ein offener Hebel aus WPP oder Clero, damit nichts liegen bleibt.</div>
+      <div id="pot-day"></div>
+    </div>
+
+    <div class="card briefing">
+      <h2>🌅 Morgen-Briefing</h2>
+      <div class="sub">Dein Tag auf einen Blick.</div>
+      <div id="briefing-content">Lädt…</div>
+    </div>
+
+    <div class="card">
+      <h2>⚡ Schnelleingabe</h2>
+      <div class="sub">Schreib einfach, was ansteht. Ich sortiere es automatisch ein (Termin, Aufgabe, Liste, langfristiges Ziel oder Erinnerung). Mit „clero: …“ oder „wpp: …“ landet es direkt im jeweiligen Bereich.</div>
+      <div class="quickadd">
+        <input type="text" id="quickadd-input" placeholder="z.B. „Morgen um 15 Uhr Zahnarzt“, „wpp: Tracking-Check HLC“ oder „clero: Hosts nachfassen“">
+        <button class="btn" id="quickadd-btn">Hinzufügen</button>
+      </div>
+      <div class="quickadd-hint" id="quickadd-hint"></div>
+    </div>
+
+    <div class="card">
+      <h2>🔔 Erinnerungen</h2>
+      <div class="sub">Dinge, an die du dich nicht selbst erinnern willst.</div>
+      <div id="reminders-list"></div>
+    </div>
+
     <div class="card">
       <h2>🚀 Mut-Challenge des Tages</h2>
       <div class="sub">Ein kleiner Schritt aus der Komfortzone.</div>
@@ -338,33 +585,45 @@
         <button class="btn ghost" id="new-challenge">Andere Idee</button>
       </div>
     </div>
-    <div class="card">
-      <h2>📚 3 Wörter für heute</h2>
-      <div class="sub">Eloquent & professionell — mit Bedeutung und Beispiel, jeden Tag neu.</div>
-      <div id="words"></div>
-    </div>
-    <div class="card">
-      <h2>🇬🇧 3 English words for today</h2>
-      <div class="sub">Improve your English — mit deutscher Bedeutung und englischem Beispielsatz, jeden Tag neu.</div>
-      <div id="words-en"></div>
-    </div>
-    <div class="card">
-      <h2>💬🧠 Kommunikation &amp; Einfluss</h2>
-      <div class="sub">Klarer sprechen, bewusster wirken &mdash; dein täglicher Kommunikationstipp und ein Chase-Hughes-Learning zusammen.</div>
-      <div class="subhead">Kommunikationstipp</div>
-      <div class="commtip" id="commtip"></div>
-      <div class="subhead">Chase Hughes Learning</div>
-      <div id="chword"></div>
-    </div>
-    <div class="card">
-      <h2>❓ 2 Fragen für tiefere Gespräche</h2>
-      <div class="sub">Weg vom Smalltalk &mdash; Fragen, die echte Gespräche öffnen, jeden Tag neu.</div>
-      <div id="deepq"></div>
-    </div>
-    <div class="card">
-      <h2>✨ 2 Sätze, um zu beeindrucken</h2>
-      <div class="sub">Klare, souveräne Formulierungen für Meetings und Gespräche, jeden Tag neu.</div>
-      <div id="impress"></div>
+
+    <details class="fold">
+      <summary><span>🧠 Lernen &amp; Wachsen <span class="hint">Wörter, Kommunikation, Gesprächsfragen, täglich neu</span></span></summary>
+      <div class="foldbody">
+        <div class="card">
+          <h2>📚 3 Wörter für heute</h2>
+          <div class="sub">Eloquent &amp; professionell, mit Bedeutung und Beispiel, jeden Tag neu.</div>
+          <div id="words"></div>
+        </div>
+        <div class="card">
+          <h2>🇬🇧 3 English words for today</h2>
+          <div class="sub">Improve your English, mit deutscher Bedeutung und englischem Beispielsatz, jeden Tag neu.</div>
+          <div id="words-en"></div>
+        </div>
+        <div class="card">
+          <h2>💬🧠 Kommunikation &amp; Einfluss</h2>
+          <div class="sub">Klarer sprechen, bewusster wirken: dein täglicher Kommunikationstipp und ein Chase-Hughes-Learning zusammen.</div>
+          <div class="subhead">Kommunikationstipp</div>
+          <div class="commtip" id="commtip"></div>
+          <div class="subhead">Chase Hughes Learning</div>
+          <div id="chword"></div>
+        </div>
+        <div class="card">
+          <h2>❓ 2 Fragen für tiefere Gespräche</h2>
+          <div class="sub">Weg vom Smalltalk, hin zu Fragen, die echte Gespräche öffnen, jeden Tag neu.</div>
+          <div id="deepq"></div>
+        </div>
+        <div class="card">
+          <h2>✨ 2 Sätze, um zu beeindrucken</h2>
+          <div class="sub">Klare, souveräne Formulierungen für Meetings und Gespräche, jeden Tag neu.</div>
+          <div id="impress"></div>
+        </div>
+      </div>
+    </details>
+
+    <div class="card evening">
+      <h2>🌙 Dein Tag im Rückblick</h2>
+      <div class="sub">Was du heute schon geschafft hast. Mach dir bewusst, dass es zählt.</div>
+      <div id="evening-content">Lädt…</div>
     </div>
   </section>
 
@@ -422,6 +681,8 @@
           <option value="mut">Mut</option>
           <option value="aufgaben">Aufgaben</option>
           <option value="gesundheit">Gesundheit</option>
+          <option value="clero">Clero</option>
+          <option value="wpp">WPP</option>
         </select>
         <button class="btn" id="add-habit">Hinzufügen</button>
       </div>
@@ -442,6 +703,8 @@
           <option value="soziales">Soziales</option>
           <option value="mut">Mut</option>
           <option value="gesundheit">Gesundheit</option>
+          <option value="clero">Clero</option>
+          <option value="wpp">WPP</option>
         </select>
         <select id="task-duration" title="Geschätzte Dauer">
           <option value="15">15 Min</option>
@@ -466,6 +729,8 @@
           <option value="soziales">Soziales</option>
           <option value="mut">Mut</option>
           <option value="gesundheit">Gesundheit</option>
+          <option value="clero">Clero</option>
+          <option value="wpp">WPP</option>
         </select>
         <button class="btn" id="add-routine">Hinzufügen</button>
       </div>
@@ -667,17 +932,6 @@
       <div id="flashback-content"></div>
     </div>
     <div class="card">
-      <h2>📈 Große Ziele</h2>
-      <div class="sub">Sichtbarer Fortschritt für das, was dir wichtig ist. Schritte, die du bei einem Ziel einträgst, werden automatisch nach und nach als Aufgabe in deinen Alltag eingebaut.</div>
-      <div id="goals-list"></div>
-      <div class="addbar">
-        <input type="text" id="goal-name" placeholder="Ziel, z.B. Clero Meilenstein">
-        <input type="number" id="goal-target" placeholder="Zielwert" min="1">
-        <input type="text" id="goal-unit" placeholder="Einheit, z.B. Kunden">
-        <button class="btn" id="add-goal">Hinzufügen</button>
-      </div>
-    </div>
-    <div class="card">
       <h2>🔥 Streak-Heatmap</h2>
       <div class="sub">Deine Gewohnheiten der letzten 12 Wochen.</div>
       <div id="heatmap-content"></div>
@@ -702,6 +956,212 @@
     </div>
   </section>
 
+  <!-- ZIELE -->
+  <section class="panel" id="panel-ziele">
+    <div class="card">
+      <h2>🎯 Große Ziele, kleine Tagesschritte</h2>
+      <div class="sub">Gib einem Ziel einen Zielwert und ein Datum: das Dashboard rechnet dir aus, was heute dran ist, und zeigt, ob du im Plan bist. Ziele mit Schritten schieben jeden Tag den nächsten Schritt in deine Aufgaben.</div>
+      <div class="goalform-slot" data-garea=""></div>
+    </div>
+    <div id="goals-list"></div>
+  </section>
+
+  <!-- CLERO: AUFGABEN -->
+  <section class="panel" id="panel-clero-aufgaben">
+    <div class="card">
+      <h2>🚀 Clero: Aufgaben &amp; Workstreams</h2>
+      <div class="sub" id="cl-sub"></div>
+      <div id="cl-board"></div>
+      <div class="taskform-slot" data-area="clero"></div>
+    </div>
+    <div class="card">
+      <h2>🎯 Clero-Ziele</h2>
+      <div class="sub">Was bis wann erreicht sein soll, heruntergebrochen auf den Tag.</div>
+      <div id="goals-list-clero"></div>
+      <div class="goalform-slot" data-garea="clero"></div>
+    </div>
+  </section>
+
+  <!-- CLERO: ZAHLEN -->
+  <section class="panel" id="panel-clero-zahlen">
+    <div class="card">
+      <h2>📈 Clero-Zahlen</h2>
+      <div class="sub">Trag regelmäßig den aktuellen Stand ein (Fr-Routine erinnert dich). Das Dashboard zeigt dir die Entwicklung der letzten Tage.</div>
+      <div id="cl-metrics" class="metricgrid"></div>
+      <div class="goalform" style="margin-top:14px">
+        <div class="addbar">
+          <input type="text" class="mf-name" placeholder="Neue Kennzahl, z.B. Instagram-Follower">
+          <input type="number" class="mf-cur" placeholder="Stand" min="0">
+          <input type="number" class="mf-target" placeholder="Ziel (optional)" min="0">
+          <input type="text" class="mf-unit" placeholder="Einheit" style="max-width:120px;min-width:90px">
+          <button class="btn" data-a="addmetric">Hinzufügen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLERO: POTENZIALE & IDEEN -->
+  <section class="panel" id="panel-clero-ideen">
+    <div class="card">
+      <h2>💡 Clero: Potenziale &amp; Ideen</h2>
+      <div class="sub" id="cl-ideas-sub"></div>
+      <div class="chips" id="cl-ideas-chips"></div>
+      <div id="cl-ideas"></div>
+      <div class="potform-slot" data-kind="clero"></div>
+    </div>
+  </section>
+
+  <!-- CLERO: TEAM & MEETINGS -->
+  <section class="panel" id="panel-clero-team">
+    <div class="grid2">
+      <div class="card">
+        <h2>📅 Nächstes Meeting</h2>
+        <div class="sub">Alle offenen Punkte unten landen automatisch auf der Agenda.</div>
+        <input type="date" id="cl-nextmeeting" style="margin-bottom:12px">
+        <div class="subhead" style="margin-top:6px">Agenda (offene Punkte)</div>
+        <div id="cl-agenda"></div>
+      </div>
+      <div class="card">
+        <h2>➕ Neuer Eintrag</h2>
+        <div class="sub">Offener Punkt für die Agenda, Absprache oder Entscheidung festhalten.</div>
+        <div class="addbar">
+          <select id="tm-type">
+            <option value="offen">Offener Punkt</option>
+            <option value="absprache">Absprache</option>
+            <option value="entscheidung">Entscheidung</option>
+          </select>
+          <select id="tm-who">
+            <option value="Tjard">Tjard</option>
+            <option value="Kim">Kim</option>
+            <option value="Beide" selected>Tjard &amp; Kim</option>
+            <option value="Ich">Ich</option>
+          </select>
+        </div>
+        <textarea class="plain" id="tm-text" placeholder="Was ist offen, abgesprochen oder entschieden?" style="width:100%;min-height:80px"></textarea>
+        <div style="margin-top:10px"><button class="btn" data-a="addteam">Speichern</button></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h2>📒 Absprachen &amp; Entscheidungen</h2>
+      <div class="sub">Dein Logbuch mit Tjard und Kim, neueste zuerst.</div>
+      <div id="cl-team-log"></div>
+    </div>
+  </section>
+
+  <!-- WPP: AUFGABEN -->
+  <section class="panel" id="panel-wpp-aufgaben">
+    <div class="card">
+      <h2>💼 WPP: Aufgaben je Kunde</h2>
+      <div class="sub" id="wpp-sub"></div>
+      <div id="wpp-board"></div>
+      <div class="taskform-slot" data-area="wpp"></div>
+    </div>
+    <div class="card">
+      <h2>🎯 WPP-Ziele</h2>
+      <div class="sub">Kundenziele und eigene Ziele, heruntergebrochen auf den Tag.</div>
+      <div id="goals-list-wpp"></div>
+      <div class="goalform-slot" data-garea="wpp"></div>
+    </div>
+  </section>
+
+  <!-- WPP: POTENZIALE -->
+  <section class="panel" id="panel-wpp-potenziale">
+    <div class="card">
+      <h2>💎 Potenzial-Radar</h2>
+      <div class="sub" id="wpp-pot-sub">Wie viel von dem, was bei jedem Kunden möglich ist, hast du schon ausgeschöpft?</div>
+      <div class="radar" id="wpp-radar"></div>
+    </div>
+    <div class="card">
+      <h2>Hebel &amp; Ideen</h2>
+      <div class="sub">Jeder Hebel durchläuft Idee → In Arbeit → Umgesetzt. Mit „→ Aufgabe“ wird er zur To-do.</div>
+      <div class="chips" id="wpp-pot-chips"></div>
+      <div id="wpp-pots"></div>
+      <div class="potform-slot" data-kind="wpp"></div>
+    </div>
+  </section>
+
+  <!-- WPP: WOCHENROUTINE -->
+  <section class="panel" id="panel-wpp-routine">
+    <div class="card">
+      <h2>🗓️ Wochenroutine</h2>
+      <div class="sub" id="wpp-routine-sub"></div>
+      <div class="weekgrid" id="wpp-week"></div>
+    </div>
+    <div class="card">
+      <h2>Routine hinzufügen</h2>
+      <div class="sub">Erscheint an den gewählten Wochentagen automatisch als WPP-Aufgabe in „Heute“.</div>
+      <div class="addbar">
+        <input type="text" id="wr-name" placeholder="z.B. Stornoquoten prüfen">
+        <button class="btn" data-a="addwroutine">Hinzufügen</button>
+      </div>
+      <div class="weekday-chips" id="wr-days">
+        <button type="button" data-day="0">Mo</button><button type="button" data-day="1">Di</button><button type="button" data-day="2">Mi</button><button type="button" data-day="3">Do</button><button type="button" data-day="4">Fr</button><button type="button" data-day="5">Sa</button><button type="button" data-day="6">So</button>
+      </div>
+      <div id="wr-list" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- WPP: KARRIERE -->
+  <section class="panel" id="panel-wpp-karriere">
+    <div class="card">
+      <h2>🌱 Karriere-Kompass</h2>
+      <div class="sub">Wo willst du in der Rolle hin, und warum? Schreib es auf, dann wird daraus ein Ziel mit Tagesschritten.</div>
+      <div class="qline" id="wk-question" style="margin-bottom:14px"></div>
+      <textarea class="plain" id="wk-note" placeholder="Mein nächstes Ziel in der Rolle, was dafür gebraucht wird, und wer mich dabei unterstützen kann …" style="width:100%;min-height:90px"></textarea>
+      <div style="margin-top:8px"><button class="btn ghost" data-a="savecareer">Notiz speichern</button> <span class="savednote" id="wk-note-saved" style="display:inline-block;margin-left:8px"></span></div>
+      <div id="goals-list-karriere" style="margin-top:14px"></div>
+      <div class="goalform-slot" data-garea="karriere"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h2>🧭 Kompetenz-Radar</h2>
+        <div class="sub" id="wk-skill-sub">Selbsteinschätzung von 1 bis 5. Der pinke Rahmen ist dein Ziel-Level.</div>
+        <div id="wk-skills"></div>
+        <div class="addbar" style="margin-top:10px">
+          <input type="text" id="sk-name" placeholder="Neue Kompetenz">
+          <button class="btn" data-a="addskill">Hinzufügen</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>📚 Lern-Log</h2>
+        <div class="sub" id="wk-learn-sub">Was hast du gelernt, ausprobiert oder gelesen? Kleine Dinge zählen.</div>
+        <div class="addbar">
+          <input type="text" id="lr-text" placeholder="z.B. Awin-Reporting nach Publisher-Typ ausgewertet">
+          <select id="lr-skill"></select>
+          <button class="btn" data-a="addlearn">Eintragen</button>
+        </div>
+        <div id="wk-learn" style="margin-top:8px"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="cardhead">
+        <div><h2>🏆 Impact-Log</h2><div class="sub" id="wk-impact-sub">Erfolge mit Wirkung, ideal für Feedbackgespräche und Gehaltsrunden.</div></div>
+        <div class="tools"><button class="btn ghost small" data-a="copyimpact">📋 Letzte 90 Tage kopieren</button></div>
+      </div>
+      <div class="addbar">
+        <input type="text" id="im-text" placeholder="Was hast du erreicht oder angestoßen?">
+        <input type="text" id="im-effect" placeholder="Wirkung / Zahl (optional)" style="max-width:220px">
+        <select id="im-client"></select>
+        <button class="btn" data-a="addimpact">Eintragen</button>
+      </div>
+      <div id="wk-impact" style="margin-top:8px"></div>
+    </div>
+
+    <div class="card">
+      <h2>🗣️ Feedback- &amp; 1:1-Themen</h2>
+      <div class="sub">Dinge, die du mit deiner Führungskraft besprechen willst: Wünsche, Chancen, Entwicklung.</div>
+      <div id="wk-feedback"></div>
+      <div class="addbar">
+        <input type="text" id="fb-text" placeholder="z.B. Verantwortung für ein weiteres Kundenprogramm übernehmen">
+        <button class="btn" data-a="addfeedback">Hinzufügen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKUP (innerhalb Insights) wird per JS angehängt -->
+
   <div class="footer">Alles wird nur lokal in deinem Browser gespeichert. 💜 Dein privater Raum.</div>
 </div>
 
@@ -711,7 +1171,7 @@
   var LS = "meinlebenDashboard_v1";
   var todayStr = function(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
   var dateKey = function(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
-  var areaLabel = { beruf:"Beruf", soziales:"Soziales", mut:"Mut", aufgaben:"Aufgaben", gesundheit:"Gesundheit" };
+  var areaLabel = { beruf:"Beruf", soziales:"Soziales", mut:"Mut", aufgaben:"Aufgaben", gesundheit:"Gesundheit", clero:"Clero", wpp:"WPP" };
 
   var defaults = {
     name: "",
@@ -761,7 +1221,10 @@
     salesNotes: [],
     reminders: [],
     emergency: [],
-    contacts: []
+    contacts: [],
+    clero: { metrics: [], ideas: [], team: [], nextMeeting: "" },
+    wpp: { potentials: [], skills: [], learnings: [], impact: [], feedback: [], careerNote: "" },
+    migrations: {}
   };
 
   var quotes = [
@@ -1103,6 +1566,968 @@
   }
   function save(){ try { localStorage.setItem(LS, JSON.stringify(state)); } catch(e){} }
 
+  // =====================================================================
+  // v2: Bereiche (Clero, WPP), Ziele mit Tagesplan, Fokus, neue Navigation
+  // =====================================================================
+  var CLERO_STREAMS = [
+    {k:"host", l:"Host-Onboarding"}, {k:"creator", l:"Creator-Outreach"}, {k:"social", l:"Social Media"},
+    {k:"tech", l:"Tooling & Tech"}, {k:"team", l:"Team & Orga"}
+  ];
+  var WPP_CLIENTS = [
+    {k:"msdach", l:"Mein Schiff DACH"}, {k:"msint", l:"Mein Schiff Int."}, {k:"hlc", l:"Hapag-Lloyd Cruises"},
+    {k:"messmer", l:"Meßmer"}, {k:"tempur", l:"Tempur"}, {k:"intern", l:"Intern / Übergreifend"}
+  ];
+  var CLERO_CATS = [{k:"host",l:"Hosts"},{k:"creator",l:"Creator"},{k:"wachstum",l:"Wachstum"},{k:"partner",l:"Partner"},{k:"produkt",l:"Produkt"}];
+  var WPP_CATS = [{k:"aktivierung",l:"Aktivierung"},{k:"tracking",l:"Tracking"},{k:"provision",l:"Provision & Incentive"},{k:"kampagne",l:"Kampagne"},{k:"neu",l:"Neue Publisher"},{k:"reporting",l:"Reporting"}];
+  var CAT_TO_STREAM = {host:"host", creator:"creator", wachstum:"social", partner:"team", produkt:"tech"};
+  var STATUS = ["idee","work","done","drop"];
+  var STATUS_LABEL = {idee:"💡 Idee", work:"🔧 In Arbeit", done:"✅ Umgesetzt", drop:"🗑️ Verworfen"};
+  var EFFORT_LABEL = {S:"klein", M:"mittel", L:"groß"};
+  var GOAL_AREAS = {
+    privat:{l:"Privat", c:"#6d5efc"}, clero:{l:"Clero", c:"#7c3aed"},
+    wpp:{l:"WPP", c:"#0f766e"}, karriere:{l:"Karriere", c:"#be185d"}
+  };
+  var CAREER_QUESTIONS = [
+    "Was habe ich diese Woche getan, das über meine Rollenbeschreibung hinausgeht?",
+    "Welche Entscheidung eines Kunden konnte ich diese Woche mit Daten beeinflussen?",
+    "Welche Fähigkeit würde mich in einem Jahr am meisten voranbringen, und was ist heute der kleinste Schritt dahin?",
+    "Wem im Unternehmen sollte ich meine Ergebnisse sichtbarer machen?",
+    "Welche Aufgabe gebe ich besser ab, damit ich Zeit für Wirkung habe?",
+    "Wo habe ich zuletzt Feedback bekommen, das ich noch nicht umgesetzt habe?",
+    "Was würde meine Chefin über mein größtes Potenzial sagen?",
+    "Welches Kundenprogramm hat gerade das größte ungenutzte Potenzial, und was ist der erste Hebel?",
+    "Worauf bin ich in dieser Rolle wirklich stolz, und weiß das mein Umfeld?",
+    "Was müsste ich tun, um in sechs Monaten eine Stufe weiter zu sein?"
+  ];
+  var ui = { taskFilter:"alle", potClient:"alle", ideaStatus:"alle" };
+  var lastTab = {};
+
+  function lbl(list, k){ for(var i=0;i<list.length;i++){ if(list[i].k===k) return list[i].l; } return ""; }
+  function optsHtml(list, sel){ return list.map(function(o){ return '<option value="'+o.k+'"'+(o.k===sel?' selected':'')+'>'+esc(o.l)+'</option>'; }).join(""); }
+  function daysBetween(a,b){ return Math.round((new Date(b+"T00:00:00")-new Date(a+"T00:00:00"))/86400000); }
+  function fmtShort(s){ if(!s) return ""; var p=s.split("-"); return p[2]+"."+p[1]+"."; }
+  function toast(msg){
+    var d=document.createElement("div"); d.className="toast"; d.textContent=msg; document.body.appendChild(d);
+    setTimeout(function(){ if(d.parentNode) d.parentNode.removeChild(d); }, 2200);
+  }
+
+  function ensureV2(){
+    var c = state.clero = state.clero || {};
+    c.metrics = c.metrics || []; c.ideas = c.ideas || []; c.team = c.team || []; c.nextMeeting = c.nextMeeting || "";
+    var w = state.wpp = state.wpp || {};
+    w.potentials = w.potentials || []; w.skills = w.skills || []; w.learnings = w.learnings || [];
+    w.impact = w.impact || []; w.feedback = w.feedback || []; w.careerNote = w.careerNote || "";
+    state.migrations = state.migrations || {};
+    state.goals = state.goals || [];
+    state.routines = state.routines || [];
+  }
+  ensureV2();
+
+  // Einmalige Startdaten, damit die neuen Bereiche nicht leer anfangen (alles frei änderbar/löschbar)
+  function migrateV2(){
+    ensureV2();
+    var m = state.migrations; if(m.v2) return;
+    var t = todayStr();
+    function task(name, area, grp, dur){
+      var o = { id: uid(), name: name, area: area, done: false, added: t, duration: dur || 30 };
+      if(area==="clero") o.stream = grp; else o.client = grp;
+      state.tasks.push(o);
+    }
+    function routine(name, area, grp, days){
+      var r = { id: uid(), name: name, area: area, weekdays: days, lastGenerated: "" };
+      if(area==="clero") r.stream = grp; else r.client = grp;
+      state.routines.push(r);
+    }
+    task("Founding-30: offene Host-Anfragen nachfassen", "clero", "host", 30);
+    task("Münchner Creator mit persönlichem Pitch anschreiben (Pilates, Interior, Fotografie)", "clero", "creator", 45);
+    task("Social-Media-Scheduling-Tool entscheiden (SocialBee vs. Blotato)", "clero", "tech", 30);
+    task("Nächstes Meeting mit Tjard und Kim vorbereiten: Agenda prüfen", "clero", "team", 15);
+
+    routine("Clero: Instagram-Outreach (Hosts & Creator)", "clero", "social", [0,1,2,3,4]);
+    routine("Clero: Zahlen aktualisieren (Warteliste, Founding 30)", "clero", "team", [4]);
+    routine("WPP: Posteingang & Publisher-Bewerbungen triagieren", "wpp", "intern", [0]);
+    routine("WPP: Performance-Check je Programm (Klicks, Sales, Stornos)", "wpp", "intern", [2]);
+    routine("WPP: Potenziale-Review, einen Hebel pro Woche voranbringen", "wpp", "intern", [4]);
+    routine("WPP: Wochenrückblick, Erfolge im Impact-Log festhalten", "wpp", "intern", [4]);
+
+    function metric(name, cur, target, unit){ state.clero.metrics.push({ id: uid(), name: name, current: cur, target: target, unit: unit, hist: [{d:t, v:cur}] }); }
+    metric("Warteliste", 250, 0, "Personen");
+    metric("Founding-30 Hosts", 0, 30, "Hosts");
+    metric("Founding-30 Creator", 0, 30, "Creator");
+    metric("Outreach-Nachrichten", 0, 0, "gesendet");
+
+    function idea(text, cat, impact, effort, status, note){ state.clero.ideas.push({ id: uid(), text: text, cat: cat, impact: impact, effort: effort, status: status, note: note||"" }); }
+    idea("Münchner Creator gezielt ansprechen, damit sie ihre Follower auf Clero holen", "creator", 3, "M", "work", "Themen wie Pilates, Interior, Fotografie");
+    idea("Host Circle mit monatlichem MeetUp als Bindung und Content-Quelle", "wachstum", 2, "M", "idee", "");
+    idea("Brand-Partner und Office-Spaces als Benefit für Founding-Hosts ausbauen", "partner", 3, "L", "idee", "");
+    idea("Ersten Creator als Fallbeispiel zeigen: Einnahmen über Events und Brand-Kooperationen", "creator", 3, "M", "idee", "");
+
+    function pot(text, client, cat, impact, effort, status){ state.wpp.potentials.push({ id: uid(), text: text, client: client, cat: cat, impact: impact, effort: effort, status: status, note: "" }); }
+    pot("Publisher-Cluster-Matrix pflegen: welche Typen sind aktiviert, welche nur gejoint?", "intern", "aktivierung", 2, "M", "idee");
+    pot("Tracking-Plausibilitätscheck je Programm (Klicks im Verhältnis zu Sales)", "intern", "tracking", 3, "S", "idee");
+    pot("Saisonale Kampagnen früh mit Publishern planen, statt kurzfristig anzuschieben", "intern", "kampagne", 2, "M", "idee");
+
+    [["Affiliate-Strategie",3],["Daten & Reporting",3],["Kundenmanagement & Stakeholder",3],["Verhandeln & Überzeugen",3],["Präsentieren & Storytelling",3],["Führung & Delegation",3],["Automatisierung & KI",3],["Business-Verständnis (Kundenziele, P&L)",3]].forEach(function(s){
+      state.wpp.skills.push({ id: uid(), name: s[0], level: s[1], target: 4 });
+    });
+    state.goals.forEach(function(g){ if(!g.created) g.created = t; });
+    m.v2 = true; save();
+  }
+
+  // ---------- Aufgaben-Helfer ----------
+  function groupLabel(t){
+    if(t.area==="clero") return lbl(CLERO_STREAMS, t.stream);
+    if(t.area==="wpp") return lbl(WPP_CLIENTS, t.client);
+    return "";
+  }
+  function urgency(a, b){
+    var ad = a.due || "9999", bd = b.due || "9999";
+    if(ad !== bd) return ad < bd ? -1 : 1;
+    if(!!a.focus !== !!b.focus) return a.focus ? -1 : 1;
+    return (a.added||"").localeCompare(b.added||"");
+  }
+  function dueChip(t){
+    if(!t.due) return "";
+    var d = daysBetween(todayStr(), t.due);
+    var cls = d<0 ? "late" : (d<=1 ? "soon" : "");
+    var txt = d<0 ? "überfällig seit "+fmtShort(t.due) : d===0 ? "heute fällig" : d===1 ? "morgen fällig" : "bis "+fmtShort(t.due);
+    return '<span class="due '+cls+'">📌 '+txt+'</span>';
+  }
+  function isPrivatArea(a){ return a!=="clero" && a!=="wpp"; }
+  function taskMeta(t, opt){
+    opt = opt || {};
+    var gl = opt.noGroup ? "" : groupLabel(t);
+    var age = 0; if(t.added){ age = Math.max(0, daysBetween(t.added, todayStr())); }
+    var parts = [pill(t.area)];
+    if(gl) parts.push('<span class="pill grey">'+esc(gl)+'</span>');
+    var dc = dueChip(t); if(dc) parts.push(dc);
+    parts.push('⏱️ '+(t.duration||estimateTaskDuration(t.name))+' Min');
+    if(age>=3 && !t.due) parts.push('⏳ seit '+age+' Tagen');
+    return parts.join(" &nbsp; ");
+  }
+  function taskRow(t, opt){
+    opt = opt || {};
+    var h = '<div class="row">';
+    h += '<div class="tag" style="background:var(--'+t.area+')"></div>';
+    h += '<div class="body"><div class="name">'+esc(t.name)+'</div><div class="meta">'+taskMeta(t, opt)+'</div></div>';
+    h += '<button class="star '+(t.focus?'on':'')+'" data-a="focus" data-id="'+t.id+'" title="Als Fokus für heute markieren">'+(t.focus?'★':'☆')+'</button>';
+    h += '<button class="check" data-task="'+t.id+'"></button>';
+    h += '<button class="x" data-deltask="'+t.id+'">×</button></div>';
+    return h;
+  }
+  function doneRow(t){
+    return '<div class="row done"><div class="tag" style="background:var(--'+t.area+')"></div><div class="body"><div class="name">'+esc(t.name)+'</div><div class="meta">erledigt'+(t.doneDate?' am '+fmtShort(t.doneDate):'')+'</div></div><button class="check on" data-task="'+t.id+'">✓</button><button class="x" data-deltask="'+t.id+'">×</button></div>';
+  }
+
+  // ---------- Heute: Überblick, Fokus, Aufgaben ----------
+  function renderOverview(){
+    var box = document.getElementById("overview"); if(!box) return;
+    var t = todayStr();
+    var defs = [
+      { tab:"aufgaben", title:"Privat", color:"#6d5efc", match:isPrivatArea, garea:"privat" },
+      { tab:"clero-aufgaben", title:"Clero", color:"#7c3aed", match:function(a){return a==="clero";}, garea:"clero" },
+      { tab:"wpp-aufgaben", title:"WPP", color:"#0f766e", match:function(a){return a==="wpp";}, garea:"wpp" }
+    ];
+    box.innerHTML = defs.map(function(d){
+      var mine = state.tasks.filter(function(x){ return d.match(x.area); });
+      var open = mine.filter(function(x){ return !x.done; }).sort(urgency);
+      var doneToday = mine.filter(function(x){ return x.done && x.doneDate===t; }).length;
+      var goals = (state.goals||[]).filter(function(g){ return d.garea==="wpp" ? (goalArea(g)==="wpp"||goalArea(g)==="karriere") : goalArea(g)===d.garea; }).length;
+      var late = open.filter(function(x){ return x.due && x.due < t; }).length;
+      var nx = open[0] ? 'Als Nächstes: '+esc(open[0].name) : 'Alles erledigt, stark!';
+      return '<div class="mini" data-a="goto" data-tab="'+d.tab+'" style="--c:'+d.color+'">'+
+        '<div class="t">'+d.title+'</div><div class="big">'+open.length+'<small style="font-size:13px;font-weight:600;color:var(--muted)"> offen</small></div>'+
+        '<div class="s">'+doneToday+' heute erledigt'+(late?' · <b style="color:#dc2626">'+late+' überfällig</b>':'')+(goals?' · '+goals+' Ziel'+(goals===1?'':'e'):'')+'</div>'+
+        '<div class="nx">'+nx+'</div></div>';
+    }).join("");
+  }
+
+  function focusTasks(){
+    var open = state.tasks.filter(function(x){ return !x.done; });
+    var starred = open.filter(function(x){ return x.focus; }).sort(urgency);
+    if(starred.length >= 3) return starred.slice(0,3);
+    var res = starred.slice();
+    var pool = open.filter(function(x){ return !x.focus; }).sort(urgency);
+    ["wpp","clero"].forEach(function(area){
+      if(res.length >= 3) return;
+      var f = pool.filter(function(x){ return x.area===area && res.indexOf(x)===-1; })[0];
+      if(f) res.push(f);
+    });
+    pool.forEach(function(x){ if(res.length < 3 && res.indexOf(x)===-1) res.push(x); });
+    return res;
+  }
+  function renderFocus(){
+    var box = document.getElementById("focus-list"); if(!box) return;
+    var list = focusTasks();
+    var t = todayStr();
+    var doneToday = state.tasks.filter(function(x){ return x.done && x.doneDate===t; }).length;
+    var h = "";
+    if(!list.length){
+      h = '<div class="empty">Nichts offen. Genieß den Tag oder leg im Tab Aufgaben etwas Neues an.</div>';
+    } else {
+      h = list.map(function(x, i){
+        return '<div class="focus-item"><div class="num">'+(i+1)+'</div><div style="flex:1;min-width:0"><div class="nm">'+esc(x.name)+'</div><div class="mt">'+taskMeta(x)+'</div></div>'+
+          '<button class="star '+(x.focus?'on':'')+'" data-a="focus" data-id="'+x.id+'" title="Fokus festlegen">'+(x.focus?'★':'☆')+'</button>'+
+          '<button class="check" data-task="'+x.id+'"></button></div>';
+      }).join("");
+    }
+    if(doneToday){ h += '<div class="sub" style="margin:10px 0 0">✓ Heute schon erledigt: '+doneToday+' Aufgabe'+(doneToday===1?'':'n')+'. Das zählt.</div>'; }
+    box.innerHTML = h;
+  }
+
+  function renderTodayTasks(){
+    var box = document.getElementById("today-tasks"); var chips = document.getElementById("today-task-chips");
+    if(!box) return;
+    var open = state.tasks.filter(function(x){ return !x.done; });
+    var counts = { alle: open.length,
+      privat: open.filter(function(x){ return isPrivatArea(x.area); }).length,
+      clero: open.filter(function(x){ return x.area==="clero"; }).length,
+      wpp: open.filter(function(x){ return x.area==="wpp"; }).length };
+    if(chips){
+      chips.innerHTML = [["alle","Alle"],["privat","Privat"],["clero","Clero"],["wpp","WPP"]].map(function(c){
+        return '<button class="chipbtn '+(ui.taskFilter===c[0]?'on':'')+'" data-a="chip" data-chip="task" data-k="'+c[0]+'">'+c[1]+'<span class="cnt">'+counts[c[0]]+'</span></button>';
+      }).join("");
+    }
+    var list = open.filter(function(x){
+      if(ui.taskFilter==="alle") return true;
+      if(ui.taskFilter==="privat") return isPrivatArea(x.area);
+      return x.area===ui.taskFilter;
+    }).sort(urgency);
+    if(!list.length){ box.innerHTML = '<div class="empty">Hier ist nichts offen.</div>'; return; }
+    var shown = list.slice(0, 10);
+    box.innerHTML = shown.map(function(x){ return taskRow(x); }).join("") +
+      (list.length>shown.length ? '<div class="sub" style="margin-top:6px">+ '+(list.length-shown.length)+' weitere im Tab „Aufgaben“ bzw. im jeweiligen Bereich.</div>' : '');
+  }
+
+  // ---------- Potenzial des Tages ----------
+  function potListFor(kind){ return kind==="wpp" ? state.wpp.potentials : state.clero.ideas; }
+  function potCandidates(){
+    var res = [];
+    state.wpp.potentials.forEach(function(p){ if(p.status==="idee"||p.status==="work") res.push({kind:"wpp", item:p}); });
+    state.clero.ideas.forEach(function(p){ if(p.status==="idee"||p.status==="work") res.push({kind:"clero", item:p}); });
+    res.sort(function(a,b){ return (b.item.impact||0)-(a.item.impact||0) || a.item.text.localeCompare(b.item.text); });
+    return res;
+  }
+  function renderPotDay(){
+    var box = document.getElementById("pot-day"); if(!box) return;
+    var c = potCandidates();
+    if(!c.length){ box.innerHTML = '<div class="empty">Keine offenen Hebel. Trag in WPP oder Clero Potenziale ein, dann schlägt das Dashboard dir täglich einen vor.</div>'; return; }
+    var p = c[dayIndex() % c.length];
+    var who = p.kind==="wpp" ? '<span class="pill wpp">WPP'+(p.item.client?' · '+esc(lbl(WPP_CLIENTS,p.item.client)):'')+'</span>' : '<span class="pill clero">Clero</span>';
+    box.innerHTML = '<div class="pot"><div class="ptop"><div class="ptx">'+esc(p.item.text)+'</div><span class="statusbtn '+p.item.status+'">'+STATUS_LABEL[p.item.status]+'</span></div>'+
+      '<div class="pm">'+who+'<span>'+'🔥'.repeat(p.item.impact||1)+'</span>'+
+      '<button class="btn small" data-a="pot2task" data-kind="'+p.kind+'" data-id="'+p.item.id+'">Als Fokus-Aufgabe für heute</button></div></div>';
+  }
+
+  // ---------- Ziele mit Tagesplan ----------
+  function goalArea(g){ return (g.area && GOAL_AREAS[g.area]) ? g.area : "privat"; }
+  function goalTaskArea(g){ var a = goalArea(g); return a==="clero" ? "clero" : (a==="wpp"||a==="karriere") ? "wpp" : "aufgaben"; }
+  function logGoal(g, n){ g.log = g.log || {}; var t = todayStr(); g.log[t] = (g.log[t]||0) + (n||1); }
+  function goalStreak(g){
+    var set = g.log || {}; var d = new Date();
+    if(!set[dateKey(d)]) d.setDate(d.getDate()-1);
+    var s = 0; while(set[dateKey(d)]){ s++; d.setDate(d.getDate()-1); }
+    return s;
+  }
+  function goalInfo(g){
+    var t = todayStr(), tgt = g.target||0, cur = g.current||0, steps = g.steps||[];
+    var doneSteps = steps.filter(function(s){ return s.done; }).length;
+    var info = {};
+    info.pct = tgt>0 ? Math.min(100, Math.round(cur/tgt*100)) : (steps.length ? Math.round(doneSteps/steps.length*100) : 0);
+    info.next = steps.filter(function(s){ return !s.done; })[0] || null;
+    info.doneSteps = doneSteps;
+    info.todayCount = (g.log||{})[t] || 0;
+    info.streak = goalStreak(g);
+    if(g.due){ info.daysLeft = daysBetween(t, g.due); }
+    if(tgt>0 && g.due && info.daysLeft>=0){
+      var remaining = Math.max(0, tgt-cur), dl = info.daysLeft+1;
+      info.perDay = remaining/dl;
+      var created = g.created || t;
+      var total = Math.max(1, daysBetween(created, g.due)+1);
+      var elapsed = Math.min(total, Math.max(1, daysBetween(created, t)+1));
+      info.expected = tgt*elapsed/total;
+      info.onTrack = cur >= info.expected - 0.5;
+    }
+    return info;
+  }
+  function goalMilestone(info, g){
+    var p = info.pct;
+    if(p>=100) return "🏆 Geschafft! Das war dein Ziel, und du hast es erreicht.";
+    if(p>=75) return "🔥 Fast da: das letzte Viertel liegt vor dir.";
+    if(p>=50) return "⛰️ Halbzeit! Du bist weiter, als du am Anfang warst.";
+    if(p>=25) return "🌱 Das erste Viertel ist geschafft. Jetzt trägt dich der Schwung.";
+    if(p>0 || (g.current||0)>0 || info.doneSteps>0) return "🚶 Du bist losgegangen, und das ist der schwerste Teil.";
+    return "✨ Der erste Schritt macht aus einem Wunsch einen Plan.";
+  }
+  function goalCard(g, compact){
+    var info = goalInfo(g), ar = goalArea(g), col = GOAL_AREAS[ar].c, unit = g.unit || "";
+    var tgt = g.target||0, steps = g.steps||[];
+    var h = '<div class="goalcard" style="--gc:'+col+'">';
+    var metaBits = ['<span class="pill '+ar+'">'+GOAL_AREAS[ar].l+'</span>'];
+    if(g.due){
+      var dl = info.daysLeft;
+      metaBits.push('<span style="font-size:12px;color:'+(dl<0?'#dc2626':'var(--muted)')+'">'+(dl<0?'Datum überschritten ('+fmtShort(g.due)+')':dl===0?'heute fällig':'noch '+dl+' Tag'+(dl===1?'':'e')+' bis '+fmtShort(g.due))+'</span>');
+    }
+    if(info.streak>=2) metaBits.push('<span style="font-size:12px;font-weight:700;color:#c2410c">🔥 '+info.streak+' Tage in Folge dran</span>');
+    h += '<div class="gtop"><div><div class="gtitle">🎯 '+esc(g.name)+'</div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px">'+metaBits.join("")+'</div></div>'+
+      (compact ? '' : '<button class="x" data-delgoal="'+g.id+'" title="Ziel löschen">×</button>')+'</div>';
+    if(g.why) h += '<div class="gwhy">„'+esc(g.why)+'“</div>';
+    else h += '<div style="height:8px"></div>';
+
+    if(tgt>0 || steps.length){
+      h += '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+info.pct+'%"></div></div>';
+      h += '<div class="goal-meta"><span>'+(tgt>0 ? (g.current||0)+' / '+tgt+' '+esc(unit)+' ('+info.pct+'%)' : info.doneSteps+' / '+steps.length+' Schritte ('+info.pct+'%)')+'</span><span></span></div>';
+    }
+
+    // Tagesportion: Zielwert
+    if(tgt>0 && info.pct<100){
+      var line, sub, ok = false;
+      if(info.perDay!=null){
+        var need = info.perDay>=1 ? Math.ceil(info.perDay) : 1;
+        if(info.perDay>=1){
+          ok = info.todayCount >= need;
+          line = ok ? 'Tagesziel erreicht: '+info.todayCount+' '+esc(unit)+' heute ✓' : 'Heute: '+need+' '+esc(unit)+(info.todayCount?' (schon '+info.todayCount+' ✓)':'');
+        } else {
+          ok = info.todayCount >= 1;
+          line = ok ? 'Heute schon etwas bewegt ✓' : 'Heute reicht ein kleiner Schritt: 1 '+esc(unit);
+        }
+        sub = (info.onTrack ? 'Du bist im Plan 🎉' : 'Etwas hinter dem Plan, ein Extra-Schritt heute holt es auf') + ' · noch '+Math.max(0,tgt-(g.current||0))+' '+esc(unit)+' in '+(info.daysLeft+1)+' Tag'+(info.daysLeft===0?'':'en');
+      } else {
+        ok = info.todayCount >= 1;
+        line = ok ? 'Heute schon '+info.todayCount+' ✓' : 'Heute ein Stück weiter: +1 '+esc(unit);
+        sub = g.due ? 'Das Datum ist erreicht oder überschritten, passe es bei Details an.' : 'Gib dem Ziel ein Datum (Details), dann rechnet das Dashboard die Tagesportion aus.';
+      }
+      h += '<div class="gtoday '+(ok?'ok':'')+'"><div><div class="gt-l">'+line+'</div><div class="gt-s">'+sub+'</div></div>'+
+        '<button class="btn small" data-a="gplus" data-id="'+g.id+'">+1 heute</button></div>';
+    }
+    // Tagesportion: nächster Schritt
+    if(steps.length && info.next){
+      h += '<div class="gtoday"><div><div class="gt-l">Nächster Schritt: '+esc(info.next.text)+'</div><div class="gt-s">'+(steps.length-info.doneSteps)+' Schritt'+(steps.length-info.doneSteps===1?'':'e')+' offen, jeden Tag landet einer in deinen Aufgaben.</div></div>'+
+        '<button class="btn small" data-a="gnext" data-id="'+g.id+'">Erledigt ✓</button></div>';
+    } else if(steps.length && !info.next && info.pct>=100 && !tgt){
+      h += '<div class="gtoday ok"><div class="gt-l">Alle Schritte erledigt 🎉</div></div>';
+    }
+    h += '<div class="gmile">'+goalMilestone(info, g)+'</div>';
+
+    if(!compact){
+      if(steps.length){
+        h += steps.map(function(s){
+          return '<div class="row '+(s.done?'done':'')+'" style="padding:7px 10px;margin:8px 0 0"><div class="body"><div class="name" style="font-size:13px">'+esc(s.text)+'</div></div>'+
+            '<button class="check '+(s.done?'on':'')+'" data-goalstep="'+g.id+'|'+s.id+'">'+(s.done?'✓':'')+'</button>'+
+            '<button class="x" data-delgoalstep="'+g.id+'|'+s.id+'">×</button></div>';
+        }).join("");
+      }
+      h += '<div class="addbar" style="margin-top:8px"><input type="text" data-stepinput="'+g.id+'" placeholder="Schritt hinzufügen, z.B. Trainingsplan aufstellen" style="flex:1;min-width:160px"><button class="btn ghost" data-addstep="'+g.id+'">+ Schritt</button></div>';
+      h += '<details class="fold inner"><summary><span>Details bearbeiten</span></summary><div class="foldbody" style="padding-bottom:12px"><div class="addbar">'+
+        '<select data-gfield="area" data-gid="'+g.id+'">'+Object.keys(GOAL_AREAS).map(function(k){ return '<option value="'+k+'"'+(k===ar?' selected':'')+'>'+GOAL_AREAS[k].l+'</option>'; }).join("")+'</select>'+
+        '<input type="number" data-gfield="target" data-gid="'+g.id+'" value="'+(tgt||"")+'" placeholder="Zielwert" min="0" style="width:110px">'+
+        '<input type="text" data-gfield="unit" data-gid="'+g.id+'" value="'+esc(unit)+'" placeholder="Einheit" style="max-width:110px;min-width:80px">'+
+        '<label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px">bis <input type="date" data-gfield="due" data-gid="'+g.id+'" value="'+esc(g.due||"")+'"></label></div>'+
+        '<div class="addbar"><input type="text" data-gfield="why" data-gid="'+g.id+'" value="'+esc(g.why||"")+'" placeholder="Warum ist dir das wichtig?"></div></div></details>';
+    } else {
+      h += '<div style="margin-top:8px"><a href="#ziele" data-a="goto" data-tab="ziele" style="font-size:12px;color:var(--accent);text-decoration:none;font-weight:600;cursor:pointer">Schritte &amp; Details im Tab Ziele →</a></div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  function goalFormHtml(area){
+    var sel = area ? "" : '<select class="gf-area">'+Object.keys(GOAL_AREAS).map(function(k){ return '<option value="'+k+'">'+GOAL_AREAS[k].l+'</option>'; }).join("")+'</select>';
+    return '<div class="goalform"><div class="addbar"><input type="text" class="gf-name" placeholder="Neues Ziel, z.B. 20 neue Hosts gewinnen">'+sel+'</div>'+
+      '<div class="addbar"><input type="number" class="gf-target" placeholder="Zielwert (optional)" min="1" style="width:190px"><input type="text" class="gf-unit" placeholder="Einheit" style="max-width:130px;min-width:90px">'+
+      '<label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px">bis <input type="date" class="gf-due"></label></div>'+
+      '<div class="addbar" style="margin-bottom:0"><input type="text" class="gf-why" placeholder="Warum ist dir das wichtig? (hilft an schweren Tagen)"><button class="btn" data-a="addgoal"'+(area?' data-garea="'+area+'"':'')+'>Ziel anlegen</button></div></div>';
+  }
+
+  function renderGoals(){
+    var all = state.goals || [];
+    var box = document.getElementById("goals-list");
+    if(box){
+      if(!all.length){
+        box.innerHTML = '<div class="card"><div class="empty">Noch keine Ziele. Leg oben dein erstes an, oder schreib in der Schnelleingabe „Ziel: …“.</div></div>';
+      } else {
+        var h = "";
+        ["privat","clero","wpp","karriere"].forEach(function(a){
+          var list = all.filter(function(g){ return goalArea(g)===a; });
+          if(!list.length) return;
+          h += '<div class="group-h" style="--gc:'+GOAL_AREAS[a].c+'"><span class="dot"></span>'+GOAL_AREAS[a].l+' ('+list.length+')</div>' + list.map(function(g){ return goalCard(g, false); }).join("");
+        });
+        box.innerHTML = h;
+      }
+    }
+    ["clero","wpp","karriere"].forEach(function(a){
+      var b = document.getElementById("goals-list-"+a); if(!b) return;
+      var list = all.filter(function(g){ return goalArea(g)===a; });
+      b.innerHTML = list.length ? list.map(function(g){ return goalCard(g, true); }).join("") : '<div class="empty">Noch kein Ziel in diesem Bereich. Leg unten eins an.</div>';
+    });
+    renderGoalsToday();
+  }
+  function renderGoalsToday(){
+    var box = document.getElementById("goal-today"); if(!box) return;
+    var all = (state.goals||[]).filter(function(g){ return goalInfo(g).pct<100; });
+    all.sort(function(a,b){ var ad=a.due||"9999", bd=b.due||"9999"; return ad<bd?-1:ad>bd?1:0; });
+    if(!all.length){
+      box.innerHTML = '<div class="empty">Noch keine aktiven Ziele. <a href="#ziele" data-a="goto" data-tab="ziele" style="color:var(--accent);font-weight:600;cursor:pointer">Im Tab Ziele anlegen →</a></div>';
+      return;
+    }
+    var shown = all.slice(0, 4);
+    box.innerHTML = shown.map(function(g){ return goalCard(g, true); }).join("") +
+      (all.length>shown.length ? '<div class="sub" style="margin-top:4px">+ '+(all.length-shown.length)+' weitere im <a href="#ziele" data-a="goto" data-tab="ziele" style="color:var(--accent);font-weight:600;cursor:pointer">Tab Ziele</a></div>' : '');
+  }
+
+  // ---------- Task-Boards (Clero nach Workstream, WPP nach Kunde) ----------
+  function taskFormHtml(area){
+    var groups = area==="clero" ? CLERO_STREAMS : WPP_CLIENTS;
+    var def = area==="wpp" ? "intern" : "host";
+    return '<div class="goalform"><div class="addbar"><input type="text" class="tf-name" placeholder="'+(area==="clero"?"Neue Clero-Aufgabe":"Neue WPP-Aufgabe")+'">'+
+      '<select class="tf-group">'+optsHtml(groups, def)+'</select>'+
+      '<select class="tf-dur"><option value="15">15 Min</option><option value="30" selected>30 Min</option><option value="45">45 Min</option><option value="60">60 Min</option><option value="90">90 Min</option><option value="120">120 Min</option></select>'+
+      '<label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px">fällig <input type="date" class="tf-due"></label>'+
+      '<button class="btn" data-a="addtask" data-area="'+area+'">Hinzufügen</button></div></div>';
+  }
+  function renderBoard(boxId, subId, area, groups, field){
+    var box = document.getElementById(boxId); if(!box) return;
+    var t = todayStr();
+    var mine = state.tasks.filter(function(x){ return x.area===area; });
+    var open = mine.filter(function(x){ return !x.done; }).sort(urgency);
+    var done = mine.filter(function(x){ return x.done; });
+    var doneToday = done.filter(function(x){ return x.doneDate===t; }).length;
+    var wk = weekKeysOfCurrentWeek();
+    var doneWeek = done.filter(function(x){ return x.doneDate && wk.indexOf(x.doneDate)!==-1; }).length;
+    var late = open.filter(function(x){ return x.due && x.due < t; }).length;
+    var sub = document.getElementById(subId);
+    if(sub) sub.innerHTML = '<b>'+open.length+'</b> offen · <b>'+doneToday+'</b> heute erledigt · <b>'+doneWeek+'</b> diese Woche'+(late?' · <b style="color:#dc2626">'+late+' überfällig</b>':'');
+    var html = "";
+    var known = groups.map(function(g){ return g.k; });
+    var buckets = groups.map(function(g){ return { k:g.k, l:g.l, items: open.filter(function(x){ return x[field]===g.k; }) }; });
+    var rest = open.filter(function(x){ return known.indexOf(x[field])===-1; });
+    if(rest.length){
+      // Aufgaben ohne Zuordnung (z.B. aus Routinen) landen beim letzten Bucket bzw. "Sonstiges"
+      if(area==="wpp"){ buckets[buckets.length-1].items = buckets[buckets.length-1].items.concat(rest); }
+      else { buckets.push({ k:"misc", l:"Sonstiges", items: rest }); }
+    }
+    buckets.forEach(function(b){
+      if(!b.items.length) return;
+      html += '<div class="group-h"><span class="dot"></span>'+esc(b.l)+' ('+b.items.length+')</div>' + b.items.map(function(x){ return taskRow(x, {noGroup:true}); }).join("");
+    });
+    if(!open.length) html = '<div class="empty">Keine offenen Aufgaben, stark! Leg unten die nächste an.</div>';
+    if(done.length){
+      var lastDone = done.slice().sort(function(a,b){ return (b.doneDate||"").localeCompare(a.doneDate||""); }).slice(0, 8);
+      html += '<details class="fold inner"><summary><span>Zuletzt erledigt ('+done.length+') 🎉</span></summary><div class="foldbody">'+lastDone.map(doneRow).join("")+'</div></details>';
+    }
+    box.innerHTML = html;
+  }
+
+  // ---------- Zahlen-Tracker (Clero) ----------
+  function sparkSvg(h){
+    if(!h || h.length<2) return "";
+    var vals = h.slice(-14).map(function(x){ return x.v; });
+    var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals); if(mx===mn) mx = mn+1;
+    var pts = vals.map(function(v,i){
+      var x = i/(vals.length-1)*200, y = 31-((v-mn)/(mx-mn))*26;
+      return x.toFixed(1)+","+y.toFixed(1);
+    }).join(" ");
+    return '<svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none"><polyline fill="none" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="'+pts+'"/></svg>';
+  }
+  function metricDelta(m){
+    var t = todayStr(), ref = null;
+    (m.hist||[]).forEach(function(h){ if(daysBetween(h.d, t) >= 7) ref = h; });
+    if(!ref){ if(m.hist && m.hist.length>1) ref = m.hist[0]; else return null; }
+    return (m.current||0) - ref.v;
+  }
+  function pushMetricHist(m){
+    m.hist = m.hist || []; var t = todayStr(); var last = m.hist[m.hist.length-1];
+    if(last && last.d===t) last.v = m.current; else m.hist.push({ d:t, v:m.current });
+    if(m.hist.length>200) m.hist = m.hist.slice(-200);
+  }
+  function renderMetrics(){
+    var box = document.getElementById("cl-metrics"); if(!box) return;
+    var list = state.clero.metrics;
+    if(!list.length){ box.innerHTML = '<div class="empty">Noch keine Kennzahlen.</div>'; return; }
+    box.innerHTML = list.map(function(m){
+      var d = metricDelta(m);
+      var dtxt = d===null ? 'noch kein Verlauf' : d>0 ? '<b class="up">+'+d+'</b> in den letzten 7 Tagen' : d<0 ? '<b class="down">'+d+'</b> in den letzten 7 Tagen' : 'keine Veränderung in 7 Tagen';
+      var bar = "";
+      if(m.target>0){
+        var p = Math.min(100, Math.round((m.current||0)/m.target*100));
+        bar = '<div class="goal-bar" style="height:10px"><div class="goal-bar-fill" style="width:'+p+'%"></div></div><div class="goal-meta"><span>Ziel '+m.target+' ('+p+'%)</span><span>noch '+Math.max(0,m.target-(m.current||0))+'</span></div>';
+      }
+      return '<div class="metric"><div class="mn"><span>'+esc(m.name)+'</span><button class="x" data-a="mdel" data-id="'+m.id+'" title="Löschen" style="margin:0;padding:0 2px">×</button></div>'+
+        '<div class="mv">'+(m.current||0)+'<small>'+esc(m.unit||"")+'</small></div><div class="md">'+dtxt+'</div>'+bar+sparkSvg(m.hist)+
+        '<div class="mctl"><button class="btn ghost small" data-a="mminus" data-id="'+m.id+'">−1</button><button class="btn small" data-a="mplus" data-id="'+m.id+'">+1</button>'+
+        '<input type="number" class="m-set" data-id="'+m.id+'" placeholder="Stand" min="0"><button class="btn ghost small" data-a="mset" data-id="'+m.id+'">Setzen</button></div></div>';
+    }).join("");
+  }
+
+  // ---------- Potenziale & Ideen (Clero) / Hebel (WPP) ----------
+  function potFormHtml(kind){
+    var cats = kind==="wpp" ? WPP_CATS : CLERO_CATS;
+    return '<div class="goalform"><div class="addbar"><input type="text" class="pf-text" placeholder="'+(kind==="wpp"?"Neuer Hebel, z.B. Creator-Aktivierung für ein Programm":"Neue Idee, z.B. Kooperation mit einem Münchner Studio")+'">'+
+      (kind==="wpp" ? '<select class="pf-client">'+optsHtml(WPP_CLIENTS,"intern")+'</select>' : '')+
+      '<select class="pf-cat">'+optsHtml(cats)+'</select></div>'+
+      '<div class="addbar" style="margin-bottom:0"><select class="pf-impact"><option value="3">🔥🔥🔥 Wirkung hoch</option><option value="2" selected>🔥🔥 Wirkung mittel</option><option value="1">🔥 Wirkung niedrig</option></select>'+
+      '<select class="pf-effort"><option value="S">Aufwand klein</option><option value="M" selected>Aufwand mittel</option><option value="L">Aufwand groß</option></select>'+
+      '<input type="text" class="pf-note" placeholder="Notiz (optional)"><button class="btn" data-a="addpot" data-kind="'+kind+'">Hinzufügen</button></div></div>';
+  }
+  function statusRank(s){ return {work:0, idee:1, done:2, drop:3}[s]; }
+  function potRow(p, kind){
+    var cats = kind==="wpp" ? WPP_CATS : CLERO_CATS;
+    var qw = p.impact===3 && p.effort==="S" && p.status!=="done" && p.status!=="drop";
+    var h = '<div class="pot '+(p.status==="done"?'done':'')+(p.status==="drop"?' drop':'')+'"><div class="ptop"><div class="ptx">'+esc(p.text)+'</div>'+
+      '<button class="statusbtn '+p.status+'" data-a="potstatus" data-kind="'+kind+'" data-id="'+p.id+'" title="Status weiterschalten">'+STATUS_LABEL[p.status]+'</button></div><div class="pm">';
+    if(kind==="wpp" && p.client) h += '<span class="pill wpp">'+esc(lbl(WPP_CLIENTS,p.client))+'</span>';
+    var cl = lbl(cats, p.cat); if(cl) h += '<span class="pill grey">'+esc(cl)+'</span>';
+    h += '<span title="Wirkung">'+'🔥'.repeat(p.impact||1)+'</span><span class="pill grey">Aufwand '+(EFFORT_LABEL[p.effort]||"mittel")+'</span>';
+    if(qw) h += '<span class="pill good">⚡ Quick Win</span>';
+    if(p.status==="idee"||p.status==="work") h += '<button class="btn ghost small" data-a="pot2task" data-kind="'+kind+'" data-id="'+p.id+'">→ Aufgabe</button>';
+    h += '<button class="x" data-a="potdel" data-kind="'+kind+'" data-id="'+p.id+'" title="Löschen" style="margin-left:auto">×</button></div>';
+    if(p.note) h += '<div class="pnote">'+esc(p.note)+'</div>';
+    return h + '</div>';
+  }
+  function renderIdeas(){
+    var box = document.getElementById("cl-ideas"); if(!box) return;
+    var list = state.clero.ideas;
+    var cnt = { idee:0, work:0, done:0, drop:0 }; list.forEach(function(p){ cnt[p.status]++; });
+    var sub = document.getElementById("cl-ideas-sub");
+    if(sub) sub.innerHTML = 'Wo steckt das größte Wachstum für Clero? <b>'+cnt.idee+'</b> Ideen · <b>'+cnt.work+'</b> in Arbeit · <b>'+cnt.done+'</b> umgesetzt.';
+    var chips = document.getElementById("cl-ideas-chips");
+    if(chips){
+      chips.innerHTML = [["alle","Alle",list.length],["idee","💡 Ideen",cnt.idee],["work","🔧 In Arbeit",cnt.work],["done","✅ Umgesetzt",cnt.done]].map(function(c){
+        return '<button class="chipbtn '+(ui.ideaStatus===c[0]?'on':'')+'" data-a="chip" data-chip="idea" data-k="'+c[0]+'">'+c[1]+'<span class="cnt">'+c[2]+'</span></button>';
+      }).join("");
+    }
+    var shown = list.filter(function(p){ return ui.ideaStatus==="alle" ? p.status!=="drop" : p.status===ui.ideaStatus; })
+      .sort(function(a,b){ return statusRank(a.status)-statusRank(b.status) || (b.impact||0)-(a.impact||0); });
+    box.innerHTML = shown.length ? shown.map(function(p){ return potRow(p,"clero"); }).join("") : '<div class="empty">Hier ist noch nichts. Trag unten eine Idee ein.</div>';
+  }
+  function renderWppPots(){
+    var box = document.getElementById("wpp-pots"); if(!box) return;
+    var list = state.wpp.potentials;
+    var active = list.filter(function(p){ return p.status!=="drop"; });
+    var done = active.filter(function(p){ return p.status==="done"; }).length;
+    var qwOpen = active.filter(function(p){ return p.impact===3 && p.effort==="S" && p.status!=="done"; }).length;
+    var sub = document.getElementById("wpp-pot-sub");
+    if(sub) sub.innerHTML = active.length ? 'Ausgeschöpft: <b>'+done+'</b> von <b>'+active.length+'</b> Hebeln ('+Math.round(done/active.length*100)+'%)'+(qwOpen?' · <b>'+qwOpen+'</b> Quick Win'+(qwOpen===1?'':'s')+' offen ⚡':'') : 'Noch keine Hebel angelegt.';
+    var radar = document.getElementById("wpp-radar");
+    if(radar){
+      var rows = WPP_CLIENTS.map(function(c){
+        var mine = active.filter(function(p){ return p.client===c.k; });
+        if(!mine.length) return "";
+        var d = mine.filter(function(p){ return p.status==="done"; }).length;
+        var pct = Math.round(d/mine.length*100);
+        return '<div class="rr"><div>'+esc(c.l)+'</div><div class="bar"><i style="width:'+pct+'%"></i></div><div class="pc">'+d+'/'+mine.length+'</div></div>';
+      }).join("");
+      radar.innerHTML = rows || '<div class="empty">Sobald du Hebel anlegst, siehst du hier je Kunde, wie viel schon umgesetzt ist.</div>';
+    }
+    var chips = document.getElementById("wpp-pot-chips");
+    if(chips){
+      var cc = [{k:"alle",l:"Alle",n:active.length}].concat(WPP_CLIENTS.map(function(c){ return { k:c.k, l:c.l, n:active.filter(function(p){ return p.client===c.k; }).length }; }).filter(function(c){ return c.n>0; }));
+      chips.innerHTML = cc.map(function(c){ return '<button class="chipbtn '+(ui.potClient===c.k?'on':'')+'" data-a="chip" data-chip="pot" data-k="'+c.k+'">'+esc(c.l)+'<span class="cnt">'+c.n+'</span></button>'; }).join("");
+    }
+    var shown = list.filter(function(p){ return p.status!=="drop" && (ui.potClient==="alle" || p.client===ui.potClient); })
+      .sort(function(a,b){ return statusRank(a.status)-statusRank(b.status) || (b.impact||0)-(a.impact||0); });
+    box.innerHTML = shown.length ? shown.map(function(p){ return potRow(p,"wpp"); }).join("") : '<div class="empty">Keine Hebel für diese Auswahl. Leg unten einen an.</div>';
+  }
+  function potToTask(kind, id){
+    var p = potListFor(kind).filter(function(x){ return x.id===id; })[0]; if(!p) return;
+    var o = { id: uid(), name: p.text, area: kind, done: false, added: todayStr(), duration: p.effort==="S"?30:p.effort==="L"?90:60, focus: true };
+    if(kind==="wpp") o.client = p.client || "intern"; else o.stream = CAT_TO_STREAM[p.cat] || "team";
+    state.tasks.push(o);
+    if(p.status==="idee") p.status = "work";
+    save(); renderAll(); renderAgenda();
+    toast("Als Fokus-Aufgabe angelegt");
+  }
+
+  // ---------- Team & Meetings (Clero) ----------
+  function renderTeam(){
+    var nm = document.getElementById("cl-nextmeeting");
+    if(nm && document.activeElement!==nm) nm.value = state.clero.nextMeeting || "";
+    var ag = document.getElementById("cl-agenda");
+    var open = state.clero.team.filter(function(x){ return x.type==="offen" && !x.done; });
+    if(ag){
+      var head = "";
+      if(state.clero.nextMeeting){
+        var dl = daysBetween(todayStr(), state.clero.nextMeeting);
+        head = '<div class="sub" style="margin-bottom:8px">'+(dl<0?'Das Datum liegt in der Vergangenheit.':dl===0?'Heute ist das Meeting.':'In '+dl+' Tag'+(dl===1?'':'en')+' ('+fmtShort(state.clero.nextMeeting)+').')+'</div>';
+      }
+      ag.innerHTML = head + (open.length ? open.map(function(x){
+        return '<div class="team-open"><button class="check" data-a="teamdone" data-id="'+x.id+'" style="width:24px;height:24px"></button><div style="flex:1"><b>'+esc(x.who)+':</b> '+esc(x.text)+'</div><button class="x" data-a="teamdel" data-id="'+x.id+'">×</button></div>';
+      }).join("") : '<div class="empty">Keine offenen Punkte. Trag links einen ein, dann steht er auf der Agenda.</div>');
+    }
+    var log = document.getElementById("cl-team-log");
+    if(log){
+      var items = state.clero.team.filter(function(x){ return !(x.type==="offen" && !x.done); }).sort(function(a,b){ return (b.date||"").localeCompare(a.date||""); });
+      var typeLbl = { offen:"Erledigt", absprache:"Absprache", entscheidung:"Entscheidung" };
+      log.innerHTML = items.length ? items.map(function(x){
+        return '<div class="logline"><div class="ld">'+fmtShort(x.date)+'</div><div class="lx"><span class="pill '+(x.type==="entscheidung"?'clero':'grey')+'">'+typeLbl[x.type]+'</span> <b>'+esc(x.who)+':</b> '+esc(x.text)+'</div><button class="x" data-a="teamdel" data-id="'+x.id+'">×</button></div>';
+      }).join("") : '<div class="empty">Noch keine Einträge.</div>';
+    }
+  }
+
+  // ---------- WPP Wochenroutine ----------
+  function renderWppRoutine(){
+    var box = document.getElementById("wpp-week"); if(!box) return;
+    var routines = state.routines.filter(function(r){ return r.area==="wpp"; });
+    var monday = mondayOf(new Date()), t = todayStr();
+    var names = ["Mo","Di","Mi","Do","Fr","Sa","So"];
+    var expected = 0, doneN = 0;
+    var cols = [];
+    for(var i=0;i<7;i++){
+      var dk = dateKey(addDays(monday, i));
+      var items = routines.filter(function(r){ return (r.weekdays||[]).indexOf(i)!==-1; });
+      var ch = items.map(function(r){
+        var tk = state.tasks.filter(function(x){ return x.routineId===r.id && x.added===dk; })[0];
+        var st = tk ? (tk.done ? "done" : "open") : (dk < t ? "missed" : "future");
+        if(dk <= t && tk){ expected++; if(tk.done) doneN++; }
+        var ck = tk ? '<button class="ck" data-task="'+tk.id+'" title="Abhaken">'+(tk.done?'✓':'')+'</button>' : '<span class="ck"></span>';
+        return '<div class="wchip '+st+'">'+ck+'<span>'+esc(r.name.replace(/^WPP:\s*/,""))+'</span></div>';
+      }).join("");
+      cols.push('<div class="wd '+(dk===t?'today':'')+'"><div class="wh">'+names[i]+' '+fmtShort(dk)+'</div>'+(ch || '<div class="empty" style="padding:0;font-size:12px">frei</div>')+'</div>');
+    }
+    box.innerHTML = cols.join("");
+    var sub = document.getElementById("wpp-routine-sub");
+    if(sub) sub.innerHTML = routines.length ? 'Diese Woche: <b>'+doneN+'</b> von <b>'+expected+'</b> fälligen Routinen erledigt. Abhaken kannst du direkt hier.' : 'Noch keine WPP-Routinen. Füge unten welche hinzu.';
+    var list = document.getElementById("wr-list");
+    if(list){
+      list.innerHTML = routines.map(function(r){
+        var days = (r.weekdays||[]).slice().sort().map(function(i){ return names[i]; }).join(", ");
+        return '<div class="row"><div class="tag" style="background:var(--wpp)"></div><div class="body"><div class="name">'+esc(r.name)+'</div><div class="meta">🔁 '+days+'</div></div><button class="x" data-a="rdel" data-id="'+r.id+'">×</button></div>';
+      }).join("");
+    }
+  }
+
+  // ---------- WPP Karriere ----------
+  function renderCareer(){
+    var q = document.getElementById("wk-question");
+    if(q) q.textContent = "💭 " + CAREER_QUESTIONS[dayIndex() % CAREER_QUESTIONS.length];
+    var note = document.getElementById("wk-note");
+    if(note && document.activeElement!==note && note.dataset.loaded!=="1"){ note.value = state.wpp.careerNote || ""; note.dataset.loaded = "1"; }
+    // Skills
+    var sk = document.getElementById("wk-skills");
+    var skills = state.wpp.skills;
+    if(sk){
+      var sorted = skills.slice().sort(function(a,b){ return (b.target-b.level)-(a.target-a.level); });
+      sk.innerHTML = sorted.length ? sorted.map(function(s){
+        var seg = "";
+        for(var i=1;i<=5;i++){ seg += '<button class="'+(i<=s.level?'on ':'')+(i===s.target?'tg':'')+'" data-a="sklvl" data-id="'+s.id+'" data-v="'+i+'" title="Level '+i+'"></button>'; }
+        var gap = s.target - s.level;
+        return '<div class="skill"><div><div class="sn">'+esc(s.name)+'</div><div class="sg">'+(gap>0?'Lücke zum Ziel: '+gap:'Ziel erreicht ✓')+'</div></div><div class="seg">'+seg+'</div>'+
+          '<select class="mini" data-sktarget="'+s.id+'" title="Ziel-Level">'+[1,2,3,4,5].map(function(n){ return '<option value="'+n+'"'+(n===s.target?' selected':'')+'>Ziel '+n+'</option>'; }).join("")+'</select>'+
+          '<button class="x" data-a="skdel" data-id="'+s.id+'">×</button></div>';
+      }).join("") : '<div class="empty">Noch keine Kompetenzen.</div>';
+      var top = sorted[0];
+      var sub = document.getElementById("wk-skill-sub");
+      if(sub) sub.innerHTML = (top && top.target-top.level>0) ? 'Größte Lücke: <b>'+esc(top.name)+'</b>. Das wäre ein guter Fokus für diesen Monat. Der pinke Rahmen ist dein Ziel-Level.' : 'Selbsteinschätzung von 1 bis 5. Der pinke Rahmen ist dein Ziel-Level.';
+    }
+    var sel = document.getElementById("lr-skill");
+    if(sel){ var cur = sel.value; sel.innerHTML = '<option value="">ohne Kompetenz</option>' + skills.map(function(s){ return '<option value="'+s.id+'">'+esc(s.name)+'</option>'; }).join(""); sel.value = cur; }
+    var imc = document.getElementById("im-client");
+    if(imc){ var cc = imc.value; imc.innerHTML = '<option value="">ohne Kunde</option>' + WPP_CLIENTS.map(function(c){ return '<option value="'+c.k+'">'+esc(c.l)+'</option>'; }).join(""); imc.value = cc; }
+    // Lern-Log
+    var lb = document.getElementById("wk-learn");
+    if(lb){
+      var ls = state.wpp.learnings.slice().sort(function(a,b){ return (b.date||"").localeCompare(a.date||""); });
+      var wk = weekKeysOfCurrentWeek();
+      var thisWeek = ls.filter(function(x){ return wk.indexOf(x.date)!==-1; }).length;
+      var lsub = document.getElementById("wk-learn-sub");
+      if(lsub) lsub.innerHTML = 'Was hast du gelernt, ausprobiert oder gelesen? Diese Woche: <b>'+thisWeek+'</b> Eintrag'+(thisWeek===1?'':'e')+'.';
+      lb.innerHTML = ls.length ? ls.slice(0,8).map(function(x){
+        var skn = x.skill ? (skills.filter(function(s){ return s.id===x.skill; })[0]||{}).name : "";
+        return '<div class="logline"><div class="ld">'+fmtShort(x.date)+'</div><div class="lx">'+esc(x.text)+(skn?'<small>'+esc(skn)+'</small>':'')+'</div><button class="x" data-a="lrdel" data-id="'+x.id+'">×</button></div>';
+      }).join("") : '<div class="empty">Noch nichts eingetragen.</div>';
+    }
+    // Impact-Log
+    var ib = document.getElementById("wk-impact");
+    if(ib){
+      var is = state.wpp.impact.slice().sort(function(a,b){ return (b.date||"").localeCompare(a.date||""); });
+      var q90 = is.filter(function(x){ return daysBetween(x.date, todayStr()) <= 90; }).length;
+      var isub = document.getElementById("wk-impact-sub");
+      if(isub) isub.innerHTML = 'Erfolge mit Wirkung, ideal für Feedbackgespräche und Gehaltsrunden. Letzte 90 Tage: <b>'+q90+'</b>.';
+      ib.innerHTML = is.length ? is.slice(0,10).map(function(x){
+        return '<div class="logline"><div class="ld">'+fmtShort(x.date)+'</div><div class="lx">'+esc(x.text)+(x.effect?' <span class="pill good">'+esc(x.effect)+'</span>':'')+(x.client?'<small>'+esc(lbl(WPP_CLIENTS,x.client))+'</small>':'')+'</div><button class="x" data-a="imdel" data-id="'+x.id+'">×</button></div>';
+      }).join("") : '<div class="empty">Noch nichts eingetragen. Tipp: jeden Freitag 2 Minuten, das reicht.</div>';
+    }
+    // Feedback-Themen
+    var fb = document.getElementById("wk-feedback");
+    if(fb){
+      fb.innerHTML = state.wpp.feedback.length ? state.wpp.feedback.map(function(x){
+        return '<div class="row '+(x.done?'done':'')+'"><div class="tag" style="background:var(--karriere)"></div><div class="body"><div class="name">'+esc(x.text)+'</div><div class="meta">'+(x.done?'besprochen':'noch zu besprechen')+'</div></div><button class="check '+(x.done?'on':'')+'" data-a="fbdone" data-id="'+x.id+'">'+(x.done?'✓':'')+'</button><button class="x" data-a="fbdel" data-id="'+x.id+'">×</button></div>';
+      }).join("") : '<div class="empty">Noch keine Themen.</div>';
+    }
+  }
+
+  function renderV2(){
+    renderOverview(); renderFocus(); renderTodayTasks(); renderPotDay();
+    renderBoard("cl-board", "cl-sub", "clero", CLERO_STREAMS, "stream");
+    renderBoard("wpp-board", "wpp-sub", "wpp", WPP_CLIENTS, "client");
+    renderMetrics(); renderIdeas(); renderTeam(); renderWppPots(); renderWppRoutine(); renderCareer();
+  }
+
+  // ---------- Navigation (Gruppen + Unter-Reiter) ----------
+  function showTab(tab){
+    var btn = document.querySelector('#subtabs button[data-tab="'+tab+'"]');
+    var panel = document.getElementById("panel-"+tab);
+    if(!btn || !panel) return;
+    var g = btn.dataset.group;
+    document.querySelectorAll("#groups button").forEach(function(b){ b.classList.toggle("active", b.dataset.group===g); });
+    document.querySelectorAll("#subtabs button").forEach(function(b){ b.hidden = b.dataset.group!==g; b.classList.toggle("active", b.dataset.tab===tab); });
+    document.querySelectorAll(".panel").forEach(function(p){ p.classList.remove("active"); });
+    panel.classList.add("active");
+    lastTab[g] = tab;
+    try { history.replaceState(null, "", "#"+tab); } catch(e){}
+    if(tab==="kalender") renderAgenda();
+    if(tab==="insights") renderInsights();
+    if(tab==="kontakte") renderContacts();
+    var active = document.querySelector('#subtabs button.active');
+    if(active && active.scrollIntoView){ try { active.scrollIntoView({ block:"nearest", inline:"center" }); } catch(e){} }
+  }
+  function firstTabOfGroup(g){ var b = document.querySelector('#subtabs button[data-group="'+g+'"]'); return b ? b.dataset.tab : "heute"; }
+  document.getElementById("groups").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-group]"); if(!b) return;
+    showTab(lastTab[b.dataset.group] || firstTabOfGroup(b.dataset.group));
+  });
+  document.getElementById("subtabs").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-tab]"); if(!b) return;
+    showTab(b.dataset.tab);
+  });
+
+  // ---------- Formulare in Platzhalter einsetzen ----------
+  function fillSlots(){
+    document.querySelectorAll(".goalform-slot").forEach(function(el){ el.innerHTML = goalFormHtml(el.dataset.garea || ""); });
+    document.querySelectorAll(".taskform-slot").forEach(function(el){ el.innerHTML = taskFormHtml(el.dataset.area); });
+    document.querySelectorAll(".potform-slot").forEach(function(el){ el.innerHTML = potFormHtml(el.dataset.kind); });
+  }
+
+  // ---------- Klick-Handler für alle neuen Elemente ----------
+  function findById(list, id){ for(var i=0;i<list.length;i++){ if(list[i].id===id) return list[i]; } return null; }
+  function val(root, sel){ var el = root.querySelector(sel); return el ? el.value.trim() : ""; }
+  function clear(root, sel){ var el = root.querySelector(sel); if(el) el.value = ""; }
+
+  document.body.addEventListener("click", function(e){
+    var el = e.target.closest ? e.target.closest("[data-a]") : null; if(!el) return;
+    var a = el.dataset.a, id = el.dataset.id, t = todayStr();
+    if(el.tagName==="A") e.preventDefault();
+
+    if(a==="goto"){ showTab(el.dataset.tab); window.scrollTo(0, 0); return; }
+
+    if(a==="chip"){
+      var k = el.dataset.k, c = el.dataset.chip;
+      if(c==="task") ui.taskFilter = k; else if(c==="pot") ui.potClient = k; else if(c==="idea") ui.ideaStatus = k;
+      renderV2(); return;
+    }
+    if(a==="focus"){
+      var tk = findById(state.tasks, id); if(!tk) return;
+      tk.focus = !tk.focus; save(); renderAll(); return;
+    }
+
+    // Aufgaben & Ziele
+    if(a==="addtask"){
+      var f = el.closest(".goalform"); var name = val(f, ".tf-name"); if(!name) return;
+      var area = el.dataset.area;
+      var o = { id: uid(), name: name, area: area, done:false, added: t, duration: Number(val(f,".tf-dur"))||30 };
+      var grp = val(f, ".tf-group"); if(area==="clero") o.stream = grp; else o.client = grp;
+      var due = val(f, ".tf-due"); if(due) o.due = due;
+      state.tasks.push(o); clear(f, ".tf-name"); clear(f, ".tf-due");
+      save(); renderAll(); renderAgenda(); return;
+    }
+    if(a==="addgoal"){
+      var gf = el.closest(".goalform"); var gname = val(gf, ".gf-name"); if(!gname) return;
+      var garea = el.dataset.garea || val(gf, ".gf-area") || "privat";
+      state.goals.push({ id: uid(), name: gname, area: garea, target: Number(val(gf,".gf-target"))||0, current: 0, unit: val(gf,".gf-unit"),
+        due: val(gf,".gf-due"), why: val(gf,".gf-why"), created: t, steps: [], log: {} });
+      ["gf-name","gf-target","gf-unit","gf-due","gf-why"].forEach(function(c){ clear(gf, "."+c); });
+      save(); renderAll(); toast("Ziel angelegt"); return;
+    }
+    if(a==="gplus"){
+      var g1 = findById(state.goals, id); if(!g1) return;
+      g1.current = (g1.current||0) + 1; logGoal(g1, 1); save(); renderAll(); return;
+    }
+    if(a==="gnext"){
+      var g2 = findById(state.goals, id); if(!g2) return;
+      var ns = (g2.steps||[]).filter(function(s){ return !s.done; })[0]; if(!ns) return;
+      ns.done = true; logGoal(g2, 1);
+      // passende Tagesaufgabe mit abhaken
+      state.tasks.forEach(function(x){ if(x.goalStepId===ns.id && !x.done){ x.done = true; x.doneDate = t; } });
+      save(); renderAll(); toast("Stark, Schritt geschafft ✓"); return;
+    }
+
+    // Potenziale & Ideen
+    if(a==="addpot"){
+      var kind = el.dataset.kind, pf = el.closest(".goalform"); var text = val(pf, ".pf-text"); if(!text) return;
+      var item = { id: uid(), text: text, cat: val(pf,".pf-cat"), impact: Number(val(pf,".pf-impact"))||2, effort: val(pf,".pf-effort")||"M", status: "idee", note: val(pf,".pf-note") };
+      if(kind==="wpp") item.client = val(pf, ".pf-client") || "intern";
+      potListFor(kind).push(item); clear(pf, ".pf-text"); clear(pf, ".pf-note"); save(); renderAll(); return;
+    }
+    if(a==="potstatus"){
+      var p1 = findById(potListFor(el.dataset.kind), id); if(!p1) return;
+      p1.status = STATUS[(STATUS.indexOf(p1.status)+1) % STATUS.length]; save(); renderAll(); return;
+    }
+    if(a==="potdel"){
+      var lst = potListFor(el.dataset.kind);
+      var idx = -1; lst.forEach(function(x,i){ if(x.id===id) idx = i; });
+      if(idx>-1 && confirm("Diesen Eintrag löschen?")){ lst.splice(idx,1); save(); renderAll(); }
+      return;
+    }
+    if(a==="pot2task"){ potToTask(el.dataset.kind, id); return; }
+
+    // Clero Zahlen
+    if(a==="addmetric"){
+      var mf = el.closest(".goalform"); var mname = val(mf, ".mf-name"); if(!mname) return;
+      var cur = Number(val(mf, ".mf-cur"))||0;
+      state.clero.metrics.push({ id: uid(), name: mname, current: cur, target: Number(val(mf,".mf-target"))||0, unit: val(mf,".mf-unit"), hist: [{d:t, v:cur}] });
+      ["mf-name","mf-cur","mf-target","mf-unit"].forEach(function(c){ clear(mf, "."+c); });
+      save(); renderAll(); return;
+    }
+    if(a==="mplus"||a==="mminus"||a==="mset"){
+      var m = findById(state.clero.metrics, id); if(!m) return;
+      if(a==="mplus") m.current = (m.current||0)+1;
+      else if(a==="mminus") m.current = Math.max(0,(m.current||0)-1);
+      else {
+        var inp = el.parentNode.querySelector(".m-set"); if(!inp || inp.value==="") return;
+        m.current = Math.max(0, Number(inp.value)||0);
+      }
+      pushMetricHist(m); save(); renderAll(); return;
+    }
+    if(a==="mdel"){
+      if(confirm("Diese Kennzahl löschen?")){ state.clero.metrics = state.clero.metrics.filter(function(x){ return x.id!==id; }); save(); renderAll(); }
+      return;
+    }
+
+    // Clero Team
+    if(a==="addteam"){
+      var txt = document.getElementById("tm-text").value.trim(); if(!txt) return;
+      state.clero.team.push({ id: uid(), date: t, type: document.getElementById("tm-type").value, who: document.getElementById("tm-who").value, text: txt, done: false });
+      document.getElementById("tm-text").value = ""; save(); renderAll(); return;
+    }
+    if(a==="teamdone"){ var tm = findById(state.clero.team, id); if(tm){ tm.done = !tm.done; tm.date = t; save(); renderAll(); } return; }
+    if(a==="teamdel"){ state.clero.team = state.clero.team.filter(function(x){ return x.id!==id; }); save(); renderAll(); return; }
+
+    // WPP Routine
+    if(a==="addwroutine"){
+      var rn = document.getElementById("wr-name").value.trim(); if(!rn) return;
+      var days = Array.prototype.slice.call(document.querySelectorAll("#wr-days button.on")).map(function(b){ return Number(b.dataset.day); });
+      if(!days.length){ toast("Bitte mindestens einen Wochentag wählen"); return; }
+      state.routines.push({ id: uid(), name: rn.indexOf("WPP")===0 ? rn : "WPP: "+rn, area: "wpp", client: "intern", weekdays: days, lastGenerated: "" });
+      document.getElementById("wr-name").value = "";
+      document.querySelectorAll("#wr-days button.on").forEach(function(b){ b.classList.remove("on"); });
+      save(); generateRoutineTasks(); renderAll(); renderRoutines(); return;
+    }
+    if(a==="rdel"){
+      if(confirm("Diese Routine löschen?")){ state.routines = state.routines.filter(function(x){ return x.id!==id; }); save(); renderAll(); renderRoutines(); }
+      return;
+    }
+
+    // Karriere
+    if(a==="savecareer"){
+      state.wpp.careerNote = document.getElementById("wk-note").value; save();
+      var sv = document.getElementById("wk-note-saved"); if(sv){ sv.textContent = "Gespeichert ✓"; setTimeout(function(){ sv.textContent = ""; }, 1600); }
+      return;
+    }
+    if(a==="addskill"){
+      var sn = document.getElementById("sk-name").value.trim(); if(!sn) return;
+      state.wpp.skills.push({ id: uid(), name: sn, level: 2, target: 4 }); document.getElementById("sk-name").value = ""; save(); renderAll(); return;
+    }
+    if(a==="sklvl"){ var s1 = findById(state.wpp.skills, id); if(s1){ s1.level = Number(el.dataset.v); save(); renderCareer(); } return; }
+    if(a==="skdel"){ if(confirm("Diese Kompetenz löschen?")){ state.wpp.skills = state.wpp.skills.filter(function(x){ return x.id!==id; }); save(); renderCareer(); } return; }
+    if(a==="addlearn"){
+      var lt = document.getElementById("lr-text").value.trim(); if(!lt) return;
+      state.wpp.learnings.push({ id: uid(), date: t, text: lt, skill: document.getElementById("lr-skill").value });
+      document.getElementById("lr-text").value = ""; save(); renderCareer(); return;
+    }
+    if(a==="lrdel"){ state.wpp.learnings = state.wpp.learnings.filter(function(x){ return x.id!==id; }); save(); renderCareer(); return; }
+    if(a==="addimpact"){
+      var it = document.getElementById("im-text").value.trim(); if(!it) return;
+      state.wpp.impact.push({ id: uid(), date: t, text: it, effect: document.getElementById("im-effect").value.trim(), client: document.getElementById("im-client").value });
+      document.getElementById("im-text").value = ""; document.getElementById("im-effect").value = ""; save(); renderCareer(); return;
+    }
+    if(a==="imdel"){ state.wpp.impact = state.wpp.impact.filter(function(x){ return x.id!==id; }); save(); renderCareer(); return; }
+    if(a==="copyimpact"){
+      var items = state.wpp.impact.filter(function(x){ return daysBetween(x.date, t) <= 90; }).sort(function(a1,b1){ return a1.date.localeCompare(b1.date); });
+      if(!items.length){ toast("Noch keine Einträge in den letzten 90 Tagen"); return; }
+      var txt90 = "Meine Erfolge der letzten 90 Tage\n" + items.map(function(x){
+        return "- "+fmtShort(x.date)+" "+x.text+(x.effect?" ("+x.effect+")":"")+(x.client?" [" + lbl(WPP_CLIENTS,x.client) + "]":"");
+      }).join("\n");
+      copyText(txt90); return;
+    }
+    if(a==="addfeedback"){
+      var ft = document.getElementById("fb-text").value.trim(); if(!ft) return;
+      state.wpp.feedback.push({ id: uid(), text: ft, done: false }); document.getElementById("fb-text").value = ""; save(); renderCareer(); return;
+    }
+    if(a==="fbdone"){ var fbi = findById(state.wpp.feedback, id); if(fbi){ fbi.done = !fbi.done; save(); renderCareer(); } return; }
+    if(a==="fbdel"){ state.wpp.feedback = state.wpp.feedback.filter(function(x){ return x.id!==id; }); save(); renderCareer(); return; }
+
+    // Backup
+    if(a==="export"){
+      var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+      var link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = "mein-leben-backup-"+t+".json";
+      document.body.appendChild(link); link.click(); document.body.removeChild(link); toast("Backup heruntergeladen"); return;
+    }
+  });
+
+  function copyText(txt){
+    function fallback(){
+      var ta = document.createElement("textarea"); ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast("In die Zwischenablage kopiert"); } catch(e){ toast("Kopieren nicht möglich"); }
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ toast("In die Zwischenablage kopiert"); }, fallback); }
+    else fallback();
+  }
+
+  // Änderungen an Eingabefeldern (Ziel-Details, Meeting-Datum, Skill-Ziel, Import)
+  document.body.addEventListener("change", function(e){
+    var el = e.target;
+    if(el.dataset && el.dataset.gfield){
+      var g = findById(state.goals, el.dataset.gid); if(!g) return;
+      var f = el.dataset.gfield, v = el.value;
+      if(f==="target"){ g.target = Number(v)||0; }
+      else if(f==="area"){ g.area = v; }
+      else { g[f] = v.trim(); }
+      save(); renderAll(); return;
+    }
+    if(el.dataset && el.dataset.sktarget){
+      var s = findById(state.wpp.skills, el.dataset.sktarget); if(s){ s.target = Number(el.value); save(); renderCareer(); }
+      return;
+    }
+    if(el.id==="cl-nextmeeting"){ state.clero.nextMeeting = el.value; save(); renderTeam(); return; }
+    if(el.id==="import-file" && el.files && el.files[0]){
+      var fr = new FileReader();
+      fr.onload = function(){
+        try {
+          var data = JSON.parse(fr.result);
+          if(!data || typeof data!=="object" || !Array.isArray(data.habits)) throw new Error("bad");
+          if(confirm("Backup einspielen? Das ersetzt alle aktuellen Daten in diesem Browser.")){
+            localStorage.setItem(LS, JSON.stringify(data)); location.reload();
+          }
+        } catch(err){ toast("Diese Datei ist kein gültiges Backup"); }
+      };
+      fr.readAsText(el.files[0]);
+    }
+  });
+
+  // Enter in Formularen schickt ab
+  document.body.addEventListener("keydown", function(e){
+    if(e.key!=="Enter") return;
+    var el = e.target; if(!el || el.tagName!=="INPUT" || el.type==="date" || el.type==="file") return;
+    var form = el.closest ? el.closest(".goalform") : null;
+    if(form){ var b = form.querySelector("button[data-a]"); if(b){ e.preventDefault(); b.click(); } return; }
+    var idMap = { "sk-name":"addskill", "lr-text":"addlearn", "im-text":"addimpact", "im-effect":"addimpact", "fb-text":"addfeedback", "wr-name":"addwroutine" };
+    if(idMap[el.id]){ var btn = document.querySelector('[data-a="'+idMap[el.id]+'"]'); if(btn){ e.preventDefault(); btn.click(); } }
+  });
+  var wrDays = document.getElementById("wr-days");
+  if(wrDays) wrDays.addEventListener("click", function(e){ if(e.target.tagName==="BUTTON" && e.target.dataset.day!==undefined) e.target.classList.toggle("on"); });
+
+  // Backup-Karte unten in "Insights"
+  (function(){
+    var panel = document.getElementById("panel-insights"); if(!panel) return;
+    var card = document.createElement("div"); card.className = "card";
+    card.innerHTML = '<h2>💾 Backup</h2><div class="sub">Deine Daten liegen nur in diesem Browser. Sichere sie regelmäßig als Datei, dann geht nichts verloren und du kannst sie auf ein anderes Gerät mitnehmen.</div>'+
+      '<div class="addbar"><button class="btn" data-a="export">Backup herunterladen</button>'+
+      '<label class="btn ghost" style="cursor:pointer">Backup einspielen<input type="file" id="import-file" accept="application/json,.json" hidden></label></div>';
+    panel.appendChild(card);
+  })();
+
   // ---------- streak helpers ----------
   function streakOf(habit){
     var set = {}; (habit.hist||[]).forEach(function(d){ set[d]=true; });
@@ -1379,6 +2804,8 @@
     var t = text.trim();
     if(!t) return null;
     var lower = t.toLowerCase();
+    var mArea = t.match(/^(clero|wpp)\s*[:\-]\s*(.+)$/i);
+    if(mArea) return { type:"areatask", area: mArea[1].toLowerCase(), text: mArea[2].trim() };
 
     // Erinnerungen: "erinnere mich...", "denk daran...", "nicht vergessen...", "merk dir..."
     var reminderTrigger = /erinner(e|ung)?|denk\s+(bitte\s+|doch\s+)?daran|nicht\s+vergessen|vergiss\s+nicht|merk(e)?\s+dir/i;
@@ -1485,7 +2912,7 @@
       if(r.lastGenerated === t) return;
       if((r.weekdays||[]).indexOf(dow) !== -1){
         var already = state.tasks.some(function(x){ return x.routineId===r.id && x.added===t; });
-        if(!already){ state.tasks.push({ id: uid(), name: r.name, area: r.area, done:false, added: t, routineId: r.id, duration: estimateTaskDuration(r.name) }); }
+        if(!already){ state.tasks.push({ id: uid(), name: r.name, area: r.area, done:false, added: t, routineId: r.id, duration: estimateTaskDuration(r.name), stream: r.stream, client: r.client }); }
       }
       r.lastGenerated = t; changed = true;
     });
@@ -1502,7 +2929,7 @@
       if(!nextStep) return;
       var alreadyToday = state.tasks.some(function(x){ return x.goalId===g.id && x.added===t; });
       if(alreadyToday) return;
-      state.tasks.push({ id: uid(), name: "🎯 "+g.name+": "+nextStep.text, area:"aufgaben", done:false, added: t, duration: estimateTaskDuration(nextStep.text), goalId: g.id, goalStepId: nextStep.id });
+      state.tasks.push({ id: uid(), name: "🎯 "+g.name+": "+nextStep.text, area: goalTaskArea(g), done:false, added: t, duration: estimateTaskDuration(nextStep.text), goalId: g.id, goalStepId: nextStep.id });
       changed = true;
     });
     if(changed) save();
@@ -1606,37 +3033,6 @@
       }
     });
     box.innerHTML = html || '<div class="empty">Noch keine Einträge von vor 30 oder 90 Tagen.</div>';
-  }
-
-  function renderGoals(){
-    var box = document.getElementById("goals-list"); if(!box) return;
-    if(!(state.goals||[]).length){ box.innerHTML = '<div class="empty">Noch keine großen Ziele angelegt.</div>'; return; }
-    box.innerHTML = state.goals.map(function(g){
-      var steps = g.steps || [];
-      var doneSteps = steps.filter(function(s){return s.done;}).length;
-      var barHtml = "";
-      if(g.target>0){
-        var p = Math.min(100, Math.round((g.current||0)/g.target*100));
-        barHtml = '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+p+'%"></div></div>'+
-          '<div class="goal-meta"><span>'+(g.current||0)+' / '+g.target+' '+esc(g.unit||"")+' ('+p+'%)</span>'+
-          '<span><button class="btn ghost" data-goalplus="'+g.id+'" style="padding:2px 8px">+1</button></span></div>';
-      } else if(steps.length){
-        var p2 = Math.round(doneSteps/steps.length*100);
-        barHtml = '<div class="goal-bar"><div class="goal-bar-fill" style="width:'+p2+'%"></div></div>'+
-          '<div class="goal-meta"><span>'+doneSteps+' / '+steps.length+' Schritte ('+p2+'%)</span><span></span></div>';
-      }
-      var stepsHtml = steps.length ? steps.map(function(s){
-        return '<div class="row '+(s.done?'done':'')+'" style="padding:7px 10px;margin:8px 0 0">'+
-          '<div class="body"><div class="name" style="font-size:13px">'+esc(s.text)+'</div></div>'+
-          '<button class="check '+(s.done?'on':'')+'" data-goalstep="'+g.id+'|'+s.id+'">'+(s.done?'✓':'')+'</button>'+
-          '<button class="x" data-delgoalstep="'+g.id+'|'+s.id+'">×</button></div>';
-      }).join("") : "";
-      return '<div class="goal-item"><div class="gname">🎯 '+esc(g.name)+'</div>'+barHtml+stepsHtml+
-        '<div class="addbar" style="margin-top:8px">'+
-        '<input type="text" data-stepinput="'+g.id+'" placeholder="Schritt hinzufügen, z.B. Trainingsplan aufstellen" style="flex:1;min-width:160px">'+
-        '<button class="btn ghost" data-addstep="'+g.id+'">+ Schritt</button>'+
-        '<button class="x" data-delgoal="'+g.id+'" title="Ziel löschen">×</button></div></div>';
-    }).join("");
   }
 
   function renderFears(){
@@ -1794,7 +3190,7 @@
     box.innerHTML = list.map(contactCard).join("");
   }
 
-  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderFears(); renderVertrieb(); renderBriefing(); renderEvening(); renderRoutines(); renderContacts(); }
+  function renderAll(){ renderToday(); renderHabits(); renderTasks(); renderMut(); renderShopping(); renderWishlist(); renderReflection(); renderStats(); renderChallenge(); renderLearn(); renderReminders(); renderGoals(); renderFears(); renderVertrieb(); renderBriefing(); renderEvening(); renderRoutines(); renderContacts(); renderV2(); }
 
   // ---------- helpers ----------
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -1817,17 +3213,6 @@
   }
 
   // ---------- events ----------
-  document.querySelectorAll("nav.tabs button").forEach(function(b){
-    b.addEventListener("click", function(){
-      document.querySelectorAll("nav.tabs button").forEach(function(x){x.classList.remove("active");});
-      document.querySelectorAll(".panel").forEach(function(x){x.classList.remove("active");});
-      b.classList.add("active");
-      document.getElementById("panel-"+b.dataset.tab).classList.add("active");
-      if(b.dataset.tab === "kalender") renderAgenda();
-      if(b.dataset.tab === "insights") renderInsights();
-      if(b.dataset.tab === "kontakte") renderContacts();
-    });
-  });
 
   document.body.addEventListener("click", function(e){
     var t = e.target;
@@ -1840,7 +3225,7 @@
         if(tk.goalId && tk.goalStepId){
           var gForTask = state.goals.find(function(x){return x.id===tk.goalId;});
           var stepForTask = gForTask && (gForTask.steps||[]).find(function(x){return x.id===tk.goalStepId;});
-          if(stepForTask) stepForTask.done = tk.done;
+          if(stepForTask){ stepForTask.done = tk.done; if(tk.done) logGoal(gForTask, 1); }
         }
         save(); renderAll();
       }
@@ -1871,7 +3256,7 @@
       var gsParts = t.dataset.goalstep.split("|");
       var ggStep = state.goals.find(function(x){return x.id===gsParts[0];});
       var stepObj = ggStep && (ggStep.steps||[]).find(function(x){return x.id===gsParts[1];});
-      if(stepObj){ stepObj.done = !stepObj.done; save(); renderGoals(); renderAll(); }
+      if(stepObj){ stepObj.done = !stepObj.done; if(stepObj.done) logGoal(ggStep, 1); save(); renderGoals(); renderAll(); }
     }
     else if(t.dataset.delgoalstep){
       var dgsParts = t.dataset.delgoalstep.split("|");
@@ -1961,12 +3346,15 @@
       hint.textContent = c.date ? ("🔔 Als Erinnerung gespeichert – fällig am "+c.date+(c.time?" um "+c.time+" Uhr":"")+".") : "🔔 Als Erinnerung gespeichert.";
     } else if(c.type==="goal"){
       state.goals = state.goals || [];
-      state.goals.push({ id: uid(), name: c.text, target:0, current:0, unit:"", steps: [] });
-      hint.textContent = "🎯 Als langfristiges Ziel angelegt. Trag bei „Große Ziele“ Schritte ein – die werden automatisch nach und nach in deinen Alltag eingebaut.";
+      state.goals.push({ id: uid(), name: c.text, target:0, current:0, unit:"", steps: [], area:"privat", created: todayStr(), log: {} });
+      hint.textContent = "🎯 Als langfristiges Ziel angelegt. Trag im Tab „Ziele“ Schritte, Datum und Zielwert ein, dann baut das Dashboard sie nach und nach in deinen Alltag ein.";
     } else if(c.type==="fear"){
       state.fears = state.fears || [];
       state.fears.push({ id: uid(), name: c.text, note:"", steps: [] });
       hint.textContent = "😨 Bei „Ängste“ eingetragen. Trag dort kleine Schritte ein, um sie nach und nach anzugehen.";
+    } else if(c.type==="areatask"){
+      state.tasks.push({ id: uid(), name: c.text, area: c.area, done:false, added: todayStr(), duration: estimateTaskDuration(c.text) });
+      hint.textContent = "✅ Als "+(c.area==="clero"?"Clero":"WPP")+"-Aufgabe hinzugefügt.";
     } else {
       state.tasks.push({ id: uid(), name: c.text, area:"aufgaben", done:false, added: todayStr(), duration: estimateTaskDuration(c.text) });
       hint.textContent = "✅ Als Aufgabe hinzugefügt.";
@@ -2014,13 +3402,6 @@
   });
   document.getElementById("win-input").addEventListener("keydown", function(e){ if(e.key==="Enter") document.getElementById("add-win").click(); });
 
-  document.getElementById("add-goal").addEventListener("click", function(){
-    var n = document.getElementById("goal-name").value.trim(); var tgt = Number(document.getElementById("goal-target").value); if(!n || !tgt) return;
-    state.goals = state.goals || [];
-    state.goals.push({ id: uid(), name:n, target:tgt, current:0, unit: document.getElementById("goal-unit").value.trim() });
-    document.getElementById("goal-name").value=""; document.getElementById("goal-target").value=""; document.getElementById("goal-unit").value="";
-    save(); renderGoals();
-  });
 
   document.getElementById("add-fear").addEventListener("click", function(){
     var fn = document.getElementById("fear-name").value.trim(); if(!fn) return;
@@ -2646,12 +4027,15 @@
     }).join("");
   }
 
+  migrateV2();
   generateRoutineTasks();
   generateGoalStepTasks();
   setHeader();
+  fillSlots();
   renderAll();
   renderAgenda();
   renderReddit();
+  (function(){ var h = (location.hash||"").replace("#",""); showTab(document.getElementById("panel-"+h) ? h : "heute"); })();
 })();
 </script>
 </body>
