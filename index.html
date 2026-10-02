@@ -505,6 +505,7 @@
       <button data-tab="clero-zahlen" data-group="clero" hidden>📈 Zahlen</button>
       <button data-tab="clero-ideen" data-group="clero" hidden>💡 Potenziale &amp; Ideen</button>
       <button data-tab="clero-team" data-group="clero" hidden>🤝 Team &amp; Meetings</button>
+      <button data-tab="clero-pitch" data-group="clero" hidden>🎤 Pitch</button>
 
       <button data-tab="wpp-aufgaben" data-group="wpp" hidden>📋 Aufgaben</button>
       <button data-tab="wpp-potenziale" data-group="wpp" hidden>💎 Potenziale</button>
@@ -1032,8 +1033,8 @@
           </select>
           <select id="tm-who">
             <option value="Tjard">Tjard</option>
-            <option value="Kim">Kim</option>
-            <option value="Beide" selected>Tjard &amp; Kim</option>
+            <option value="Milena">Milena</option>
+            <option value="Beide" selected>Tjard &amp; Milena</option>
             <option value="Ich">Ich</option>
           </select>
         </div>
@@ -1043,7 +1044,7 @@
     </div>
     <div class="card" style="margin-top:16px">
       <h2>📒 Absprachen &amp; Entscheidungen</h2>
-      <div class="sub">Dein Logbuch mit Tjard und Kim, neueste zuerst.</div>
+      <div class="sub">Dein Logbuch mit Tjard und Milena, neueste zuerst.</div>
       <div id="cl-team-log"></div>
     </div>
   </section>
@@ -1161,6 +1162,115 @@
   </section>
 
   <!-- BACKUP (innerhalb Insights) wird per JS angehängt -->
+
+  <!-- CLERO: PITCH -->
+  <section class="panel" id="panel-clero-pitch">
+    <div class="card">
+      <h2>🎤 Dein Clero-Pitch</h2>
+      <div class="sub">Zum Auswendiglernen: die Texte sind frei änderbar und werden automatisch gespeichert. Mit „Nur Stichworte“ kannst du dich abfragen.</div>
+      <div class="grid2">
+        <div>
+          <div class="subhead">Für Hosts (ca. 30 Sekunden)</div>
+          <textarea class="plain" data-pitch="host" rows="15" style="width:100%"></textarea>
+          <details class="fold inner"><summary><span>Nur Stichworte (zum Üben)</span></summary><div class="foldbody" id="pitch-hint-host"></div></details>
+        </div>
+        <div>
+          <div class="subhead">Für Creator (ca. 30 Sekunden)</div>
+          <textarea class="plain" data-pitch="creator" rows="15" style="width:100%"></textarea>
+          <details class="fold inner"><summary><span>Nur Stichworte (zum Üben)</span></summary><div class="foldbody" id="pitch-hint-creator"></div></details>
+        </div>
+      </div>
+      <div class="subhead">Ein Satz, wenn es ganz schnell gehen muss</div>
+      <div class="qline" style="border-left-color:var(--clero);background:var(--clero-bg)">Clero ist das Zuhause für Münchner Communities: Mitglieder, Events und Zusammenarbeit an einem Ort.</div>
+    </div>
+
+    <div class="card">
+      <h2>🧲 Die 3 Kernbotschaften</h2>
+      <div class="sub">Wenn du alles andere vergisst, bleiben diese drei.</div>
+      <div class="grid3">
+        <div class="pot"><div class="ptx">1. Ein Zuhause für deine Community</div><div class="pnote">Statt WhatsApp, Instagram und Listen: Mitglieder, Events und Anmeldungen an einem Ort. Und Menschen aus München finden dich.</div></div>
+        <div class="pot"><div class="ptx">2. Gemeinsam statt allein</div><div class="pnote">Founding-Hosts bekommen den Host Circle: monatliche MeetUps, Austausch mit anderen Hosts, Zugang zu Brand-Partnern und Räumen.</div></div>
+        <div class="pot"><div class="ptx">3. Aus dem, was du liebst, etwas aufbauen</div><div class="pnote">Langfristig verdienen Creator und Hosts über Events und Kooperationen mit Marken. Kein Fulltime-Aufwand, sondern Wachstum aus dem, was du eh machst.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🧭 Aufbau eines guten Gesprächs in 5 Schritten</h2>
+      <div class="sub">Nicht pitchen, sondern führen: erst ankommen, dann zuhören, dann zeigen.</div>
+      <div class="logline"><div class="ld"><b>1</b></div><div class="lx"><b>Ankommen</b><small>Ein ehrliches Interesse an ihrer Community zeigen. „Ich habe gesehen, was du mit deiner Laufgruppe aufgebaut hast, das gefällt mir.“ Psychologie: Wer sich gesehen fühlt, hört danach anders zu.</small></div></div>
+      <div class="logline"><div class="ld"><b>2</b></div><div class="lx"><b>Fragen stellen</b><small>Zwei bis drei offene Fragen, dann ruhig sein. „Wie organisierst du das heute?“ Psychologie: Menschen glauben am meisten das, was sie selbst sagen.</small></div></div>
+      <div class="logline"><div class="ld"><b>3</b></div><div class="lx"><b>Spiegeln und zusammenfassen</b><small>„Wenn ich dich richtig verstehe, kostet dich die Orga viel Zeit und du erreichst trotzdem nur die Leute, die dir schon folgen?“ Psychologie: Verstanden werden schafft Vertrauen und macht dein Angebot relevant.</small></div></div>
+      <div class="logline"><div class="ld"><b>4</b></div><div class="lx"><b>Lösung kurz zeigen</b><small>Dein 30-Sekunden-Pitch, angepasst auf das, was sie gerade gesagt haben. Ein konkretes Beispiel schlägt jede Erklärung. Psychologie: Konkrete Bilder bleiben hängen, Abstraktes nicht.</small></div></div>
+      <div class="logline"><div class="ld"><b>5</b></div><div class="lx"><b>Kleiner nächster Schritt</b><small>„Magst du dir in 15 Minuten ansehen, wie deine Community bei uns aussehen würde?“ Psychologie: Ein kleiner Schritt ist leicht zu bejahen, eine große Entscheidung nicht.</small></div></div>
+    </div>
+
+    <div class="card">
+      <h2>🧠 Üben: Frage ziehen und laut antworten</h2>
+      <div class="sub" id="qa-drill-sub"></div>
+      <div id="qa-drill"></div>
+    </div>
+
+    <div class="card">
+      <h2>❓ Fragen, die zurückkommen, und gute Antworten</h2>
+      <div class="sub">Klapp eine Frage auf, lies die Antwort, passe sie an deine Worte an. Alles, was in Klammern „bitte ergänzen“ steht, fehlt noch und muss von dir kommen.</div>
+      <div class="chips" id="qa-chips"></div>
+      <div id="qa-list"></div>
+      <div class="goalform" style="margin-top:12px">
+        <div class="addbar"><input type="text" id="qa-new-q" placeholder="Neue Frage, die dir gestellt wurde"></div>
+        <div class="addbar" style="margin-bottom:0"><input type="text" id="qa-new-a" placeholder="Deine Antwort"><button class="btn" data-a="addqa">Hinzufügen</button></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h2>🙋 Fragen an Hosts</h2>
+        <div class="sub">Damit sie dir ihre Gründe selbst erzählen.</div>
+        <div class="logline"><div class="lx">Wie organisierst du deine Treffen heute, und was daran kostet dich am meisten Zeit?</div></div>
+        <div class="logline"><div class="lx">Woher kommen deine Teilnehmenden, und wie erreichst du Menschen, die dich noch nicht kennen?</div></div>
+        <div class="logline"><div class="lx">Was wäre für deine Community das Schönste, das du dir noch nicht leisten kannst?</div></div>
+        <div class="logline"><div class="lx">Wenn du einen Wunsch frei hättest: Was würdest du an der Orga sofort ändern?</div></div>
+        <div class="logline"><div class="lx">Was würde passieren, wenn alles so bleibt wie jetzt?</div></div>
+      </div>
+      <div class="card">
+        <h2>✨ Fragen an Creator</h2>
+        <div class="sub">Um Motivation, Reichweite und Wünsche zu verstehen.</div>
+        <div class="logline"><div class="lx">Welche Themen liebst du, und mit welchen Beiträgen erreichst du am meisten?</div></div>
+        <div class="logline"><div class="lx">Wie reagieren deine Follower, wenn du ein Treffen oder Event erwähnst?</div></div>
+        <div class="logline"><div class="lx">Hast du schon mal etwas mit Marken oder Events gemacht, und wie war das für dich?</div></div>
+        <div class="logline"><div class="lx">Wovon träumst du für deine Community in einem Jahr?</div></div>
+        <div class="logline"><div class="lx">Was hält dich bisher davon ab, daraus mehr zu machen?</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🧪 Psychologie-Spickzettel</h2>
+      <div class="sub">Ehrlich eingesetzt, wirken diese Prinzipien. Nie, um jemanden zu überreden, immer, um echten Nutzen klar zu machen.</div>
+      <div class="grid2">
+        <div>
+          <div class="logline"><div class="lx"><b>Zuhören vor Pitchen</b><small>Erst Fragen, dann Lösung. Du lieferst nur, was zu ihrem Thema passt.</small></div></div>
+          <div class="logline"><div class="lx"><b>Spiegeln</b><small>Die letzten zwei, drei Wörter des Gegenübers wiederholen und kurz warten. Das öffnet mehr als jede Erklärung.</small></div></div>
+          <div class="logline"><div class="lx"><b>Echte Knappheit</b><small>Founding 30 ist wirklich begrenzt. Sag das einmal klar und ohne Druck, zum Beispiel: „Es gibt 30 Plätze, die Plattform entsteht mit diesen 30.“</small></div></div>
+          <div class="logline"><div class="lx"><b>Sozialer Beweis</b><small>Nur wahre Zahlen nennen: „Über 250 Menschen stehen schon auf der Warteliste.“ Sobald Hosts zugesagt haben, nenne sie.</small></div></div>
+        </div>
+        <div>
+          <div class="logline"><div class="lx"><b>Kleiner erster Schritt</b><small>15 Minuten Austausch, ein Profil anlegen, ein Probe-Event planen. Nie sofort die große Entscheidung verlangen.</small></div></div>
+          <div class="logline"><div class="lx"><b>Autonomie lassen</b><small>„Du entscheidest, ob das passt.“ Wer sich frei fühlt, sagt eher Ja und bleibt dabei.</small></div></div>
+          <div class="logline"><div class="lx"><b>Einwand als Geschenk</b><small>Danke sagen, nachfragen, erst dann antworten. „Gut, dass du das sagst, was genau macht dir da Sorgen?“</small></div></div>
+          <div class="logline"><div class="lx"><b>Starker Schluss</b><small>Menschen erinnern sich an das Ende. Beende mit einem klaren nächsten Schritt und einem warmen Satz.</small></div></div>
+        </div>
+      </div>
+      <div class="subhead">Vor dem Gespräch</div>
+      <div class="logline"><div class="lx">Ihr Profil 2 Minuten ansehen, einen konkreten Satz dazu bereit haben.</div></div>
+      <div class="logline"><div class="lx">Ein Ziel für das Gespräch festlegen: ein Folgetermin, nicht der Abschluss.</div></div>
+      <div class="logline"><div class="lx">Einmal tief ausatmen und langsamer sprechen, als du denkst.</div></div>
+    </div>
+
+    <div class="card">
+      <h2>📝 Mein Pitch-Notizbuch</h2>
+      <div class="sub">Sätze, die gut ankamen, Reaktionen, Ideen für das nächste Gespräch.</div>
+      <textarea class="plain" data-pitch="notes" rows="6" style="width:100%" placeholder="Was hat heute funktioniert? Welche Frage kam, auf die ich besser antworten möchte?"></textarea>
+    </div>
+  </section>
 
   <div class="footer">Alles wird nur lokal in deinem Browser gespeichert. 💜 Dein privater Raum.</div>
 </div>
@@ -1613,7 +1723,7 @@
 
   function ensureV2(){
     var c = state.clero = state.clero || {};
-    c.metrics = c.metrics || []; c.ideas = c.ideas || []; c.team = c.team || []; c.nextMeeting = c.nextMeeting || "";
+    c.metrics = c.metrics || []; c.ideas = c.ideas || []; c.team = c.team || []; c.pitch = c.pitch || {}; c.qa = c.qa || []; c.nextMeeting = c.nextMeeting || "";
     var w = state.wpp = state.wpp || {};
     w.potentials = w.potentials || []; w.skills = w.skills || []; w.learnings = w.learnings || [];
     w.impact = w.impact || []; w.feedback = w.feedback || []; w.careerNote = w.careerNote || "";
@@ -1641,7 +1751,7 @@
     task("Founding-30: offene Host-Anfragen nachfassen", "clero", "host", 30);
     task("Münchner Creator mit persönlichem Pitch anschreiben (Pilates, Interior, Fotografie)", "clero", "creator", 45);
     task("Social-Media-Scheduling-Tool entscheiden (SocialBee vs. Blotato)", "clero", "tech", 30);
-    task("Nächstes Meeting mit Tjard und Kim vorbereiten: Agenda prüfen", "clero", "team", 15);
+    task("Nächstes Meeting mit Tjard und Milena vorbereiten: Agenda prüfen", "clero", "team", 15);
 
     routine("Clero: Instagram-Outreach (Hosts & Creator)", "clero", "social", [0,1,2,3,4]);
     routine("Clero: Zahlen aktualisieren (Warteliste, Founding 30)", "clero", "team", [4]);
@@ -2260,7 +2370,7 @@
     renderOverview(); renderFocus(); renderTodayTasks(); renderPotDay();
     renderBoard("cl-board", "cl-sub", "clero", CLERO_STREAMS, "stream");
     renderBoard("wpp-board", "wpp-sub", "wpp", WPP_CLIENTS, "client");
-    renderMetrics(); renderIdeas(); renderTeam(); renderWppPots(); renderWppRoutine(); renderCareer();
+    renderMetrics(); renderIdeas(); renderTeam(); renderWppPots(); renderWppRoutine(); renderCareer(); renderPitch();
   }
 
   // ---------- Navigation (Gruppen + Unter-Reiter) ----------
@@ -2527,6 +2637,148 @@
       '<label class="btn ghost" style="cursor:pointer">Backup einspielen<input type="file" id="import-file" accept="application/json,.json" hidden></label></div>';
     panel.appendChild(card);
   })();
+
+  // ---------- v3: Clero-Pitch, Fragen & Antworten, Umbenennung Kim -> Milena ----------
+  var PITCH_DEFAULT = {
+    host: "Clero ist die Plattform für lokale Communities in München.\nDu leitest eine Community und bastelst Treffen bisher aus WhatsApp, Instagram und Listen zusammen.\nBei Clero hast du ein Zuhause dafür: Mitglieder, Events und Anmeldungen an einem Ort, und Menschen aus München finden dich, ohne dass du ständig posten musst.\nWir suchen 30 Founding-Hosts, die die Plattform mit uns formen. Du bekommst Early Access, Prioritätsplatzierung, monatliche Host-Circle-MeetUps und Zugang zu Brand-Partnern und Räumen.\nMagst du dir in 15 Minuten ansehen, wie deine Community bei uns aussehen würde?",
+    creator: "Du hast in München Menschen, die sich für dein Thema interessieren, ob Pilates, Interior oder Fotografie.\nAuf Instagram siehst du sie, aber du kannst sie nicht zusammenbringen.\nBei Clero gründest du eine Community rund um dein Thema, machst Events und holst deine Follower in echte Begegnungen. Auch wenn du noch keinen klaren Themenfokus hast, kannst du starten.\nLangfristig verdienst du über Events und Kooperationen mit Marken.\nWir suchen 30 Founding-Creator, die von Anfang an mitgestalten. Magst du dir ansehen, wie das für dich aussehen könnte?",
+    notes: ""
+  };
+  var QA_SEED = [
+    { q: "Was ist Clero in einem Satz?", a: "Clero ist das Zuhause für Münchner Communities: Hosts und Creator bauen dort ihre Community auf, organisieren Events und werden von Menschen aus der Stadt gefunden." },
+    { q: "Ich habe schon WhatsApp, Instagram und Meetup. Wozu noch Clero?", a: "Gut, dass du das ansprichst. Das sind Werkzeuge, aber kein gemeinsames Zuhause. Auf Clero liegen Mitglieder, Events und Anmeldungen an einem Ort, und neue Menschen aus München finden dich dort direkt. Du musst nicht alles ersetzen, du kannst es ergänzen." },
+    { q: "Was unterscheidet euch von Meetup oder Eventbrite?", a: "Clero ist lokal und kuratiert, nur für München. Es geht nicht um einzelne Tickets, sondern um Communities, die wachsen. Dazu kommen der Host Circle und langfristig Möglichkeiten, über Events und Marken-Kooperationen zu verdienen." },
+    { q: "Was kostet mich das?", a: "(bitte ergänzen: Preismodell für Founding-Hosts und Creator). Mein Rahmen: Als Founding-Teilnehmer bist du von Anfang an dabei und gestaltest mit, das Modell erkläre ich dir transparent, bevor du dich entscheidest." },
+    { q: "Wie viele Leute sind schon dabei?", a: "Wir sind früh dran. Über 250 Menschen stehen auf der Warteliste, und wir starten bewusst mit 30 Founding-Hosts und 30 Founding-Creatorn, damit wir mit ihnen die Plattform gestalten können." },
+    { q: "Was habe ich als Host davon?", a: "Ein Zuhause für deine Community, mehr Sichtbarkeit in München, weniger Orga-Aufwand und als Founding-Host Early Access, Prioritätsplatzierung, monatliche Host-Circle-MeetUps und Zugang zu Brand-Partnern und Räumen." },
+    { q: "Was habe ich als Creator davon, und wie verdiene ich?", a: "Du holst deine Follower in echte Begegnungen und baust eine eigene Community. Langfristig kannst du über Events und Marken-Kooperationen auf der Plattform verdienen. Auch ohne klares Themenfokus kannst du eine Community gründen." },
+    { q: "Warum jetzt und nicht später?", a: "Founding 30 ist wirklich begrenzt, und die ersten Hosts und Creator prägen, wie Clero aussieht. Später gibt es diese Mitgestaltung und die Prioritätsplatzierung nicht mehr in dieser Form. Du entscheidest natürlich selbst, ob der Zeitpunkt für dich passt." },
+    { q: "Was ist die Absichtserklärung (LOI), die ich unterschreiben soll?", a: "(bitte ergänzen: Inhalt und Verbindlichkeit der Founding-Vereinbarung). Mein Rahmen: Sie macht klar, was wir einander zusagen, du siehst sie vorab vollständig und wir klären jede Frage dazu, bevor du unterschreibst." },
+    { q: "Was passiert mit meiner Community und meinen Daten?", a: "(bitte ergänzen: konkrete Regeln zu Datenschutz und Eigentum). Mein Rahmen: Deine Community bleibt deine. Wir wollen, dass du sie bei uns wachsen lässt, nicht dass du sie abgibst." },
+    { q: "Ich habe gerade wenig Zeit.", a: "Verstehe ich gut. Deshalb schlage ich einen kleinen Start vor: ein erstes Profil und ein Event, den Rest machen wir Schritt für Schritt gemeinsam. Wie viel Zeit hättest du in den nächsten zwei Wochen realistisch?" },
+    { q: "Und wenn niemand zu meinen Events kommt?", a: "Dann starten wir klein und zählen nicht Zahlen, sondern Begegnungen. Du bringst Menschen mit, die dir schon folgen, dazu kommen die, die dich über Clero entdecken. Und im Host Circle tauschst du dich mit anderen Hosts aus, was bei ihnen funktioniert." },
+    { q: "Wer steckt hinter Clero?", a: "Ein kleines Münchner Team, das Communities in der Stadt sichtbar machen will. Du hast direkte Ansprechpersonen und kannst die Plattform von Anfang an mitprägen." },
+    { q: "Ich muss darüber nachdenken.", a: "Sehr gerne. Damit ich dir das Richtige schicke: Was genau möchtest du dir noch überlegen? Dann kann ich dir dazu gleich etwas Konkretes mitgeben." }
+  ];
+  var QA_STATUS = { new: "Neu", again: "Üben", ok: "Sitzt" };
+
+  function migrateV3(){
+    ensureV2();
+    var m = state.migrations; if(m.v3) return;
+    function ren(s){ return String(s||"").replace("Tjard und Kim", "Tjard und Milena").replace(/\bKim\b/g, "Milena"); }
+    state.tasks.forEach(function(t){ if(/Kim/.test(t.name||"")) t.name = ren(t.name); });
+    state.routines.forEach(function(r){ if(/Kim/.test(r.name||"")) r.name = ren(r.name); });
+    state.clero.team.forEach(function(x){ if(x.who==="Kim") x.who = "Milena"; if(/Kim/.test(x.text||"")) x.text = ren(x.text); });
+    var p = state.clero.pitch;
+    if(!p.host) p.host = PITCH_DEFAULT.host;
+    if(!p.creator) p.creator = PITCH_DEFAULT.creator;
+    if(p.notes===undefined) p.notes = "";
+    if(!state.clero.qa.length){
+      state.clero.qa = QA_SEED.map(function(x){ return { id: uid(), q: x.q, a: x.a, status: "new" }; });
+    }
+    m.v3 = true; save();
+  }
+
+  var qaUi = { id: "", show: false, filter: "alle", open: {} };
+  function hintLines(text){
+    return String(text||"").split(/(?<=[.!?:])\s+|\n+/).map(function(s){ return s.trim(); }).filter(Boolean).map(function(s){
+      var w = s.split(/\s+/); return esc(w.slice(0,3).join(" ")) + (w.length>3 ? " …" : "");
+    });
+  }
+  function renderPitch(){
+    var p = state.clero.pitch || {};
+    ["host","creator","notes"].forEach(function(k){
+      var ta = document.querySelector('[data-pitch="'+k+'"]');
+      if(ta && ta.dataset.loaded!=="1"){ ta.value = p[k] || ""; ta.dataset.loaded = "1"; }
+    });
+    ["host","creator"].forEach(function(k){
+      var box = document.getElementById("pitch-hint-"+k); if(!box) return;
+      box.innerHTML = hintLines(p[k]).map(function(l){ return '<div class="logline"><div class="lx">'+l+'</div></div>'; }).join("") || '<div class="empty">Noch kein Text.</div>';
+    });
+    renderQa();
+  }
+  function renderQa(){
+    var list = state.clero.qa || [];
+    var ok = list.filter(function(x){ return x.status==="ok"; }).length;
+    var sub = document.getElementById("qa-drill-sub");
+    if(sub) sub.innerHTML = list.length ? '<b>'+ok+'</b> von <b>'+list.length+'</b> Antworten sitzen schon. Zieh eine Frage, antworte laut, dann deck die Antwort auf.' : 'Noch keine Fragen.';
+    var drill = document.getElementById("qa-drill");
+    if(drill){
+      var cur = list.filter(function(x){ return x.id===qaUi.id; })[0];
+      if(!cur && list.length){
+        var pool = list.filter(function(x){ return x.status!=="ok"; });
+        if(!pool.length) pool = list;
+        cur = pool[Math.floor(Math.random()*pool.length)]; qaUi.id = cur.id; qaUi.show = false;
+      }
+      if(!cur){ drill.innerHTML = ""; }
+      else {
+        var h = '<div class="qline" style="border-left-color:var(--clero);background:var(--clero-bg)">'+esc(cur.q)+'</div>';
+        if(qaUi.show){
+          h += '<div class="pot" style="margin-top:10px"><div class="pnote" style="font-size:14px;margin-top:0;white-space:pre-wrap">'+esc(cur.a)+'</div></div>'+
+            '<div class="addbar"><button class="btn" data-a="qaok" data-id="'+cur.id+'">Sitzt ✓</button><button class="btn ghost" data-a="qaagain" data-id="'+cur.id+'">Nochmal üben</button></div>';
+        } else {
+          h += '<div class="addbar" style="margin-top:10px"><button class="btn" data-a="qashow">Antwort zeigen</button><button class="btn ghost" data-a="qanext">Andere Frage</button></div>';
+        }
+        drill.innerHTML = h;
+      }
+    }
+    var chips = document.getElementById("qa-chips");
+    if(chips){
+      var cnt = { alle: list.length, again: list.filter(function(x){ return x.status==="again"; }).length, new: list.filter(function(x){ return x.status==="new"; }).length, ok: ok };
+      chips.innerHTML = [["alle","Alle"],["new","Neu"],["again","Üben"],["ok","Sitzt"]].map(function(c){
+        return '<button class="chipbtn '+(qaUi.filter===c[0]?'on':'')+'" data-a="qachip" data-k="'+c[0]+'">'+c[1]+'<span class="cnt">'+cnt[c[0]]+'</span></button>';
+      }).join("");
+    }
+    var box = document.getElementById("qa-list");
+    if(box){
+      var shown = list.filter(function(x){ return qaUi.filter==="alle" || x.status===qaUi.filter; });
+      box.innerHTML = shown.length ? shown.map(function(x){
+        return '<details class="fold inner" data-qa="'+x.id+'"'+(qaUi.open[x.id]?' open':'')+'><summary><span>'+esc(x.q)+' <span class="pill '+(x.status==="ok"?'good':x.status==="again"?'warn':'grey')+'">'+QA_STATUS[x.status||"new"]+'</span></span></summary>'+
+          '<div class="foldbody" style="padding-bottom:12px"><textarea class="plain" data-qafield="a" data-id="'+x.id+'" rows="4" style="width:100%">'+esc(x.a)+'</textarea>'+
+          '<div class="addbar" style="margin-top:8px"><button class="btn small" data-a="qaok" data-id="'+x.id+'">Sitzt ✓</button><button class="btn ghost small" data-a="qaagain" data-id="'+x.id+'">Üben</button><button class="x" data-a="qadel" data-id="'+x.id+'" title="Löschen" style="margin-left:auto">×</button></div></div></details>';
+      }).join("") : '<div class="empty">Keine Fragen in dieser Auswahl.</div>';
+    }
+  }
+
+  document.body.addEventListener("toggle", function(e){
+    var d = e.target; if(d && d.dataset && d.dataset.qa){ qaUi.open[d.dataset.qa] = d.open; }
+  }, true);
+
+  document.body.addEventListener("click", function(e){
+    var el = e.target.closest ? e.target.closest("[data-a]") : null; if(!el) return;
+    var a = el.dataset.a, id = el.dataset.id;
+    function qa(){ return (state.clero.qa||[]).filter(function(x){ return x.id===id; })[0]; }
+    if(a==="qashow"){ qaUi.show = true; renderQa(); return; }
+    if(a==="qanext"){ qaUi.id = ""; qaUi.show = false; renderQa(); return; }
+    if(a==="qaok"||a==="qaagain"){
+      var q = qa(); if(!q) return; q.status = a==="qaok" ? "ok" : "again"; save();
+      if(qaUi.id===id){ qaUi.id = ""; qaUi.show = false; }
+      renderQa(); return;
+    }
+    if(a==="qachip"){ qaUi.filter = el.dataset.k; renderQa(); return; }
+    if(a==="qadel"){
+      if(confirm("Diese Frage löschen?")){ state.clero.qa = state.clero.qa.filter(function(x){ return x.id!==id; }); save(); renderQa(); }
+      return;
+    }
+    if(a==="addqa"){
+      var qi = document.getElementById("qa-new-q"), ai = document.getElementById("qa-new-a");
+      if(!qi.value.trim()) return;
+      state.clero.qa.push({ id: uid(), q: qi.value.trim(), a: ai.value.trim(), status: "new" });
+      qi.value = ""; ai.value = ""; save(); renderQa(); return;
+    }
+  });
+  document.body.addEventListener("change", function(e){
+    var el = e.target; if(!el || !el.dataset) return;
+    if(el.dataset.pitch){
+      state.clero.pitch[el.dataset.pitch] = el.value; save();
+      if(el.dataset.pitch!=="notes") renderPitch();
+      return;
+    }
+    if(el.dataset.qafield){
+      var q = (state.clero.qa||[]).filter(function(x){ return x.id===el.dataset.id; })[0];
+      if(q){ q[el.dataset.qafield] = el.value; save(); }
+    }
+  });
 
   // ---------- streak helpers ----------
   function streakOf(habit){
@@ -4028,6 +4280,7 @@
   }
 
   migrateV2();
+  migrateV3();
   generateRoutineTasks();
   generateGoalStepTasks();
   setHeader();
