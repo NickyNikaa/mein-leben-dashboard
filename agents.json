@@ -1,0 +1,76 @@
+{
+ "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
+ "updated": "2026-10-04T10:10:15Z",
+ "agents": [
+  {
+   "id": "clero-dm-sichtung",
+   "name": "Clero: DM-Sichtung & Antwortentwürfe",
+   "area": "clero",
+   "status": "idle",
+   "schedule": "mehrmals täglich",
+   "note": "Liest offene Insta-DMs von @clero.app, sortiert sie und schreibt Antwortentwürfe in dms.json",
+   "last_run": null,
+   "next_run": null
+  },
+  {
+   "id": "clero-ig-outreach",
+   "name": "Clero: Instagram-Outreach (Hosts & Creator)",
+   "area": "clero",
+   "status": "idle",
+   "schedule": "Mo bis Fr täglich",
+   "note": "Spricht Münchner Creator und Hosts an",
+   "last_run": null,
+   "next_run": null
+  },
+  {
+   "id": "clero-dm-ablage",
+   "name": "Clero: DM-Ablage",
+   "area": "clero",
+   "status": "idle",
+   "schedule": "täglich",
+   "note": "Legt beantwortete DMs nach Kategorie ab",
+   "last_run": null,
+   "next_run": null
+  },
+  {
+   "id": "wpp-inbox-triage",
+   "name": "WPP: Inbox-Triage (4 Läufe täglich)",
+   "area": "wpp",
+   "status": "paused",
+   "schedule": "4× täglich",
+   "note": "Pausiert, wird auf Computer-Use gegen New Outlook umgebaut",
+   "last_run": null,
+   "next_run": null
+  },
+  {
+   "id": "wpp-mailbriefing",
+   "name": "WPP: Mail-Briefing 08:25",
+   "area": "wpp",
+   "status": "paused",
+   "schedule": "täglich 08:25",
+   "note": "Pausiert, wird auf Computer-Use gegen New Outlook umgebaut",
+   "last_run": null,
+   "next_run": null
+  },
+  {
+   "id": "affiliate-triage",
+   "name": "Affiliate-Bewerbungen Triage",
+   "area": "wpp",
+   "status": "idle",
+   "schedule": "wöchentlich",
+   "note": "TUI Cruises und Hapag-Lloyd Cruises",
+   "last_run": null,
+   "next_run": null
+  },
+  {
+   "id": "reddit-feed",
+   "name": "Reddit-Feed (GitHub Action)",
+   "area": "mehr",
+   "status": "idle",
+   "schedule": "alle 6 Std.",
+   "last_run": "2026-10-04T03:12:03Z",
+   "next_run": null
+  }
+ ],
+ "log": []
+}

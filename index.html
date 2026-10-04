@@ -463,6 +463,39 @@
     .wrap { padding: 14px 14px 80px; }
     .navbar { margin: 0 -14px 14px; padding: 8px 14px 6px; }
   }
+
+  /* ===== Clero-Arbeit & Agents ===== */
+  .dm { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; background: #fff; }
+  .dm.unread { border-left: 4px solid var(--clero); }
+  .dm .top { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .dm .who { font-weight: 700; }
+  .dm .when { margin-left: auto; font-size: 12px; color: var(--muted); }
+  .dm .msg { margin: 6px 0 8px; font-size: 14px; white-space: pre-wrap; }
+  .dm .draft { background: var(--clero-bg); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; white-space: pre-wrap; margin-bottom: 8px; }
+  .dm .draft b { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--clero); margin-bottom: 4px; }
+  .dm .acts { display: flex; gap: 6px; flex-wrap: wrap; }
+  .dm .note { width: 100%; margin-top: 8px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 13px; }
+  .pill.ok { background: #e3f6ea; color: #167a3e; }
+  .pill.warn { background: #fff3d6; color: #8a5a00; }
+  .pill.bad { background: #fde4e1; color: #b3261e; }
+  .pill.run { background: #e4ecff; color: #2748c9; }
+  .agent { display: flex; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .agent:first-child { border-top: none; }
+  .agent .dot { width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; flex: none; background: #9ca3af; }
+  .agent .dot.running { background: #2f6bff; animation: agpulse 1.4s infinite; }
+  .agent .dot.idle { background: #22a559; }
+  .agent .dot.paused { background: #e0a100; }
+  .agent .dot.error { background: #d93025; }
+  @keyframes agpulse { 0% { box-shadow: 0 0 0 0 rgba(47,107,255,.5); } 70% { box-shadow: 0 0 0 9px rgba(47,107,255,0); } 100% { box-shadow: 0 0 0 0 rgba(47,107,255,0); } }
+  .agent .abody { flex: 1; min-width: 0; }
+  .agent .aname { font-weight: 700; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .agent .now { font-size: 14px; margin-top: 3px; }
+  .agent .ameta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .agent .bar { height: 6px; background: #eceef2; border-radius: 999px; margin-top: 7px; overflow: hidden; }
+  .agent .bar i { display: block; height: 100%; background: linear-gradient(90deg, #7c3aed, #a855f7); }
+  .logrow { display: flex; gap: 10px; font-size: 13px; padding: 5px 0; border-top: 1px solid var(--line); }
+  .logrow:first-child { border-top: none; }
+  .logrow .lt { color: var(--muted); width: 92px; flex: none; }
 </style>
 </head>
 <body>
@@ -494,6 +527,8 @@
       <button data-tab="aufgaben" data-group="heute">✅ Aufgaben</button>
       <button data-tab="kalender" data-group="heute">📅 Kalender</button>
       <button data-tab="gewohnheiten" data-group="heute">🔁 Gewohnheiten</button>
+      <button data-tab="arbeit" data-group="heute">🚀 Clero-Arbeit</button>
+      <button data-tab="agents" data-group="heute">🤖 Agents</button>
 
       <button data-tab="kontakte" data-group="privat" hidden>🧑‍🤝‍🧑 Kontakte</button>
       <button data-tab="listen" data-group="privat" hidden>🛒 Listen</button>
@@ -965,6 +1000,58 @@
       <div class="goalform-slot" data-garea=""></div>
     </div>
     <div id="goals-list"></div>
+  </section>
+
+  <!-- CLERO-ARBEIT (Heute) -->
+  <section class="panel" id="panel-arbeit">
+    <div class="stats" id="work-stats"></div>
+
+    <div class="card">
+      <div class="cardhead">
+        <div><h2>📥 Offene Insta-DMs <span class="hint">@clero.app</span></h2><div class="sub" id="dm-updated">Wird geladen …</div></div>
+        <div class="tools">
+          <a class="btn small ghost" href="https://www.instagram.com/direct/inbox/" target="_blank" rel="noopener">Instagram-Inbox öffnen</a>
+          <button class="btn small ghost" data-a="wrefresh">↻ Aktualisieren</button>
+        </div>
+      </div>
+      <div class="chips" id="dm-chips"></div>
+      <div id="dm-list"></div>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Clero-Automationen <span class="hint">Antwort, Outreach, Ablage</span></h2>
+      <div class="sub">Was dir die Agents bei Clero gerade abnehmen. Details im Reiter Agents.</div>
+      <div id="work-agents"></div>
+    </div>
+
+    <div class="card">
+      <h2>🗂️ Ablage <span class="hint">abgeschlossene DMs</span></h2>
+      <div class="sub">Erledigte Unterhaltungen, sortiert nach Kategorie.</div>
+      <div id="dm-archive"></div>
+    </div>
+
+    <div class="card">
+      <h2>✅ Offene Clero-Aufgaben</h2>
+      <div class="sub">Direkt hier abhaken. Neue Aufgaben legst du unter Clero &rarr; Aufgaben an.</div>
+      <div id="work-tasks"></div>
+    </div>
+  </section>
+
+  <!-- AGENTS (Heute) -->
+  <section class="panel" id="panel-agents">
+    <div class="stats" id="ag-stats"></div>
+    <div class="card">
+      <div class="cardhead">
+        <div><h2>🤖 Agents <span class="hint">wer arbeitet gerade woran</span></h2><div class="sub" id="ag-updated">Wird geladen …</div></div>
+        <div class="tools"><button class="btn small ghost" data-a="wrefresh">↻ Aktualisieren</button></div>
+      </div>
+      <div id="ag-list"></div>
+    </div>
+    <div class="card">
+      <h2>🕒 Letzte Aktivität</h2>
+      <div class="sub">Die jüngsten Meldungen der Agents.</div>
+      <div id="ag-log"></div>
+    </div>
   </section>
 
   <!-- CLERO: AUFGABEN -->
@@ -2409,6 +2496,7 @@
     renderBoard("cl-board", "cl-sub", "clero", CLERO_STREAMS, "stream");
     renderBoard("wpp-board", "wpp-sub", "wpp", WPP_CLIENTS, "client");
     renderMetrics(); renderIdeas(); renderTeam(); renderWppPots(); renderWppRoutine(); renderCareer(); renderPitch();
+    if(typeof workData !== "undefined" && workData) renderWork();
   }
 
   // ---------- Navigation (Gruppen + Unter-Reiter) ----------
@@ -2424,6 +2512,7 @@
     lastTab[g] = tab;
     try { history.replaceState(null, "", "#"+tab); } catch(e){}
     if(tab==="kalender") renderAgenda();
+    if(tab==="arbeit" || tab==="agents") loadWorkData();
     if(tab==="insights") renderInsights();
     if(tab==="kontakte") renderContacts();
     var active = document.querySelector('#subtabs button.active');
@@ -4363,6 +4452,198 @@
     }).join("");
   }
 
+
+  // ---------- Clero-Arbeit (Insta-DMs, Automationen, Ablage) & Agents ----------
+  var DM_CATS = { host:"Host", creator:"Creator", partner:"Partner", sonstiges:"Sonstiges" };
+  var DM_STATUS = { neu:["Neu","warn"], entwurf:["Entwurf bereit","run"], spaeter:["Später","grey"], beantwortet:["Beantwortet","ok"], abgelegt:["Abgelegt","grey"] };
+  var AG_STATUS = { running:["Läuft gerade","run"], idle:["Bereit","ok"], paused:["Pausiert","warn"], error:["Fehler","bad"] };
+  var workData = { dms:null, agents:null, dmErr:false, agErr:false };
+  var dmFilter = "offen";
+
+  function relTime(iso){
+    if(!iso) return "";
+    var d = new Date(iso); if(isNaN(d)) return "";
+    var diff = (Date.now() - d.getTime())/1000, fut = diff < 0; diff = Math.abs(diff);
+    var txt = diff < 90 ? "gerade eben" : diff < 3600 ? Math.round(diff/60)+" Min." : diff < 86400 ? Math.round(diff/3600)+" Std." : Math.round(diff/86400)+" Tg.";
+    if(txt==="gerade eben") return txt;
+    return fut ? "in "+txt : "vor "+txt;
+  }
+  function dmState(th){ state.cleroDm = state.cleroDm || {}; return state.cleroDm[th.id] || {}; }
+  function dmStatus(th){ var l = dmState(th); return l.status || th.status || "neu"; }
+  function dmIsOpen(th){ var s = dmStatus(th); return s!=="beantwortet" && s!=="abgelegt"; }
+
+  function loadWorkData(){
+    fetch("dms.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.dms = d; workData.dmErr = false; renderWork(); }).catch(function(){ workData.dmErr = true; renderWork(); });
+    fetch("agents.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.agents = d; workData.agErr = false; renderWork(); }).catch(function(){ workData.agErr = true; renderWork(); });
+  }
+
+  function agentEffective(ag){
+    var st = ag.status || "idle";
+    var stale = false;
+    if(st==="running" && ag.heartbeat){ var h = new Date(ag.heartbeat); if(!isNaN(h) && Date.now()-h.getTime() > 3*3600*1000) stale = true; }
+    return { st: st, stale: stale };
+  }
+  function agentRow(ag, compact){
+    var e = agentEffective(ag), lab = AG_STATUS[e.st] || [e.st,"grey"];
+    var h = '<div class="agent"><div class="dot '+esc(e.st)+'"></div><div class="abody">';
+    h += '<div class="aname">'+esc(ag.name||ag.id)+' <span class="pill '+lab[1]+'">'+lab[0]+'</span>';
+    if(e.stale) h += '<span class="pill bad">Heartbeat alt, hängt evtl.</span>';
+    if(ag.area) h += '<span class="pill '+(ag.area==="clero"?"clero":"grey")+'">'+esc(ag.area.toUpperCase())+'</span>';
+    h += '</div>';
+    if(ag.task_now) h += '<div class="now">▶ '+esc(ag.task_now)+'</div>';
+    else if(ag.note) h += '<div class="now">'+esc(ag.note)+'</div>';
+    if(typeof ag.progress_done==="number" && ag.progress_total){
+      var pc = Math.min(100, Math.round(ag.progress_done/ag.progress_total*100));
+      h += '<div class="ameta">'+ag.progress_done+' von '+ag.progress_total+(ag.progress_label?' '+esc(ag.progress_label):'')+'</div><div class="bar"><i style="width:'+pc+'%"></i></div>';
+    }
+    var m = [];
+    if(ag.schedule) m.push('⏱ '+esc(ag.schedule));
+    m.push(ag.last_run ? 'Letzter Lauf '+relTime(ag.last_run) : 'Noch kein Lauf gemeldet');
+    if(ag.next_run && e.st!=="paused") m.push('Nächster Lauf '+relTime(ag.next_run));
+    if(typeof ag.runs_today==="number") m.push(ag.runs_today+' Läufe heute');
+    if(!compact) h += '<div class="ameta">'+m.join(' · ')+'</div>';
+    else h += '<div class="ameta">'+m.slice(0,2).join(' · ')+'</div>';
+    if(ag.last_result && !compact) h += '<div class="ameta">Ergebnis: '+esc(ag.last_result)+'</div>';
+    h += '</div></div>';
+    return h;
+  }
+
+  function renderWork(){
+    var dms = workData.dms, ags = workData.agents;
+    var threads = dms && dms.threads ? dms.threads : [];
+    var openDm = threads.filter(dmIsOpen);
+    var unread = openDm.filter(function(x){ return x.unread; }).length;
+    var drafts = openDm.filter(function(x){ return dmStatus(x)==="entwurf" || !!x.draft; }).length;
+    var cTasks = state.tasks.filter(function(x){ return x.area==="clero" && !x.done; });
+    var agList = ags && ags.agents ? ags.agents : [];
+
+    // Kennzahlen Clero-Arbeit
+    var ws = document.getElementById("work-stats");
+    if(ws) ws.innerHTML =
+      '<div class="stat"><div class="n">'+openDm.length+'</div><div class="l">Offene DMs</div></div>'+
+      '<div class="stat"><div class="n">'+unread+'</div><div class="l">Davon ungelesen</div></div>'+
+      '<div class="stat"><div class="n">'+drafts+'</div><div class="l">Antwort-Entwürfe bereit</div></div>'+
+      '<div class="stat"><div class="n">'+cTasks.length+'</div><div class="l">Offene Clero-Aufgaben</div></div>';
+
+    // DM-Liste
+    var upd = document.getElementById("dm-updated");
+    if(upd){
+      if(workData.dmErr) upd.textContent = "dms.json konnte nicht geladen werden.";
+      else if(dms) upd.textContent = dms.updated ? "Stand: "+new Date(dms.updated).toLocaleString("de-DE")+" ("+relTime(dms.updated)+")" : "";
+    }
+    var cnt = { offen: openDm.length, neu: 0, entwurf: 0, spaeter: 0, alle: threads.length };
+    threads.forEach(function(x){ var s = dmStatus(x); if(cnt[s]!==undefined && s!=="offen") cnt[s]++; });
+    var chips = document.getElementById("dm-chips");
+    if(chips) chips.innerHTML = [["offen","Offen"],["neu","Neu"],["entwurf","Entwurf bereit"],["spaeter","Später"],["alle","Alle"]].map(function(c){
+      return '<button class="chipbtn '+(dmFilter===c[0]?'on':'')+'" data-a="dmfilter" data-k="'+c[0]+'">'+c[1]+'<span class="cnt">'+cnt[c[0]]+'</span></button>';
+    }).join("");
+    var list = document.getElementById("dm-list");
+    if(list){
+      var shown = threads.filter(function(x){ return dmFilter==="alle" ? true : dmFilter==="offen" ? dmIsOpen(x) : dmStatus(x)===dmFilter; });
+      shown.sort(function(a,b){ return (b.unread?1:0)-(a.unread?1:0) || String(b.last_at||"").localeCompare(String(a.last_at||"")); });
+      if(!threads.length) list.innerHTML = '<div class="empty">Noch keine DMs geladen. Der Agent „Clero: DM-Sichtung“ schreibt die offenen Unterhaltungen von @clero.app in die Datei dms.json, danach erscheinen sie hier.</div>';
+      else if(!shown.length) list.innerHTML = '<div class="empty">Nichts offen in dieser Ansicht. 🎉</div>';
+      else list.innerHTML = shown.map(function(th){
+        var st = dmStatus(th), lab = DM_STATUS[st] || [st,"grey"], loc = dmState(th);
+        var h = '<div class="dm '+(th.unread?'unread':'')+'"><div class="top"><span class="who">'+esc(th.name||th.handle||"Unbekannt")+'</span>';
+        if(th.handle) h += '<span class="ameta" style="font-size:12px;color:var(--muted)">@'+esc(String(th.handle).replace(/^@/,""))+'</span>';
+        h += '<span class="pill clero">'+esc(DM_CATS[th.category]||"Sonstiges")+'</span><span class="pill '+lab[1]+'">'+lab[0]+'</span>';
+        if(th.unread) h += '<span class="pill bad">ungelesen</span>';
+        h += '<span class="when">'+(th.last_at?relTime(th.last_at):'')+'</span></div>';
+        h += '<div class="msg">'+esc(th.last_message||"")+'</div>';
+        if(th.draft) h += '<div class="draft"><b>Antwortentwurf</b>'+esc(th.draft)+'</div>';
+        h += '<div class="acts">';
+        if(th.draft) h += '<button class="btn small" data-a="dmcopy" data-id="'+esc(th.id)+'">Entwurf kopieren</button>';
+        h += '<a class="btn small ghost" href="'+esc(th.url||"https://www.instagram.com/direct/inbox/")+'" target="_blank" rel="noopener" data-open="1">In Instagram öffnen</a>';
+        h += '<button class="btn small ghost" data-a="dmset" data-id="'+esc(th.id)+'" data-s="beantwortet">✓ Beantwortet</button>';
+        h += '<button class="btn small ghost" data-a="dmset" data-id="'+esc(th.id)+'" data-s="abgelegt">🗂️ Ablegen</button>';
+        if(st!=="spaeter") h += '<button class="btn small ghost" data-a="dmset" data-id="'+esc(th.id)+'" data-s="spaeter">Später</button>';
+        h += '</div>';
+        h += '<input class="note" data-dmnote="'+esc(th.id)+'" placeholder="Notiz zu dieser Unterhaltung" value="'+esc(loc.note||th.note||"")+'"></div>';
+        return h;
+      }).join("");
+    }
+
+    // Clero-Automationen
+    var wa = document.getElementById("work-agents");
+    if(wa){
+      var cl = agList.filter(function(x){ return x.area==="clero"; });
+      wa.innerHTML = workData.agErr ? '<div class="empty">agents.json konnte nicht geladen werden.</div>' : (cl.length ? cl.map(function(x){ return agentRow(x, true); }).join("") : '<div class="empty">Noch keine Clero-Automationen gemeldet.</div>');
+    }
+
+    // Ablage
+    var ar = document.getElementById("dm-archive");
+    if(ar){
+      var done = threads.filter(function(x){ return dmStatus(x)==="abgelegt" || dmStatus(x)==="beantwortet"; });
+      if(!done.length) ar.innerHTML = '<div class="empty">Noch nichts abgelegt.</div>';
+      else {
+        var groups = {};
+        done.forEach(function(x){ var k = DM_CATS[x.category] ? x.category : "sonstiges"; (groups[k] = groups[k] || []).push(x); });
+        ar.innerHTML = Object.keys(groups).map(function(k){
+          return '<div style="margin-bottom:10px"><div style="font-weight:700;margin-bottom:4px">'+DM_CATS[k]+' <span class="pill grey">'+groups[k].length+'</span></div>'+
+            groups[k].map(function(x){ return '<div class="logrow"><div class="lt">'+(x.last_at?relTime(x.last_at):'')+'</div><div>'+esc(x.name||x.handle||"")+(x.ablage?' · <span style="color:var(--muted)">'+esc(x.ablage)+'</span>':'')+'</div></div>'; }).join("")+'</div>';
+        }).join("");
+      }
+    }
+
+    // Offene Clero-Aufgaben (nutzt vorhandenen Abhak-Handler)
+    var wt = document.getElementById("work-tasks");
+    if(wt) wt.innerHTML = cTasks.length ? cTasks.map(function(x){ return taskRow(x, {}); }).join("") : '<div class="empty">Keine offenen Clero-Aufgaben. 🎉</div>';
+
+    // Agents-Reiter
+    var running = agList.filter(function(x){ return (x.status||"idle")==="running"; }).length;
+    var paused = agList.filter(function(x){ return x.status==="paused"; }).length;
+    var errs = agList.filter(function(x){ return x.status==="error" || agentEffective(x).stale; }).length;
+    var as = document.getElementById("ag-stats");
+    if(as) as.innerHTML =
+      '<div class="stat"><div class="n">'+running+'</div><div class="l">Arbeiten gerade</div></div>'+
+      '<div class="stat"><div class="n">'+(agList.length-running-paused-errs < 0 ? 0 : agList.length-running-paused-errs)+'</div><div class="l">Bereit</div></div>'+
+      '<div class="stat"><div class="n">'+paused+'</div><div class="l">Pausiert</div></div>'+
+      '<div class="stat"><div class="n">'+errs+'</div><div class="l">Fehler / hängt</div></div>';
+    var au = document.getElementById("ag-updated");
+    if(au){
+      if(workData.agErr) au.textContent = "agents.json konnte nicht geladen werden.";
+      else if(ags) au.textContent = ags.updated ? "Stand: "+new Date(ags.updated).toLocaleString("de-DE")+" ("+relTime(ags.updated)+")" : "";
+    }
+    var order = { running:0, error:1, idle:2, paused:3 };
+    var sorted = agList.slice().sort(function(a,b){ return (order[a.status||"idle"]||0)-(order[b.status||"idle"]||0); });
+    var al = document.getElementById("ag-list");
+    if(al) al.innerHTML = sorted.length ? sorted.map(function(x){ return agentRow(x, false); }).join("") : '<div class="empty">Noch keine Agents gemeldet.</div>';
+    var lg = document.getElementById("ag-log");
+    if(lg){
+      var log = ags && ags.log ? ags.log.slice().sort(function(a,b){ return String(b.at).localeCompare(String(a.at)); }).slice(0,15) : [];
+      lg.innerHTML = log.length ? log.map(function(x){ return '<div class="logrow"><div class="lt">'+relTime(x.at)+'</div><div><b>'+esc(x.agent||"")+'</b> '+esc(x.text||"")+'</div></div>'; }).join("") : '<div class="empty">Noch keine Aktivität gemeldet.</div>';
+    }
+  }
+
+  document.body.addEventListener("click", function(e){
+    var el = e.target.closest ? e.target.closest("[data-a]") : null; if(!el) return;
+    var a = el.dataset.a;
+    if(a==="wrefresh"){ loadWorkData(); return; }
+    if(a==="dmfilter"){ dmFilter = el.dataset.k; renderWork(); return; }
+    if(a==="dmset"){
+      state.cleroDm = state.cleroDm || {};
+      var o = state.cleroDm[el.dataset.id] = state.cleroDm[el.dataset.id] || {};
+      o.status = el.dataset.s; o.ts = new Date().toISOString(); save(); renderWork(); return;
+    }
+    if(a==="dmcopy"){
+      var th = ((workData.dms||{}).threads||[]).filter(function(x){ return x.id===el.dataset.id; })[0];
+      if(th && th.draft){
+        var done = function(){ el.textContent = "Kopiert ✓"; setTimeout(function(){ el.textContent = "Entwurf kopieren"; }, 1500); };
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(th.draft).then(done, function(){}); }
+        else { var ta = document.createElement("textarea"); ta.value = th.draft; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch(err){} document.body.removeChild(ta); }
+      }
+      return;
+    }
+  });
+  document.body.addEventListener("change", function(e){
+    var id = e.target && e.target.dataset ? e.target.dataset.dmnote : null; if(!id) return;
+    state.cleroDm = state.cleroDm || {};
+    var o = state.cleroDm[id] = state.cleroDm[id] || {};
+    o.note = e.target.value; save();
+  });
+  setInterval(function(){ if(document.visibilityState==="visible" && (document.getElementById("panel-arbeit").classList.contains("active") || document.getElementById("panel-agents").classList.contains("active"))) loadWorkData(); }, 60000);
+
   migrateV2();
   migrateV3();
   migrateV4();
@@ -4373,6 +4654,7 @@
   renderAll();
   renderAgenda();
   renderReddit();
+  loadWorkData();
   (function(){ var h = (location.hash||"").replace("#",""); showTab(document.getElementById("panel-"+h) ? h : "heute"); })();
 })();
 </script>

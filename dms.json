@@ -1,0 +1,6 @@
+{
+ "_hinweis": "Wird vom Agent 'Clero: DM-Sichtung' befüllt. Felder pro Thread: id, handle, name, category (host|creator|partner|sonstiges), last_message, last_at, unread, status (neu|entwurf|spaeter|beantwortet|abgelegt), draft, url, ablage, note.",
+ "updated": "2026-10-04T10:10:15Z",
+ "account": "clero.app",
+ "threads": []
+}
