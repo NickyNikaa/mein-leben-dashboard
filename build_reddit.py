@@ -43,9 +43,9 @@ SUBREDDITS = [
     "opensource",
 ]
 
-POSTS_PER_SUBREDDIT = 15     # wie viele Hot-Posts pro Subreddit geholt werden
-MIN_SCORE = 3                # Rauschen raus (gilt nur fuer den JSON-Pfad, RSS hat keinen Score)
-MAX_TOTAL_POSTS = 60         # Obergrenze fuer die gespeicherte Liste
+POSTS_PER_SUBREDDIT = 25     # wie viele Top-Posts der Woche pro Subreddit geholt werden (Qualitaet vor "neu")
+MIN_SCORE = 15               # Rauschen raus (gilt nur fuer den JSON-Pfad, RSS hat keinen Score)
+MAX_TOTAL_POSTS = 120        # Obergrenze fuer die gespeicherte Liste
 OUT_PATH = sys.argv[1] if len(sys.argv) > 1 else "reddit.json"
 
 HEADERS = {
@@ -57,7 +57,7 @@ HEADERS = {
 RSS_NS = {"atom": "http://www.w3.org/2005/Atom"}
 
 
-def sleep_jitter(base=2.5, spread=1.5):
+def sleep_jitter(base=7.0, spread=4.0):
     time.sleep(base + random.uniform(0, spread))
 
 
@@ -68,16 +68,16 @@ def _get(url, retry_on_429=True):
             return resp.read()
     except urllib.error.HTTPError as e:
         if e.code == 429 and retry_on_429:
-            time.sleep(8)
+            time.sleep(25)
             return _get(url, retry_on_429=False)
         raise
 
 
 def fetch_json(sub):
-    url = "https://old.reddit.com/r/{}/hot.json?limit={}".format(sub, POSTS_PER_SUBREDDIT)
+    url = "https://old.reddit.com/r/{}/top.json?t=week&limit={}".format(sub, POSTS_PER_SUBREDDIT)
     data = json.loads(_get(url).decode("utf-8"))
     posts = []
-    for child in data.get("data", {}).get("children", []):
+    for rank, child in enumerate(data.get("data", {}).get("children", []), 1):
         p = child.get("data", {})
         if p.get("stickied") or p.get("over_18"):
             continue
@@ -92,16 +92,17 @@ def fetch_json(sub):
             "url": p.get("url", ""),
             "score": p.get("score", 0),
             "num_comments": p.get("num_comments", 0),
+            "rank": rank,
             "created_utc": p.get("created_utc", 0),
         })
     return posts
 
 
 def fetch_rss(sub):
-    url = "https://www.reddit.com/r/{}/new.rss?limit={}".format(sub, POSTS_PER_SUBREDDIT)
+    url = "https://www.reddit.com/r/{}/top.rss?t=week&limit={}".format(sub, POSTS_PER_SUBREDDIT)
     root = ET.fromstring(_get(url))
     posts = []
-    for entry in root.findall("atom:entry", RSS_NS):
+    for rank, entry in enumerate(root.findall("atom:entry", RSS_NS), 1):
         link_el = entry.find("atom:link", RSS_NS)
         id_el = entry.find("atom:id", RSS_NS)
         title_el = entry.find("atom:title", RSS_NS)
@@ -127,6 +128,7 @@ def fetch_rss(sub):
             "url": permalink,
             "score": 0,
             "num_comments": 0,
+            "rank": rank,
             "created_utc": created_utc,
         })
     return posts
@@ -160,7 +162,8 @@ def main():
             seen_ids.add(p["id"])
             all_posts.append(p)
 
-    all_posts.sort(key=lambda p: (p["score"], p["created_utc"]), reverse=True)
+    # Reihenfolge: erst Posts mit hoher Platzierung in den Wochen-Tops, dann Score
+    all_posts.sort(key=lambda p: (p.get("rank", 99), -p["score"], -p["created_utc"]))
     all_posts = all_posts[:MAX_TOTAL_POSTS]
 
     for p in all_posts:

@@ -580,6 +580,31 @@
   .boss-in .btxt { flex:1; min-width:200px; }
   @media (max-width:560px) { .hfloor { grid-template-columns:1fr; } .fl-label { flex-direction:row; justify-content:center; gap:8px; padding:5px; } }
 
+
+  /* ===== Villa am Meer ===== */
+  .scene { border-radius:22px; overflow:hidden; margin-bottom:16px; background:linear-gradient(#7fcfff 0%,#bfe9ff 38%,#3aa7d8 38%,#1e86c0 100%); position:relative; padding:10px 14px 0; }
+  .sky { position:absolute; top:0; left:0; right:0; height:90px; pointer-events:none; }
+  .sky .sun { position:absolute; top:10px; right:7%; font-size:34px; }
+  .sky .cloud { position:absolute; font-size:30px; opacity:.9; animation:drift 40s linear infinite; }
+  .sky .c1 { top:16px; left:6%; } .sky .c2 { top:44px; left:52%; animation-duration:55s; font-size:24px; }
+  .sky .gull { position:absolute; top:34px; right:22%; font-size:16px; }
+  @keyframes drift { 0% { transform:translateX(0); } 50% { transform:translateX(26px); } 100% { transform:translateX(0); } }
+  .villa { position:relative; z-index:2; margin:26px 18px 0; filter:drop-shadow(0 10px 14px rgba(0,60,100,.25)); }
+  .villa .roof { background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(0,0,0,.08) 22px 24px),linear-gradient(135deg,#b4573a,#d9774f); clip-path:polygon(0 100%,5% 22%,50% 0,95% 22%,100% 100%); }
+  .villa .hfloor { background:#fffdf8; border-color:#fffaf0; }
+  .villa .hfloor:last-child { border-bottom:none; border-radius:0; }
+  .rm { border-right-color:rgba(140,120,100,.2); }
+  .beach { position:relative; z-index:3; display:flex; justify-content:space-around; align-items:flex-end; padding:0 10px 30px; height:118px; margin:0 -14px; background:linear-gradient(rgba(255,255,255,0) 0 30%,#f3e0b0 30%); font-size:30px; }
+  .beach .palm { font-size:46px; margin-bottom:6px; }
+  .beach .boat { position:absolute; left:46%; top:2px; bottom:auto; font-size:28px; animation:bob 3s infinite; }
+  .beach .waves { position:absolute; left:0; right:0; bottom:0; height:28px; background:repeating-radial-gradient(circle at 20px 28px,#e9f8ff 0 8px,#8fd5f5 9px 14px); }
+  .boss-people { align-items:flex-end; justify-content:space-around; gap:18px; }
+  .nerdy { display:flex; gap:12px; align-items:flex-end; flex:1 1 280px; justify-content:center; }
+  .nfig { flex:none; height:206px; display:flex; align-items:flex-end; }
+  .ntxt { flex:1; min-width:150px; padding-bottom:20px; }
+  .boss-people .boss-in { flex:1 1 300px; }
+  @media (max-width:560px) { .villa { margin:26px 4px 0; } }
+
   /* ===== Claire ===== */
   .cl-hero { display:flex; gap:16px; align-items:center; background:linear-gradient(135deg,#f5eeff,#ffeef6); border:1px solid #eadcff; border-radius:20px; padding:16px; margin-bottom:16px; flex-wrap:wrap; }
   .cl-hero .ctx { flex:1; min-width:230px; }
@@ -4536,49 +4561,78 @@
 
   if(seededChanged){ save(); renderAll(); }
 
+  // ---------- Reddit: kuratiert nach Relevanz ----------
+  var RD_TOPICS = [
+    ["agents","🤖 Agents und KI-Tools", /\b(agents?|agentic|mcp|claude|anthropic|openai|gpt|llm|cursor|copilot|gemini|prompt|rag|model context)\b/i],
+    ["automation","⚙️ Automatisierung", /\b(automat\w*|n8n|zapier|make\.com|workflow|cron|scrap\w*|no-?code|integration)\b/i],
+    ["geld","💶 Umsatz und Business", /(\$\s?\d|€\s?\d|\b(revenue|mrr|arr|income|monetiz\w*|customers?|pricing|profit|affiliate|side hustle|first sale|paying|clients?|launch(ed)?|bootstrapp\w*|startup|saas)\b)/i],
+    ["community","🌱 Community und Creator", /\b(creators?|ugc|community|communities|influencers?|instagram|tiktok|newsletter|audience|outreach|cold (email|dm)|followers|events?|meetups?)\b/i],
+    ["tools","🧰 Tools und Repos", /\b(github|open ?source|repo|library|framework|self-?host\w*|cli|api|template|boilerplate)\b/i],
+    ["jobs","💼 Jobs", /(\[hiring\]|\bhiring\b|\bremote\b|\bfreelance\b)/i]
+  ];
+  var RD_JUNK = /(\bfeedback\b|\broast\b|\brate my\b|\[for hire\]|looking for (a )?(job|work)|please help|need help|\bhelp me\b|giveaway|upvote|mega ?thread|weekly thread|monthly thread|\bmemes?\b|\bwhat do you think\b|\bam i the only\b|\brant\b|\bunpopular opinion\b|\bshould i\b)/i;
+  var rdAll = [], rdTopic = "", rdSub = "", rdRaw = false, rdMore = false;
+  function rdScore(p){
+    var t = p.title || "", topics = [];
+    RD_TOPICS.forEach(function(x){ if(x[2].test(t)) topics.push(x[0]); });
+    var pts = topics.length*3;
+    if(p.rank) pts += Math.max(0, 10 - p.rank);
+    if(p.score) pts += Math.min(10, Math.round(Math.log(p.score+1)*2));
+    if(p.num_comments) pts += Math.min(4, Math.round(Math.log(p.num_comments+1)));
+    var junk = RD_JUNK.test(t) || t.length < 25;
+    return { topics: topics, pts: pts, junk: junk };
+  }
+  function rdCurated(){
+    var list = rdAll.map(function(p){ var r = rdScore(p); return { p:p, r:r }; });
+    if(!rdRaw) list = list.filter(function(x){ return !x.r.junk && (x.r.topics.length > 0 || (x.p.rank && x.p.rank <= 3)); });
+    if(rdTopic) list = list.filter(function(x){ return x.r.topics.indexOf(rdTopic) >= 0; });
+    if(rdSub) list = list.filter(function(x){ return x.p.subreddit === rdSub; });
+    list.sort(function(a,b){ return b.r.pts - a.r.pts; });
+    if(!rdRaw){ var per = {}; list = list.filter(function(x){ per[x.p.subreddit] = (per[x.p.subreddit]||0)+1; return per[x.p.subreddit] <= 4; }); }
+    return list;
+  }
+  function drawRedditList(){
+    var el = document.getElementById("reddit-list"); if(!el) return;
+    var list = rdCurated(), limit = rdMore || rdRaw ? 60 : 12, shown = list.slice(0, limit);
+    var f = document.getElementById("reddit-filter");
+    if(f){
+      var cnt = {}; rdAll.forEach(function(p){ var r = rdScore(p); if(r.junk && !rdRaw) return; r.topics.forEach(function(t){ cnt[t] = (cnt[t]||0)+1; }); });
+      var subs = []; rdAll.forEach(function(p){ if(subs.indexOf(p.subreddit)<0) subs.push(p.subreddit); }); subs.sort();
+      f.innerHTML = '<div class="chips"><button class="chipbtn '+(!rdTopic?'on':'')+'" data-a="rdtopic" data-k="">Alles Wichtige</button>' +
+        RD_TOPICS.filter(function(t){ return cnt[t[0]]; }).map(function(t){ return '<button class="chipbtn '+(rdTopic===t[0]?'on':'')+'" data-a="rdtopic" data-k="'+t[0]+'">'+t[1]+'<span class="cnt">'+cnt[t[0]]+'</span></button>'; }).join("") + '</div>' +
+        '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0"><select id="reddit-sub-select" style="padding:6px 10px;border-radius:8px;border:1px solid var(--line);"><option value="">Alle Subreddits</option>'+subs.map(function(x){ return '<option value="'+esc(x)+'"'+(rdSub===x?' selected':'')+'>r/'+esc(x)+'</option>'; }).join("")+'</select>' +
+        '<label style="font-size:13px;color:var(--muted)"><input type="checkbox" id="reddit-raw" '+(rdRaw?'checked':'')+'> Alles zeigen (ungefiltert)</label>' +
+        '<span style="font-size:12.5px;color:var(--muted)">'+shown.length+' von '+list.length+' gefilterten Posts, '+rdAll.length+' insgesamt</span></div>';
+      var sel = document.getElementById("reddit-sub-select"); if(sel) sel.addEventListener("change", function(){ rdSub = this.value; drawRedditList(); });
+      var rw = document.getElementById("reddit-raw"); if(rw) rw.addEventListener("change", function(){ rdRaw = this.checked; drawRedditList(); });
+    }
+    if(!shown.length){ el.innerHTML = '<div class="empty">Nichts Relevantes in dieser Auswahl. Mit „Alles zeigen“ siehst du den ungefilterten Feed.</div>'; return; }
+    var tl = {}; RD_TOPICS.forEach(function(t){ tl[t[0]] = t[1]; });
+    el.innerHTML = shown.map(function(x){
+      var p = x.p, tags = x.r.topics.map(function(t){ return '<span class="pill grey" style="margin-right:4px">'+tl[t]+'</span>'; }).join("");
+      var meta = [];
+      if(p.rank) meta.push('Platz '+p.rank+' der Woche');
+      if(p.score) meta.push('⬆️ '+p.score);
+      if(p.num_comments) meta.push('💬 '+p.num_comments);
+      return '<div class="card" style="margin-bottom:10px;padding:14px;"><div style="font-size:12px;color:var(--muted);margin-bottom:4px;">r/'+esc(p.subreddit)+(p.created?' · '+relTime(p.created):'')+'</div>' +
+        '<a href="'+esc(p.permalink)+'" target="_blank" rel="noopener" style="font-weight:600;text-decoration:none;color:inherit;">'+esc(p.title)+'</a>' +
+        '<div style="margin-top:8px">'+tags+'</div>'+(meta.length?'<div style="font-size:12px;color:var(--muted);margin-top:6px;">'+meta.join(' · ')+'</div>':'')+'</div>';
+    }).join("") + (!rdRaw && list.length > limit ? '<div style="text-align:center"><button class="btn small ghost" data-a="rdmore">Mehr anzeigen ('+(list.length-limit)+')</button></div>' : '');
+  }
   function renderReddit(){
     fetch("reddit.json?cb=" + Date.now()).then(function(r){ return r.json(); }).then(function(data){
+      rdAll = data.posts || [];
       var updEl = document.getElementById("reddit-updated");
-      var posts = data.posts || [];
       if(updEl){
-        if(!posts.length){
-          updEl.textContent = "Wird beim ersten Automatik-Lauf befüllt …";
-        } else if(data.updated){
-          try { updEl.textContent = "Stand: " + new Date(data.updated).toLocaleString("de-DE"); } catch(e){ updEl.textContent = ""; }
-        }
+        if(!rdAll.length) updEl.textContent = "Wird beim ersten Automatik-Lauf befüllt …";
+        else { var u = ""; try { u = new Date(data.updated).toLocaleString("de-DE"); } catch(e){}
+          updEl.textContent = "Nur das Wichtigste: Wochen-Tops deiner Subreddits, gefiltert nach Agents, Automatisierung, Umsatz, Creator und Tools. Stand: "+u; }
       }
-      var subs = [];
-      posts.forEach(function(p){ if(subs.indexOf(p.subreddit)===-1) subs.push(p.subreddit); });
-      subs.sort();
-      var filterEl = document.getElementById("reddit-filter");
-      if(filterEl){
-        if(subs.length){
-          var opts = '<option value="">Alle Subreddits</option>' + subs.map(function(s){ return '<option value="'+esc(s)+'">r/'+esc(s)+'</option>'; }).join("");
-          filterEl.innerHTML = '<select id="reddit-sub-select" style="padding:6px 10px;border-radius:8px;border:1px solid var(--line);">' + opts + '</select>';
-          document.getElementById("reddit-sub-select").addEventListener("change", function(){ drawRedditList(posts, this.value); });
-        } else {
-          filterEl.innerHTML = "";
-        }
-      }
-      drawRedditList(posts, "");
+      drawRedditList();
     }).catch(function(){
       var el = document.getElementById("reddit-list");
       if(el) el.innerHTML = '<div class="empty">Reddit-Feed konnte gerade nicht geladen werden.</div>';
     });
-  }
-
-  function drawRedditList(posts, filterSub){
-    var el = document.getElementById("reddit-list");
-    if(!el) return;
-    var filtered = filterSub ? posts.filter(function(p){ return p.subreddit===filterSub; }) : posts;
-    if(!filtered.length){ el.innerHTML = '<div class="empty">Noch keine Posts. Der Feed füllt sich mit dem nächsten Automatik-Lauf.</div>'; return; }
-    el.innerHTML = filtered.map(function(p){
-      return '<div class="card" style="margin-bottom:10px;padding:14px;">' +
-        '<div style="font-size:12px;color:var(--muted);margin-bottom:4px;">r/' + esc(p.subreddit) + (p.author ? ' · u/' + esc(p.author) : '') + '</div>' +
-        '<a href="' + esc(p.permalink) + '" target="_blank" rel="noopener" style="font-weight:600;text-decoration:none;color:inherit;">' + esc(p.title) + '</a>' +
-        ((p.score || p.num_comments) ? '<div style="font-size:12px;color:var(--muted);margin-top:6px;">⬆️ ' + p.score + ' · 💬 ' + p.num_comments + '</div>' : '') +
-      '</div>';
-    }).join("");
   }
 
 
@@ -4625,6 +4679,7 @@
     "wpp-inbox-triage": {name:"Jonas", brand:"wpp", skin:"#f0c8a5", hair:"#bf9a5a", style:"short", outfit:"blazer", shirt:"#4338ca", inner:"#f4f4ff", acc:"glasses", bg:"#e6e4fd"},
     "wpp-mailbriefing": {name:"Lena", brand:"wpp", skin:"#f4cfb4", hair:"#a8412c", style:"long", outfit:"shirt", shirt:"#7c3aed", inner:"#ffffff", acc:"earring", lashes:true, bg:"#e6e4fd"},
     "affiliate-triage": {name:"Sam", brand:"wpp", skin:"#d09a72", hair:"#2f2f36", style:"bun", outfit:"blazer", shirt:"#2f5bd8", inner:"#eef2ff", acc:"glasses", lashes:true, bg:"#e6e4fd"},
+    "nerdy": {name:"Nerdy", skin:"#eac3a2", hair:"#1f1a17", style:"messy", outfit:"tee", shirt:"#3b4048", full:true, athletic:true, stubble:true, acc:"glasses", bg:"#fbe9d8"},
     "reddit-feed": {name:"Reddie", bot:true, shirt:"#64748b", bg:"#e5e9f0"}
   };
   var FALLBACK = {
@@ -4665,7 +4720,7 @@
   function avatarSvg(p, st, size){
     size = size || 84;
     var small = size <= 60, id = "ag"+(++avN);
-    var vb = small ? "12 6 76 76" : "0 0 100 120", w = size, hgt = small ? size : Math.round(size*1.2);
+    var vb = small ? "12 6 76 76" : p.full ? "0 0 100 250" : "0 0 100 120", w = size, hgt = small ? size : Math.round(size*(p.full ? 2.5 : 1.2));
     var o = '<svg class="avsvg" viewBox="'+vb+'" width="'+w+'" height="'+hgt+'" aria-hidden="true"><defs><clipPath id="'+id+'c"><circle cx="50" cy="44" r="38"/></clipPath>';
     if(!p.bot) o += '<linearGradient id="'+id+'s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+shade(p.skin,.1)+'"/><stop offset="1" stop-color="'+shade(p.skin,-.12)+'"/></linearGradient>';
     o += '</defs>';
@@ -4686,6 +4741,14 @@
     if(long) o += '<path d="M29 40 Q27 13 50 13 Q73 13 71 40 L75 86 Q62 90 62 72 L38 72 Q38 90 25 86 Z" fill="'+hair+'"/>';
     if(p.style==="curly"){ [[31,34],[28,46],[33,57],[69,34],[72,46],[67,57],[37,20],[50,16],[63,20],[40,28],[60,28]].forEach(function(c){ o += '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="9.5" fill="'+hair+'"/>'; }); }
     // Oberkörper
+    if(p.full){
+      var tr = "#17181c", trL = "#25262c";
+      o += '<path d="M15 154 L85 154 L84 238 L54 238 L50 178 L46 238 L16 238 Z" fill="'+tr+'"/><path d="M50 178 L50 156" stroke="#000" stroke-width="1" opacity=".5"/><path d="M33 160 L31 236 M67 160 L69 236" stroke="'+trL+'" stroke-width="1.2"/><path d="M21 158 Q24 168 22 176 M79 158 Q76 168 78 176" stroke="'+trL+'" stroke-width="1.2" fill="none"/>';
+      o += '<path d="M10 238 L46 238 L48 248 L5 248 Q5 241 10 238Z" fill="#0c0c0e"/><path d="M90 238 L54 238 L52 248 L95 248 Q95 241 90 238Z" fill="#0c0c0e"/><path d="M8 246 L47 246 M92 246 L53 246" stroke="#3a3a40" stroke-width="1"/>';
+      o += '<path d="M2 122 Q2 90 30 83 L43 79 Q50 85 57 79 L70 83 Q98 90 98 122 L93 155 L7 155 Z" fill="'+body+'"/>';
+      o += '<rect x="14" y="152" width="72" height="6" rx="1.5" fill="#0d0d0f"/><rect x="46" y="152.6" width="8" height="4.8" rx="1" fill="none" stroke="#b8bcc4" stroke-width="1"/>';
+      o += '<path d="M16 100 Q50 116 84 100" stroke="#000" stroke-width="1.2" fill="none" opacity=".12"/><path d="M50 98 L50 150" stroke="#000" stroke-width="1" opacity=".1"/><path d="M26 126 Q38 134 50 130 Q62 134 74 126" stroke="#000" stroke-width="1" fill="none" opacity=".1"/>';
+    } else
     o += '<path d="M6 122 Q6 90 31 83 L43 79 Q50 85 57 79 L69 83 Q94 90 94 122 Z" fill="'+body+'"/>';
     o += '<path d="M6 122 Q6 92 24 85 L32 83 Q20 98 22 122 Z" fill="#fff" opacity=".08"/><path d="M94 122 Q94 92 76 85 L68 83 Q80 98 78 122 Z" fill="#000" opacity=".08"/>';
     // Hals
@@ -4698,11 +4761,23 @@
       o += '<path d="M31 85 Q50 101 69 85 Q66 75 50 76 Q34 75 31 85Z" fill="'+bodyD+'"/><path d="M38 80 Q50 91 62 80 Q56 77 50 78 Q44 77 38 80Z" fill="'+skin+'"/><path d="M38 80 Q50 91 62 80 Q56 79 50 80 Q44 79 38 80Z" fill="'+skinD+'" opacity=".5"/>';
       o += '<path d="M45 92 L44 108 M55 92 L56 108" stroke="#f4f4f4" stroke-width="1.6" stroke-linecap="round"/><circle cx="44" cy="109" r="1.6" fill="#f4f4f4"/><circle cx="56" cy="109" r="1.6" fill="#f4f4f4"/>';
       o += '<path d="M36 112 Q50 118 64 112 L66 122 L34 122 Z" fill="'+bodyD+'" opacity=".35"/>';
+    } else if(p.outfit==="tee"){
+      o += '<path d="M38 80 Q50 91 62 80 Q56 76 50 77 Q44 76 38 80Z" fill="'+skin+'"/><path d="M38 80 Q50 91 62 80" stroke="'+bodyD+'" stroke-width="2.6" fill="none" stroke-linecap="round"/>';
     } else if(p.outfit==="knit"){
       o += '<path d="M37 80 Q50 93 63 80 Q57 76 50 77 Q43 76 37 80Z" fill="'+skin+'"/><path d="M37 80 Q50 93 63 80" stroke="'+bodyD+'" stroke-width="3" fill="none" stroke-linecap="round"/>';
       for(var i=0;i<7;i++) o += '<path d="M'+(22+i*9.3)+' 100 L'+(22+i*9.3)+' 122" stroke="'+bodyD+'" stroke-width="1" opacity=".22"/>';
     } else {
       o += '<path d="M41 79 L50 96 L59 79 Q50 86 41 79Z" fill="'+skin+'"/><path d="M34 83 L43 78 L50 97 L38 98 Z" fill="'+bodyL+'"/><path d="M66 83 L57 78 L50 97 L62 98 Z" fill="'+bodyL+'"/><path d="M43 78 L50 97 L57 78" stroke="'+bodyD+'" stroke-width="1" fill="none"/>';
+    }
+    if(p.full){
+      var armSk = skin, sl = bodyD;
+      [0,1].forEach(function(i){
+        var t = i ? 'translate(100,0) scale(-1,1)' : '';
+        o += '<g transform="'+t+'"><path d="M6 94 Q-1 106 3 134 L19 136 Q20 108 27 90 Z" fill="'+body+'"/><path d="M3 134 L19 136 L19 138 L3 136Z" fill="'+sl+'"/>';
+        o += '<path d="M3.2 136 Q1.5 152 4.5 166 L17 166 Q20.5 152 19 138 Z" fill="'+armSk+'"/><path d="M4 140 Q3 152 5.5 164 L8 164 Q6.5 152 7 140Z" fill="#000" opacity=".06"/>';
+        o += '<path d="M6 112 Q10 104 17 112" stroke="'+sl+'" stroke-width="1.4" fill="none" opacity=".5"/>';
+        o += '<rect x="3.6" y="158" width="15" height="4.4" rx="2" fill="#1d2230"/><ellipse cx="11" cy="171" rx="6.4" ry="8" fill="'+armSk+'"/></g>';
+      });
     }
     if(p.pin) o += '<path d="M60 96 l2.2 2.2 l-2.2 2.2 l-2.2 -2.2 Z" fill="#f5b301" stroke="#b7791f" stroke-width=".6"/>';
     if(p.brand && p.outfit!=="hoodie"){
@@ -4721,6 +4796,7 @@
     else o += '<path d="M36.5 36.2 Q41.5 33.4 47 35.4 M53 35.4 Q58.5 33.4 63.5 36.2" stroke="'+bk+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
     o += eyeSvg(42.5, 42, st, p.lashes, -1) + eyeSvg(57.5, 42, st, p.lashes, 1);
     // Bart
+    if(p.stubble) o += '<path d="M34 47 Q33 62 50 66 Q67 62 66 47 Q63 57 56 58.5 Q50 57 44 58.5 Q37 57 34 47Z" fill="'+hairD+'" opacity=".22"/>';
     if(p.beard) o += '<path d="M34 47 Q33 63 50 67 Q67 63 66 47 Q63 58 56 58.5 Q50 57 44 58.5 Q37 58 34 47Z" fill="'+hairD+'" opacity=".92"/>';
     // Mund
     var lip = p.beard ? "#b45a52" : "#c9625f";
@@ -4733,6 +4809,7 @@
     var cap = '<path d="M32.5 41 Q29 14 50 14.5 Q71 14 67.5 41 Q66 30.5 59 27 Q50 31.5 41 27 Q34 30.5 32.5 41Z" fill="'+hair+'"/>';
     if(p.style==="long") cap = '<path d="M32.5 42 Q30 14 50 14.5 Q70 14 67.5 42 Q64 29 52 26.5 Q41 28 32.5 42Z" fill="'+hair+'"/><path d="M34 40 Q36 30 50 26.6" stroke="'+hairL+'" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".7"/>';
     else if(p.style==="bun") cap = '<circle cx="50" cy="10.5" r="8.4" fill="'+hair+'"/><circle cx="47" cy="8.5" r="2.4" fill="'+hairL+'" opacity=".5"/>' + cap;
+    else if(p.style==="messy") cap = '<path d="M32 41 Q27 15 50 13 Q73 15 68 41 Q66 31 58 27 Q50 31 42 27 Q34 31 32 41Z" fill="'+hair+'"/><path d="M36 22 L33 12 L41 18 L44 9 L50 17 L56 9 L58 18 L65 12 L63 23" fill="'+hair+'"/><path d="M40 20 Q50 15 60 20" stroke="'+hairL+'" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".5"/>';
     else if(p.style==="curly") cap = '<path d="M33 38 Q31 22 50 21 Q69 22 67 38 Q63 29 50 28.6 Q37 29 33 38Z" fill="'+hair+'"/>';
     else cap += '<path d="M38 22 Q50 17 62 22" stroke="'+hairL+'" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".6"/>';
     o += cap;
@@ -4801,12 +4878,12 @@
     var bp = personaOf(boss), bst = effSt(boss);
     var cj = workData.claire || {};
     var say = cj.message || claireTopNudge();
-    var bossHtml = '<div class="boss-in"><div class="bossav">'+avatarSvg(bp, bst, 104)+'<div class="desk bossdesk"></div></div><div class="btxt"><div class="bname">'+esc(bp.name)+' <span class="pill clero">Chefin im Büro</span></div><div class="brole">'+esc(boss.name||"Persönliche Assistenz")+', hält dir den Rücken frei und gibt Struktur</div><div class="speech">'+esc(say)+'</div><div class="addbar"><button class="btn small" data-a="goto" data-tab="claire">Mit Claire sprechen</button></div></div></div>';
+    var bossHtml = '<div class="boss-in"><div class="bossav">'+avatarSvg(bp, bst, 104)+'<div class="desk bossdesk"></div></div><div class="btxt"><div class="bname">'+esc(bp.name)+' <span class="pill clero">Persönliche Assistenz</span></div><div class="brole">'+'Sitzt neben Nerdy, hält dir den Rücken frei und gibt Struktur</div><div class="speech">'+esc(say)+'</div><div class="addbar"><button class="btn small" data-a="goto" data-tab="claire">Mit Claire sprechen</button></div></div></div>';
     var h = '';
     var HOUSE = [
       {key:"wpp", label:"2. Etage", sub:"WPP Media", cls:"f-wpp", fallback:["Großraumbüro WPP","🏢"], rooms:[["Mail-Zentrale","📬","📚",["wpp-inbox-triage","wpp-mailbriefing"]],["Affiliate-Abteilung","🤝","📈",["affiliate-triage"]]]},
       {key:"clero", label:"1. Etage", sub:"Clero", cls:"f-clero", fallback:["Großraumbüro Clero","🌱"], rooms:[["Posteingang","📥","🪴",["clero-dm-sichtung"]],["Outreach-Studio","📣","🎙️",["clero-ig-outreach"]],["Ablage und Archiv","🗂️","📚",["clero-dm-ablage"]],["Lagezentrum","📊","📈",["clero-pipeline"]]]},
-      {key:"mehr", label:"Untergeschoss", sub:"Technik", cls:"f-tech", fallback:["Technikraum","🛠️"], rooms:[["Serverraum","🖥️","🔌",["reddit-feed"]]]}
+      {key:"mehr", label:"Souterrain", sub:"Technik", cls:"f-tech", fallback:["Technikraum","🛠️"], rooms:[["Serverraum","🖥️","🔌",["reddit-feed"]]]}
     ];
     var order = { running:0, error:1, idle:2, paused:3 };
     function floorOf(x){ return x.area==="wpp" ? "wpp" : x.area==="clero" ? "clero" : "mehr"; }
@@ -4814,8 +4891,14 @@
       list.sort(function(a,b){ return (order[effSt(a)]||0)-(order[effSt(b)]||0); });
       return '<div class="rm"><div class="rm-head">'+icon+' '+title+'</div><div class="rm-decor">'+decor+'</div><div class="rm-people">'+list.map(wsHtml).join("")+'</div><div class="rm-floor"></div></div>';
     }
-    h += '<div class="house"><div class="roof"><span>🏠 Dein Büro-Haus</span></div>';
-    h += '<div class="hfloor f-top"><div class="fl-label"><b>Dachgeschoss</b><span>Chefetage</span></div><div class="rooms"><div class="rm rm-boss"><div class="rm-head">👑 Claires Chefbüro</div><div class="rm-decor">🪴</div><div class="rm-people">'+bossHtml+'</div><div class="rm-floor"></div></div></div></div>';
+    var np = personaOf({id:"nerdy"});
+    var dmOpen = workData.dms && workData.dms.threads ? workData.dms.threads.filter(dmIsOpen).length : 0;
+    var nsay = fire ? "Bei "+fire+" Mitarbeitern brennt es gerade. Ich schaue sofort drauf." :
+      (running ? running+" im Einsatz, der Rest steht bereit. " : "Alle bereit, es läuft ruhig. ") + (dmOpen ? dmOpen+" DMs warten auf dich." : "Keine offenen DMs.");
+    var nerdyHtml = '<div class="nerdy"><div class="nfig">'+avatarSvg(np, "idle", 82)+'</div><div class="ntxt"><div class="bname">Nerdy <span class="pill clero">Leitung der Villa</span></div><div class="brole">Behält das ganze Haus im Blick, trainiert morgens, plant abends</div><div class="speech">'+esc(nsay)+'</div></div></div>';
+    h += '<div class="scene"><div class="sky"><span class="sun">☀️</span><span class="cloud c1">☁️</span><span class="cloud c2">☁️</span><span class="gull">🕊️</span></div>';
+    h += '<div class="villa"><div class="roof"><span>🏝️ Villa am Meer</span></div>';
+    h += '<div class="hfloor f-top"><div class="fl-label"><b>Dachgeschoss</b><span>Chefetage</span></div><div class="rooms"><div class="rm rm-boss"><div class="rm-head">👑 Chefetage mit Meerblick</div><div class="rm-decor">🏆</div><div class="rm-people boss-people">'+nerdyHtml+bossHtml+'</div><div class="rm-floor"></div></div></div></div>';
     HOUSE.forEach(function(F){
       var mine = team.filter(function(x){ return floorOf(x)===F.key; }), used = {}, rms = "";
       F.rooms.forEach(function(r){
@@ -4828,6 +4911,7 @@
       if(rms) h += '<div class="hfloor '+F.cls+'"><div class="fl-label"><b>'+F.label+'</b><span>'+F.sub+'</span></div><div class="rooms">'+rms+'</div></div>';
     });
     h += '</div>';
+    h += '<div class="beach"><span class="palm">🌴</span><span>⛱️</span><span class="boat">⛵</span><span>🏖️</span><span class="palm">🌴</span><div class="waves"></div></div></div>';
     if(!team.length) h += '<div class="empty">Noch niemand im Büro. Neue Agents erscheinen hier, sobald sie sich in agents.json melden.</div>';
     box.innerHTML = h;
     var lg = document.getElementById("ag-log");
@@ -5135,6 +5219,8 @@
     var el = e.target.closest ? e.target.closest("[data-a]") : null; if(!el) return;
     var a = el.dataset.a;
     if(a==="wrefresh"){ loadWorkData(); return; }
+    if(a==="rdtopic"){ rdTopic = el.getAttribute("data-k")||""; rdMore = false; drawRedditList(); return; }
+    if(a==="rdmore"){ rdMore = true; drawRedditList(); return; }
     if(a==="agtoggle"){ agOpen[el.dataset.id] = !agOpen[el.dataset.id]; renderOffice(); return; }
     if(a==="cenergy"){ var cc = CL(), tt = todayStr(); cc.checkins[tt] = cc.checkins[tt] || {}; cc.checkins[tt].energy = Number(el.dataset.v); save(); renderClaire(); return; }
     if(a==="cdump"){
