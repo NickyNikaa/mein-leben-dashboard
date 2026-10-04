@@ -1,6 +1,6 @@
 {
- "_hinweis": "Wird vom Agent 'Clero: DM-Sichtung' befüllt. Felder pro Thread: id, handle, name, category (host|creator|partner|sonstiges), last_message, last_at, unread, status (neu|entwurf|spaeter|beantwortet|abgelegt), draft, url, ablage, note.",
- "updated": "2026-10-04T10:10:15Z",
+ "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz: Das Repo ist öffentlich, deshalb nur Vorname, Kategorie, neutrale Kurzzusammenfassung und Antwortentwurf, keine Handles und keine Wortlaute. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, ablage, note.",
+ "updated": "2026-10-04T11:01:43Z",
  "account": "clero.app",
  "threads": []
 }
