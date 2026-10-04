@@ -22,7 +22,7 @@ a.add_argument("--task"); a.add_argument("--result"); a.add_argument("--note"); 
 a.add_argument("--done", type=int); a.add_argument("--total", type=int); a.add_argument("--label"); a.add_argument("--name"); a.add_argument("--area")
 d = sub.add_parser("dm"); d.add_argument("--id", required=True); d.add_argument("--handle"); d.add_argument("--name")
 d.add_argument("--category", choices=["host","creator","partner","sonstiges"]); d.add_argument("--message"); d.add_argument("--at")
-d.add_argument("--unread", action="store_true"); d.add_argument("--status"); d.add_argument("--draft"); d.add_argument("--url"); d.add_argument("--ablage")
+d.add_argument("--unread", action="store_true"); d.add_argument("--status"); d.add_argument("--draft"); d.add_argument("--url"); d.add_argument("--ablage"); d.add_argument("--lead")
 x = ap.parse_args()
 
 if x.cmd == "agent":
@@ -51,7 +51,7 @@ else:
     db = load("dms.json"); th = next((i for i in db["threads"] if i["id"] == x.id), None)
     if not th: th = {"id": x.id, "status": "neu"}; db["threads"].append(th)
     for k, v in [("handle", x.handle), ("name", x.name), ("category", x.category), ("last_message", x.message), ("last_at", x.at or now()),
-                 ("status", x.status), ("draft", x.draft), ("url", x.url), ("ablage", x.ablage)]:
+                 ("status", x.status), ("draft", x.draft), ("url", x.url), ("ablage", x.ablage), ("lead", x.lead)]:
         if v is not None: th[k] = v
     if x.unread: th["unread"] = True
     if x.draft and not x.status: th["status"] = "entwurf"

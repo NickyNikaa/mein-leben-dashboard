@@ -1095,6 +1095,11 @@
     </div>
 
     <div class="card">
+      <div class="cardhead"><div><h2>🎯 Outreach-Pipeline <span class="hint">Notion-Listen</span></h2><div class="sub" id="pl-updated"></div></div></div>
+      <div id="pl-body"></div>
+    </div>
+
+    <div class="card">
       <h2>⚙️ Clero-Automationen <span class="hint">Antwort, Outreach, Ablage</span></h2>
       <div class="sub">Was dir die Agents bei Clero gerade abnehmen. Details im Reiter Agents.</div>
       <div id="work-agents"></div>
@@ -4567,6 +4572,7 @@
   function dmIsOpen(th){ var s = dmStatus(th); return s!=="beantwortet" && s!=="abgelegt"; }
 
   function loadWorkData(){
+    fetch("pipeline.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.pipeline = d; renderWork(); }).catch(function(){});
     fetch("dms.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.dms = d; workData.dmErr = false; renderWork(); }).catch(function(){ workData.dmErr = true; renderWork(); });
     fetch("claire.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.claire = d; renderWork(); }).catch(function(){});
     fetch("agents.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.agents = d; workData.agErr = false; renderWork(); }).catch(function(){ workData.agErr = true; renderWork(); });
@@ -4742,6 +4748,24 @@
       '<div class="stat"><div class="n">'+drafts+'</div><div class="l">Antwort-Entwürfe bereit</div></div>'+
       '<div class="stat"><div class="n">'+cTasks.length+'</div><div class="l">Offene Clero-Aufgaben</div></div>';
 
+    // Outreach-Pipeline (nur Zahlen)
+    var plb = document.getElementById("pl-body");
+    if(plb){
+      var pl = workData.pipeline;
+      if(!pl || !pl.lists) plb.innerHTML = '<div class="empty">pipeline.json fehlt noch.</div>';
+      else {
+        var plu = document.getElementById("pl-updated"); if(plu && pl.updated) plu.textContent = "Stand: "+new Date(pl.updated).toLocaleDateString("de-DE");
+        plb.innerHTML = pl.lists.map(function(L){
+          var bars = L.stages.map(function(st){
+            var pct = L.total ? Math.round(st[1]/L.total*100) : 0;
+            return '<div style="display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px"><div style="width:130px">'+st[0]+'</div><div style="flex:1;background:rgba(127,127,127,.15);border-radius:6px;height:10px;overflow:hidden"><div style="width:'+Math.max(pct,st[1]?2:0)+'%;height:100%;background:var(--accent,#7c5cff)"></div></div><div style="width:36px;text-align:right"><b>'+st[1]+'</b></div></div>';
+          }).join("");
+          var foc = L.focus.map(function(f){ return '<span class="chipbtn on" style="cursor:default">'+f[0]+'<span class="cnt">'+f[1]+'</span></span>'; }).join(" ");
+          return '<div style="margin:10px 0 16px"><div style="font-weight:600;margin-bottom:4px">'+L.title+' <span class="hint">'+L.total+' Einträge</span></div>'+bars+'<div class="chips" style="margin-top:8px">'+foc+'</div></div>';
+        }).join("");
+      }
+    }
+
     // DM-Liste
     var upd = document.getElementById("dm-updated");
     if(upd){
@@ -4766,6 +4790,7 @@
         if(th.handle) h += '<span class="ameta" style="font-size:12px;color:var(--muted)">@'+esc(String(th.handle).replace(/^@/,""))+'</span>';
         h += '<span class="pill clero">'+esc(DM_CATS[th.category]||"Sonstiges")+'</span><span class="pill '+lab[1]+'">'+lab[0]+'</span>';
         if(th.unread) h += '<span class="pill bad">ungelesen</span>';
+        if(th.lead) h += '<span class="pill ok">Lead: '+esc(th.lead)+'</span>';
         h += '<span class="when">'+(th.last_at?relTime(th.last_at):'')+'</span></div>';
         h += '<div class="msg">'+esc(th.last_message||"")+'</div>';
         if(th.draft) h += '<div class="draft"><b>Antwortentwurf</b>'+esc(th.draft)+'</div>';

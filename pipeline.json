@@ -1,0 +1,12 @@
+{
+ "_hinweis": "Nur Zahlen aus den Notion-Listen. Keine Namen, Handles oder Kontaktdaten, weil dieses Repo oeffentlich ist.",
+ "updated": "2026-10-04T12:00:00Z",
+ "lists": [
+  {"id": "community", "title": "Community Outreach", "total": 413,
+   "stages": [["Nicht begonnen",134],["Angeschrieben",245],["Zusage ohne LOI",3],["LOI Signed",19],["On hold",12]],
+   "focus": [["Zusagen ohne LOI",3],["Angeschrieben mit Passung Hoch",14],["Nicht begonnen mit Passung Hoch",3]]},
+  {"id": "creator", "title": "Creator Outreach", "total": 61,
+   "stages": [["Angeschrieben",47],["Termin ausgemacht",1],["Bereits an Bord",1],["Übersprungen",11],["Gesperrt",1]],
+   "focus": [["Angeschrieben, wartet auf Antwort",47],["Termin ausgemacht",1]]}
+ ]
+}
