@@ -1,6 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": null,
- "message": "",
- "nudges": []
+ "updated": "2026-10-04T18:40:20Z",
+ "message": "Heute hat Clero 7 DMs gesichtet und Antwortentwürfe geschrieben, 1 ist abgelegt. Magst du dir jetzt kurz Zeit für deine Reflexion nehmen?",
+ "nudges": [
+  "Fokus für morgen: Du bist von 8:00 bis 16:30 bei WPP. Wähl eine Sache für den Vormittag, die zuerst dran kommt.",
+  "Im Reiter Claire kannst du den Tagesrückblick ausfüllen oder offene Gedanken kurz sortieren lassen.",
+  "7 DM-Entwürfe warten auf dein OK. Zehn ruhige Minuten reichen, das muss nicht heute sein.",
+  "Es ist schon spät am Abend. Bildschirm zu, Tee, früh ins Bett: Morgen startest du früh."
+ ]
 }
