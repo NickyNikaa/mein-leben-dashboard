@@ -1,6 +1,91 @@
 {
- "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz: Das Repo ist öffentlich, deshalb nur Vorname, Kategorie, neutrale Kurzzusammenfassung und Antwortentwurf, keine Handles und keine Wortlaute. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, ablage, note.",
- "updated": "2026-10-04T11:01:43Z",
+ "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz: Das Repo ist öffentlich, deshalb keine Handles, keine Nachnamen, keine Kontaktdaten und keine Wortlaute aus fremden Nachrichten, nur Vorname, Kategorie, neutrale Kurzzusammenfassung in eigenen Worten und Antwortentwurf. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
+ "updated": "2026-10-04T13:28:43Z",
  "account": "clero.app",
- "threads": []
+ "threads": [
+  {
+   "id": "114553816608374",
+   "status": "entwurf",
+   "name": "Kilian",
+   "category": "host",
+   "last_message": "Hat einen Beitrag zu einem Marathon Wochenende seiner Running Community geteilt.",
+   "last_at": "2026-10-04T09:30:00Z",
+   "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Marathon Wochenende aus! 🙌 Ich drück euch und allen Läufern die Daumen. Wenn du magst, quatschen wir danach mal kurz, ob Clero was für eure Community sein könnte. 💚",
+   "url": "https://www.instagram.com/direct/t/114553816608374/",
+   "lead": "Community",
+   "unread": true
+  },
+  {
+   "id": "119668546089336",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat Clero in einer Story erwähnt, Story ist nicht mehr abrufbar.",
+   "last_at": "2026-10-02T14:06:00Z",
+   "draft": "Hey, danke dir für die Story Erwähnung, das freut uns riesig! 💚 Falls du magst, tauschen wir uns gern mal kurz aus, wie wir uns gegenseitig unterstützen können.",
+   "url": "https://www.instagram.com/direct/t/119668546089336/"
+  },
+  {
+   "id": "17843722431656766",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat einen Beitrag zu einem Community Treffen in München geteilt.",
+   "last_at": "2026-10-01T17:09:00Z",
+   "draft": "Hey, danke fürs Teilen, was für ein schönes Foto von eurer Community! 🙌 Wir bringen bei Clero Münchner Communities an einem Ort zusammen. Ich erzähl dir gern mehr, wenn du Lust auf einen kurzen Austausch hast.",
+   "url": "https://www.instagram.com/direct/t/17843722431656766/",
+   "lead": "Community"
+  },
+  {
+   "id": "18073813787446121",
+   "status": "entwurf",
+   "name": "Milena",
+   "category": "creator",
+   "last_message": "Hat Clero in einer Story erwähnt und ein Video von einem Event geteilt.",
+   "last_at": "2026-09-30T15:47:00Z",
+   "draft": "Hey Milena, danke dir für die Erwähnung und das Video, das hat mich richtig gefreut! 💚 Wie hat dir das Event gefallen?",
+   "url": "https://www.instagram.com/direct/t/18073813787446121/",
+   "lead": "Creator"
+  },
+  {
+   "id": "116481126407496",
+   "status": "entwurf",
+   "name": "milena",
+   "category": "creator",
+   "last_message": "Hat mehrere Beiträge zu Community Events und Kultur Themen geteilt.",
+   "last_at": "2026-09-29T20:36:00Z",
+   "draft": "Hey, danke dir fürs Teilen der Beiträge, die Inspiration kommt genau richtig! 💚 Sag gern Bescheid, wenn du Lust hast, dich mal über Clero auszutauschen.",
+   "url": "https://www.instagram.com/direct/t/116481126407496/"
+  },
+  {
+   "id": "18057648707475624",
+   "status": "entwurf",
+   "name": "Susanne",
+   "category": "host",
+   "last_message": "Bedankt sich fürs Gespräch, findet die Idee spannend, kann aktuell aber noch nicht einsteigen und meldet sich später.",
+   "last_at": "2026-09-26T12:00:00Z",
+   "draft": "Hey Susanne, danke dir für deine ehrliche Rückmeldung und das nette Feedback! 💚 Total verständlich, nimm dir die Zeit, die du brauchst. Melde dich einfach, sobald es bei dir passt, wir freuen uns jederzeit auf dich.",
+   "url": "https://www.instagram.com/direct/t/18057648707475624/",
+   "lead": "Community, angeschrieben"
+  },
+  {
+   "id": "17844448839622742",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat ein Story Video einer Community Veranstaltung geteilt.",
+   "last_at": "2026-09-20T10:00:00Z",
+   "draft": "Hey, danke für das Video, sieht nach einem tollen Abend aus! 🙌 Wir bringen bei Clero Münchner Communities zusammen. Lass uns gern mal austauschen, wie wir zusammenarbeiten könnten.",
+   "url": "https://www.instagram.com/direct/t/17844448839622742/"
+  },
+  {
+   "id": "18103294814056503",
+   "status": "abgelegt",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Geteilter Inhalt ist nicht mehr verfügbar, keine Frage enthalten.",
+   "last_at": "2026-09-28T20:13:00Z",
+   "url": "https://www.instagram.com/direct/t/18103294814056503/"
+  }
+ ]
 }
