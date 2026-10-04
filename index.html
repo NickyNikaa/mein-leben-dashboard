@@ -550,6 +550,36 @@
   .arow .as { font-size:12.5px; color:var(--muted); }
   @media (prefers-reduced-motion: reduce) { .ws *, .ws .av, .avsvg .eyes { animation:none !important; } }
 
+
+  /* ===== Buero-Haus ===== */
+  .house { margin-bottom:16px; }
+  .roof { height:62px; background:linear-gradient(135deg,#7a5c4a,#a5806a); clip-path:polygon(0 100%,8% 28%,50% 0,92% 28%,100% 100%); display:flex; align-items:flex-end; justify-content:center; padding-bottom:8px; color:#fff; font-weight:800; letter-spacing:.3px; margin:0 -2px; }
+  .hfloor { display:grid; grid-template-columns:100px 1fr; border-top:6px solid #8b6f5c; background:#fffdf9; border-left:6px solid #8b6f5c; border-right:6px solid #8b6f5c; }
+  .hfloor:last-child { border-bottom:8px solid #6f5646; border-radius:0 0 8px 8px; }
+  .fl-label { display:flex; flex-direction:column; justify-content:center; gap:2px; padding:8px; font-size:11.5px; color:#fff; text-align:center; }
+  .fl-label b { font-size:12.5px; }
+  .f-top .fl-label { background:#b8895b; } .f-wpp .fl-label { background:#5b4fd6; } .f-clero .fl-label { background:#1f9d57; } .f-tech .fl-label { background:#556070; }
+  .rooms { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:0; }
+  .rm { position:relative; padding:12px 10px 0; border-right:3px solid rgba(80,60,40,.18); min-height:250px; display:flex; flex-direction:column; overflow:hidden; }
+  .rm:last-child { border-right:none; }
+  .f-top .rm { background:linear-gradient(#fff7ec,#fbe6d0); } .f-wpp .rm { background:linear-gradient(#eeedff,#dcdbfa); } .f-clero .rm { background:linear-gradient(#e9f8ee,#d3eddc); } .f-tech .rm { background:linear-gradient(#e7ebf1,#cdd5e1); }
+  .rm::before { content:""; position:absolute; top:34px; right:14px; width:44px; height:34px; border-radius:5px; border:3px solid #fff; background:linear-gradient(#bfe3ff,#e8f6ff); box-shadow:0 1px 3px rgba(0,0,0,.12); }
+  .rm-head { font-weight:800; font-size:13px; position:relative; z-index:2; }
+  .rm-decor { position:absolute; top:78px; right:18px; font-size:26px; opacity:.9; }
+  .rm-people { flex:1; display:flex; flex-wrap:wrap; gap:6px; align-items:flex-end; justify-content:center; position:relative; z-index:2; margin-top:6px; }
+  .rm-floor { height:16px; margin:0 -10px; background:repeating-linear-gradient(90deg,#c9a57a 0 38px,#bf9a6e 38px 40px); border-top:2px solid #a98457; }
+  .rm-people .ws { flex:1 1 150px; max-width:210px; background:transparent; box-shadow:none; padding:4px 2px 6px; }
+  .rm-people .ws .nm { margin-top:4px; }
+  .rm-people .ws .more { background:#fff; border-radius:10px; padding:8px 10px; box-shadow:0 4px 14px rgba(0,0,0,.12); }
+  .ws .stage { height:166px; }
+  .ws .desk { left:0; right:0; background:linear-gradient(#d9b88a,#bd9566); height:14px; border-radius:4px; }
+  .boss-in { display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap; justify-content:center; padding-bottom:10px; }
+  .bossav { position:relative; width:108px; height:132px; flex:none; display:flex; align-items:flex-end; justify-content:center; }
+  .bossav .avsvg { position:relative; z-index:1; margin-bottom:6px; }
+  .bossdesk { position:absolute; left:0; right:0; bottom:0; height:14px; z-index:2; border-radius:4px; background:linear-gradient(#d9b88a,#bd9566); }
+  .boss-in .btxt { flex:1; min-width:200px; }
+  @media (max-width:560px) { .hfloor { grid-template-columns:1fr; } .fl-label { flex-direction:row; justify-content:center; gap:8px; padding:5px; } }
+
   /* ===== Claire ===== */
   .cl-hero { display:flex; gap:16px; align-items:center; background:linear-gradient(135deg,#f5eeff,#ffeef6); border:1px solid #eadcff; border-radius:20px; padding:16px; margin-bottom:16px; flex-wrap:wrap; }
   .cl-hero .ctx { flex:1; min-width:230px; }
@@ -4585,73 +4615,134 @@
     return { st: st, stale: stale };
   }
   // ---------- Avatare, Personas, Buero ----------
+  var BRAND = { clero:"#22a559", wpp:"#6d4cff" };
   var PERSONAS = {
-    "claire": {name:"Claire", skin:"#f3cdb0", hair:"#7a3b1d", style:"long", shirt:"#7c3aed", acc:"earring", crown:true, bg:"#fde7f3"},
-    "clero-dm-sichtung": {name:"Mia", skin:"#f5d0b5", hair:"#2b2118", style:"bun", shirt:"#a855f7", acc:"headset", bg:"#f1eafe"},
-    "clero-ig-outreach": {name:"Leo", skin:"#e8b48f", hair:"#6b4423", style:"cap", shirt:"#f97316", acc:"none", bg:"#f1eafe"},
-    "clero-dm-ablage": {name:"Noor", skin:"#b98462", hair:"#141414", style:"curly", shirt:"#14b8a6", acc:"glasses", bg:"#f1eafe"},
-    "wpp-inbox-triage": {name:"Jonas", skin:"#f2c9a6", hair:"#caa469", style:"short", shirt:"#0f766e", acc:"glasses", bg:"#e0f2f1"},
-    "wpp-mailbriefing": {name:"Lena", skin:"#f5d0b5", hair:"#a33b2a", style:"long", shirt:"#2563eb", acc:"none", bg:"#e0f2f1"},
-    "affiliate-triage": {name:"Sam", skin:"#d9a37c", hair:"#3a3a3a", style:"bun", shirt:"#64748b", acc:"glasses", bg:"#e0f2f1"},
-    "reddit-feed": {name:"Reddie", bot:true, shirt:"#64748b", bg:"#e8eefc"}
+    "claire": {name:"Claire", skin:"#f1c9aa", hair:"#8a3f1e", style:"long", outfit:"blazer", shirt:"#e6d3b3", inner:"#ffffff", acc:"earring", pin:true, lashes:true, bg:"#fbe9d8"},
+    "clero-dm-sichtung": {name:"Mia", brand:"clero", skin:"#f3cdb0", hair:"#2b2118", style:"bun", outfit:"blazer", shirt:"#1f7a47", inner:"#d9f5e3", acc:"headset", lashes:true, bg:"#dff3e6"},
+    "clero-ig-outreach": {name:"Leo", brand:"clero", skin:"#e2a97f", hair:"#5a381d", style:"short", outfit:"hoodie", shirt:"#4d9a2c", beard:true, acc:"none", bg:"#dff3e6"},
+    "clero-dm-ablage": {name:"Noor", brand:"clero", skin:"#b9835f", hair:"#17110d", style:"curly", outfit:"knit", shirt:"#2a9d8f", acc:"glasses", lashes:true, bg:"#dff3e6"},
+    "clero-pipeline": {name:"Pia", brand:"clero", skin:"#efc3a3", hair:"#c79a52", style:"long", outfit:"shirt", shirt:"#3fae6a", inner:"#ffffff", acc:"none", lashes:true, bg:"#dff3e6"},
+    "wpp-inbox-triage": {name:"Jonas", brand:"wpp", skin:"#f0c8a5", hair:"#bf9a5a", style:"short", outfit:"blazer", shirt:"#4338ca", inner:"#f4f4ff", acc:"glasses", bg:"#e6e4fd"},
+    "wpp-mailbriefing": {name:"Lena", brand:"wpp", skin:"#f4cfb4", hair:"#a8412c", style:"long", outfit:"shirt", shirt:"#7c3aed", inner:"#ffffff", acc:"earring", lashes:true, bg:"#e6e4fd"},
+    "affiliate-triage": {name:"Sam", brand:"wpp", skin:"#d09a72", hair:"#2f2f36", style:"bun", outfit:"blazer", shirt:"#2f5bd8", inner:"#eef2ff", acc:"glasses", lashes:true, bg:"#e6e4fd"},
+    "reddit-feed": {name:"Reddie", bot:true, shirt:"#64748b", bg:"#e5e9f0"}
   };
-  var FALLBACK = { skins:["#f5d0b5","#e8b48f","#c68e65","#8d5a3b"], hairs:["#2b2118","#6b4423","#caa469","#a33b2a","#3a3a3a"], styles:["short","long","bun","curly"], shirts:["#6d5efc","#f97316","#14b8a6","#2563eb","#e11d48"], names:["Alex","Robin","Sasha","Nico","Jule","Ben"] };
-  var AREA_BG = { clero:"#f1eafe", wpp:"#e0f2f1", mehr:"#e8eefc", claire:"#fde7f3" };
+  var FALLBACK = {
+    skins:["#f3cdb0","#e2a97f","#c68e65","#8d5a3b"], hairs:["#2b2118","#5a381d","#bf9a5a","#a8412c","#2f2f36"], styles:["short","long","bun","curly"], outfits:["blazer","shirt","knit","hoodie"],
+    cleroShirts:["#1f7a47","#4d9a2c","#2a9d8f","#3fae6a","#0f766e"], wppShirts:["#4338ca","#7c3aed","#2f5bd8","#5b21b6","#6366f1"], otherShirts:["#64748b","#0ea5e9","#f59e0b","#e11d48"],
+    names:["Alex","Robin","Sasha","Nico","Jule","Ben"]
+  };
+  var AREA_BG = { clero:"#dff3e6", wpp:"#e6e4fd", mehr:"#e5e9f0", claire:"#fbe9d8" };
   function hashStr(x){ var h = 0; String(x).split("").forEach(function(c){ h = (h*31 + c.charCodeAt(0)) >>> 0; }); return h; }
   function personaOf(ag){
     var base = PERSONAS[ag.id], p;
     if(base){ p = {}; Object.keys(base).forEach(function(k){ p[k] = base[k]; }); }
     else {
-      var h = hashStr(ag.id||ag.name||"x");
-      p = { name:FALLBACK.names[h%FALLBACK.names.length], skin:FALLBACK.skins[h%4], hair:FALLBACK.hairs[(h>>2)%5], style:FALLBACK.styles[(h>>3)%4], shirt:FALLBACK.shirts[(h>>4)%5], acc:["none","glasses","headset"][(h>>5)%3], bg:AREA_BG[ag.area]||"#eef0f6" };
+      var h = hashStr(ag.id||ag.name||"x"), pal = ag.area==="clero" ? FALLBACK.cleroShirts : ag.area==="wpp" ? FALLBACK.wppShirts : FALLBACK.otherShirts;
+      p = { name:FALLBACK.names[h%FALLBACK.names.length], skin:FALLBACK.skins[h%4], hair:FALLBACK.hairs[(h>>2)%5], style:FALLBACK.styles[(h>>3)%4], outfit:FALLBACK.outfits[(h>>6)%4],
+            shirt:pal[(h>>4)%pal.length], inner:"#ffffff", acc:["none","glasses","headset"][(h>>5)%3], lashes:((h>>7)%2)===0, bg:AREA_BG[ag.area]||"#eef0f6" };
+      if(ag.area==="clero" || ag.area==="wpp") p.brand = ag.area;
     }
     if(ag.persona){ Object.keys(ag.persona).forEach(function(k){ p[k] = ag.persona[k]; }); }
     return p;
   }
+  function shade(hex, a){
+    var n = parseInt(String(hex).replace("#",""), 16), r = n>>16, g = (n>>8)&255, b = n&255;
+    function f(c){ return Math.max(0, Math.min(255, Math.round(a<0 ? c*(1+a) : c+(255-c)*a))); }
+    return "#"+((1<<24)+(f(r)<<16)+(f(g)<<8)+f(b)).toString(16).slice(1);
+  }
+  var avN = 0;
+  function eyeSvg(cx, cy, st, lash, side){
+    if(st==="paused") return '<path d="M'+(cx-4)+' '+cy+' Q'+cx+' '+(cy+3)+' '+(cx+4)+' '+cy+'" stroke="#2a2118" stroke-width="1.5" fill="none" stroke-linecap="round"/>' +
+      (lash ? '<path d="M'+(cx+side*4)+' '+cy+' l'+(side*2)+' -1.4" stroke="#2a2118" stroke-width="1.1" stroke-linecap="round"/>' : '');
+    var big = st==="error", dy = st==="running" ? 0.9 : 0, rx = big ? 4.7 : 4.2, ry = big ? 3.8 : 2.9;
+    var o = '<g class="eyes"><ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="#fff" stroke="#00000022" stroke-width=".6"/>';
+    o += '<circle cx="'+cx+'" cy="'+(cy+dy)+'" r="'+(big?2.2:2.45)+'" fill="#4a3426"/><circle cx="'+cx+'" cy="'+(cy+dy)+'" r="1.15" fill="#120d0a"/><circle cx="'+(cx+0.9)+'" cy="'+(cy+dy-0.9)+'" r=".75" fill="#fff"/></g>';
+    o += '<path d="M'+(cx-rx-.2)+' '+(cy+.2)+' Q'+cx+' '+(cy-ry-1.2)+' '+(cx+rx+.2)+' '+(cy+.2)+'" stroke="#2a2118" stroke-width="1.35" fill="none" stroke-linecap="round"/>';
+    if(lash) o += '<path d="M'+(cx+side*rx)+' '+cy+' l'+(side*2.2)+' -1.6" stroke="#2a2118" stroke-width="1.1" stroke-linecap="round"/>';
+    return o;
+  }
   function avatarSvg(p, st, size){
     size = size || 84;
-    var o = '<svg class="avsvg" viewBox="0 0 100 100" width="'+size+'" height="'+size+'" aria-hidden="true">';
-    o += '<circle cx="50" cy="50" r="48" fill="'+(p.bg||"#eef0f6")+'"/>';
+    var small = size <= 60, id = "ag"+(++avN);
+    var vb = small ? "12 6 76 76" : "0 0 100 120", w = size, hgt = small ? size : Math.round(size*1.2);
+    var o = '<svg class="avsvg" viewBox="'+vb+'" width="'+w+'" height="'+hgt+'" aria-hidden="true"><defs><clipPath id="'+id+'c"><circle cx="50" cy="44" r="38"/></clipPath>';
+    if(!p.bot) o += '<linearGradient id="'+id+'s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+shade(p.skin,.1)+'"/><stop offset="1" stop-color="'+shade(p.skin,-.12)+'"/></linearGradient>';
+    o += '</defs>';
+    if(small) o += '<circle cx="50" cy="44" r="38" fill="'+(p.bg||"#eef0f6")+'"/><g clip-path="url(#'+id+'c)">';
     if(p.bot){
       var led = st==="running" ? "#3b82f6" : st==="error" ? "#ef4444" : st==="paused" ? "#9ca3af" : "#22c55e";
-      o += '<path d="M16 100 Q16 74 50 72 Q84 74 84 100 Z" fill="'+p.shirt+'"/>';
-      o += '<line x1="50" y1="18" x2="50" y2="28" stroke="#64748b" stroke-width="3"/><circle cx="50" cy="16" r="4" fill="'+led+'"/>';
-      o += '<rect x="26" y="28" width="48" height="42" rx="11" fill="#cbd5e1"/><rect x="21" y="42" width="6" height="14" rx="3" fill="#94a3b8"/><rect x="73" y="42" width="6" height="14" rx="3" fill="#94a3b8"/>';
-      o += '<g class="eyes"><rect x="34" y="40" width="10" height="10" rx="3" fill="'+led+'"/><rect x="56" y="40" width="10" height="10" rx="3" fill="'+led+'"/></g>';
-      o += '<rect x="38" y="57" width="24" height="5" rx="2.5" fill="#64748b"/></svg>';
-      return o;
+      o += '<g transform="translate(0,16)"><path d="M12 104 Q12 74 50 72 Q88 74 88 104 Z" fill="'+p.shirt+'"/><rect x="30" y="74" width="40" height="8" rx="3" fill="#94a3b8"/>';
+      o += '<line x1="50" y1="14" x2="50" y2="26" stroke="#64748b" stroke-width="3"/><circle cx="50" cy="12" r="4.5" fill="'+led+'"/>';
+      o += '<rect x="25" y="26" width="50" height="46" rx="12" fill="#cbd5e1"/><rect x="20" y="41" width="6" height="15" rx="3" fill="#94a3b8"/><rect x="74" y="41" width="6" height="15" rx="3" fill="#94a3b8"/>';
+      o += '<g class="eyes"><rect x="33" y="40" width="11" height="11" rx="3.5" fill="'+led+'"/><rect x="56" y="40" width="11" height="11" rx="3.5" fill="'+led+'"/></g><rect x="38" y="59" width="24" height="5" rx="2.5" fill="#64748b"/></g>';
+      if(small) o += '</g>';
+      return o + '</svg>';
     }
-    o += '<path d="M14 100 Q14 70 50 68 Q86 70 86 100 Z" fill="'+p.shirt+'"/>';
-    o += '<rect x="44" y="58" width="12" height="13" rx="5" fill="'+p.skin+'"/>';
-    var back = p.style==="long" ? '<path d="M29 40 Q27 18 50 18 Q73 18 71 40 L75 74 Q66 72 66 60 L34 60 Q34 72 25 74 Z" fill="'+p.hair+'"/>' : "";
-    o += back;
-    o += '<ellipse cx="50" cy="44" rx="19" ry="21" fill="'+p.skin+'"/>';
-    var top = '<path d="M31 42 Q29 19 50 19 Q71 19 69 42 Q64 30 50 30 Q36 30 31 42Z" fill="'+p.hair+'"/>';
-    if(p.style==="curly"){ top = ""; [[34,28],[42,22],[50,20],[58,22],[66,28],[31,40],[69,40]].forEach(function(c){ top += '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="9" fill="'+p.hair+'"/>'; }); }
-    if(p.style==="bun") top += '<circle cx="50" cy="15" r="8" fill="'+p.hair+'"/>';
-    if(p.style==="cap") top = '<path d="M30 38 Q50 10 70 38 Z" fill="'+p.shirt+'"/><rect x="44" y="35" width="30" height="5" rx="2.5" fill="'+p.shirt+'"/>';
-    o += top;
-    var eyes = '', mouth = '', extra = '';
-    if(st==="paused"){
-      eyes = '<path d="M38 46 Q43 50 48 46 M52 46 Q57 50 62 46" stroke="#2a2a35" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
-      mouth = '<ellipse cx="50" cy="57" rx="2.6" ry="2" fill="#7a3b3b"/>';
-    } else if(st==="error"){
-      eyes = '<g class="eyes"><circle cx="43" cy="45" r="3.4" fill="#2a2a35"/><circle cx="57" cy="45" r="3.4" fill="#2a2a35"/></g><path d="M37 39 L47 36 M63 39 L53 36" stroke="#2a2a35" stroke-width="2" stroke-linecap="round"/>';
-      mouth = '<ellipse cx="50" cy="57" rx="4.2" ry="3.2" fill="#7a2a2a"/>';
-      extra = '<path d="M73 30 Q76 36 73 39 Q70 36 73 30Z" fill="#60a5fa"/>';
-    } else if(st==="running"){
-      eyes = '<g class="eyes"><circle cx="43" cy="45" r="2.6" fill="#2a2a35"/><circle cx="57" cy="45" r="2.6" fill="#2a2a35"/></g><path d="M37 39 L46 41 M63 39 L54 41" stroke="#2a2a35" stroke-width="2" stroke-linecap="round"/>';
-      mouth = '<path d="M45 56 H55" stroke="#2a2a35" stroke-width="2.2" stroke-linecap="round"/>';
+    var skin = p.skin, skinD = shade(skin,-.2), hair = p.hair, hairL = shade(hair,.28), hairD = shade(hair,-.12), body = p.shirt, bodyD = shade(body,-.2), bodyL = shade(body,.16);
+    var inner = p.inner || "#ffffff", bcol = p.brand ? BRAND[p.brand] : "#d4a017";
+    var long = p.style==="long";
+    // Haar hinten
+    if(long) o += '<path d="M29 40 Q27 13 50 13 Q73 13 71 40 L75 86 Q62 90 62 72 L38 72 Q38 90 25 86 Z" fill="'+hair+'"/>';
+    if(p.style==="curly"){ [[31,34],[28,46],[33,57],[69,34],[72,46],[67,57],[37,20],[50,16],[63,20],[40,28],[60,28]].forEach(function(c){ o += '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="9.5" fill="'+hair+'"/>'; }); }
+    // Oberkörper
+    o += '<path d="M6 122 Q6 90 31 83 L43 79 Q50 85 57 79 L69 83 Q94 90 94 122 Z" fill="'+body+'"/>';
+    o += '<path d="M6 122 Q6 92 24 85 L32 83 Q20 98 22 122 Z" fill="#fff" opacity=".08"/><path d="M94 122 Q94 92 76 85 L68 83 Q80 98 78 122 Z" fill="#000" opacity=".08"/>';
+    // Hals
+    o += '<path d="M43 58 L43 78 Q50 86 57 78 L57 58 Z" fill="'+skin+'"/><path d="M43 62 Q50 72 57 62 L57 58 L43 58 Z" fill="'+skinD+'" opacity=".5"/>';
+    if(p.outfit==="blazer"){
+      o += '<path d="M40 79 L50 102 L60 79 Q50 86 40 79Z" fill="'+inner+'"/><path d="M40 79 Q50 86 60 79 L60 80 Q50 88 40 80Z" fill="'+skin+'"/>';
+      o += '<path d="M33 83 L42 79 L50 104 L44 114 L26 98 Z" fill="'+bodyL+'"/><path d="M67 83 L58 79 L50 104 L56 114 L74 98 Z" fill="'+bodyL+'"/>';
+      o += '<path d="M42 79 L50 104 M58 79 L50 104" stroke="'+bodyD+'" stroke-width="1" fill="none"/><circle cx="50" cy="112" r="1.7" fill="'+bodyD+'"/>';
+    } else if(p.outfit==="hoodie"){
+      o += '<path d="M31 85 Q50 101 69 85 Q66 75 50 76 Q34 75 31 85Z" fill="'+bodyD+'"/><path d="M38 80 Q50 91 62 80 Q56 77 50 78 Q44 77 38 80Z" fill="'+skin+'"/><path d="M38 80 Q50 91 62 80 Q56 79 50 80 Q44 79 38 80Z" fill="'+skinD+'" opacity=".5"/>';
+      o += '<path d="M45 92 L44 108 M55 92 L56 108" stroke="#f4f4f4" stroke-width="1.6" stroke-linecap="round"/><circle cx="44" cy="109" r="1.6" fill="#f4f4f4"/><circle cx="56" cy="109" r="1.6" fill="#f4f4f4"/>';
+      o += '<path d="M36 112 Q50 118 64 112 L66 122 L34 122 Z" fill="'+bodyD+'" opacity=".35"/>';
+    } else if(p.outfit==="knit"){
+      o += '<path d="M37 80 Q50 93 63 80 Q57 76 50 77 Q43 76 37 80Z" fill="'+skin+'"/><path d="M37 80 Q50 93 63 80" stroke="'+bodyD+'" stroke-width="3" fill="none" stroke-linecap="round"/>';
+      for(var i=0;i<7;i++) o += '<path d="M'+(22+i*9.3)+' 100 L'+(22+i*9.3)+' 122" stroke="'+bodyD+'" stroke-width="1" opacity=".22"/>';
     } else {
-      eyes = '<g class="eyes"><circle cx="43" cy="45" r="2.6" fill="#2a2a35"/><circle cx="57" cy="45" r="2.6" fill="#2a2a35"/></g>';
-      mouth = '<path d="M43 54 Q50 61 57 54" stroke="#2a2a35" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      o += '<path d="M41 79 L50 96 L59 79 Q50 86 41 79Z" fill="'+skin+'"/><path d="M34 83 L43 78 L50 97 L38 98 Z" fill="'+bodyL+'"/><path d="M66 83 L57 78 L50 97 L62 98 Z" fill="'+bodyL+'"/><path d="M43 78 L50 97 L57 78" stroke="'+bodyD+'" stroke-width="1" fill="none"/>';
     }
-    o += eyes + mouth + extra;
-    if(st!=="paused") o += '<circle cx="37" cy="53" r="3.2" fill="#f4a3a3" opacity=".35"/><circle cx="63" cy="53" r="3.2" fill="#f4a3a3" opacity=".35"/>';
-    if(p.acc==="glasses") o += '<circle cx="43" cy="45" r="7" fill="none" stroke="#334155" stroke-width="1.8"/><circle cx="57" cy="45" r="7" fill="none" stroke="#334155" stroke-width="1.8"/><line x1="50" y1="45" x2="50" y2="45" stroke="#334155" stroke-width="1.8"/><path d="M48.5 44 H51.5" stroke="#334155" stroke-width="1.8"/>';
-    if(p.acc==="headset") o += '<path d="M30 44 Q29 21 50 20 Q71 21 70 44" fill="none" stroke="#334155" stroke-width="3"/><rect x="26" y="41" width="7" height="13" rx="3" fill="#334155"/><rect x="67" y="41" width="7" height="13" rx="3" fill="#334155"/><path d="M29 53 Q33 64 44 61" stroke="#334155" stroke-width="2" fill="none"/>';
-    if(p.acc==="earring") o += '<circle cx="31" cy="55" r="2.3" fill="#f5b301"/><circle cx="69" cy="55" r="2.3" fill="#f5b301"/>';
-    if(p.crown) o += '<path d="M39 17 L42 7 L50 13 L58 7 L61 17 Z" fill="#f5b301"/><circle cx="50" cy="9" r="1.8" fill="#fff"/>';
+    if(p.pin) o += '<path d="M60 96 l2.2 2.2 l-2.2 2.2 l-2.2 -2.2 Z" fill="#f5b301" stroke="#b7791f" stroke-width=".6"/>';
+    if(p.brand && p.outfit!=="hoodie"){
+      o += '<path d="M44 79 L48 103 M56 79 L52 103" stroke="'+bcol+'" stroke-width="1.7"/><rect x="43.5" y="102" width="13" height="10" rx="2" fill="#fff" stroke="'+bcol+'" stroke-width="1.2"/><circle cx="50" cy="106" r="2" fill="'+bcol+'"/><rect x="46" y="109" width="8" height="1.4" rx=".7" fill="'+bcol+'" opacity=".7"/>';
+    }
+    // Kopf
+    o += '<ellipse cx="32.5" cy="45" rx="3.2" ry="5.2" fill="'+skinD+'"/><ellipse cx="67.5" cy="45" rx="3.2" ry="5.2" fill="'+skinD+'"/>';
+    o += '<path d="M33 38 Q33 20 50 20 Q67 20 67 38 Q67 52 61 59 Q56 65 50 65 Q44 65 39 59 Q33 52 33 38Z" fill="url(#'+id+'s)"/>';
+    if(st!=="paused") o += '<circle cx="39" cy="52" r="4" fill="#f08a8a" opacity=".22"/><circle cx="61" cy="52" r="4" fill="#f08a8a" opacity=".22"/>';
+    // Nase
+    o += '<path d="M50 43 Q47.6 50.5 49 52.2 Q50 53 51 52.2 Q52.4 50.5 50 43" fill="'+skinD+'" opacity=".28"/><path d="M47.6 52.4 Q50 54 52.4 52.4" stroke="'+skinD+'" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".7"/>';
+    // Augenbrauen
+    var by = st==="error" ? -2.2 : 0, bk = hairD;
+    if(st==="running") o += '<path d="M36.5 37 Q41.5 35 47 37.4 M53 37.4 Q58.5 35 63.5 37" stroke="'+bk+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    else if(st==="error") o += '<path d="M36.5 '+(36+by)+' Q41 '+(32+by)+' 47 '+(35.5+by)+' M53 '+(35.5+by)+' Q59 '+(32+by)+' 63.5 '+(36+by)+'" stroke="'+bk+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    else o += '<path d="M36.5 36.2 Q41.5 33.4 47 35.4 M53 35.4 Q58.5 33.4 63.5 36.2" stroke="'+bk+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    o += eyeSvg(42.5, 42, st, p.lashes, -1) + eyeSvg(57.5, 42, st, p.lashes, 1);
+    // Bart
+    if(p.beard) o += '<path d="M34 47 Q33 63 50 67 Q67 63 66 47 Q63 58 56 58.5 Q50 57 44 58.5 Q37 58 34 47Z" fill="'+hairD+'" opacity=".92"/>';
+    // Mund
+    var lip = p.beard ? "#b45a52" : "#c9625f";
+    if(st==="paused") o += '<ellipse cx="50" cy="57.5" rx="2.4" ry="1.8" fill="#8a3f3a"/>';
+    else if(st==="error") o += '<ellipse cx="50" cy="58" rx="3.3" ry="3" fill="#7a2a2a"/><path d="M47.6 56.6 Q50 55.6 52.4 56.6" stroke="#fff" stroke-width="1" fill="none"/>';
+    else if(st==="running") o += '<path d="M45.5 57 Q50 58.4 54.5 57" stroke="#8a3f3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>';
+    else o += '<path d="M44.2 56 Q50 62 55.8 56 Q50 58.6 44.2 56Z" fill="'+lip+'"/><path d="M44 55.8 Q50 58.8 56 55.8" stroke="#8a3f3a" stroke-width="1.1" fill="none" stroke-linecap="round"/>';
+    if(st==="error") o += '<path d="M72 28 Q75.5 35 72 38.5 Q68.5 35 72 28Z" fill="#7dc0ff" stroke="#4a90d9" stroke-width=".6"/>';
+    // Haar oben
+    var cap = '<path d="M32.5 41 Q29 14 50 14.5 Q71 14 67.5 41 Q66 30.5 59 27 Q50 31.5 41 27 Q34 30.5 32.5 41Z" fill="'+hair+'"/>';
+    if(p.style==="long") cap = '<path d="M32.5 42 Q30 14 50 14.5 Q70 14 67.5 42 Q64 29 52 26.5 Q41 28 32.5 42Z" fill="'+hair+'"/><path d="M34 40 Q36 30 50 26.6" stroke="'+hairL+'" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".7"/>';
+    else if(p.style==="bun") cap = '<circle cx="50" cy="10.5" r="8.4" fill="'+hair+'"/><circle cx="47" cy="8.5" r="2.4" fill="'+hairL+'" opacity=".5"/>' + cap;
+    else if(p.style==="curly") cap = '<path d="M33 38 Q31 22 50 21 Q69 22 67 38 Q63 29 50 28.6 Q37 29 33 38Z" fill="'+hair+'"/>';
+    else cap += '<path d="M38 22 Q50 17 62 22" stroke="'+hairL+'" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".6"/>';
+    o += cap;
+    // Zubehör
+    if(p.acc==="glasses") o += '<rect x="35.4" y="36.6" width="14" height="10.8" rx="4.4" fill="#cfe8ff" fill-opacity=".18" stroke="#2f3a4d" stroke-width="1.5"/><rect x="50.6" y="36.6" width="14" height="10.8" rx="4.4" fill="#cfe8ff" fill-opacity=".18" stroke="#2f3a4d" stroke-width="1.5"/><path d="M49.4 41 Q50 40 50.6 41" stroke="#2f3a4d" stroke-width="1.4" fill="none"/><path d="M35.4 41 L32.6 40 M64.6 41 L67.4 40" stroke="#2f3a4d" stroke-width="1.3"/>';
+    if(p.acc==="headset") o += '<path d="M31.5 44 Q29 17 50 16.5 Q71 17 68.5 44" fill="none" stroke="#2f3a4d" stroke-width="3" stroke-linecap="round"/><rect x="27.5" y="40" width="7" height="13" rx="3.2" fill="#2f3a4d"/><rect x="65.5" y="40" width="7" height="13" rx="3.2" fill="#2f3a4d"/><path d="M29 53 Q31 63 43 61" stroke="#2f3a4d" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="44.5" cy="61" r="2" fill="#2f3a4d"/>';
+    if(p.acc==="earring") o += '<circle cx="31.4" cy="51.4" r="2" fill="#f5b301"/><circle cx="68.6" cy="51.4" r="2" fill="#f5b301"/>';
+    // lange Haare vorn
+    if(long) o += '<path d="M32 44 Q29 68 33 88 Q41 86 40 68 Q37 56 32 44Z" fill="'+hair+'"/><path d="M68 44 Q71 68 67 88 Q59 86 60 68 Q63 56 68 44Z" fill="'+hair+'"/><path d="M33.4 52 Q32 70 35 82" stroke="'+hairL+'" stroke-width="1.3" fill="none" opacity=".55"/>';
+    if(small) o += '</g>';
     return o + '</svg>';
   }
   var STATUS_TXT = { running:["Im Einsatz","run"], idle:["Bereit","ok"], paused:["Pause","warn"], error:["Brennt","bad"] };
@@ -4672,7 +4763,7 @@
   function wsHtml(ag){
     var e = agentEffective(ag), st = effSt(ag), p = personaOf(ag), lab = STATUS_TXT[st] || ["?","grey"];
     var h = '<div class="ws st-'+st+(agOpen[ag.id]?' open':'')+'" data-a="agtoggle" data-id="'+esc(ag.id)+'">';
-    h += '<div class="stage"><div class="bubble">'+esc(bubbleText(ag, st, e))+'</div><div class="av">'+avatarSvg(p, st, 84)+'</div><div class="desk"></div>'+propHtml(st)+'</div>';
+    h += '<div class="stage"><div class="bubble">'+esc(bubbleText(ag, st, e))+'</div><div class="av">'+avatarSvg(p, st, 92)+'</div><div class="desk"></div>'+propHtml(st)+'</div>';
     h += '<div class="nm">'+esc(p.name||ag.id)+'</div><div class="rl">'+esc(ag.name||"")+'</div>';
     h += '<div class="stl"><span class="pill '+lab[1]+'">'+lab[0]+'</span></div>';
     if(st==="running" && typeof ag.progress_done==="number" && ag.progress_total){
@@ -4710,15 +4801,33 @@
     var bp = personaOf(boss), bst = effSt(boss);
     var cj = workData.claire || {};
     var say = cj.message || claireTopNudge();
-    var h = '<div class="boss"><div>'+avatarSvg(bp, bst, 96)+'</div><div class="btxt"><div class="bname">'+esc(bp.name)+' <span class="pill clero">Chefin im Büro</span></div><div class="brole">'+esc(boss.name||"Persönliche Assistenz")+', hält dir den Rücken frei und gibt Struktur</div><div class="speech">'+esc(say)+'</div><div class="addbar"><button class="btn small" data-a="goto" data-tab="claire">Mit Claire sprechen</button></div></div></div>';
-    var rooms = [["clero","🚀 Team Clero","clero"],["wpp","💼 Team WPP","wpp"],["mehr","🛠️ Technik und Feeds","mehr"]];
-    rooms.forEach(function(r){
-      var list = team.filter(function(x){ return r[2]==="mehr" ? (x.area!=="clero" && x.area!=="wpp") : x.area===r[2]; });
-      if(!list.length) return;
-      var order = { running:0, error:1, idle:2, paused:3 };
+    var bossHtml = '<div class="boss-in"><div class="bossav">'+avatarSvg(bp, bst, 104)+'<div class="desk bossdesk"></div></div><div class="btxt"><div class="bname">'+esc(bp.name)+' <span class="pill clero">Chefin im Büro</span></div><div class="brole">'+esc(boss.name||"Persönliche Assistenz")+', hält dir den Rücken frei und gibt Struktur</div><div class="speech">'+esc(say)+'</div><div class="addbar"><button class="btn small" data-a="goto" data-tab="claire">Mit Claire sprechen</button></div></div></div>';
+    var h = '';
+    var HOUSE = [
+      {key:"wpp", label:"2. Etage", sub:"WPP Media", cls:"f-wpp", fallback:["Großraumbüro WPP","🏢"], rooms:[["Mail-Zentrale","📬","📚",["wpp-inbox-triage","wpp-mailbriefing"]],["Affiliate-Abteilung","🤝","📈",["affiliate-triage"]]]},
+      {key:"clero", label:"1. Etage", sub:"Clero", cls:"f-clero", fallback:["Großraumbüro Clero","🌱"], rooms:[["Posteingang","📥","🪴",["clero-dm-sichtung"]],["Outreach-Studio","📣","🎙️",["clero-ig-outreach"]],["Ablage und Archiv","🗂️","📚",["clero-dm-ablage"]],["Lagezentrum","📊","📈",["clero-pipeline"]]]},
+      {key:"mehr", label:"Untergeschoss", sub:"Technik", cls:"f-tech", fallback:["Technikraum","🛠️"], rooms:[["Serverraum","🖥️","🔌",["reddit-feed"]]]}
+    ];
+    var order = { running:0, error:1, idle:2, paused:3 };
+    function floorOf(x){ return x.area==="wpp" ? "wpp" : x.area==="clero" ? "clero" : "mehr"; }
+    function roomHtml(title, icon, decor, list){
       list.sort(function(a,b){ return (order[effSt(a)]||0)-(order[effSt(b)]||0); });
-      h += '<div class="room r-'+r[0]+'"><h3>'+r[1]+' <span class="pill grey">'+list.length+'</span></h3><div class="floor">'+list.map(wsHtml).join("")+'</div></div>';
+      return '<div class="rm"><div class="rm-head">'+icon+' '+title+'</div><div class="rm-decor">'+decor+'</div><div class="rm-people">'+list.map(wsHtml).join("")+'</div><div class="rm-floor"></div></div>';
+    }
+    h += '<div class="house"><div class="roof"><span>🏠 Dein Büro-Haus</span></div>';
+    h += '<div class="hfloor f-top"><div class="fl-label"><b>Dachgeschoss</b><span>Chefetage</span></div><div class="rooms"><div class="rm rm-boss"><div class="rm-head">👑 Claires Chefbüro</div><div class="rm-decor">🪴</div><div class="rm-people">'+bossHtml+'</div><div class="rm-floor"></div></div></div></div>';
+    HOUSE.forEach(function(F){
+      var mine = team.filter(function(x){ return floorOf(x)===F.key; }), used = {}, rms = "";
+      F.rooms.forEach(function(r){
+        var list = mine.filter(function(x){ return r[3].indexOf(x.id)>=0; });
+        list.forEach(function(x){ used[x.id] = 1; });
+        if(list.length) rms += roomHtml(r[0], r[1], r[2], list);
+      });
+      var rest = mine.filter(function(x){ return !used[x.id]; });
+      if(rest.length) rms += roomHtml(F.fallback[0], F.fallback[1], "🪴", rest);
+      if(rms) h += '<div class="hfloor '+F.cls+'"><div class="fl-label"><b>'+F.label+'</b><span>'+F.sub+'</span></div><div class="rooms">'+rms+'</div></div>';
     });
+    h += '</div>';
     if(!team.length) h += '<div class="empty">Noch niemand im Büro. Neue Agents erscheinen hier, sobald sie sich in agents.json melden.</div>';
     box.innerHTML = h;
     var lg = document.getElementById("ag-log");
