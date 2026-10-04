@@ -496,6 +496,80 @@
   .logrow { display: flex; gap: 10px; font-size: 13px; padding: 5px 0; border-top: 1px solid var(--line); }
   .logrow:first-child { border-top: none; }
   .logrow .lt { color: var(--muted); width: 92px; flex: none; }
+
+  /* ===== Buero (Agents als Team) ===== */
+  .boss { display:flex; gap:16px; align-items:center; background:linear-gradient(135deg,#f5eeff,#ffeef6); border:1px solid #eadcff; border-radius:20px; padding:16px; margin-bottom:14px; flex-wrap:wrap; }
+  .boss .btxt { flex:1; min-width:220px; }
+  .boss .bname { font-weight:800; font-size:18px; }
+  .boss .brole { font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+  .boss .speech { background:#fff; border:1px solid #eadcff; border-radius:14px; padding:10px 12px; font-size:14px; position:relative; }
+  .room { border-radius:20px; padding:14px; margin-bottom:14px; border:1px solid var(--line); }
+  .room.r-clero { background:linear-gradient(180deg,#faf6ff,#f2e9ff); }
+  .room.r-wpp { background:linear-gradient(180deg,#f3fbf9,#e3f4f0); }
+  .room.r-mehr { background:linear-gradient(180deg,#f6f8fc,#e9eef8); }
+  .room h3 { margin:0 0 12px; font-size:14px; display:flex; gap:8px; align-items:center; }
+  .floor { display:grid; grid-template-columns:repeat(auto-fill,minmax(178px,1fr)); gap:12px; }
+  .ws { background:#fff; border-radius:18px; padding:10px 10px 12px; box-shadow:0 2px 0 rgba(0,0,0,.04),0 10px 20px rgba(80,60,140,.09); cursor:pointer; position:relative; overflow:hidden; text-align:center; border:2px solid transparent; }
+  .ws.st-error { border-color:#f3b4ae; }
+  .ws.st-running { border-color:#c9d8ff; }
+  .ws .stage { position:relative; height:136px; display:flex; align-items:flex-end; justify-content:center; }
+  .bubble { position:absolute; top:0; left:50%; transform:translateX(-50%); width:calc(100% - 4px); background:#fff; border:1px solid var(--line); border-radius:12px; padding:5px 8px; font-size:11.5px; line-height:1.25; box-shadow:0 2px 6px rgba(0,0,0,.07); z-index:3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .st-running .bubble { background:#eef3ff; border-color:#c9d8ff; }
+  .st-error .bubble { background:#fff1ef; border-color:#f3b4ae; color:#9b2118; }
+  .ws .av { margin-bottom:8px; position:relative; z-index:1; }
+  .ws .desk { position:absolute; left:-4px; right:-4px; bottom:0; height:16px; border-radius:8px 8px 3px 3px; background:linear-gradient(#dcbd90,#c6a173); z-index:2; }
+  .ws .prop { position:absolute; bottom:12px; right:14px; font-size:24px; z-index:3; line-height:1; }
+  .ws .zzz { position:absolute; right:18px; top:50px; font-weight:800; color:#8b95a7; z-index:3; font-size:15px; }
+  .ws .zzz i { font-style:normal; display:inline-block; animation:zfloat 2.4s infinite; opacity:0; }
+  .ws .zzz i:nth-child(2) { animation-delay:.6s; font-size:12px; } .ws .zzz i:nth-child(3) { animation-delay:1.2s; font-size:10px; }
+  @keyframes zfloat { 0% { transform:translateY(8px); opacity:0; } 40% { opacity:1; } 100% { transform:translateY(-10px); opacity:0; } }
+  @keyframes bob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(2.5px); } }
+  @keyframes breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.025); } }
+  @keyframes shake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-2px); } 75% { transform:translateX(2px); } }
+  @keyframes tap { from { transform:scaleY(1); } to { transform:scaleY(.86); } }
+  @keyframes blink { 0%,92%,100% { transform:scaleY(1); } 95% { transform:scaleY(.1); } }
+  .st-running .av { animation:bob .5s infinite; }
+  .st-idle .av { animation:breathe 4s infinite; }
+  .st-error .av { animation:shake .35s infinite; }
+  .st-paused .av { filter:saturate(.55); }
+  .st-running .prop { animation:tap .3s infinite alternate; transform-origin:bottom; }
+  .avsvg .eyes { transform-box:fill-box; transform-origin:center; }
+  .st-idle .avsvg .eyes { animation:blink 5s infinite; }
+  .ws .nm { font-weight:800; font-size:15px; margin-top:8px; }
+  .ws .rl { font-size:11.5px; color:var(--muted); line-height:1.3; min-height:30px; }
+  .ws .stl { margin-top:6px; }
+  .ws .mini { font-size:11px; color:var(--muted); margin-top:6px; }
+  .ws .more { display:none; text-align:left; font-size:12px; color:var(--muted); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px; }
+  .ws.open .more { display:block; }
+  .ws .bar { height:6px; background:#eceef2; border-radius:999px; margin-top:7px; overflow:hidden; }
+  .ws .bar i { display:block; height:100%; background:linear-gradient(90deg,#7c3aed,#a855f7); }
+  .arow { display:flex; gap:10px; align-items:center; padding:8px 0; border-top:1px solid var(--line); }
+  .arow:first-child { border-top:none; }
+  .arow .atx { flex:1; min-width:0; }
+  .arow .an { font-weight:700; font-size:14px; }
+  .arow .as { font-size:12.5px; color:var(--muted); }
+  @media (prefers-reduced-motion: reduce) { .ws *, .ws .av, .avsvg .eyes { animation:none !important; } }
+
+  /* ===== Claire ===== */
+  .cl-hero { display:flex; gap:16px; align-items:center; background:linear-gradient(135deg,#f5eeff,#ffeef6); border:1px solid #eadcff; border-radius:20px; padding:16px; margin-bottom:16px; flex-wrap:wrap; }
+  .cl-hero .ctx { flex:1; min-width:230px; }
+  .cl-hero h2 { margin:0 0 4px; font-size:19px; }
+  .cl-hero .say { font-size:14px; margin-bottom:10px; }
+  .cl-hero input[type=text] { width:100%; box-sizing:border-box; padding:8px 11px; border:1px solid var(--line); border-radius:10px; font:inherit; font-size:13.5px; margin-top:8px; }
+  .claire-mini { display:flex !important; gap:12px; align-items:center; background:linear-gradient(135deg,#f5eeff,#ffeef6); border-color:#eadcff; }
+  .claire-mini .cmt { flex:1; font-size:14px; }
+  .cdrow { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding:8px 0; border-top:1px solid var(--line); }
+  .cdrow:first-child { border-top:none; }
+  .cdrow .cdt { flex:1 1 220px; font-size:14px; }
+  .cdrow select { padding:5px 8px; border:1px solid var(--line); border-radius:8px; font:inherit; font-size:12.5px; background:#fff; }
+  .cdrow .x { border:none; background:none; font-size:18px; color:var(--muted); cursor:pointer; }
+  .bars { display:flex; gap:8px; align-items:flex-end; height:80px; margin:6px 0 4px; }
+  .bars div { flex:1; background:linear-gradient(#a855f7,#7c3aed); border-radius:6px 6px 2px 2px; min-height:3px; }
+  .barlbl { display:flex; gap:8px; font-size:11px; color:var(--muted); text-align:center; } .barlbl span { flex:1; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin:10px 0; }
+  .kpis div { background:#f7f6fd; border-radius:12px; padding:10px 12px; } .kpis b { font-size:20px; display:block; } .kpis span { font-size:12px; color:var(--muted); }
+  .rv label { display:block; font-weight:600; font-size:13px; margin:10px 0 4px; }
+  .rv textarea { width:100%; box-sizing:border-box; padding:8px 11px; border:1px solid var(--line); border-radius:10px; font:inherit; font-size:13.5px; }
 </style>
 </head>
 <body>
@@ -523,12 +597,13 @@
     </nav>
     <nav class="tabs" id="subtabs">
       <button data-tab="heute" data-group="heute" class="active">☀️ Heute</button>
+      <button data-tab="claire" data-group="heute">💫 Claire</button>
       <button data-tab="ziele" data-group="heute">🎯 Ziele</button>
       <button data-tab="aufgaben" data-group="heute">✅ Aufgaben</button>
       <button data-tab="kalender" data-group="heute">📅 Kalender</button>
       <button data-tab="gewohnheiten" data-group="heute">🔁 Gewohnheiten</button>
       <button data-tab="arbeit" data-group="heute">🚀 Clero-Arbeit</button>
-      <button data-tab="agents" data-group="heute">🤖 Agents</button>
+      <button data-tab="agents" data-group="heute">🏢 Büro</button>
 
       <button data-tab="kontakte" data-group="privat" hidden>🧑‍🤝‍🧑 Kontakte</button>
       <button data-tab="listen" data-group="privat" hidden>🛒 Listen</button>
@@ -555,6 +630,7 @@
 
   <!-- HEUTE -->
   <section class="panel active" id="panel-heute">
+    <div class="card claire-mini" id="claire-mini" style="display:none"></div>
     <div class="grid3 overview" id="overview" style="margin-bottom:16px"></div>
 
     <div class="card focus-card">
@@ -1037,21 +1113,39 @@
     </div>
   </section>
 
-  <!-- AGENTS (Heute) -->
+  <!-- AGENTS = BUERO (Heute) -->
   <section class="panel" id="panel-agents">
     <div class="stats" id="ag-stats"></div>
-    <div class="card">
-      <div class="cardhead">
-        <div><h2>🤖 Agents <span class="hint">wer arbeitet gerade woran</span></h2><div class="sub" id="ag-updated">Wird geladen …</div></div>
-        <div class="tools"><button class="btn small ghost" data-a="wrefresh">↻ Aktualisieren</button></div>
-      </div>
-      <div id="ag-list"></div>
+    <div class="cardhead" style="margin-bottom:10px">
+      <div><h2 style="margin:0">🏢 Dein Büro</h2><div class="sub" style="margin-bottom:0">Dein Team aus Agents. Klick auf eine Person für Details. <span id="ag-updated">Wird geladen ...</span></div></div>
+      <div class="tools"><button class="btn small ghost" data-a="wrefresh">↻ Aktualisieren</button></div>
     </div>
+    <div id="ag-office"></div>
     <div class="card">
-      <h2>🕒 Letzte Aktivität</h2>
-      <div class="sub">Die jüngsten Meldungen der Agents.</div>
+      <h2>☕ Flurfunk</h2>
+      <div class="sub">Das haben deine Leute zuletzt gemeldet.</div>
       <div id="ag-log"></div>
     </div>
+  </section>
+
+  <!-- CLAIRE (Heute) -->
+  <section class="panel" id="panel-claire">
+    <div id="cl-hero"></div>
+    <div class="card"><h2>🧭 Claires Hinweise</h2><div class="sub">Kurz und ohne Druck: was heute den Unterschied macht.</div><div id="cl-nudges"></div></div>
+
+    <div class="card">
+      <h2>🧠 Gedanken-Eingang</h2>
+      <div class="sub">Schreib alles raus, was im Kopf kreist. Eine Zeile pro Gedanke oder einfach drauflos. Claire sortiert in Aufgaben, Termine, Ideen, Entscheidungen und Sorgen, du korrigierst und übernimmst.</div>
+      <textarea id="cl-dump" rows="5" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:12px;font:inherit" placeholder="z.B. Morgen 15 Uhr Zahnarzt&#10;Hosts bei Clero nachfassen&#10;Soll ich das Scheduling-Tool jetzt entscheiden?&#10;Ich bin gestresst wegen der Deadline"></textarea>
+      <div class="addbar"><button class="btn" data-a="cdump">Claire, sortier das</button><button class="btn ghost" data-a="cdclear">Leeren</button></div>
+      <div id="cl-draft" style="margin-top:12px"></div>
+      <div class="quickadd-hint" id="cl-hint"></div>
+    </div>
+
+    <div class="card"><h2>🗃️ Gedankenspeicher</h2><div class="sub">Offene Entscheidungen, Sorgen und Ideen. Mach aus jedem Gedanken entweder einen kleinen Schritt oder lass ihn los.</div><div id="cl-thoughts"></div></div>
+    <div class="card"><h2>⭐ Claires Tagesplan</h2><div class="sub">Drei Dinge, die heute am meisten bewegen, passend zu deiner Energie.</div><div id="cl-plan"></div></div>
+    <div class="card"><h2>📈 Deine Woche</h2><div class="sub">Wirkung, Balance und Energie der letzten 7 Tage.</div><div id="cl-perf"></div></div>
+    <div class="card"><h2>🪞 Wochenrückblick mit Claire</h2><div class="sub">Drei Fragen, zwei Minuten. Daraus entsteht dein Hebel für die nächste Woche.</div><div id="cl-review"></div></div>
   </section>
 
   <!-- CLERO: AUFGABEN -->
@@ -2512,7 +2606,7 @@
     lastTab[g] = tab;
     try { history.replaceState(null, "", "#"+tab); } catch(e){}
     if(tab==="kalender") renderAgenda();
-    if(tab==="arbeit" || tab==="agents") loadWorkData();
+    if(tab==="arbeit" || tab==="agents" || tab==="claire") loadWorkData();
     if(tab==="insights") renderInsights();
     if(tab==="kontakte") renderContacts();
     var active = document.querySelector('#subtabs button.active');
@@ -4457,7 +4551,7 @@
   var DM_CATS = { host:"Host", creator:"Creator", partner:"Partner", sonstiges:"Sonstiges" };
   var DM_STATUS = { neu:["Neu","warn"], entwurf:["Entwurf bereit","run"], spaeter:["Später","grey"], beantwortet:["Beantwortet","ok"], abgelegt:["Abgelegt","grey"] };
   var AG_STATUS = { running:["Läuft gerade","run"], idle:["Bereit","ok"], paused:["Pausiert","warn"], error:["Fehler","bad"] };
-  var workData = { dms:null, agents:null, dmErr:false, agErr:false };
+  var workData = { dms:null, agents:null, claire:null, dmErr:false, agErr:false };
   var dmFilter = "offen";
 
   function relTime(iso){
@@ -4474,6 +4568,7 @@
 
   function loadWorkData(){
     fetch("dms.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.dms = d; workData.dmErr = false; renderWork(); }).catch(function(){ workData.dmErr = true; renderWork(); });
+    fetch("claire.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.claire = d; renderWork(); }).catch(function(){});
     fetch("agents.json?cb="+Date.now()).then(function(r){ return r.json(); }).then(function(d){ workData.agents = d; workData.agErr = false; renderWork(); }).catch(function(){ workData.agErr = true; renderWork(); });
   }
 
@@ -4483,29 +4578,151 @@
     if(st==="running" && ag.heartbeat){ var h = new Date(ag.heartbeat); if(!isNaN(h) && Date.now()-h.getTime() > 3*3600*1000) stale = true; }
     return { st: st, stale: stale };
   }
-  function agentRow(ag, compact){
-    var e = agentEffective(ag), lab = AG_STATUS[e.st] || [e.st,"grey"];
-    var h = '<div class="agent"><div class="dot '+esc(e.st)+'"></div><div class="abody">';
-    h += '<div class="aname">'+esc(ag.name||ag.id)+' <span class="pill '+lab[1]+'">'+lab[0]+'</span>';
-    if(e.stale) h += '<span class="pill bad">Heartbeat alt, hängt evtl.</span>';
-    if(ag.area) h += '<span class="pill '+(ag.area==="clero"?"clero":"grey")+'">'+esc(ag.area.toUpperCase())+'</span>';
-    h += '</div>';
-    if(ag.task_now) h += '<div class="now">▶ '+esc(ag.task_now)+'</div>';
-    else if(ag.note) h += '<div class="now">'+esc(ag.note)+'</div>';
-    if(typeof ag.progress_done==="number" && ag.progress_total){
-      var pc = Math.min(100, Math.round(ag.progress_done/ag.progress_total*100));
-      h += '<div class="ameta">'+ag.progress_done+' von '+ag.progress_total+(ag.progress_label?' '+esc(ag.progress_label):'')+'</div><div class="bar"><i style="width:'+pc+'%"></i></div>';
+  // ---------- Avatare, Personas, Buero ----------
+  var PERSONAS = {
+    "claire": {name:"Claire", skin:"#f3cdb0", hair:"#7a3b1d", style:"long", shirt:"#7c3aed", acc:"earring", crown:true, bg:"#fde7f3"},
+    "clero-dm-sichtung": {name:"Mia", skin:"#f5d0b5", hair:"#2b2118", style:"bun", shirt:"#a855f7", acc:"headset", bg:"#f1eafe"},
+    "clero-ig-outreach": {name:"Leo", skin:"#e8b48f", hair:"#6b4423", style:"cap", shirt:"#f97316", acc:"none", bg:"#f1eafe"},
+    "clero-dm-ablage": {name:"Noor", skin:"#b98462", hair:"#141414", style:"curly", shirt:"#14b8a6", acc:"glasses", bg:"#f1eafe"},
+    "wpp-inbox-triage": {name:"Jonas", skin:"#f2c9a6", hair:"#caa469", style:"short", shirt:"#0f766e", acc:"glasses", bg:"#e0f2f1"},
+    "wpp-mailbriefing": {name:"Lena", skin:"#f5d0b5", hair:"#a33b2a", style:"long", shirt:"#2563eb", acc:"none", bg:"#e0f2f1"},
+    "affiliate-triage": {name:"Sam", skin:"#d9a37c", hair:"#3a3a3a", style:"bun", shirt:"#64748b", acc:"glasses", bg:"#e0f2f1"},
+    "reddit-feed": {name:"Reddie", bot:true, shirt:"#64748b", bg:"#e8eefc"}
+  };
+  var FALLBACK = { skins:["#f5d0b5","#e8b48f","#c68e65","#8d5a3b"], hairs:["#2b2118","#6b4423","#caa469","#a33b2a","#3a3a3a"], styles:["short","long","bun","curly"], shirts:["#6d5efc","#f97316","#14b8a6","#2563eb","#e11d48"], names:["Alex","Robin","Sasha","Nico","Jule","Ben"] };
+  var AREA_BG = { clero:"#f1eafe", wpp:"#e0f2f1", mehr:"#e8eefc", claire:"#fde7f3" };
+  function hashStr(x){ var h = 0; String(x).split("").forEach(function(c){ h = (h*31 + c.charCodeAt(0)) >>> 0; }); return h; }
+  function personaOf(ag){
+    var base = PERSONAS[ag.id], p;
+    if(base){ p = {}; Object.keys(base).forEach(function(k){ p[k] = base[k]; }); }
+    else {
+      var h = hashStr(ag.id||ag.name||"x");
+      p = { name:FALLBACK.names[h%FALLBACK.names.length], skin:FALLBACK.skins[h%4], hair:FALLBACK.hairs[(h>>2)%5], style:FALLBACK.styles[(h>>3)%4], shirt:FALLBACK.shirts[(h>>4)%5], acc:["none","glasses","headset"][(h>>5)%3], bg:AREA_BG[ag.area]||"#eef0f6" };
     }
+    if(ag.persona){ Object.keys(ag.persona).forEach(function(k){ p[k] = ag.persona[k]; }); }
+    return p;
+  }
+  function avatarSvg(p, st, size){
+    size = size || 84;
+    var o = '<svg class="avsvg" viewBox="0 0 100 100" width="'+size+'" height="'+size+'" aria-hidden="true">';
+    o += '<circle cx="50" cy="50" r="48" fill="'+(p.bg||"#eef0f6")+'"/>';
+    if(p.bot){
+      var led = st==="running" ? "#3b82f6" : st==="error" ? "#ef4444" : st==="paused" ? "#9ca3af" : "#22c55e";
+      o += '<path d="M16 100 Q16 74 50 72 Q84 74 84 100 Z" fill="'+p.shirt+'"/>';
+      o += '<line x1="50" y1="18" x2="50" y2="28" stroke="#64748b" stroke-width="3"/><circle cx="50" cy="16" r="4" fill="'+led+'"/>';
+      o += '<rect x="26" y="28" width="48" height="42" rx="11" fill="#cbd5e1"/><rect x="21" y="42" width="6" height="14" rx="3" fill="#94a3b8"/><rect x="73" y="42" width="6" height="14" rx="3" fill="#94a3b8"/>';
+      o += '<g class="eyes"><rect x="34" y="40" width="10" height="10" rx="3" fill="'+led+'"/><rect x="56" y="40" width="10" height="10" rx="3" fill="'+led+'"/></g>';
+      o += '<rect x="38" y="57" width="24" height="5" rx="2.5" fill="#64748b"/></svg>';
+      return o;
+    }
+    o += '<path d="M14 100 Q14 70 50 68 Q86 70 86 100 Z" fill="'+p.shirt+'"/>';
+    o += '<rect x="44" y="58" width="12" height="13" rx="5" fill="'+p.skin+'"/>';
+    var back = p.style==="long" ? '<path d="M29 40 Q27 18 50 18 Q73 18 71 40 L75 74 Q66 72 66 60 L34 60 Q34 72 25 74 Z" fill="'+p.hair+'"/>' : "";
+    o += back;
+    o += '<ellipse cx="50" cy="44" rx="19" ry="21" fill="'+p.skin+'"/>';
+    var top = '<path d="M31 42 Q29 19 50 19 Q71 19 69 42 Q64 30 50 30 Q36 30 31 42Z" fill="'+p.hair+'"/>';
+    if(p.style==="curly"){ top = ""; [[34,28],[42,22],[50,20],[58,22],[66,28],[31,40],[69,40]].forEach(function(c){ top += '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="9" fill="'+p.hair+'"/>'; }); }
+    if(p.style==="bun") top += '<circle cx="50" cy="15" r="8" fill="'+p.hair+'"/>';
+    if(p.style==="cap") top = '<path d="M30 38 Q50 10 70 38 Z" fill="'+p.shirt+'"/><rect x="44" y="35" width="30" height="5" rx="2.5" fill="'+p.shirt+'"/>';
+    o += top;
+    var eyes = '', mouth = '', extra = '';
+    if(st==="paused"){
+      eyes = '<path d="M38 46 Q43 50 48 46 M52 46 Q57 50 62 46" stroke="#2a2a35" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      mouth = '<ellipse cx="50" cy="57" rx="2.6" ry="2" fill="#7a3b3b"/>';
+    } else if(st==="error"){
+      eyes = '<g class="eyes"><circle cx="43" cy="45" r="3.4" fill="#2a2a35"/><circle cx="57" cy="45" r="3.4" fill="#2a2a35"/></g><path d="M37 39 L47 36 M63 39 L53 36" stroke="#2a2a35" stroke-width="2" stroke-linecap="round"/>';
+      mouth = '<ellipse cx="50" cy="57" rx="4.2" ry="3.2" fill="#7a2a2a"/>';
+      extra = '<path d="M73 30 Q76 36 73 39 Q70 36 73 30Z" fill="#60a5fa"/>';
+    } else if(st==="running"){
+      eyes = '<g class="eyes"><circle cx="43" cy="45" r="2.6" fill="#2a2a35"/><circle cx="57" cy="45" r="2.6" fill="#2a2a35"/></g><path d="M37 39 L46 41 M63 39 L54 41" stroke="#2a2a35" stroke-width="2" stroke-linecap="round"/>';
+      mouth = '<path d="M45 56 H55" stroke="#2a2a35" stroke-width="2.2" stroke-linecap="round"/>';
+    } else {
+      eyes = '<g class="eyes"><circle cx="43" cy="45" r="2.6" fill="#2a2a35"/><circle cx="57" cy="45" r="2.6" fill="#2a2a35"/></g>';
+      mouth = '<path d="M43 54 Q50 61 57 54" stroke="#2a2a35" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+    }
+    o += eyes + mouth + extra;
+    if(st!=="paused") o += '<circle cx="37" cy="53" r="3.2" fill="#f4a3a3" opacity=".35"/><circle cx="63" cy="53" r="3.2" fill="#f4a3a3" opacity=".35"/>';
+    if(p.acc==="glasses") o += '<circle cx="43" cy="45" r="7" fill="none" stroke="#334155" stroke-width="1.8"/><circle cx="57" cy="45" r="7" fill="none" stroke="#334155" stroke-width="1.8"/><line x1="50" y1="45" x2="50" y2="45" stroke="#334155" stroke-width="1.8"/><path d="M48.5 44 H51.5" stroke="#334155" stroke-width="1.8"/>';
+    if(p.acc==="headset") o += '<path d="M30 44 Q29 21 50 20 Q71 21 70 44" fill="none" stroke="#334155" stroke-width="3"/><rect x="26" y="41" width="7" height="13" rx="3" fill="#334155"/><rect x="67" y="41" width="7" height="13" rx="3" fill="#334155"/><path d="M29 53 Q33 64 44 61" stroke="#334155" stroke-width="2" fill="none"/>';
+    if(p.acc==="earring") o += '<circle cx="31" cy="55" r="2.3" fill="#f5b301"/><circle cx="69" cy="55" r="2.3" fill="#f5b301"/>';
+    if(p.crown) o += '<path d="M39 17 L42 7 L50 13 L58 7 L61 17 Z" fill="#f5b301"/><circle cx="50" cy="9" r="1.8" fill="#fff"/>';
+    return o + '</svg>';
+  }
+  var STATUS_TXT = { running:["Im Einsatz","run"], idle:["Bereit","ok"], paused:["Pause","warn"], error:["Brennt","bad"] };
+  var agOpen = {};
+  function effSt(ag){ var e = agentEffective(ag); return e.stale ? "error" : e.st; }
+  function bubbleText(ag, st, e){
+    if(st==="running") return ag.task_now || "Bin dran";
+    if(st==="error") return e.stale ? "Lange nichts von mir gehört? Ich hänge evtl." : (ag.note || "Hilfe, da klemmt etwas");
+    if(st==="paused") return ag.note || "Kurze Pause";
+    return ag.last_result ? "Fertig: "+ag.last_result : (ag.note || "Bereit, wenn du es bist");
+  }
+  function propHtml(st){
+    if(st==="running") return '<div class="prop">💻</div>';
+    if(st==="paused") return '<div class="zzz"><i>z</i><i>z</i><i>Z</i></div>';
+    if(st==="error") return '<div class="prop">🚨</div>';
+    return '<div class="prop">☕</div>';
+  }
+  function wsHtml(ag){
+    var e = agentEffective(ag), st = effSt(ag), p = personaOf(ag), lab = STATUS_TXT[st] || ["?","grey"];
+    var h = '<div class="ws st-'+st+(agOpen[ag.id]?' open':'')+'" data-a="agtoggle" data-id="'+esc(ag.id)+'">';
+    h += '<div class="stage"><div class="bubble">'+esc(bubbleText(ag, st, e))+'</div><div class="av">'+avatarSvg(p, st, 84)+'</div><div class="desk"></div>'+propHtml(st)+'</div>';
+    h += '<div class="nm">'+esc(p.name||ag.id)+'</div><div class="rl">'+esc(ag.name||"")+'</div>';
+    h += '<div class="stl"><span class="pill '+lab[1]+'">'+lab[0]+'</span></div>';
+    if(st==="running" && typeof ag.progress_done==="number" && ag.progress_total){
+      var pc = Math.min(100, Math.round(ag.progress_done/ag.progress_total*100));
+      h += '<div class="bar"><i style="width:'+pc+'%"></i></div><div class="mini">'+ag.progress_done+' von '+ag.progress_total+(ag.progress_label?' '+esc(ag.progress_label):'')+'</div>';
+    } else h += '<div class="mini">'+(ag.last_run ? 'Zuletzt '+relTime(ag.last_run) : 'Noch nicht im Einsatz')+'</div>';
     var m = [];
-    if(ag.schedule) m.push('⏱ '+esc(ag.schedule));
-    m.push(ag.last_run ? 'Letzter Lauf '+relTime(ag.last_run) : 'Noch kein Lauf gemeldet');
-    if(ag.next_run && e.st!=="paused") m.push('Nächster Lauf '+relTime(ag.next_run));
-    if(typeof ag.runs_today==="number") m.push(ag.runs_today+' Läufe heute');
-    if(!compact) h += '<div class="ameta">'+m.join(' · ')+'</div>';
-    else h += '<div class="ameta">'+m.slice(0,2).join(' · ')+'</div>';
-    if(ag.last_result && !compact) h += '<div class="ameta">Ergebnis: '+esc(ag.last_result)+'</div>';
-    h += '</div></div>';
+    if(ag.schedule) m.push('Schicht: '+esc(ag.schedule));
+    if(ag.next_run && st!=="paused") m.push('Nächster Einsatz '+relTime(ag.next_run));
+    if(typeof ag.runs_today==="number") m.push(ag.runs_today+' Einsätze heute');
+    if(ag.last_result) m.push('Ergebnis: '+esc(ag.last_result));
+    if(ag.note && st!=="paused" && st!=="error") m.push(esc(ag.note));
+    h += '<div class="more">'+(m.join('<br>')||'Noch keine Details gemeldet.')+'</div></div>';
     return h;
+  }
+  function agentRow(ag){
+    var st = effSt(ag), p = personaOf(ag), lab = STATUS_TXT[st] || ["?","grey"];
+    return '<div class="arow"><div>'+avatarSvg(p, st, 44)+'</div><div class="atx"><div class="an">'+esc(p.name||ag.id)+' <span class="pill '+lab[1]+'">'+lab[0]+'</span></div><div class="as">'+esc(ag.name||"")+' · '+esc(bubbleText(ag, st, agentEffective(ag)))+'</div></div></div>';
+  }
+  function renderOffice(){
+    var ags = workData.agents, agList = ags && ags.agents ? ags.agents : [];
+    var team = agList.filter(function(x){ return x.id!=="claire"; });
+    var running = 0, ready = 0, paused = 0, fire = 0;
+    team.forEach(function(x){ var st = effSt(x); if(st==="running") running++; else if(st==="paused") paused++; else if(st==="error") fire++; else ready++; });
+    var as = document.getElementById("ag-stats");
+    if(as) as.innerHTML = '<div class="stat"><div class="n">'+running+'</div><div class="l">Im Einsatz</div></div><div class="stat"><div class="n">'+ready+'</div><div class="l">Bereit</div></div><div class="stat"><div class="n">'+paused+'</div><div class="l">In der Pause</div></div><div class="stat"><div class="n">'+fire+'</div><div class="l">Brennt</div></div>';
+    var au = document.getElementById("ag-updated");
+    if(au){
+      if(workData.agErr) au.textContent = "agents.json konnte nicht geladen werden.";
+      else if(ags) au.textContent = ags.updated ? "Letzte Meldung: "+relTime(ags.updated) : "";
+    }
+    var box = document.getElementById("ag-office"); if(!box) return;
+    if(workData.agErr){ box.innerHTML = '<div class="empty">Das Büro ist gerade nicht erreichbar.</div>'; return; }
+    var boss = agList.filter(function(x){ return x.id==="claire"; })[0] || { id:"claire", name:"Persönliche Assistenz", area:"claire", status:"idle" };
+    var bp = personaOf(boss), bst = effSt(boss);
+    var cj = workData.claire || {};
+    var say = cj.message || claireTopNudge();
+    var h = '<div class="boss"><div>'+avatarSvg(bp, bst, 96)+'</div><div class="btxt"><div class="bname">'+esc(bp.name)+' <span class="pill clero">Chefin im Büro</span></div><div class="brole">'+esc(boss.name||"Persönliche Assistenz")+', hält dir den Rücken frei und gibt Struktur</div><div class="speech">'+esc(say)+'</div><div class="addbar"><button class="btn small" data-a="goto" data-tab="claire">Mit Claire sprechen</button></div></div></div>';
+    var rooms = [["clero","🚀 Team Clero","clero"],["wpp","💼 Team WPP","wpp"],["mehr","🛠️ Technik und Feeds","mehr"]];
+    rooms.forEach(function(r){
+      var list = team.filter(function(x){ return r[2]==="mehr" ? (x.area!=="clero" && x.area!=="wpp") : x.area===r[2]; });
+      if(!list.length) return;
+      var order = { running:0, error:1, idle:2, paused:3 };
+      list.sort(function(a,b){ return (order[effSt(a)]||0)-(order[effSt(b)]||0); });
+      h += '<div class="room r-'+r[0]+'"><h3>'+r[1]+' <span class="pill grey">'+list.length+'</span></h3><div class="floor">'+list.map(wsHtml).join("")+'</div></div>';
+    });
+    if(!team.length) h += '<div class="empty">Noch niemand im Büro. Neue Agents erscheinen hier, sobald sie sich in agents.json melden.</div>';
+    box.innerHTML = h;
+    var lg = document.getElementById("ag-log");
+    if(lg){
+      var log = ags && ags.log ? ags.log.slice().sort(function(a,b){ return String(b.at).localeCompare(String(a.at)); }).slice(0,15) : [];
+      lg.innerHTML = log.length ? log.map(function(x){
+        var src = agList.filter(function(a){ return a.name===x.agent; })[0], pp = src ? personaOf(src) : null;
+        return '<div class="arow"><div>'+(pp?avatarSvg(pp,"idle",34):'')+'</div><div class="atx"><div class="an" style="font-size:13px">'+esc(pp?pp.name:(x.agent||""))+' <span style="font-weight:400;color:var(--muted)">'+relTime(x.at)+'</span></div><div class="as">'+esc(x.text||"")+'</div></div></div>';
+      }).join("") : '<div class="empty">Noch ruhig im Flur. Sobald ein Agent etwas meldet, siehst du es hier.</div>';
+    }
   }
 
   function renderWork(){
@@ -4590,29 +4807,193 @@
     var wt = document.getElementById("work-tasks");
     if(wt) wt.innerHTML = cTasks.length ? cTasks.map(function(x){ return taskRow(x, {}); }).join("") : '<div class="empty">Keine offenen Clero-Aufgaben. 🎉</div>';
 
-    // Agents-Reiter
-    var running = agList.filter(function(x){ return (x.status||"idle")==="running"; }).length;
-    var paused = agList.filter(function(x){ return x.status==="paused"; }).length;
-    var errs = agList.filter(function(x){ return x.status==="error" || agentEffective(x).stale; }).length;
-    var as = document.getElementById("ag-stats");
-    if(as) as.innerHTML =
-      '<div class="stat"><div class="n">'+running+'</div><div class="l">Arbeiten gerade</div></div>'+
-      '<div class="stat"><div class="n">'+(agList.length-running-paused-errs < 0 ? 0 : agList.length-running-paused-errs)+'</div><div class="l">Bereit</div></div>'+
-      '<div class="stat"><div class="n">'+paused+'</div><div class="l">Pausiert</div></div>'+
-      '<div class="stat"><div class="n">'+errs+'</div><div class="l">Fehler / hängt</div></div>';
-    var au = document.getElementById("ag-updated");
-    if(au){
-      if(workData.agErr) au.textContent = "agents.json konnte nicht geladen werden.";
-      else if(ags) au.textContent = ags.updated ? "Stand: "+new Date(ags.updated).toLocaleString("de-DE")+" ("+relTime(ags.updated)+")" : "";
+    renderOffice();
+    renderClaire();
+  }
+
+  // ---------- Claire: persoenliche Assistenz ----------
+  var claireDraft = [];
+  var CL_TYPES = { task:"Aufgabe", cal:"Termin", reminder:"Erinnerung", idea:"Idee", decision:"Entscheidung / Frage", worry:"Sorge / Gefühl", goal:"Ziel", fear:"Angst (Tab Ängste)", shop:"Einkauf", wish:"Wunsch" };
+  var CL_ENERGY = [[1,"😴","leer"],[2,"😐","müde"],[3,"🙂","okay"],[4,"😄","gut"],[5,"🔥","voll"]];
+  function CL(){ var c = state.claire = state.claire || {}; c.checkins = c.checkins || {}; c.thoughts = c.thoughts || []; c.reviews = c.reviews || {}; return c; }
+  function lastNDays(n){ var a = []; for(var i=n-1;i>=0;i--) a.push(dateKey(addDays(new Date(), -i))); return a; }
+  function guessArea(l){
+    if(/clero|host|creator|founding|insta|tiktok|warteliste|tjard|milena|brevo|\bloi\b|community/.test(l)) return "clero";
+    if(/wpp|awin|\btui\b|mein schiff|hlc|hapag|meßmer|messmer|tempur|publisher|affiliate|kunde|kampagne|outlook|mareen|franzi|\bmax\b/.test(l)) return "wpp";
+    return "aufgaben";
+  }
+  function guessStream(l){ l = l.toLowerCase(); if(/host/.test(l)) return "host"; if(/creator|influenc/.test(l)) return "creator"; if(/insta|tiktok|social|post/.test(l)) return "social"; if(/tool|app|code|website|seite/.test(l)) return "tech"; return "team"; }
+  function guessClient(l){ l = l.toLowerCase(); if(/mein schiff.*int|msint/.test(l)) return "msint"; if(/mein schiff|\btui\b/.test(l)) return "msdach"; if(/hlc|hapag/.test(l)) return "hlc"; if(/meßmer|messmer/.test(l)) return "messmer"; if(/tempur/.test(l)) return "tempur"; return "intern"; }
+  function claireSplit(raw){
+    var out = [];
+    raw.split(/\n+/).forEach(function(line){
+      var l = line.replace(/^[\s\-\*•·]+/, "").replace(/^\d+[\.\)]\s+/, "").trim(); if(!l) return;
+      if(l.length > 90) l = l.replace(/([.!?])\s+(?=[A-ZÄÖÜ])/g, "$1\n");
+      l.split("\n").forEach(function(x){ x = x.trim(); if(x.length > 1) out.push(x); });
+    });
+    return out;
+  }
+  function claireClassify(text){
+    var l = text.toLowerCase(), area = guessArea(l);
+    if(/\?\s*$/.test(text) || /soll ich|sollte ich|entscheid|oder doch/.test(l)) return { type:"decision", text:text, area:area };
+    if(/sorge|sorgen|angst|ängstlich|stress|gestresst|überfordert|nervt|schaffe.*nicht|erschöpft|müde|unsicher|schlechtes gewissen|zweifel|druck|frustriert|traurig|einsam/.test(l)) return { type:/^angst|habe angst|macht mir angst/.test(l) ? "fear" : "worry", text:text, area:area };
+    if(/^idee|\bidee:|vielleicht|könnte man|was wäre wenn|wie wäre es|man könnte|ich könnte/.test(l)) return { type:"idea", text:text, area:area };
+    var c = classifyQuickAdd(text);
+    if(!c) return { type:"task", text:text, area:area };
+    if(c.type==="areatask") return { type:"task", text:c.text, area:c.area };
+    if(c.type==="cal") return { type:"cal", text:c.title, title:c.title, date:c.date, time:c.time, area:area };
+    if(c.type==="reminder") return { type:"reminder", text:c.text, date:c.date, time:c.time, area:area };
+    if(c.type==="goal") return { type:"goal", text:c.text, area:area };
+    if(c.type==="fear") return { type:"fear", text:c.text, area:area };
+    if(c.type==="shop" || c.type==="wish") return { type:c.type, text:c.text, area:area };
+    return { type:"task", text:c.text, area:area };
+  }
+  function claireApply(it){
+    var t = todayStr(), c = CL(), type = it.type;
+    if(type==="cal" && !it.date) type = "reminder";
+    if(type==="task"){
+      var o = { id: uid(), name: it.text, area: it.area||"aufgaben", done:false, added:t, duration: estimateTaskDuration(it.text) };
+      if(o.area==="clero") o.stream = guessStream(it.text);
+      if(o.area==="wpp") o.client = guessClient(it.text);
+      state.tasks.push(o);
+    } else if(type==="cal"){
+      state.calCustom.push({ id: uid(), title: it.title||it.text, date: it.date, start: it.time||"09:00", duration: 30 });
+    } else if(type==="reminder"){
+      state.reminders = state.reminders || [];
+      state.reminders.push({ id: uid(), text: it.text, date: it.date||"", time: it.time||"", done:false, added:t });
+    } else if(type==="idea" && it.area==="clero"){
+      state.clero.ideas.push({ id: uid(), text: it.text, cat:"wachstum", impact:2, effort:"M", status:"idee", note:"" });
+    } else if(type==="goal"){
+      state.goals = state.goals || [];
+      state.goals.push({ id: uid(), name: it.text, target:0, current:0, unit:"", steps:[], area:"privat", created:t, log:{} });
+    } else if(type==="fear"){
+      state.fears = state.fears || [];
+      state.fears.push({ id: uid(), name: it.text, note:"", steps:[] });
+    } else if(type==="shop"){
+      state.shopping.push({ id: uid(), text: it.text, done:false });
+    } else if(type==="wish"){
+      state.wishlist.push({ id: uid(), text: it.text, note:"", done:false });
+    } else {
+      c.thoughts.push({ id: uid(), text: it.text, type: (type==="idea"||type==="decision") ? type : "worry", added:t, done:false });
     }
-    var order = { running:0, error:1, idle:2, paused:3 };
-    var sorted = agList.slice().sort(function(a,b){ return (order[a.status||"idle"]||0)-(order[b.status||"idle"]||0); });
-    var al = document.getElementById("ag-list");
-    if(al) al.innerHTML = sorted.length ? sorted.map(function(x){ return agentRow(x, false); }).join("") : '<div class="empty">Noch keine Agents gemeldet.</div>';
-    var lg = document.getElementById("ag-log");
-    if(lg){
-      var log = ags && ags.log ? ags.log.slice().sort(function(a,b){ return String(b.at).localeCompare(String(a.at)); }).slice(0,15) : [];
-      lg.innerHTML = log.length ? log.map(function(x){ return '<div class="logrow"><div class="lt">'+relTime(x.at)+'</div><div><b>'+esc(x.agent||"")+'</b> '+esc(x.text||"")+'</div></div>'; }).join("") : '<div class="empty">Noch keine Aktivität gemeldet.</div>';
+  }
+  function claireTopNudge(){ var n = claireNudges(); return n.length ? n[0] : "Ich bin da. Sag mir, was im Kopf ist, dann sortieren wir es."; }
+  function claireNudges(){
+    var out = [], c = CL(), t = todayStr(), open = state.tasks.filter(function(x){ return !x.done; });
+    var ci = c.checkins[t];
+    var cj = workData.claire; if(cj && cj.nudges){ cj.nudges.forEach(function(x){ out.push(x); }); }
+    if(!ci || !ci.energy) out.push("Wie viel Energie hast du heute? Zwei Klicks im Check-in, dann passe ich den Tag daran an.");
+    var openTh = c.thoughts.filter(function(x){ return !x.done; }).length;
+    if(openTh > 5) out.push("Du trägst "+openTh+" offene Gedanken mit dir. Nimm dir 10 Minuten und mach aus jedem einen Schritt oder lass ihn los.");
+    if(open.length > 12) out.push(open.length+" offene Aufgaben sind viel. Wähle heute maximal drei, der Rest darf warten.");
+    if(open.length && !open.some(function(x){ return x.focus; })) out.push("Noch kein Fokus gesetzt. Markiere mit dem Stern, was heute wirklich zählt.");
+    var dms = workData.dms && workData.dms.threads ? workData.dms.threads.filter(dmIsOpen).length : 0;
+    if(dms) out.push(dms+" offene Insta-DM"+(dms===1?"":"s")+" bei Clero. Im Reiter Clero-Arbeit liegen die Antwortentwürfe bereit.");
+    var bad = workData.agents && workData.agents.agents ? workData.agents.agents.filter(function(x){ return effSt(x)==="error"; }) : [];
+    if(bad.length) out.push(personaOf(bad[0]).name+" im Büro hat ein Problem: "+(bad[0].note||"bitte kurz nachsehen")+".");
+    var wk = lastNDays(7), cleroDone = state.tasks.filter(function(x){ return x.done && x.area==="clero" && wk.indexOf(x.doneDate)!==-1; }).length;
+    if(open.some(function(x){ return x.area==="clero"; }) && !cleroDone) out.push("Bei Clero wurde in den letzten 7 Tagen nichts abgehakt. Eine kleine Aufgabe von 15 Minuten bringt es wieder ins Rollen.");
+    var doneToday = state.tasks.filter(function(x){ return x.done && x.doneDate===t; }).length;
+    if(doneToday >= 3) out.push("Heute schon "+doneToday+" Dinge geschafft. Gönn dir bewusst eine Pause, das gehört zur Leistung dazu.");
+    else if(doneToday >= 1) out.push("Heute ist schon etwas geschafft. Gut so, dranbleiben in kleinen Schritten.");
+    if(!out.length) out.push("Alles im Griff. Nutze die Ruhe für das, was dir wirklich wichtig ist.");
+    return out;
+  }
+  function claireGreeting(){ var h = new Date().getHours(); return h < 11 ? "Guten Morgen" : h < 18 ? "Hallo" : "Guten Abend"; }
+  function claireAdvice(e){
+    if(!e) return "";
+    if(e <= 2) return "Wenig Energie: ein Fokus, eine Pause fest einplanen, nichts Schweres erzwingen.";
+    if(e >= 4) return "Viel Energie: nimm die schwierigste Aufgabe zuerst und blocke dafür 60 Minuten.";
+    return "Solide Energie: zwei Fokus-Aufgaben und eine kurze Bewegungspause.";
+  }
+  function claireBoss(){ var l = workData.agents && workData.agents.agents ? workData.agents.agents.filter(function(x){ return x.id==="claire"; })[0] : null; return l || { id:"claire", name:"Persönliche Assistenz", area:"claire", status:"idle" }; }
+  function clairePlan(){
+    var t = todayStr(), c = CL(), e = (c.checkins[t]||{}).energy || 3;
+    var open = state.tasks.filter(function(x){ return !x.done; }).map(function(x){
+      return { t:x, s:(x.focus?100:0) + Math.min(30, Math.max(0, daysBetween(x.added||t, t))*2) + (x.area==="clero"||x.area==="wpp"?3:0) - (e<=2 ? Math.min(20,(x.duration||30)/3) : 0) };
+    }).sort(function(a,b){ return b.s-a.s; });
+    var max = e<=2 ? 2 : 3, pick = [], used = {};
+    open.forEach(function(x){ if(pick.length<max && !used[x.t.area]){ pick.push(x.t); used[x.t.area] = 1; } });
+    open.forEach(function(x){ if(pick.length<max && pick.indexOf(x.t)===-1) pick.push(x.t); });
+    return pick;
+  }
+  function claireReason(x){
+    var t = todayStr(), d = daysBetween(x.added||t, t);
+    if(x.focus) return "von dir als Fokus markiert";
+    if(d >= 5) return "liegt seit "+d+" Tagen offen";
+    if((x.duration||30) <= 15) return "schneller Gewinn";
+    return x.area==="clero" ? "bringt Clero voran" : x.area==="wpp" ? "wichtig für deine Kunden" : "gut für dich selbst";
+  }
+  function renderClaire(){
+    var c = CL(), t = todayStr(), ci = c.checkins[t] || {}, boss = claireBoss(), bp = personaOf(boss);
+    var nud = claireNudges(), cj = workData.claire || {};
+    var say = cj.message || nud[0];
+    // Mini-Karte auf Heute
+    var mini = document.getElementById("claire-mini");
+    if(mini){ mini.style.display = ""; mini.innerHTML = '<div>'+avatarSvg(bp,"idle",56)+'</div><div class="cmt"><b>Claire:</b> '+esc(say)+'</div><button class="btn small" data-a="goto" data-tab="claire">Öffnen</button>'; }
+    // Hero
+    var hero = document.getElementById("cl-hero");
+    if(hero && !(document.activeElement && hero.contains(document.activeElement))){
+      hero.innerHTML = '<div class="cl-hero"><div>'+avatarSvg(bp,"idle",110)+'</div><div class="ctx"><h2>'+claireGreeting()+', Nicky.</h2><div class="say">'+esc(say)+'</div>'+
+        '<div style="font-size:12.5px;color:var(--muted);margin-bottom:4px">Deine Energie heute</div><div class="chips" style="margin:0">'+CL_ENERGY.map(function(en){ return '<button class="chipbtn '+(ci.energy===en[0]?'on':'')+'" data-a="cenergy" data-v="'+en[0]+'">'+en[1]+' '+en[2]+'</button>'; }).join("")+'</div>'+
+        (ci.energy ? '<div style="font-size:13px;margin-top:8px">'+esc(claireAdvice(ci.energy))+'</div>' : '')+
+        '<input type="text" data-cint="1" placeholder="Meine Absicht für heute in einem Satz" value="'+esc(ci.intention||"")+'"></div></div>';
+    }
+    var nb = document.getElementById("cl-nudges");
+    if(nb) nb.innerHTML = nud.slice(0,5).map(function(x){ return '<div class="logline"><div class="lx">'+esc(x)+'</div></div>'; }).join("");
+    // Entwurf
+    var dr = document.getElementById("cl-draft");
+    if(dr){
+      if(!claireDraft.length) dr.innerHTML = "";
+      else dr.innerHTML = '<div class="sub" style="margin-bottom:6px">Claire hat '+claireDraft.length+' Gedanken sortiert. Prüf kurz und korrigiere, falls nötig.</div>'+
+        claireDraft.map(function(it){
+          var opts = Object.keys(CL_TYPES).map(function(k){ return '<option value="'+k+'"'+(it.type===k?' selected':'')+'>'+CL_TYPES[k]+'</option>'; }).join("");
+          var area = (it.type==="task"||it.type==="idea") ? '<select data-cdarea="'+it.id+'"><option value="aufgaben"'+(it.area==="aufgaben"?' selected':'')+'>Privat</option><option value="clero"'+(it.area==="clero"?' selected':'')+'>Clero</option><option value="wpp"'+(it.area==="wpp"?' selected':'')+'>WPP</option></select>' : '';
+          var when = (it.type==="cal"||it.type==="reminder") && it.date ? '<span class="pill grey">'+fmtShort(it.date)+(it.time?' '+esc(it.time):'')+'</span>' : '';
+          return '<div class="cdrow"><div class="cdt">'+esc(it.text)+' '+when+'</div><select data-cdtype="'+it.id+'">'+opts+'</select>'+area+'<button class="x" data-a="cddel" data-id="'+it.id+'" title="Entfernen">×</button></div>';
+        }).join("")+'<div class="addbar"><button class="btn" data-a="cdapply">Alles übernehmen</button></div>';
+    }
+    // Gedankenspeicher
+    var th = document.getElementById("cl-thoughts");
+    if(th){
+      var openT = c.thoughts.filter(function(x){ return !x.done; });
+      var groups = [["decision","Entscheidungen und offene Fragen"],["worry","Sorgen und Gefühle"],["idea","Ideen"]];
+      th.innerHTML = openT.length ? groups.map(function(g){
+        var l = openT.filter(function(x){ return x.type===g[0]; }); if(!l.length) return "";
+        return '<div style="margin-bottom:10px"><div style="font-weight:700;margin-bottom:4px">'+g[1]+' <span class="pill grey">'+l.length+'</span></div>'+
+          l.map(function(x){ return '<div class="cdrow"><div class="cdt">'+esc(x.text)+'</div><button class="btn small ghost" data-a="cthtask" data-id="'+x.id+'">Kleinen Schritt daraus machen</button><button class="btn small ghost" data-a="cthdone" data-id="'+x.id+'">Geklärt</button><button class="x" data-a="cthdel" data-id="'+x.id+'" title="Löschen">×</button></div>'; }).join("")+'</div>';
+      }).join("") : '<div class="empty">Kopf frei. Neue Gedanken landen hier, wenn Claire sie sortiert hat.</div>';
+    }
+    // Tagesplan
+    var pl = document.getElementById("cl-plan");
+    if(pl){
+      var plan = clairePlan(), mins = plan.reduce(function(a,x){ return a+(x.duration||30); }, 0);
+      pl.innerHTML = plan.length ? plan.map(function(x,i){
+        return '<div class="row"><div class="tag" style="background:var(--'+x.area+')"></div><div class="body"><div class="name">'+(i+1)+'. '+esc(x.name)+'</div><div class="meta">'+(x.duration||30)+' Min · '+esc(claireReason(x))+'</div></div><button class="star '+(x.focus?'on':'')+'" data-a="focus" data-id="'+x.id+'" title="Als Fokus festlegen">'+(x.focus?'★':'☆')+'</button><button class="check" data-task="'+x.id+'"></button></div>';
+      }).join("")+'<div class="sub" style="margin-top:8px">Zusammen etwa '+mins+' Minuten. Mehr braucht ein guter Tag nicht.</div>' : '<div class="empty">Keine offenen Aufgaben. Nimm dir etwas vor, das dich erfüllt.</div>';
+    }
+    // Performance
+    var pf = document.getElementById("cl-perf");
+    if(pf){
+      var days = lastNDays(7), done7 = state.tasks.filter(function(x){ return x.done && days.indexOf(x.doneDate)!==-1; });
+      var added7 = state.tasks.filter(function(x){ return days.indexOf(x.added)!==-1; }).length;
+      var openN = state.tasks.filter(function(x){ return !x.done; }).length;
+      var rate = Math.round(done7.length/Math.max(1, done7.length+openN)*100);
+      var en = days.map(function(d){ return (c.checkins[d]||{}).energy; }).filter(Boolean), avgE = en.length ? (en.reduce(function(a,b){ return a+b; },0)/en.length).toFixed(1) : "–";
+      var hab = 0; state.habits.forEach(function(h){ (h.hist||[]).forEach(function(d){ if(days.indexOf(d)!==-1) hab++; }); });
+      var perDay = days.map(function(d){ return done7.filter(function(x){ return x.doneDate===d; }).length; }), mx = Math.max(1, Math.max.apply(null, perDay));
+      var byA = { privat:0, clero:0, wpp:0 }; done7.forEach(function(x){ if(x.area==="clero") byA.clero++; else if(x.area==="wpp") byA.wpp++; else byA.privat++; });
+      var wd = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+      var msg = !done7.length ? "Noch kein Abschluss in 7 Tagen. Starte mit der kleinsten Aufgabe, Schwung kommt vom Anfangen." : byA.privat===0 ? "Stark bei der Arbeit. Plane diese Woche noch etwas nur für dich, damit es erfüllend bleibt." : rate>=50 ? "Gute Woche mit Wirkung und Balance. Halte den Rhythmus." : "Du bewegst viel. Wähle weniger und schließe mehr ab, das erhöht die Wirkung.";
+      pf.innerHTML = '<div class="kpis"><div><b>'+done7.length+'</b><span>erledigt</span></div><div><b>'+added7+'</b><span>neu dazugekommen</span></div><div><b>'+rate+'%</b><span>Abschlussquote</span></div><div><b>'+avgE+'</b><span>Ø Energie (1 bis 5)</span></div><div><b>'+hab+'</b><span>Gewohnheiten</span></div></div>'+
+        '<div class="bars">'+perDay.map(function(n){ return '<div style="height:'+Math.round(n/mx*100)+'%" title="'+n+'"></div>'; }).join("")+'</div><div class="barlbl">'+days.map(function(d){ return '<span>'+wd[new Date(d+"T00:00:00").getDay()]+'</span>'; }).join("")+'</div>'+
+        '<div style="margin-top:12px;font-size:13.5px"><b>Balance:</b> Privat '+byA.privat+' · Clero '+byA.clero+' · WPP '+byA.wpp+'</div><div class="logline" style="margin-top:8px"><div class="lx">'+esc(msg)+'</div></div>';
+    }
+    // Wochenrueckblick
+    var rv = document.getElementById("cl-review");
+    if(rv && !(document.activeElement && rv.contains(document.activeElement))){
+      var wkKey = dateKey(mondayOf(new Date())), r = c.reviews[wkKey] || {};
+      rv.innerHTML = '<div class="rv"><label>Was lief diese Woche gut?</label><textarea rows="2" data-crev="win">'+esc(r.win||"")+'</textarea><label>Was hat mir Energie gekostet?</label><textarea rows="2" data-crev="drain">'+esc(r.drain||"")+'</textarea><label>Mein Hebel für nächste Woche</label><textarea rows="2" data-crev="lever">'+esc(r.lever||"")+'</textarea></div>';
     }
   }
 
@@ -4620,6 +5001,33 @@
     var el = e.target.closest ? e.target.closest("[data-a]") : null; if(!el) return;
     var a = el.dataset.a;
     if(a==="wrefresh"){ loadWorkData(); return; }
+    if(a==="agtoggle"){ agOpen[el.dataset.id] = !agOpen[el.dataset.id]; renderOffice(); return; }
+    if(a==="cenergy"){ var cc = CL(), tt = todayStr(); cc.checkins[tt] = cc.checkins[tt] || {}; cc.checkins[tt].energy = Number(el.dataset.v); save(); renderClaire(); return; }
+    if(a==="cdump"){
+      var ta = document.getElementById("cl-dump"), items = claireSplit(ta ? ta.value : "");
+      claireDraft = items.map(function(x){ var c2 = claireClassify(x); c2.id = uid(); c2.text = c2.text || x; return c2; });
+      var hint0 = document.getElementById("cl-hint"); if(hint0) hint0.textContent = claireDraft.length ? "" : "Schreib erst etwas in das Feld, dann sortiere ich.";
+      renderClaire(); return;
+    }
+    if(a==="cdclear"){ claireDraft = []; var ta2 = document.getElementById("cl-dump"); if(ta2) ta2.value = ""; renderClaire(); return; }
+    if(a==="cddel"){ claireDraft = claireDraft.filter(function(x){ return x.id!==id; }); renderClaire(); return; }
+    if(a==="cdapply"){
+      var counts = {}; claireDraft.forEach(function(it){ claireApply(it); counts[it.type] = (counts[it.type]||0)+1; });
+      var n = claireDraft.length, sum = Object.keys(counts).map(function(k){ return counts[k]+" "+CL_TYPES[k]; }).join(", ");
+      claireDraft = []; var ta3 = document.getElementById("cl-dump"); if(ta3) ta3.value = "";
+      save(); renderAll(); renderAgenda();
+      var hint1 = document.getElementById("cl-hint"); if(hint1){ hint1.textContent = n+" Gedanken einsortiert: "+sum+". Dein Kopf ist jetzt ein Stück freier."; setTimeout(function(){ hint1.textContent = ""; }, 8000); }
+      return;
+    }
+    if(a==="cthdone"){ var th1 = findById(CL().thoughts, id); if(th1){ th1.done = true; save(); renderClaire(); } return; }
+    if(a==="cthdel"){ CL().thoughts = CL().thoughts.filter(function(x){ return x.id!==id; }); save(); renderClaire(); return; }
+    if(a==="cthtask"){
+      var th2 = findById(CL().thoughts, id); if(!th2) return;
+      var nm = "Klären: "+th2.text, ar = guessArea(th2.text.toLowerCase());
+      var tk2 = { id: uid(), name: nm, area: ar, done:false, added: todayStr(), duration: 15 };
+      if(ar==="clero") tk2.stream = guessStream(th2.text); if(ar==="wpp") tk2.client = guessClient(th2.text);
+      state.tasks.push(tk2); th2.done = true; save(); renderAll(); return;
+    }
     if(a==="dmfilter"){ dmFilter = el.dataset.k; renderWork(); return; }
     if(a==="dmset"){
       state.cleroDm = state.cleroDm || {};
@@ -4637,12 +5045,17 @@
     }
   });
   document.body.addEventListener("change", function(e){
+    var d = e.target && e.target.dataset ? e.target.dataset : {};
+    if(d.cdtype){ var it = findById(claireDraft, d.cdtype); if(it){ it.type = e.target.value; renderClaire(); } return; }
+    if(d.cdarea){ var it2 = findById(claireDraft, d.cdarea); if(it2) it2.area = e.target.value; return; }
+    if(d.cint){ var cc = CL(), tt = todayStr(); cc.checkins[tt] = cc.checkins[tt] || {}; cc.checkins[tt].intention = e.target.value; save(); return; }
+    if(d.crev){ var cr = CL(), wk = dateKey(mondayOf(new Date())); cr.reviews[wk] = cr.reviews[wk] || {}; cr.reviews[wk][d.crev] = e.target.value; save(); return; }
     var id = e.target && e.target.dataset ? e.target.dataset.dmnote : null; if(!id) return;
     state.cleroDm = state.cleroDm || {};
     var o = state.cleroDm[id] = state.cleroDm[id] || {};
     o.note = e.target.value; save();
   });
-  setInterval(function(){ if(document.visibilityState==="visible" && (document.getElementById("panel-arbeit").classList.contains("active") || document.getElementById("panel-agents").classList.contains("active"))) loadWorkData(); }, 60000);
+  setInterval(function(){ if(document.visibilityState==="visible" && (document.getElementById("panel-arbeit").classList.contains("active") || document.getElementById("panel-agents").classList.contains("active") || document.getElementById("panel-claire").classList.contains("active"))) loadWorkData(); }, 60000);
 
   migrateV2();
   migrateV3();

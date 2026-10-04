@@ -1,0 +1,6 @@
+{
+ "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
+ "updated": null,
+ "message": "",
+ "nudges": []
+}

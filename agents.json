@@ -3,6 +3,16 @@
  "updated": "2026-10-04T10:10:15Z",
  "agents": [
   {
+   "id": "claire",
+   "name": "Persönliche Assistenz",
+   "area": "claire",
+   "status": "idle",
+   "schedule": "morgens Briefing, abends Rückblick",
+   "note": "Sortiert Gedanken, plant den Tag und hält den Überblick. Ihre Nachricht steht in claire.json.",
+   "last_run": null,
+   "next_run": null
+  },
+  {
    "id": "clero-dm-sichtung",
    "name": "Clero: DM-Sichtung & Antwortentwürfe",
    "area": "clero",
