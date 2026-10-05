@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz: Das Repo ist öffentlich, deshalb keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen und keine wörtlichen Zitate aus fremden Nachrichten, nur Vorname, Kategorie, neutrale Kurzzusammenfassung in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-05T11:54:40Z",
+ "updated": "2026-10-05T15:55:49Z",
  "account": "clero.app",
  "threads": [
   {
@@ -8,11 +8,11 @@
    "status": "entwurf",
    "name": "Kilian",
    "category": "host",
-   "last_message": "Hat einen Beitrag zu einem Marathon Wochenende seiner Running Community geteilt.",
+   "last_message": "Hat erneut einen Beitrag zum Marathon Wochenende seiner Running Community geteilt, hatte Clero schon in der Pipeline.",
    "last_at": "2026-10-04T09:30:00Z",
-   "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Marathon Wochenende aus! 🙌 Ich drück euch und allen Läufern die Daumen. Wenn du magst, quatschen wir danach mal kurz, ob Clero was für eure Community sein könnte. 💚",
+   "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Marathon Wochenende aus! 🙌 Ich drück euch und allen Läufern die Daumen. Melde dich gern, wenn du was von uns für die Community brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/114553816608374/",
-   "lead": "Community",
+   "lead": "Community, angeschrieben",
    "unread": true
   },
   {
@@ -30,11 +30,11 @@
    "status": "entwurf",
    "name": "Unbekannt",
    "category": "host",
-   "last_message": "Hat einen Beitrag zu einem Community Treffen in München geteilt.",
+   "last_message": "Hat einen Beitrag zum Community Treffen in München geteilt, Community ist schon im Founding Programm.",
    "last_at": "2026-10-01T17:09:00Z",
-   "draft": "Hey, danke fürs Teilen, was für ein schönes Foto von eurer Community! 🙌 Wir bringen bei Clero Münchner Communities an einem Ort zusammen. Ich erzähl dir gern mehr, wenn du Lust auf einen kurzen Austausch hast.",
+   "draft": "Hey, danke fürs Teilen, was für ein schönes Foto von eurer Community! 🙌 Schön, euch von Anfang an bei Clero dabei zu haben. Sag gern Bescheid, wenn du was für den Host Stammtisch am 8.10. brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/17843722431656766/",
-   "lead": "Community"
+   "lead": "Community, Founding 20 dabei"
   },
   {
    "id": "18073813787446121",
