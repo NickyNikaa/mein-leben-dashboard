@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-05T11:54:47Z",
+ "updated": "2026-10-05T15:52:57Z",
  "agents": [
   {
    "id": "claire",
@@ -18,14 +18,14 @@
    "id": "clero-dm-sichtung",
    "name": "Clero: DM-Sichtung & Antwortentwürfe",
    "area": "clero",
-   "status": "idle",
+   "status": "running",
    "schedule": "täglich 9:52, 13:52, 17:52, auch am Wochenende",
    "note": "Liest offene Insta-DMs von @clero.app, sortiert sie und schreibt Antwortentwürfe in dms.json",
    "last_run": "2026-10-05T11:54:47Z",
    "next_run": "2026-10-06T07:00:00Z",
-   "started": "2026-10-05T11:53:13Z",
-   "task_now": "",
-   "heartbeat": "2026-10-05T11:53:13Z",
+   "started": "2026-10-05T15:52:57Z",
+   "task_now": "Öffnet die Instagram Inbox",
+   "heartbeat": "2026-10-05T15:52:57Z",
    "runs_today": 2,
    "runs_day": "2026-10-05",
    "last_result": "8 offene DMs, 8 Entwürfe, 5 bekannte Leads"
