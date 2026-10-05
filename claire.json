@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-05T08:17:50Z",
- "message": "Heute bist du bis 16:30 bei WPP, danach gehören 7 Clero DM Entwürfe zu dir. Such dir erst eine Sache für den Vormittag aus, der Rest darf warten.",
+ "updated": "2026-10-05T17:22:52Z",
+ "message": "Heute haben die Agents 3 DM Läufe erledigt, 8 Antwortentwürfe warten auf dein OK. Magst du im Reiter Claire kurz den Tagesrückblick ausfüllen?",
  "nudges": [
-  "Wähl für den Vormittag bei WPP eine Sache, die zuerst dran kommt. Mehr braucht der Start nicht.",
-  "7 DM Entwürfe warten auf dein OK, 5 davon sind bekannte Leads. Nach Feierabend reichen zehn ruhige Minuten.",
-  "Mittags 15 Minuten raus an die frische Luft, ohne Handy. Das gehört nur dir.",
-  "Alle Agents laufen ohne Fehler. WPP Inbox und Mailbriefing sind weiterhin pausiert."
+  "Fokus für morgen: Vor dem Termin um 13 Uhr eine Sache bei WPP abschließen. Das Marketing/Growth Weekly um 15 Uhr darf danach kommen.",
+  "Im Reiter Claire ist Platz für deinen Tagesrückblick oder offene Gedanken, die du sortieren willst. Fünf ruhige Minuten reichen.",
+  "Es ist spät genug: Die 8 Entwürfe laufen nicht weg. Mach Feierabend, trink etwas Warmes und gönn dir einen ruhigen Abend.",
+  "Morgen Abend ab 18:30 ist das MUC.KI Meetup. Plan dir davor eine kleine Pause ein."
  ]
 }
