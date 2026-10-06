@@ -1,6 +1,6 @@
 {
- "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz: Das Repo ist öffentlich, deshalb keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen und keine wörtlichen Zitate aus fremden Nachrichten, nur Vorname, Kategorie, neutrale Kurzzusammenfassung in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-05T15:55:49Z",
+ "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten, nur Vorname, Kategorie, neutrale Kurzzusammenfassung in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
+ "updated": "2026-10-06T08:55:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -8,9 +8,9 @@
    "status": "entwurf",
    "name": "Kilian",
    "category": "host",
-   "last_message": "Hat erneut einen Beitrag zum Marathon Wochenende seiner Running Community geteilt, hatte Clero schon in der Pipeline.",
-   "last_at": "2026-10-04T09:30:00Z",
-   "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Marathon Wochenende aus! 🙌 Ich drück euch und allen Läufern die Daumen. Melde dich gern, wenn du was von uns für die Community brauchst. 💚",
+   "last_message": "Hat einen Beitrag zu einem Lauf Event am 10./11. Oktober mit Community Partnern geteilt.",
+   "last_at": "2026-10-05T11:22:00Z",
+   "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Event-Wochenende aus! 🙌 Viel Spaß und gutes Gelingen euch. Melde dich gern, wenn du was von uns für die Community brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/114553816608374/",
    "lead": "Community, angeschrieben",
    "unread": true
