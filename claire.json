@@ -1,10 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-06T08:19:15Z",
- "message": "Heute warten 8 Antwortentwürfe für Clero auf dein OK. Zehn Minuten vor dem MUC.KI Meetup reichen, der Rest darf ruhen.",
+ "updated": "2026-10-06T19:09:22Z",
+ "message": "Heute lief das Büro leise: DM-Sichtung dreimal, Pipeline aktualisiert, 8 Entwürfe liegen für dich bereit. Magst du kurz im Reiter Claire reflektieren, was heute gut war?",
  "nudges": [
-  "Zwischen WPP und dem Termin um 13 Uhr: eine Sache abschließen, dann ist der Nachmittag leichter.",
-  "In den Entwürfen steht der Host Stammtisch am 8.10. Schau kurz, ob du dafür noch etwas vorbereiten willst.",
-  "Nach dem Weekly um 15 Uhr: zehn Minuten raus an die frische Luft, bevor abends das MUC.KI Meetup ruft."
+  "Fokus für morgen: die 8 Clero Entwürfe sichten und freigeben, zehn Minuten reichen.",
+  "Im Reiter Claire wartet der Tagesrückblick. Drei Sätze genügen, oder sortier offene Gedanken.",
+  "Morgen WPP ab 8 Uhr und Zahnarzt um 18 Uhr. Heute Abend Bildschirm weg, du hast genug geschafft."
  ]
 }
