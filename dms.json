@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten, nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-06T11:55:43Z",
+ "updated": "2026-10-06T16:14:42Z",
  "account": "clero.app",
  "threads": [
   {
@@ -90,12 +90,12 @@
   },
   {
    "id": "102273411173486",
-   "status": "beantwortet",
-   "name": "Unbekannt",
+   "status": "entwurf",
+   "name": "Caro",
    "category": "sonstiges",
-   "last_message": "Hat Clero in einer Story erwähnt (Nachrichtenanfrage, Story nicht mehr abrufbar). Anbieterin aus dem Coaching Bereich.",
-   "last_at": "2026-10-06T11:55:43Z",
-   "draft": "Hey, danke dir für die Erwähnung in deiner Story, das freut mich richtig! 💚 Magst du mir kurz erzählen, was dich an Clero angesprochen hat?",
+   "last_message": "Hat eine Story Erwähnung geschickt und schreibt, sie habe sie zu spät gesehen.",
+   "last_at": "2026-10-06T11:24:00Z",
+   "draft": "Hey Caro, danke dir fürs Erwähnen, das freut uns total! 💚 Kein Stress wegen der Story. Wenn du magst, erzähl uns gern kurz, was du anbietest, vielleicht passt das ja zu Clero.",
    "url": "https://www.instagram.com/direct/t/102273411173486/",
    "unread": true
   }
