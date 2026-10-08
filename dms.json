@@ -1,5 +1,5 @@
 {
- "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten, nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
+ "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
  "updated": "2026-10-08T06:13:45Z",
  "account": "clero.app",
  "threads": [
