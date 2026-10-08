@@ -1,10 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-08T08:18:54Z",
- "message": "Heute: WPP bis 16:30, um 16:55 Reisepass im Bürgerbüro, abends Clero. Die DM von Milena passt in eine kurze Pause. Eins nach dem anderen, du schaffst das.",
+ "updated": "2026-10-08T17:25:00Z",
+ "message": "Die DM-Sichtung war heute viermal aktiv: 7 Entwürfe warten, 1 DM ist beantwortet, 1 abgelegt. Magst du im Reiter Claire kurz festhalten, wie dein Tag war?",
  "nudges": [
-  "Leg dir Unterlagen und Ausweis für den Termin um 16:55 schon heute früh bereit, dann bist du später entspannt.",
-  "Vor Clero um 19:00: Die Entwürfe für Milena und Susanne liegen bereit, ein kurzer Blick reicht.",
-  "Zwischen Bürgerbüro und Clero 20 Minuten raus an die frische Luft, ohne Handy. Das lädt dich für den Abend auf."
+  "Fokus für morgen: Nach WPP (8:00 bis 16:30) nur die zwei Entwürfe für Milena senden, mehr braucht es nicht.",
+  "Im Reiter Claire wartet der Tagesrückblick auf dich. Schreib auf, was gut lief und was noch im Kopf kreist, ich sortiere es mit dir.",
+  "Es ist schon nach 19 Uhr: Nach Clero Laptop zu, etwas Warmes essen und früh abschalten. Der Rest hat bis morgen Zeit."
  ]
 }
