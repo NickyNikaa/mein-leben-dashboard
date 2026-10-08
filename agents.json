@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-08T06:12:04Z",
+ "updated": "2026-10-08T06:13:45Z",
  "agents": [
   {
    "id": "claire",
@@ -18,17 +18,17 @@
    "id": "clero-dm-sichtung",
    "name": "Clero: DM-Sichtung & Antwortentwürfe",
    "area": "clero",
-   "status": "running",
+   "status": "idle",
    "schedule": "täglich 9:52, 13:52, 17:52, auch am Wochenende",
    "note": "Liest offene Insta-DMs von @clero.app, sortiert sie und schreibt Antwortentwürfe in dms.json",
-   "last_run": "2026-10-06T16:14:42Z",
-   "next_run": "2026-10-06T22:00:00Z",
+   "last_run": "2026-10-08T06:13:45Z",
+   "next_run": "2026-10-08T15:52:00Z",
    "started": "2026-10-08T06:11:32Z",
-   "task_now": "Öffnet die Instagram Inbox",
+   "task_now": "",
    "heartbeat": "2026-10-08T06:11:32Z",
-   "runs_today": 3,
-   "runs_day": "2026-10-06",
-   "last_result": "7 offene DMs, 7 Entwürfe, 0 bekannte Leads (Notion nicht verfügbar, Abgleich übersprungen)"
+   "runs_today": 1,
+   "runs_day": "2026-10-08",
+   "last_result": "7 offene DMs, 7 Entwürfe, 5 bekannte Leads (Notion Abgleich übersprungen)"
   },
   {
    "id": "clero-ig-outreach",
@@ -204,6 +204,11 @@
    "at": "2026-10-08T06:12:04Z",
    "agent": "Persönliche Assistenz",
    "text": "Morgenbriefing geschrieben"
+  },
+  {
+   "at": "2026-10-08T06:13:45Z",
+   "agent": "Clero: DM-Sichtung & Antwortentwürfe",
+   "text": "7 offene DMs, 7 Entwürfe, 5 bekannte Leads (Notion Abgleich übersprungen)"
   }
  ]
 }

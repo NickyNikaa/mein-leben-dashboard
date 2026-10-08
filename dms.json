@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. Datenschutz (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten, nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-06T16:14:42Z",
+ "updated": "2026-10-08T06:13:45Z",
  "account": "clero.app",
  "threads": [
   {
@@ -50,23 +50,26 @@
   {
    "id": "116481126407496",
    "status": "entwurf",
-   "name": "milena",
+   "name": "Milena",
    "category": "creator",
-   "last_message": "Hat mehrere Beiträge zu Community Events und Kultur Themen geteilt.",
-   "last_at": "2026-09-29T20:36:00Z",
-   "draft": "Hey, danke dir fürs Teilen der Beiträge, die Inspiration kommt genau richtig! 💚 Sag gern Bescheid, wenn du Lust hast, dich mal über Clero auszutauschen.",
-   "url": "https://www.instagram.com/direct/t/116481126407496/"
+   "last_message": "Hat Clero erneut in mehreren Stories erwähnt und Beiträge geteilt, keine direkte Frage.",
+   "last_at": "2026-10-08T05:07:00Z",
+   "draft": "Hey Milena, danke dir fürs Teilen und die vielen Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
+   "url": "https://www.instagram.com/direct/t/116481126407496/",
+   "lead": "Creator",
+   "unread": true
   },
   {
    "id": "18057648707475624",
    "status": "entwurf",
    "name": "Susanne",
    "category": "host",
-   "last_message": "Bedankt sich fürs Gespräch, findet die Idee spannend, kann aktuell aber noch nicht einsteigen und meldet sich später.",
+   "last_message": "Hat nach dem Telefonat abgesagt: Konzept noch im Aufbau, meldet sich später selbst.",
    "last_at": "2026-09-21T10:36:00Z",
-   "draft": "Hey Susanne, danke dir für deine ehrliche Rückmeldung und das nette Feedback! 💚 Total verständlich, nimm dir die Zeit, die du brauchst. Melde dich einfach, sobald es bei dir passt, wir freuen uns jederzeit auf dich.",
+   "draft": "Hi Susanne, danke dir für deine offene Rückmeldung, das können wir total gut verstehen! 💚 Bau dein Konzept in Ruhe auf. Wenn sich bei dir was tut oder du Fragen hast, melde dich jederzeit bei uns.",
    "url": "https://www.instagram.com/direct/t/18057648707475624/",
-   "lead": "Community, angeschrieben"
+   "lead": "Community, angeschrieben",
+   "unread": true
   },
   {
    "id": "17844448839622742",
@@ -90,11 +93,11 @@
   },
   {
    "id": "102273411173486",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Caro",
    "category": "sonstiges",
-   "last_message": "Hat eine Story Erwähnung geschickt und schreibt, sie habe sie zu spät gesehen.",
-   "last_at": "2026-10-06T11:24:00Z",
+   "last_message": "Hat auf die letzte Nachricht von Clero reagiert, nichts offen.",
+   "last_at": "2026-10-07T11:24:00Z",
    "draft": "Hey Caro, danke dir fürs Erwähnen, das freut uns total! 💚 Kein Stress wegen der Story. Wenn du magst, erzähl uns gern kurz, was du anbietest, vielleicht passt das ja zu Clero.",
    "url": "https://www.instagram.com/direct/t/102273411173486/",
    "unread": true
