@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-08T06:20:00Z",
- "message": "Heute zählen drei Dinge: WPP, 16:55 Bürgerbüro für den Reisepass und ab 19 Uhr Clero. Alles andere darf warten, du schaffst das in Ruhe.",
+ "updated": "2026-10-08T06:16:32Z",
+ "message": "Heute liefen die DM Sichtung (7 offene DMs mit Entwürfen) und die Pipeline mit 413 Community und 61 Creator. Magst du kurz im Reiter Claire reflektieren, was gut lief?",
  "nudges": [
-  "Reisepass um 16:55 in der Leonrodstraße: Der Termin folgt knapp auf WPP um 16:30, leg Unterlagen und Weg schon vormittags bereit.",
-  "Vor Clero um 19 Uhr: Die DM Entwürfe warten, einige nehmen Bezug auf den Stammtisch am 8.10. Zehn Minuten in der Mittagspause reichen.",
-  "Die DM Sichtung läuft gerade und liefert gleich frischen Stand. Danach lohnt sich ein Blick in den Reiter DMs.",
-  "Pack für Zypern am Samstag in Ruhe und gönn dir danach etwas Schönes: Tee, deine Musik oder ein Spaziergang."
+  "Fokus für morgen: WPP von 8 bis 16:30, danach nichts Neues mehr anfangen. Der Rest darf bis nach der Zypern Reise warten.",
+  "Im Reiter Claire wartet der Tagesrückblick. Zwei Minuten reichen, oder kipp offene Gedanken einfach dort aus und ich sortiere sie mit dir.",
+  "Die DM Entwürfe, besonders Milena und Kilian, sind noch ungelesen. Zehn Minuten Sichtung, dann sind sie vom Tisch.",
+  "Mach rechtzeitig Feierabend, pack für Zypern in Ruhe und gönn dir einen Abend ohne Bildschirm."
  ]
 }
