@@ -1,10 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-08T17:25:00Z",
- "message": "Die DM-Sichtung war heute viermal aktiv: 7 Entwürfe warten, 1 DM ist beantwortet, 1 abgelegt. Magst du im Reiter Claire kurz festhalten, wie dein Tag war?",
+ "updated": "2026-10-09T08:18:15Z",
+ "message": "Heute zählt nach WPP nur Clero: die zwei Milena Entwürfe und die Antwort an Susanne. Der Rest ist Dank und kann warten. Eins nach dem anderen, das reicht.",
  "nudges": [
-  "Fokus für morgen: Nach WPP (8:00 bis 16:30) nur die zwei Entwürfe für Milena senden, mehr braucht es nicht.",
-  "Im Reiter Claire wartet der Tagesrückblick auf dich. Schreib auf, was gut lief und was noch im Kopf kreist, ich sortiere es mit dir.",
-  "Es ist schon nach 19 Uhr: Nach Clero Laptop zu, etwas Warmes essen und früh abschalten. Der Rest hat bis morgen Zeit."
+  "Von 8 offenen DM Entwürfen sind drei wichtig: Milena (2x) und Susanne. Die übrigen sind Dankesnachrichten, die darfst du entspannt später senden.",
+  "Es ist Freitag: Plane heute Abend etwas, das dir Freude macht, und lass den Laptop nach Clero zu. Spazieren, Musik oder Freunde, du entscheidest.",
+  "Zwischen WPP und Clero lohnen sich 15 Minuten ohne Bildschirm: Tee, frische Luft, kurz durchatmen."
  ]
 }
