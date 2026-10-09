@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-09T07:54:42Z",
+ "updated": "2026-10-09T12:05:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -13,7 +13,8 @@
    "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Event-Wochenende aus! 🙌 Viel Spaß und gutes Gelingen euch. Melde dich gern, wenn du was von uns für die Community brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/114553816608374/",
    "lead": "Community, angeschrieben",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "119668546089336",
@@ -23,7 +24,8 @@
    "last_message": "Hat Clero in einer Story erwähnt, Story ist nicht mehr abrufbar.",
    "last_at": "2026-10-02T14:06:00Z",
    "draft": "Hey, danke dir für die Story Erwähnung, das freut uns riesig! 💚 Falls du magst, tauschen wir uns gern mal kurz aus, wie wir uns gegenseitig unterstützen können.",
-   "url": "https://www.instagram.com/direct/t/119668546089336/"
+   "url": "https://www.instagram.com/direct/t/119668546089336/",
+   "handle": ""
   },
   {
    "id": "17843722431656766",
@@ -34,18 +36,21 @@
    "last_at": "2026-10-01T17:09:00Z",
    "draft": "Hey, danke fürs Teilen, was für ein schönes Foto von eurer Community! 🙌 Schön, euch von Anfang an bei Clero dabei zu haben. Sag gern Bescheid, wenn du was für den Host Stammtisch am 8.10. brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/17843722431656766/",
-   "lead": "Community, Founding 20 dabei"
+   "lead": "Community, Founding 20 dabei",
+   "handle": ""
   },
   {
    "id": "18073813787446121",
    "status": "entwurf",
    "name": "Milena",
    "category": "creator",
-   "last_message": "Hat Clero in einer Story erwähnt und ein Video von einem Event geteilt.",
-   "last_at": "2026-09-30T15:47:00Z",
+   "last_message": "Hat Clero erneut in Stories erwähnt und Beiträge geteilt, keine direkte Frage.",
+   "last_at": "2026-10-09T11:00:00Z",
    "draft": "Hey Milena, danke dir für die Erwähnung und das Video, das hat mich richtig gefreut! 💚 Wie hat dir das Event gefallen?",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
-   "lead": "Creator"
+   "lead": "Creator",
+   "handle": "",
+   "unread": true
   },
   {
    "id": "116481126407496",
@@ -57,7 +62,8 @@
    "draft": "Hey Milena, danke dir fürs Teilen und die vielen Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
    "url": "https://www.instagram.com/direct/t/116481126407496/",
    "lead": "Creator",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "18057648707475624",
@@ -69,7 +75,8 @@
    "draft": "Hi Susanne, danke dir für deine offene Rückmeldung, das können wir total gut verstehen! 💚 Bau dein Konzept in Ruhe auf. Wenn sich bei dir was tut oder du Fragen hast, melde dich jederzeit bei uns.",
    "url": "https://www.instagram.com/direct/t/18057648707475624/",
    "lead": "Community, angeschrieben",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "17844448839622742",
@@ -80,7 +87,8 @@
    "last_at": "2026-10-09T07:54:42Z",
    "draft": "Hey ihr zwei, danke fürs Teilen, das Foto ist so schön! 💚 Schön, euch von Anfang an dabei zu haben. Sagt gern Bescheid, wenn ihr was für den Host Stammtisch am 8.10. braucht.",
    "url": "https://www.instagram.com/direct/t/17844448839622742/",
-   "lead": "Community, Founding 20 dabei"
+   "lead": "Community, Founding 20 dabei",
+   "handle": ""
   },
   {
    "id": "18103294814056503",
@@ -89,7 +97,8 @@
    "category": "partner",
    "last_message": "Geteilter Inhalt ist nicht mehr verfügbar, keine Frage enthalten.",
    "last_at": "2026-09-28T20:13:00Z",
-   "url": "https://www.instagram.com/direct/t/18103294814056503/"
+   "url": "https://www.instagram.com/direct/t/18103294814056503/",
+   "handle": ""
   },
   {
    "id": "102273411173486",
@@ -100,7 +109,8 @@
    "last_at": "2026-10-07T11:24:00Z",
    "draft": "Hey Caro, danke dir fürs Erwähnen, das freut uns total! 💚 Kein Stress wegen der Story. Wenn du magst, erzähl uns gern kurz, was du anbietest, vielleicht passt das ja zu Clero.",
    "url": "https://www.instagram.com/direct/t/102273411173486/",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "18064966235351708",
@@ -112,7 +122,8 @@
    "draft": "Hey, danke dir fürs Erwähnen und Teilen, das freut uns riesig! 💚 Schön, euch von Anfang an bei Clero dabei zu haben.",
    "url": "https://www.instagram.com/direct/t/18064966235351708/",
    "lead": "Community, Founding 20 dabei",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "17846468748577511",
@@ -123,7 +134,8 @@
    "last_at": "2026-10-09T07:54:00Z",
    "draft": "Hey, danke fürs Erwähnen, das hat uns total gefreut! 💚 Schön, euch von Anfang an dabei zu haben. Sag gern Bescheid, wenn ihr was von uns braucht.",
    "url": "https://www.instagram.com/direct/t/17846468748577511/",
-   "lead": "Community, Founding 20 dabei"
+   "lead": "Community, Founding 20 dabei",
+   "handle": ""
   }
  ]
 }
