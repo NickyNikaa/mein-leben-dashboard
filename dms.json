@@ -1,6 +1,6 @@
 {
- "_hinweis": "Wird vom Agent Clero: DM-Sichtung befüllt. DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-08T06:13:45Z",
+ "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
+ "updated": "2026-10-09T07:54:42Z",
  "account": "clero.app",
  "threads": [
   {
@@ -73,11 +73,11 @@
   },
   {
    "id": "17844448839622742",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Spark",
    "category": "host",
    "last_message": "Hat einen Beitrag mit Community Foto geteilt, Community ist schon im Programm.",
-   "last_at": "2026-09-18T08:16:00Z",
+   "last_at": "2026-10-09T07:54:42Z",
    "draft": "Hey ihr zwei, danke fürs Teilen, das Foto ist so schön! 💚 Schön, euch von Anfang an dabei zu haben. Sagt gern Bescheid, wenn ihr was für den Host Stammtisch am 8.10. braucht.",
    "url": "https://www.instagram.com/direct/t/17844448839622742/",
    "lead": "Community, Founding 20 dabei"
@@ -101,6 +101,29 @@
    "draft": "Hey Caro, danke dir fürs Erwähnen, das freut uns total! 💚 Kein Stress wegen der Story. Wenn du magst, erzähl uns gern kurz, was du anbietest, vielleicht passt das ja zu Clero.",
    "url": "https://www.instagram.com/direct/t/102273411173486/",
    "unread": true
+  },
+  {
+   "id": "18064966235351708",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat Clero erneut in einer Story erwähnt, keine Frage enthalten.",
+   "last_at": "2026-10-09T07:54:00Z",
+   "draft": "Hey, danke dir fürs Erwähnen und Teilen, das freut uns riesig! 💚 Schön, euch von Anfang an bei Clero dabei zu haben.",
+   "url": "https://www.instagram.com/direct/t/18064966235351708/",
+   "lead": "Community, Founding 20 dabei",
+   "unread": true
+  },
+  {
+   "id": "17846468748577511",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat Clero in einer Story erwähnt, Community ist schon im Founding Programm.",
+   "last_at": "2026-10-09T07:54:00Z",
+   "draft": "Hey, danke fürs Erwähnen, das hat uns total gefreut! 💚 Schön, euch von Anfang an dabei zu haben. Sag gern Bescheid, wenn ihr was von uns braucht.",
+   "url": "https://www.instagram.com/direct/t/17846468748577511/",
+   "lead": "Community, Founding 20 dabei"
   }
  ]
 }
