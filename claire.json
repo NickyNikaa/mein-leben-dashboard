@@ -1,11 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-11T13:37:10Z",
- "message": "Heute war es im Büro ruhig: nur die Pipeline lief (413 Community, 61 Creator). 8 DM Entwürfe warten ohne Eile. Magst du kurz festhalten, was dir heute gutgetan hat?",
+ "updated": "2026-10-11T13:45:00Z",
+ "message": "Laut Kalender bist du auf Zypern, heute zählt nur Erholung. Die Clero Antworten an Milena und Susanne liegen vorbereitet, nichts davon eilt.",
  "nudges": [
-  "Fokus für morgen: nur ein Ding, zum Beispiel die zwei Milena Entwürfe prüfen. Alles andere darf im Urlaub warten.",
-  "Im Reiter Claire kannst du den Tagesrückblick ausfüllen oder offene Gedanken sortieren. Zwei Minuten reichen.",
-  "Es ist Sonntagabend: Handy weg, etwas Schönes essen, früh ins Bett. Erholung ist heute die Aufgabe.",
-  "Hinweis: Die DM Sichtung hat seit Freitag keinen Lauf gemeldet. Schau bei Gelegenheit im Büro nach."
+  "Die Clero DM Sichtung lief seit Freitag nicht mehr, die Liste ist zwei Tage alt. Nichts Dringendes, ein Blick nach dem Urlaub reicht.",
+  "Milena hat Clero mehrfach erwähnt. Ein kurzes persönliches Danke geht in zwei Minuten, muss aber nicht heute sein.",
+  "Sonntag auf Zypern: Geh heute ohne Plan ans Wasser oder zum Sonnenuntergang, Handy im Rucksack. Das ist die wichtigste Aufgabe."
  ]
 }
