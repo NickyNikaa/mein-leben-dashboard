@@ -1,10 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-11T13:45:00Z",
- "message": "Laut Kalender bist du auf Zypern, heute zählt nur Erholung. Die Clero Antworten an Milena und Susanne liegen vorbereitet, nichts davon eilt.",
+ "updated": "2026-10-12T07:27:24Z",
+ "message": "Die Pipeline ist auf 415 Community und 62 Creator gewachsen, sonst blieb es im Büro ruhig. Magst du im Reiter Claire kurz festhalten, was dir auf Zypern gut getan hat?",
  "nudges": [
-  "Die Clero DM Sichtung lief seit Freitag nicht mehr, die Liste ist zwei Tage alt. Nichts Dringendes, ein Blick nach dem Urlaub reicht.",
-  "Milena hat Clero mehrfach erwähnt. Ein kurzes persönliches Danke geht in zwei Minuten, muss aber nicht heute sein.",
-  "Sonntag auf Zypern: Geh heute ohne Plan ans Wasser oder zum Sonnenuntergang, Handy im Rucksack. Das ist die wichtigste Aufgabe."
+  "Fokus für morgen: keiner. Dein Urlaub läuft bis Freitag, das Marketing/Growth Weekly um 15 Uhr darfst du getrost auslassen.",
+  "Im Reiter Claire wartet der Tagesrückblick: drei Sätze zu dem, was schön war, mehr braucht es nicht.",
+  "Die Clero DM Sichtung meldet einen Fehler (Instagram nicht eingeloggt). Das hat Zeit bis nach dem Urlaub.",
+  "Lass den Abend heute offen: Sonnenuntergang, etwas Gutes essen, früh schlafen."
  ]
 }
