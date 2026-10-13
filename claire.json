@@ -1,11 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-12T07:27:24Z",
- "message": "Die Pipeline ist auf 415 Community und 62 Creator gewachsen, sonst blieb es im Büro ruhig. Magst du im Reiter Claire kurz festhalten, was dir auf Zypern gut getan hat?",
+ "updated": "2026-10-13T16:13:46Z",
+ "message": "Du hast noch Urlaub bis Freitag, also darf heute nichts müssen. Such dir einfach eine Sache aus, die dir Freude macht, der Rest darf warten.",
  "nudges": [
-  "Fokus für morgen: keiner. Dein Urlaub läuft bis Freitag, das Marketing/Growth Weekly um 15 Uhr darfst du getrost auslassen.",
-  "Im Reiter Claire wartet der Tagesrückblick: drei Sätze zu dem, was schön war, mehr braucht es nicht.",
-  "Die Clero DM Sichtung meldet einen Fehler (Instagram nicht eingeloggt). Das hat Zeit bis nach dem Urlaub.",
-  "Lass den Abend heute offen: Sonnenuntergang, etwas Gutes essen, früh schlafen."
+  "Der Reiter Claire wartet mit dem Tagesrückblick: drei Sätze zu dem, was heute schön war, mehr braucht es nicht.",
+  "Die Clero DM Sichtung zeigt einen Fehler (Instagram nicht eingeloggt). Das hat Zeit bis nach dem Urlaub, dann reicht ein Login.",
+  "Gönn dir heute Abend etwas Gutes: ein langer Spaziergang oder ein schönes Essen, und früh schlafen."
  ]
 }
