@@ -1,6 +1,6 @@
 {
- "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Nachnamen, keine Telefonnummern oder Mailadressen, keine wörtlichen Zitate aus fremden Nachrichten. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-09T12:05:00Z",
+ "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
+ "updated": "2026-10-13T16:16:11Z",
  "account": "clero.app",
  "threads": [
   {
@@ -44,9 +44,9 @@
    "status": "entwurf",
    "name": "Milena",
    "category": "creator",
-   "last_message": "Hat Clero erneut in Stories erwähnt und Beiträge geteilt, keine direkte Frage.",
-   "last_at": "2026-10-09T11:00:00Z",
-   "draft": "Hey Milena, danke dir für die Erwähnung und das Video, das hat mich richtig gefreut! 💚 Wie hat dir das Event gefallen?",
+   "last_message": "Teilt weiter Beiträge und erwähnt Clero in Stories, keine direkte Frage.",
+   "last_at": "2026-10-12T16:32:00Z",
+   "draft": "Hey Milena, danke dir fürs Teilen und die vielen Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
    "lead": "Creator",
    "handle": "",
@@ -91,16 +91,6 @@
    "handle": ""
   },
   {
-   "id": "18103294814056503",
-   "status": "abgelegt",
-   "name": "Unbekannt",
-   "category": "partner",
-   "last_message": "Geteilter Inhalt ist nicht mehr verfügbar, keine Frage enthalten.",
-   "last_at": "2026-09-28T20:13:00Z",
-   "url": "https://www.instagram.com/direct/t/18103294814056503/",
-   "handle": ""
-  },
-  {
    "id": "102273411173486",
    "status": "beantwortet",
    "name": "Caro",
@@ -114,11 +104,11 @@
   },
   {
    "id": "18064966235351708",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "partner",
    "last_message": "Hat Clero erneut in einer Story erwähnt, keine Frage enthalten.",
-   "last_at": "2026-10-09T07:54:00Z",
+   "last_at": "2026-10-13T16:16:11Z",
    "draft": "Hey, danke dir fürs Erwähnen und Teilen, das freut uns riesig! 💚 Schön, euch von Anfang an bei Clero dabei zu haben.",
    "url": "https://www.instagram.com/direct/t/18064966235351708/",
    "lead": "Community, Founding 20 dabei",
@@ -127,15 +117,36 @@
   },
   {
    "id": "17846468748577511",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat Clero in einer Story erwähnt, Community ist schon im Founding Programm.",
-   "last_at": "2026-10-09T07:54:00Z",
+   "last_at": "2026-10-13T16:16:11Z",
    "draft": "Hey, danke fürs Erwähnen, das hat uns total gefreut! 💚 Schön, euch von Anfang an dabei zu haben. Sag gern Bescheid, wenn ihr was von uns braucht.",
    "url": "https://www.instagram.com/direct/t/17846468748577511/",
    "lead": "Community, Founding 20 dabei",
    "handle": ""
+  },
+  {
+   "id": "17844047247549499",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat einen Beitrag zum gemeinsamen Challenge Event geteilt, keine direkte Frage.",
+   "last_at": "2026-10-11T00:28:00Z",
+   "draft": "Hey, danke fürs Teilen, es war so schön, euch beim Challenge Event dabei zu haben! 💚 Wenn du magst, tauschen wir uns bald mal kurz aus, wie wir die Münchner Communities zusammen noch weiter bringen.",
+   "url": "https://www.instagram.com/direct/t/17844047247549499/",
+   "unread": true
+  },
+  {
+   "id": "17847584178049416",
+   "status": "abgelegt",
+   "name": "Naomi",
+   "category": "creator",
+   "last_message": "Austausch zum Reel, zuletzt nur kurze freundliche Bestätigung, nichts offen.",
+   "last_at": "2026-10-11T10:00:00Z",
+   "url": "https://www.instagram.com/direct/t/17847584178049416/",
+   "lead": "Creator"
   }
  ]
 }
