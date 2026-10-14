@@ -1,6 +1,6 @@
 {
- "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-14T06:00:00Z",
+ "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
+ "updated": "2026-10-14T18:40:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -46,9 +46,9 @@
    "status": "entwurf",
    "name": "Milena",
    "category": "creator",
-   "last_message": "Teilt weiter Beiträge und erwähnt Clero in Stories, keine direkte Frage.",
-   "last_at": "2026-10-13T19:00:00Z",
-   "draft": "Hey Milena, danke dir fürs Teilen und die vielen Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
+   "last_message": "Schickt weiter Reels und Story Erwähnungen, keine direkte Frage.",
+   "last_at": "2026-10-13T20:00:00Z",
+   "draft": "Hey Milena, danke dir für die vielen Reels und Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
    "lead": "Creator",
    "handle": "",
@@ -56,7 +56,7 @@
   },
   {
    "id": "116481126407496",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Milena",
    "category": "creator",
    "last_message": "Hat Clero erneut in mehreren Stories erwähnt und Beiträge geteilt, keine direkte Frage.",
@@ -64,7 +64,7 @@
    "draft": "Hey Milena, danke dir fürs Teilen und die vielen Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
    "url": "https://www.instagram.com/direct/t/116481126407496/",
    "lead": "Creator",
-   "unread": true,
+   "unread": false,
    "handle": ""
   },
   {
@@ -121,7 +121,7 @@
    "status": "entwurf",
    "name": "Unbekannt",
    "category": "host",
-   "last_message": "Hat einen Beitrag zum gemeinsamen Challenge Event geteilt, keine direkte Frage.",
+   "last_message": "Hat einen Beitrag zum gemeinsamen Event geteilt, keine direkte Frage.",
    "last_at": "2026-10-11T00:28:00Z",
    "draft": "Hey, danke fürs Teilen, es war so schön, euch beim Challenge Event dabei zu haben! 💚 Wenn du magst, tauschen wir uns bald mal kurz aus, wie wir die Münchner Communities zusammen noch weiter bringen.",
    "url": "https://www.instagram.com/direct/t/17844047247549499/",
@@ -135,7 +135,8 @@
    "last_message": "Austausch zum Reel, zuletzt kurze freundliche Bestaetigung von ihr, nichts offen.",
    "last_at": "2026-10-11T10:00:00Z",
    "url": "https://www.instagram.com/direct/t/17847584178049416/",
-   "lead": "Creator"
+   "lead": "Creator",
+   "unread": true
   }
  ]
 }
