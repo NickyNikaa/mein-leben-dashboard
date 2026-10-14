@@ -1,6 +1,6 @@
 {
   "_hinweis": "Nur Zahlen aus den Notion-Listen. Keine Namen, Handles oder Kontaktdaten, weil dieses Repo oeffentlich ist.",
-  "updated": "2026-10-13T16:13:24Z",
+  "updated": "2026-10-14T07:51:21Z",
   "lists": [
     {
       "id": "community",
@@ -46,11 +46,11 @@
     {
       "id": "creator",
       "title": "Creator Outreach",
-      "total": 62,
+      "total": 64,
       "stages": [
         [
           "Angeschrieben",
-          47
+          49
         ],
         [
           "Termin ausgemacht",
@@ -76,7 +76,7 @@
       "focus": [
         [
           "Angeschrieben, wartet auf Antwort",
-          47
+          49
         ],
         [
           "Termin ausgemacht",
