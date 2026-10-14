@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-14T07:55:45Z",
+ "updated": "2026-10-14T08:18:22Z",
  "agents": [
   {
    "id": "claire",
@@ -9,10 +9,10 @@
    "status": "idle",
    "schedule": "täglich 10:17 und 19:22",
    "note": "Sortiert Gedanken, plant den Tag und hält den Überblick. Ihre Nachricht steht in claire.json.",
-   "last_run": "2026-10-13T17:23:12Z",
-   "next_run": "2026-10-14T05:17:00Z",
+   "last_run": "2026-10-14T08:18:22Z",
+   "next_run": "2026-10-14T17:22:00Z",
    "task_now": "",
-   "last_result": "Abendrückblick geschrieben"
+   "last_result": "Morgenbriefing geschrieben"
   },
   {
    "id": "clero-dm-sichtung",
@@ -319,6 +319,11 @@
    "at": "2026-10-14T07:55:45Z",
    "agent": "Clero: DM-Sichtung & Antwortentwürfe",
    "text": "3 offene DMs, 3 Entwürfe, 3 bekannte Leads"
+  },
+  {
+   "at": "2026-10-14T08:18:22Z",
+   "agent": "Persönliche Assistenz",
+   "text": "Morgenbriefing geschrieben"
   }
  ]
 }

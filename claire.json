@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-13T17:23:11Z",
- "message": "Im Büro lief heute alles rund: Pipeline und DM Sichtung sind durch, 7 Entwürfe warten, 4 DMs sind beantwortet, 1 abgelegt. Magst du im Reiter Claire festhalten, was dir heute gut getan hat?",
+ "updated": "2026-10-14T08:18:22Z",
+ "message": "Du bist noch im Urlaub auf Zypern, heute darf alles leicht bleiben. Nur Milenas Nachricht wartet auf eine Antwort, alles andere von Clero kann ruhen.",
  "nudges": [
-  "Fokus für morgen: keiner nötig. Du bist im Urlaub und auf Zypern, dein Kalender ist leer. Vielleicht ein Spaziergang und ein gutes Frühstück.",
-  "Im Reiter Claire wartet der Tagesrückblick: drei Sätze zu dem, was schön war, oder sortiere offene Gedanken, die dich noch begleiten.",
-  "Die Clero DM Sichtung meldet weiter, dass Instagram nicht eingeloggt ist. Das hat Zeit bis nach dem Urlaub.",
-  "Es ist Abend: Leg das Handy bald weg, iss etwas Gutes und gönn dir früh Ruhe."
+  "Milena hat Clero mehrfach erwähnt, dein Antwortentwurf steht in den DMs. Ein Klick zum Prüfen reicht, sonst hat es Zeit.",
+  "Ein Host hat ein Foto vom Challenge Event geteilt, auch dazu liegt ein Entwurf bereit. Kein Druck, das geht nach dem Urlaub.",
+  "Gönn dir heute etwas, das nur dir gehört: Kaffee am Meer, ein langer Spaziergang oder ein Buch in der Sonne.",
+  "Im Reiter Claire wartet der Tagesrückblick: drei Sätze zu dem, was heute schön war."
  ]
 }
