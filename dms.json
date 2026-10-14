@@ -1,11 +1,11 @@
 {
- "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-13T16:16:11Z",
+ "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
+ "updated": "2026-10-14T06:00:00Z",
  "account": "clero.app",
  "threads": [
   {
    "id": "114553816608374",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Kilian",
    "category": "host",
    "last_message": "Hat einen Beitrag zu einem Lauf Event am 10./11. Oktober mit Community Partnern geteilt.",
@@ -13,23 +13,24 @@
    "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Event-Wochenende aus! 🙌 Viel Spaß und gutes Gelingen euch. Melde dich gern, wenn du was von uns für die Community brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/114553816608374/",
    "lead": "Community, angeschrieben",
-   "unread": true,
+   "unread": false,
    "handle": ""
   },
   {
    "id": "119668546089336",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "partner",
    "last_message": "Hat Clero in einer Story erwähnt, Story ist nicht mehr abrufbar.",
    "last_at": "2026-10-02T14:06:00Z",
    "draft": "Hey, danke dir für die Story Erwähnung, das freut uns riesig! 💚 Falls du magst, tauschen wir uns gern mal kurz aus, wie wir uns gegenseitig unterstützen können.",
    "url": "https://www.instagram.com/direct/t/119668546089336/",
-   "handle": ""
+   "handle": "",
+   "unread": false
   },
   {
    "id": "17843722431656766",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat einen Beitrag zum Community Treffen in München geteilt, Community ist schon im Founding Programm.",
@@ -37,7 +38,8 @@
    "draft": "Hey, danke fürs Teilen, was für ein schönes Foto von eurer Community! 🙌 Schön, euch von Anfang an bei Clero dabei zu haben. Sag gern Bescheid, wenn du was für den Host Stammtisch am 8.10. brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/17843722431656766/",
    "lead": "Community, Founding 20 dabei",
-   "handle": ""
+   "handle": "",
+   "unread": false
   },
   {
    "id": "18073813787446121",
@@ -45,7 +47,7 @@
    "name": "Milena",
    "category": "creator",
    "last_message": "Teilt weiter Beiträge und erwähnt Clero in Stories, keine direkte Frage.",
-   "last_at": "2026-10-12T16:32:00Z",
+   "last_at": "2026-10-13T19:00:00Z",
    "draft": "Hey Milena, danke dir fürs Teilen und die vielen Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
    "lead": "Creator",
@@ -62,19 +64,6 @@
    "draft": "Hey Milena, danke dir fürs Teilen und die vielen Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
    "url": "https://www.instagram.com/direct/t/116481126407496/",
    "lead": "Creator",
-   "unread": true,
-   "handle": ""
-  },
-  {
-   "id": "18057648707475624",
-   "status": "entwurf",
-   "name": "Susanne",
-   "category": "host",
-   "last_message": "Hat nach dem Telefonat abgesagt: Konzept noch im Aufbau, meldet sich später selbst.",
-   "last_at": "2026-09-21T10:36:00Z",
-   "draft": "Hi Susanne, danke dir für deine offene Rückmeldung, das können wir total gut verstehen! 💚 Bau dein Konzept in Ruhe auf. Wenn sich bei dir was tut oder du Fragen hast, melde dich jederzeit bei uns.",
-   "url": "https://www.instagram.com/direct/t/18057648707475624/",
-   "lead": "Community, angeschrieben",
    "unread": true,
    "handle": ""
   },
@@ -143,7 +132,7 @@
    "status": "abgelegt",
    "name": "Naomi",
    "category": "creator",
-   "last_message": "Austausch zum Reel, zuletzt nur kurze freundliche Bestätigung, nichts offen.",
+   "last_message": "Austausch zum Reel, zuletzt kurze freundliche Bestaetigung von ihr, nichts offen.",
    "last_at": "2026-10-11T10:00:00Z",
    "url": "https://www.instagram.com/direct/t/17847584178049416/",
    "lead": "Creator"
