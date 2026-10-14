@@ -1,11 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-14T08:18:22Z",
- "message": "Du bist noch im Urlaub auf Zypern, heute darf alles leicht bleiben. Nur Milenas Nachricht wartet auf eine Antwort, alles andere von Clero kann ruhen.",
+ "updated": "2026-10-14T18:26:17Z",
+ "message": "Heute lief im Büro alles still für dich: 7 DMs sind beantwortet, nur 3 Entwürfe warten, die Pipeline zählt 64 Creator. Magst du kurz reflektieren?",
  "nudges": [
-  "Milena hat Clero mehrfach erwähnt, dein Antwortentwurf steht in den DMs. Ein Klick zum Prüfen reicht, sonst hat es Zeit.",
-  "Ein Host hat ein Foto vom Challenge Event geteilt, auch dazu liegt ein Entwurf bereit. Kein Druck, das geht nach dem Urlaub.",
-  "Gönn dir heute etwas, das nur dir gehört: Kaffee am Meer, ein langer Spaziergang oder ein Buch in der Sonne.",
-  "Im Reiter Claire wartet der Tagesrückblick: drei Sätze zu dem, was heute schön war."
+  "Fokus für morgen: nur ein Ding, zum Beispiel Milenas Entwurf prüfen. Alles andere darf im Urlaub warten.",
+  "Im Reiter Claire wartet der Tagesrückblick. Drei Sätze zu dem, was heute schön war, reichen.",
+  "Zypern bis Sonntag: Handy weg, ein Abendessen am Meer und früh ins Bett. Du hast Feierabend."
  ]
 }
