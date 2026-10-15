@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-14T18:40:00Z",
+ "updated": "2026-10-15T00:00:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -136,6 +136,38 @@
    "last_at": "2026-10-11T10:00:00Z",
    "url": "https://www.instagram.com/direct/t/17847584178049416/",
    "lead": "Creator",
+   "unread": true
+  },
+  {
+   "id": "17843115749219038",
+   "status": "entwurf",
+   "name": "Munich Mover",
+   "category": "host",
+   "last_message": "Hat Clero in einer Story erwähnt, Story ist nicht mehr abrufbar. Ungelesen.",
+   "last_at": "2026-10-15T00:00:00Z",
+   "draft": "Hey, danke dir für die Story Erwähnung, das freut uns riesig! 💚 Magst du mir kurz sagen, was ihr bei Munich Mover gerade plant? Dann schauen wir, wie Clero euch unterstützen kann.",
+   "url": "https://www.instagram.com/direct/t/17843115749219038/",
+   "lead": "Community",
+   "unread": true
+  },
+  {
+   "id": "930735036652085",
+   "status": "abgelegt",
+   "name": "Unbekannt",
+   "category": "sonstiges",
+   "last_message": "Gruppenchat einer Rennrad Community, kein direkter Bezug oder Frage an Clero.",
+   "last_at": "2026-10-12T12:22:00Z",
+   "url": "https://www.instagram.com/direct/t/930735036652085/",
+   "unread": true
+  },
+  {
+   "id": "109876630410636",
+   "status": "abgelegt",
+   "name": "Julia",
+   "category": "sonstiges",
+   "last_message": "Reagiert nur mit Emojis auf Clero Storys, keine Nachricht.",
+   "last_at": "2026-09-13T00:21:00Z",
+   "url": "https://www.instagram.com/direct/t/109876630410636/",
    "unread": true
   }
  ]
