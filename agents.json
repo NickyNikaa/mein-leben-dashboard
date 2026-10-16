@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-16T06:12:31Z",
+ "updated": "2026-10-16T06:22:13Z",
  "agents": [
   {
    "id": "claire",
@@ -9,10 +9,10 @@
    "status": "idle",
    "schedule": "täglich 10:17 und 19:22",
    "note": "Sortiert Gedanken, plant den Tag und hält den Überblick. Ihre Nachricht steht in claire.json.",
-   "last_run": "2026-10-14T18:26:22Z",
-   "next_run": "2026-10-15T05:17:00Z",
+   "last_run": "2026-10-16T06:22:13Z",
+   "next_run": "2026-10-16T17:22:00Z",
    "task_now": "",
-   "last_result": "Abendrückblick geschrieben"
+   "last_result": "Morgenbriefing geschrieben"
   },
   {
    "id": "clero-dm-sichtung",
@@ -354,6 +354,11 @@
    "at": "2026-10-16T06:12:31Z",
    "agent": "Pipeline",
    "text": "Pipeline aktualisiert: 415 Community, 64 Creator"
+  },
+  {
+   "at": "2026-10-16T06:22:13Z",
+   "agent": "Persönliche Assistenz",
+   "text": "Morgenbriefing geschrieben"
   }
  ]
 }
