@@ -1,6 +1,6 @@
 {
- "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer. Felder pro Thread: id, name, category (host, creator, partner, sonstiges), last_message, last_at, unread, status (neu, entwurf, spaeter, beantwortet, abgelegt), draft, url, lead, ablage, note.",
- "updated": "2026-10-15T00:00:00Z",
+ "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
+ "updated": "2026-10-16T06:24:54Z",
  "account": "clero.app",
  "threads": [
   {
@@ -93,12 +93,12 @@
   },
   {
    "id": "18064966235351708",
-   "status": "beantwortet",
+   "status": "entwurf",
    "name": "Unbekannt",
    "category": "partner",
-   "last_message": "Hat Clero erneut in einer Story erwähnt, keine Frage enthalten.",
-   "last_at": "2026-10-13T16:16:11Z",
-   "draft": "Hey, danke dir fürs Erwähnen und Teilen, das freut uns riesig! 💚 Schön, euch von Anfang an bei Clero dabei zu haben.",
+   "last_message": "Hat einen Beitrag geteilt, in dem sich die Community für das Challenge Event bei Clero bedankt, keine Frage.",
+   "last_at": "2026-10-15T16:20:00Z",
+   "draft": "Hey, danke dir fürs Teilen und die lieben Worte zum Challenge Event, das freut uns riesig! 💚 Es war so schön, euch dabei zu haben. Lass uns bald mal kurz quatschen, wie wir als Communities zusammen noch mehr bewegen können.",
    "url": "https://www.instagram.com/direct/t/18064966235351708/",
    "lead": "Community, Founding 20 dabei",
    "unread": true,
@@ -140,11 +140,11 @@
   },
   {
    "id": "17843115749219038",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Munich Mover",
    "category": "host",
    "last_message": "Hat Clero in einer Story erwähnt, Story ist nicht mehr abrufbar. Ungelesen.",
-   "last_at": "2026-10-15T00:00:00Z",
+   "last_at": "2026-10-16T06:24:54Z",
    "draft": "Hey, danke dir für die Story Erwähnung, das freut uns riesig! 💚 Magst du mir kurz sagen, was ihr bei Munich Mover gerade plant? Dann schauen wir, wie Clero euch unterstützen kann.",
    "url": "https://www.instagram.com/direct/t/17843115749219038/",
    "lead": "Community",
@@ -158,16 +158,6 @@
    "last_message": "Gruppenchat einer Rennrad Community, kein direkter Bezug oder Frage an Clero.",
    "last_at": "2026-10-12T12:22:00Z",
    "url": "https://www.instagram.com/direct/t/930735036652085/",
-   "unread": true
-  },
-  {
-   "id": "109876630410636",
-   "status": "abgelegt",
-   "name": "Julia",
-   "category": "sonstiges",
-   "last_message": "Reagiert nur mit Emojis auf Clero Storys, keine Nachricht.",
-   "last_at": "2026-09-13T00:21:00Z",
-   "url": "https://www.instagram.com/direct/t/109876630410636/",
    "unread": true
   }
  ]
