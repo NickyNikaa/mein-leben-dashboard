@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-16T08:18:04Z",
- "message": "Heute reicht ein Blick auf Milenas Entwurf, sie schickt weiter Reels und freut sich über eine Antwort. Der Rest darf warten, du hast noch Zypern bis Sonntag.",
+ "updated": "2026-10-16T17:22:57Z",
+ "message": "Heute hat die DM-Sichtung vier Mal geschaut: 6 Entwürfe liegen bereit, 6 DMs sind schon beantwortet. Magst du kurz festhalten, was dir heute gut getan hat?",
  "nudges": [
-  "5 DM Entwürfe warten. Am wichtigsten ist Milena (Creator), ein kurzer Blick reicht, senden kannst du später.",
-  "Susannes Entwurf liegt noch bereit. Sie meldet sich von selbst, du musst nichts nachfassen.",
-  "Gönn dir heute eine Stunde ohne Handy, am Meer oder mit einem Kaffee in der Sonne. Nur für dich.",
-  "Im Reiter Claire wartet dein Tagesrückblick. Zwei Sätze reichen, wenn dir danach ist."
+  "Fokus für morgen: nur Milenas Entwurf ansehen. Mehr braucht dieser Samstag nicht.",
+  "Im Reiter Claire wartet dein Tagesrückblick. Zwei Sätze oder lose Gedanken zum Sortieren reichen völlig.",
+  "Es ist Abend, leg das Handy bald weg. Zypern gehört dir noch bis Sonntag, gönn dir Ruhe und ein gutes Essen.",
+  "Im Büro steht bei der DM-Sichtung ein Hinweis, Instagram sei nicht eingeloggt. Das hat Zeit bis nach der Reise."
  ]
 }
