@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-19T07:03:46Z",
+ "updated": "2026-10-19T07:04:04Z",
  "agents": [
   {
    "id": "claire",
@@ -97,11 +97,11 @@
    "started": "2026-10-16T06:12:21Z",
    "task_now": "",
    "heartbeat": "2026-10-16T06:12:21Z",
-   "last_run": "2026-10-16T06:12:31Z",
+   "last_run": "2026-10-19T07:04:04Z",
    "runs_today": 1,
    "runs_day": "2026-10-16",
    "last_result": "Pipeline aktualisiert: 415 Community, 64 Creator",
-   "next_run": "2026-10-17T06:07:00Z"
+   "next_run": "2026-10-20T06:07:00Z"
   }
  ],
  "log": [
@@ -399,6 +399,11 @@
    "at": "2026-10-19T07:03:46Z",
    "agent": "Persönliche Assistenz",
    "text": "Morgenbriefing geschrieben"
+  },
+  {
+   "at": "2026-10-19T07:04:04Z",
+   "agent": "Pipeline",
+   "text": "Pipeline aktualisiert: 415 Community, 64 Creator"
   }
  ]
 }
