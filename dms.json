@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-19T07:54:37Z",
+ "updated": "2026-10-19T11:57:13Z",
  "account": "clero.app",
  "threads": [
   {
@@ -115,14 +115,14 @@
   },
   {
    "id": "17843115749219038",
-   "status": "beantwortet",
-   "name": "Munich Mover",
+   "status": "entwurf",
+   "name": "Unbekannt",
    "category": "host",
-   "last_message": "Hat Clero in einer Story erwähnt, Story ist nicht mehr abrufbar. Ungelesen.",
-   "last_at": "2026-10-16T06:24:54Z",
-   "draft": "Hey, danke dir für die Story Erwähnung, das freut uns riesig! 💚 Magst du mir kurz sagen, was ihr bei Munich Mover gerade plant? Dann schauen wir, wie Clero euch unterstützen kann.",
+   "last_message": "Hat mehrere Reels und Beiträge zu Lauf und Studio Themen geschickt, keine direkte Frage.",
+   "last_at": "2026-10-15T12:00:00Z",
+   "draft": "Hey ihr, danke fürs Teilen, die Beiträge sind richtig cool! 💚 Wie läuft es bei euch gerade mit der Community? Ich würde mich freuen, wenn wir uns bald mal kurz austauschen, dann erzähle ich dir gern mehr zu Clero und dem Founding 30 Programm.",
    "url": "https://www.instagram.com/direct/t/17843115749219038/",
-   "lead": "Community",
+   "lead": "Community, angeschrieben",
    "unread": true
   },
   {
