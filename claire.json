@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-19T07:06:16Z",
- "message": "Heute liefen Pipeline (415 Community, 64 Creator) und DM-Sichtung (6 Entwürfe bereit). Magst du im Reiter Claire kurz sortieren, wie dein Tag war?",
+ "updated": "2026-10-19T09:22:30Z",
+ "message": "Heute ist WPP bis 16:30. Danach reicht für Clero ein Schritt: Milenas Entwurf freigeben. Der Rest der DMs darf warten, du schaffst das in Ruhe.",
  "nudges": [
-  "Fokus morgen: WPP von 8 bis 16:30, danach nur Milenas Entwurf freigeben. Um 15 Uhr ist Marketing/Growth Weekly.",
-  "Im Reiter Claire wartet der Tagesrückblick. Drei Sätze reichen, offene Gedanken sortiere ich mit dir.",
-  "Feierabend: Handy weg, etwas Gutes essen, früh ins Bett. Morgen ist ein voller Tag.",
-  "Die Instagram-Sichtung meldet weiter, dass der Login fehlt. Schau bei Gelegenheit kurz nach."
+  "Nach Feierabend: Milena hat zwei Chats mit Reels offen, ein kurzer Entwurf genügt. Die anderen DMs kannst du morgen sichten.",
+  "Mittags 15 Minuten ohne Bildschirm: kurz raus, Luft holen, etwas Warmes essen. Das ist heute dein Job Nummer eins.",
+  "Die DM-Sichtung meldet weiter: Instagram nicht eingeloggt, Notion nicht erreichbar. Schau bei Gelegenheit kurz nach.",
+  "Heute Abend etwas, das dir gut tut: Spaziergang, Kochen oder Serie. Clero läuft auch ohne dich weiter."
  ]
 }
