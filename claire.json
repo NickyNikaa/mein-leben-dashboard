@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-20T08:18:10Z",
- "message": "Heute: WPP bis 16:30, um 15:00 das Marketing/Growth Weekly. Zehn Clero DM Entwürfe warten, starte mit Kilian und Milena, der Rest hat Zeit. Eins nach dem anderen.",
+ "updated": "2026-10-20T17:23:12Z",
+ "message": "Die DM-Sichtung lief heute dreimal: 12 Entwürfe stehen bereit, 2 DMs sind beantwortet, 2 abgelegt. Magst du im Reiter Claire kurz reflektieren, wie dein Tag war?",
  "nudges": [
-  "Zehn Entwürfe liegen bereit. Fünf Minuten in der Mittagspause reichen für Kilian und Milena, den Rest schaffst du morgen.",
-  "Mittagspause: 15 Minuten raus an die frische Luft, ohne Handy. Das Weekly um 15:00 geht dann entspannter.",
-  "Bei der DM-Sichtung steht noch der Hinweis Instagram nicht eingeloggt. Schau bei Gelegenheit kurz nach, ob der Login steht.",
-  "Heute Abend gehört dir: etwas Warmes essen, Lieblingsserie oder ein Spaziergang. Clero läuft auch ohne dich."
+  "Fokus für morgen: ein kleiner Block für die Clero Entwürfe, bevor der Tag voll wird. Alles andere ist Bonus.",
+  "Im Reiter Claire wartet der Tagesrückblick. Zwei Minuten reichen, oder sortier einfach offene Gedanken.",
+  "Morgen: WPP ab 8:00, Termin bei Dr. Pfeiffer 15:30, danach Jeaninne Stroka um 16:30. Plane dazwischen Luft ein.",
+  "Feierabend: Laptop zu, etwas Warmes essen, früh ins Bett. Erholung zählt heute mehr als der letzte Haken."
  ]
 }
