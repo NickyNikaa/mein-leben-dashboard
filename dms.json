@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-20T07:54:57Z",
+ "updated": "2026-10-20T11:56:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -21,9 +21,9 @@
    "status": "entwurf",
    "name": "Milena",
    "category": "creator",
-   "last_message": "Schickt weiter Reels und Story Erwähnungen, keine direkte Frage.",
-   "last_at": "2026-10-18T16:00:00Z",
-   "draft": "Hey Milena, danke dir für die vielen Reels und Erwähnungen, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
+   "last_message": "Hat erneut ein Reel geteilt, keine direkte Frage.",
+   "last_at": "2026-10-20T11:56:00Z",
+   "draft": "Hey Milena, danke dir für das neue Reel, das freut mich riesig! 💚 Magst du mir kurz sagen, was dir an Clero gerade am meisten gefällt? Dann schauen wir, wie wir zusammen was draus machen können.",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
    "lead": "Creator",
    "handle": "",
@@ -177,6 +177,30 @@
    "lead": "Community",
    "unread": true,
    "handle": ""
+  },
+  {
+   "id": "18103294814056503",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat einen Beitrag geteilt, der nicht mehr verfügbar ist, keine Frage.",
+   "last_at": "2026-09-26T22:13:00Z",
+   "draft": "[bitte prüfen] Hey, danke dir fürs Teilen! 💚 Leider kann ich den Beitrag nicht mehr sehen. Magst du mir kurz sagen, worum es ging? Und wenn du Lust hast, quatschen wir gern mal über Clero.",
+   "url": "https://www.instagram.com/direct/t/18103294814056503/",
+   "lead": "Community",
+   "unread": true
+  },
+  {
+   "id": "18119627785595679",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat Clero in Stories erwähnt, zuletzt Story Austausch, keine direkte Frage.",
+   "last_at": "2026-09-15T21:17:00Z",
+   "draft": "Hey, danke euch für die Story Erwähnungen, das freut uns riesig! 💚 Wie läuft es bei euch gerade mit der Community? Lass uns bald mal kurz austauschen, dann erzähle ich dir gern mehr zu Clero und dem Founding 30 Programm.",
+   "url": "https://www.instagram.com/direct/t/18119627785595679/",
+   "lead": "Community, angeschrieben",
+   "unread": true
   }
  ]
 }
