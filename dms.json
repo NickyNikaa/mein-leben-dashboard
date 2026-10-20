@@ -1,19 +1,19 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-19T15:54:33Z",
+ "updated": "2026-10-20T07:54:57Z",
  "account": "clero.app",
  "threads": [
   {
    "id": "114553816608374",
-   "status": "beantwortet",
+   "status": "entwurf",
    "name": "Kilian",
    "category": "host",
    "last_message": "Hat einen Beitrag zu einem Lauf Event am 10./11. Oktober mit Community Partnern geteilt.",
-   "last_at": "2026-10-05T11:22:00Z",
+   "last_at": "2026-10-20T07:54:57Z",
    "draft": "Hey Kilian, danke dir fürs Teilen, das sieht nach einem richtig starken Event-Wochenende aus! 🙌 Viel Spaß und gutes Gelingen euch. Melde dich gern, wenn du was von uns für die Community brauchst. 💚",
    "url": "https://www.instagram.com/direct/t/114553816608374/",
    "lead": "Community, angeschrieben",
-   "unread": false,
+   "unread": true,
    "handle": ""
   },
   {
@@ -100,7 +100,8 @@
    "last_at": "2026-10-11T00:28:00Z",
    "draft": "Hey, danke fürs Teilen, es war so schön, euch beim Challenge Event dabei zu haben! 💚 Wenn du magst, tauschen wir uns bald mal kurz aus, wie wir die Münchner Communities zusammen noch weiter bringen.",
    "url": "https://www.instagram.com/direct/t/17844047247549499/",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "17847584178049416",
@@ -111,7 +112,8 @@
    "last_at": "2026-10-11T10:00:00Z",
    "url": "https://www.instagram.com/direct/t/17847584178049416/",
    "lead": "Creator",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "17843115749219038",
@@ -123,7 +125,8 @@
    "draft": "Hey ihr, danke fürs Teilen, die Beiträge sind richtig cool! 💚 Wie läuft es bei euch gerade mit der Community? Ich würde mich freuen, wenn wir uns bald mal kurz austauschen, dann erzähle ich dir gern mehr zu Clero und dem Founding 30 Programm.",
    "url": "https://www.instagram.com/direct/t/17843115749219038/",
    "lead": "Community, angeschrieben",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "930735036652085",
@@ -133,7 +136,8 @@
    "last_message": "Gruppenchat einer Rennrad Community, kein direkter Bezug oder Frage an Clero.",
    "last_at": "2026-10-12T12:22:00Z",
    "url": "https://www.instagram.com/direct/t/930735036652085/",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "18057648707475624",
@@ -145,7 +149,34 @@
    "draft": "Hey Susanne, danke dir für deine ehrliche Rückmeldung, das ist total verständlich! 💚 Bau dein Konzept in Ruhe auf, es gibt keinen Druck. Melde dich einfach, sobald es passt, wir freuen uns dann sehr auf dich.",
    "url": "https://www.instagram.com/direct/t/18057648707475624/",
    "lead": "Community, angeschrieben",
-   "unread": true
+   "unread": true,
+   "handle": ""
+  },
+  {
+   "id": "119668546089336",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat Clero in einer Story erwaehnt, nach unserer Anfrage zur Verlinkung, keine direkte Frage.",
+   "last_at": "2026-10-02T14:06:00Z",
+   "draft": "Hey, danke euch fürs Erwähnen in eurer Story, das freut uns riesig! 💚 Magst du uns kurz sagen, ob das mit der Verlinkung für dich passt? Und wenn du Lust hast, quatschen wir bald mal kurz über Clero und das Founding 30 Programm.",
+   "url": "https://www.instagram.com/direct/t/119668546089336/",
+   "lead": "Community, angeschrieben",
+   "unread": true,
+   "handle": ""
+  },
+  {
+   "id": "17843722431656766",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat einen Beitrag zum gemeinsamen Community Event geteilt, keine direkte Frage.",
+   "last_at": "2026-10-01T19:09:00Z",
+   "draft": "Hey, danke fürs Teilen, es war so schön, mit euch dabei zu sein! 💚 Lass uns bald mal kurz austauschen, wie wir die Münchner Communities zusammen noch weiter bringen.",
+   "url": "https://www.instagram.com/direct/t/17843722431656766/",
+   "lead": "Community",
+   "unread": true,
+   "handle": ""
   }
  ]
 }
