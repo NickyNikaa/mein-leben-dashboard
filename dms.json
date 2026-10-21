@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-21T11:55:11Z",
+ "updated": "2026-10-21T16:10:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -55,18 +55,6 @@
    "handle": ""
   },
   {
-   "id": "102273411173486",
-   "status": "beantwortet",
-   "name": "Caro",
-   "category": "sonstiges",
-   "last_message": "Hat auf die letzte Nachricht von Clero reagiert, nichts offen.",
-   "last_at": "2026-10-07T11:24:00Z",
-   "draft": "Hey Caro, danke dir fürs Erwähnen, das freut uns total! 💚 Kein Stress wegen der Story. Wenn du magst, erzähl uns gern kurz, was du anbietest, vielleicht passt das ja zu Clero.",
-   "url": "https://www.instagram.com/direct/t/102273411173486/",
-   "unread": true,
-   "handle": ""
-  },
-  {
    "id": "18064966235351708",
    "status": "entwurf",
    "name": "Unbekannt",
@@ -81,7 +69,7 @@
   },
   {
    "id": "17846468748577511",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat mehrfach Clero in Stories erwähnt, keine direkte Frage, Chat gesehen.",
@@ -89,7 +77,8 @@
    "draft": "Hey, danke euch für die vielen Story Erwähnungen, das freut uns riesig! 💚 Wir bauen gerade das Founding 30 Programm für Münchner Hosts auf. Magst du uns kurz sagen, wie wir euch gerade am besten unterstützen können? Dann schauen wir, was dazu passt.",
    "url": "https://www.instagram.com/direct/t/17846468748577511/",
    "lead": "Community",
-   "handle": ""
+   "handle": "",
+   "unread": false
   },
   {
    "id": "17844047247549499",
@@ -188,7 +177,8 @@
    "draft": "[bitte prüfen] Hey, danke dir fürs Teilen! 💚 Leider kann ich den Beitrag nicht mehr sehen. Magst du mir kurz sagen, worum es ging? Und wenn du Lust hast, quatschen wir gern mal über Clero.",
    "url": "https://www.instagram.com/direct/t/18103294814056503/",
    "lead": "Community",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "18119627785595679",
@@ -200,7 +190,8 @@
    "draft": "Hey, danke euch für die Story Erwähnungen, das freut uns riesig! 💚 Wie läuft es bei euch gerade mit der Community? Lass uns bald mal kurz austauschen, dann erzähle ich dir gern mehr zu Clero und dem Founding 30 Programm.",
    "url": "https://www.instagram.com/direct/t/18119627785595679/",
    "lead": "Community, angeschrieben",
-   "unread": true
+   "unread": true,
+   "handle": ""
   },
   {
    "id": "104656034266469",
@@ -209,16 +200,8 @@
    "category": "sonstiges",
    "last_message": "Teilt Reels und Beiträge, privater Austausch, keine Frage an Clero.",
    "last_at": "2026-10-13T08:16:00Z",
-   "url": "https://www.instagram.com/direct/t/104656034266469/"
-  },
-  {
-   "id": "109876630410636",
-   "status": "abgelegt",
-   "name": "Julia",
-   "category": "sonstiges",
-   "last_message": "Hat auf Clero Stories mit Emojis reagiert, keine Frage.",
-   "last_at": "2026-09-16T12:00:00Z",
-   "url": "https://www.instagram.com/direct/t/109876630410636/"
+   "url": "https://www.instagram.com/direct/t/104656034266469/",
+   "handle": ""
   }
  ]
 }
