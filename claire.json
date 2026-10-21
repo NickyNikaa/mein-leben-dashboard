@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-20T17:23:12Z",
- "message": "Die DM-Sichtung lief heute dreimal: 12 Entwürfe stehen bereit, 2 DMs sind beantwortet, 2 abgelegt. Magst du im Reiter Claire kurz reflektieren, wie dein Tag war?",
+ "updated": "2026-10-21T08:18:15Z",
+ "message": "Heute zählt ein kleiner Block für die 12 Clero Entwürfe, am besten abends nach dem Termin. Zwischen WPP, Arzt und 16:30 darf Luft bleiben, eins nach dem anderen.",
  "nudges": [
-  "Fokus für morgen: ein kleiner Block für die Clero Entwürfe, bevor der Tag voll wird. Alles andere ist Bonus.",
-  "Im Reiter Claire wartet der Tagesrückblick. Zwei Minuten reichen, oder sortier einfach offene Gedanken.",
-  "Morgen: WPP ab 8:00, Termin bei Dr. Pfeiffer 15:30, danach Jeaninne Stroka um 16:30. Plane dazwischen Luft ein.",
-  "Feierabend: Laptop zu, etwas Warmes essen, früh ins Bett. Erholung zählt heute mehr als der letzte Haken."
+  "Dr. Pfeiffer um 15:30, danach Jeaninne Stroka um 16:30. Plane Puffer für den Weg ein, damit du nicht hetzen musst.",
+  "Bei Clero warten 12 Entwürfe. Starte mit Milena und Kilian, die sind am frischesten, der Rest kann warten.",
+  "Die DM Sichtung meldet: Instagram nicht eingeloggt oder gesperrt, Notion nicht verfügbar. Kurz den Login prüfen, sonst fehlt der Lead Abgleich.",
+  "Nach 16:30: zehn Minuten raus an die frische Luft oder Musik an, ohne Handy. Das ist heute dein Pluspunkt nur für dich."
  ]
 }
