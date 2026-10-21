@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-20T13:00:00Z",
+ "updated": "2026-10-21T07:54:44Z",
  "account": "clero.app",
  "threads": [
   {
@@ -133,8 +133,8 @@
    "status": "abgelegt",
    "name": "Unbekannt",
    "category": "sonstiges",
-   "last_message": "Gruppenchat einer Rennrad Community, kein direkter Bezug oder Frage an Clero.",
-   "last_at": "2026-10-12T12:22:00Z",
+   "last_message": "Gruppenchat einer Rennrad Community, neue Gruppennachrichten, kein direkter Bezug oder Frage an Clero.",
+   "last_at": "2026-10-21T07:54:44Z",
    "url": "https://www.instagram.com/direct/t/930735036652085/",
    "unread": true,
    "handle": ""
@@ -201,6 +201,24 @@
    "url": "https://www.instagram.com/direct/t/18119627785595679/",
    "lead": "Community, angeschrieben",
    "unread": true
+  },
+  {
+   "id": "104656034266469",
+   "status": "abgelegt",
+   "name": "Moritz",
+   "category": "sonstiges",
+   "last_message": "Teilt Reels und Beiträge, privater Austausch, keine Frage an Clero.",
+   "last_at": "2026-10-13T08:16:00Z",
+   "url": "https://www.instagram.com/direct/t/104656034266469/"
+  },
+  {
+   "id": "109876630410636",
+   "status": "abgelegt",
+   "name": "Julia",
+   "category": "sonstiges",
+   "last_message": "Hat auf Clero Stories mit Emojis reagiert, keine Frage.",
+   "last_at": "2026-09-16T12:00:00Z",
+   "url": "https://www.instagram.com/direct/t/109876630410636/"
   }
  ]
 }
