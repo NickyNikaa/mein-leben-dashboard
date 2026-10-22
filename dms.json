@@ -1,6 +1,6 @@
 {
- "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-22T11:54:06Z",
+ "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
+ "updated": "2026-10-22T15:56:09Z",
  "account": "clero.app",
  "threads": [
   {
@@ -69,16 +69,16 @@
   },
   {
    "id": "17846468748577511",
-   "status": "beantwortet",
+   "status": "entwurf",
    "name": "Unbekannt",
    "category": "host",
-   "last_message": "Hat mehrfach Clero in Stories erwähnt, keine direkte Frage, Chat gesehen.",
+   "last_message": "Hat Clero erneut in einer Story erwähnt, keine direkte Frage.",
    "last_at": "2026-10-09T00:03:00Z",
    "draft": "Hey, danke euch für die vielen Story Erwähnungen, das freut uns riesig! 💚 Wir bauen gerade das Founding 30 Programm für Münchner Hosts auf. Magst du uns kurz sagen, wie wir euch gerade am besten unterstützen können? Dann schauen wir, was dazu passt.",
    "url": "https://www.instagram.com/direct/t/17846468748577511/",
    "lead": "Community",
    "handle": "",
-   "unread": false
+   "unread": true
   },
   {
    "id": "17844047247549499",
