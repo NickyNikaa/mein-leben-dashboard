@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist oeffentlich): keine Instagram Handles, keine Wortlaute oder woertliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen) und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-22T07:54:48Z",
+ "updated": "2026-10-22T11:54:06Z",
  "account": "clero.app",
  "threads": [
   {
@@ -86,11 +86,12 @@
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat einen Beitrag zum gemeinsamen Event geteilt, keine direkte Frage.",
-   "last_at": "2026-10-11T00:28:00Z",
+   "last_at": "2026-10-22T11:54:06Z",
    "draft": "Hey, danke fürs Teilen, es war so schön, euch beim Challenge Event dabei zu haben! 💚 Wenn du magst, tauschen wir uns bald mal kurz aus, wie wir die Münchner Communities zusammen noch weiter bringen.",
    "url": "https://www.instagram.com/direct/t/17844047247549499/",
    "unread": true,
-   "handle": ""
+   "handle": "",
+   "lead": "Community, angeschrieben"
   },
   {
    "id": "17847584178049416",
