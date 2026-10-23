@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-22T15:56:09Z",
+ "updated": "2026-10-23T07:56:18Z",
  "account": "clero.app",
  "threads": [
   {
@@ -203,6 +203,18 @@
    "last_at": "2026-10-13T08:16:00Z",
    "url": "https://www.instagram.com/direct/t/104656034266469/",
    "handle": ""
+  },
+  {
+   "id": "18103547569846917",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat Clero in einer Story erwähnt, Community wurde von uns zum Founding 20 Programm angeschrieben.",
+   "last_at": "2026-10-22T16:49:00Z",
+   "draft": "Hey ihr zwei, danke fürs Erwähnen in eurer Story, das freut uns riesig! 💚 Habt ihr Lust, euch das Founding Programm für Hosts mal in Ruhe anzuschauen? Wenn ihr vorher Fragen habt oder kurz quatschen wollt, meldet euch gern.",
+   "url": "https://www.instagram.com/direct/t/18103547569846917/",
+   "lead": "Community, angeschrieben",
+   "unread": true
   }
  ]
 }
