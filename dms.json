@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-23T07:56:18Z",
+ "updated": "2026-10-23T11:54:39Z",
  "account": "clero.app",
  "threads": [
   {
@@ -18,16 +18,15 @@
   },
   {
    "id": "18073813787446121",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Milena",
    "category": "creator",
-   "last_message": "Hat heute auf unsere Notiz geantwortet: Sie hat eine Location und lädt zum Schreiben ein. Zusätzlich neue Reels geteilt.",
+   "last_message": "Wir haben zuletzt einen Anhang gesendet, nichts offen.",
    "last_at": "2026-10-22T05:29:00Z",
-   "draft": "Hey Milena, danke dir, das klingt spannend! 💚 Erzähl mir gern mehr zu deiner Location: Was für ein Ort ist es und was schwebt dir vor? Dann schauen wir, wie wir zusammen was daraus machen können.",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
    "lead": "Creator",
    "handle": "",
-   "unread": true
+   "unread": false
   },
   {
    "id": "116481126407496",
@@ -40,18 +39,6 @@
    "url": "https://www.instagram.com/direct/t/116481126407496/",
    "lead": "Creator",
    "unread": true,
-   "handle": ""
-  },
-  {
-   "id": "17844448839622742",
-   "status": "beantwortet",
-   "name": "Spark",
-   "category": "host",
-   "last_message": "Hat einen Beitrag mit Community Foto geteilt, Community ist schon im Programm.",
-   "last_at": "2026-10-09T07:54:42Z",
-   "draft": "Hey ihr zwei, danke fürs Teilen, das Foto ist so schön! 💚 Schön, euch von Anfang an dabei zu haben. Sagt gern Bescheid, wenn ihr was für den Host Stammtisch am 8.10. braucht.",
-   "url": "https://www.instagram.com/direct/t/17844448839622742/",
-   "lead": "Community, Founding 20 dabei",
    "handle": ""
   },
   {
