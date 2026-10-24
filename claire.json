@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-24T08:18:00Z",
- "message": "Samstag, kein Druck: Heute reicht ein kleiner Clero Block mit den 11 Entwürfen, zuerst Milena. Der Rest des Tages gehört dir.",
+ "updated": "2026-10-24T19:08:07Z",
+ "message": "Heute lief viel im Hintergrund: Pipeline aktualisiert, DM-Sichtung mit 11 fertigen Entwürfen. Magst du dir später kurz den Tag in Worte fassen?",
  "nudges": [
-  "Clero Block, ca. 10 Minuten: erst Milena, dann die Dankes in einem Rutsch. Danach ist das Thema für heute erledigt.",
-  "Die DM-Sichtung meldet: Instagram nicht eingeloggt oder gesperrt. Schau kurz, ob clero.app noch eingeloggt ist.",
-  "Für dich: Geh heute raus, Spaziergang oder Kaffee in der Sonne, Handy in der Tasche. Erholung zählt als Fortschritt.",
-  "Im Reiter Claire reichen zwei Sätze: Was lief diese Woche gut, was darf bis Montag warten?"
+  "Fokus morgen: Zuerst der Clero Block mit Milenas Entwurf, ca. 10 Minuten. Danach gehört der Tag dem Event.",
+  "Morgen um 15:30 steht Coffee & Walk Event x She Leads an. Pack am Abend kurz ein, was du brauchst, dann startest du entspannt.",
+  "Im Reiter Claire kannst du den Tagesrückblick ausfüllen oder offene Gedanken sortieren. Zwei Sätze reichen.",
+  "Samstagabend: Bildschirm zu, etwas Warmes zu essen, früh ins Bett. Erholung zählt als Fortschritt."
  ]
 }
