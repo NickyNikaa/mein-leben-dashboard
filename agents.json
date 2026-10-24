@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-23T17:23:36Z",
+ "updated": "2026-10-24T06:08:28Z",
  "agents": [
   {
    "id": "claire",
@@ -94,22 +94,17 @@
    "name": "Pipeline",
    "area": "Clero",
    "status": "idle",
-   "started": "2026-10-23T06:14:35Z",
+   "started": "2026-10-24T06:08:19Z",
    "task_now": "",
-   "heartbeat": "2026-10-23T06:14:35Z",
-   "last_run": "2026-10-23T06:14:41Z",
+   "heartbeat": "2026-10-24T06:08:19Z",
+   "last_run": "2026-10-24T06:08:28Z",
    "runs_today": 1,
-   "runs_day": "2026-10-23",
+   "runs_day": "2026-10-24",
    "last_result": "Pipeline aktualisiert: 415 Community, 64 Creator",
-   "next_run": "2026-10-24T06:07:00Z"
+   "next_run": "2026-10-25T07:07:00Z"
   }
  ],
  "log": [
-  {
-   "at": "2026-10-11T13:37:10Z",
-   "agent": "Persönliche Assistenz",
-   "text": "Abendrückblick geschrieben"
-  },
   {
    "at": "2026-10-11T13:37:31Z",
    "agent": "Persönliche Assistenz",
@@ -404,6 +399,11 @@
    "at": "2026-10-23T17:23:36Z",
    "agent": "Persönliche Assistenz",
    "text": "Abendrückblick geschrieben"
+  },
+  {
+   "at": "2026-10-24T06:08:28Z",
+   "agent": "Pipeline",
+   "text": "Pipeline aktualisiert: 415 Community, 64 Creator"
   }
  ]
 }
