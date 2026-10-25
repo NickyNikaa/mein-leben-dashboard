@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-24T19:08:07Z",
- "message": "Heute lief viel im Hintergrund: Pipeline aktualisiert, DM-Sichtung mit 11 fertigen Entwürfen. Magst du dir später kurz den Tag in Worte fassen?",
+ "updated": "2026-10-25T11:20:00Z",
+ "message": "Heute zählen zwei Termine: 13 Uhr Coffee & Connect bei Filou, 15:30 Uhr der Walk. Clero braucht nur eine kurze Antwort an Milena. Sonst darfst du es ruhig angehen.",
  "nudges": [
-  "Fokus morgen: Zuerst der Clero Block mit Milenas Entwurf, ca. 10 Minuten. Danach gehört der Tag dem Event.",
-  "Morgen um 15:30 steht Coffee & Walk Event x She Leads an. Pack am Abend kurz ein, was du brauchst, dann startest du entspannt.",
-  "Im Reiter Claire kannst du den Tagesrückblick ausfüllen oder offene Gedanken sortieren. Zwei Sätze reichen.",
-  "Samstagabend: Bildschirm zu, etwas Warmes zu essen, früh ins Bett. Erholung zählt als Fortschritt."
+  "Vor Filou um 13 Uhr: Handy laden und eine Frage für neue Kontakte im Kopf haben. Mehr Vorbereitung braucht es nicht.",
+  "Instagram konnte zuletzt nicht gelesen werden (Chrome nicht verbunden). Die 11 Entwürfe liegen bereit, Milenas Antwort dauert 5 Minuten.",
+  "Zwischen den Terminen eine Pause von 20 Minuten ohne Handy, ein Tee oder ein kurzer Spaziergang. Das zählt als Fortschritt.",
+  "Heute Abend: Bildschirm zu, etwas Warmes essen, früh ins Bett. Morgen startet die WPP Woche, heute gehört dir."
  ]
 }
