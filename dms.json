@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-23T15:55:23Z",
+ "updated": "2026-10-25T11:13:36Z",
  "account": "clero.app",
  "threads": [
   {
@@ -106,14 +106,16 @@
   },
   {
    "id": "930735036652085",
-   "status": "abgelegt",
-   "name": "Unbekannt",
-   "category": "sonstiges",
-   "last_message": "Gruppenchat einer Rennrad Community, neue Gruppennachrichten, kein direkter Bezug oder Frage an Clero.",
-   "last_at": "2026-10-21T07:54:44Z",
+   "status": "entwurf",
+   "name": "Julia",
+   "category": "creator",
+   "last_message": "Hat in einer Gruppennachricht eine neue WhatsApp Community für Münchner Events angekündigt, keine direkte Frage.",
+   "last_at": "2026-10-25T08:06:00Z",
    "url": "https://www.instagram.com/direct/t/930735036652085/",
    "unread": true,
-   "handle": ""
+   "handle": "",
+   "draft": "Hey Julia, wie schön, dass deine eigene Community jetzt live ist, herzlichen Glückwunsch! 🎉 Das klingt nach einem richtig tollen Ort für alle, die neu in München sind. Sag gern Bescheid, wenn wir euch bei den Events unterstützen können. 💚",
+   "lead": "Creator"
   },
   {
    "id": "18057648707475624",
