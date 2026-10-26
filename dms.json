@@ -1,6 +1,6 @@
 {
- "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-26T12:00:00Z",
+ "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine wörtlichen Zitate oder Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
+ "updated": "2026-10-26T13:06:01Z",
  "account": "clero.app",
  "threads": [
   {
@@ -110,6 +110,17 @@
    "url": "https://www.instagram.com/direct/t/18103547569846917/",
    "lead": "Community, angeschrieben",
    "unread": true,
+   "handle": ""
+  },
+  {
+   "id": "17847584178049416",
+   "status": "abgelegt",
+   "name": "Naomi",
+   "category": "creator",
+   "last_message": "Hat sich nach unserem Dank kurz freundlich zurückgemeldet, Thema erledigt, nichts offen.",
+   "last_at": "2026-10-12T12:30:00Z",
+   "url": "https://www.instagram.com/direct/t/17847584178049416/",
+   "lead": "Creator",
    "handle": ""
   }
  ]
