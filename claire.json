@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-25T18:22:57Z",
- "message": "Heute liefen drei DM-Sichtungen, 12 Entwürfe liegen bereit, 2 DMs sind beantwortet und 2 abgelegt. Magst du dir kurz Zeit für deinen Tagesrückblick nehmen?",
+ "updated": "2026-10-26T09:18:25Z",
+ "message": "Nach WPP bis 16:30 Uhr reicht heute eine Clero Sache: 3 Antwortentwürfe prüfen und abschicken. Der Rest darf warten, du startest die Woche in deinem Tempo.",
  "nudges": [
-  "Fokus für morgen: nach WPP (8 bis 16:30 Uhr) nur eine Sache für Clero, zum Beispiel 3 Entwürfe prüfen und abschicken. Mehr muss nicht.",
-  "Im Reiter Claire wartet der Tagesrückblick: Was lief gut, was darf bis morgen liegen? Oder kipp einfach offene Gedanken ab, ich sortiere sie.",
-  "Der DM Agent kam heute nicht in Instagram, Chrome war nicht verbunden. Falls es morgen wieder hakt, lohnt ein kurzer Blick auf die Erweiterung.",
-  "Feierabend: Bildschirm zu, etwas Warmes essen, früh ins Bett. Morgen startet die WPP Woche und du darfst ausgeruht sein."
+  "3 DM Entwürfe warten, alles freundliche Dankesantworten. Den mit der Markierung \"bitte prüfen\" liest du zuerst.",
+  "Der DM Agent meldete, dass Chrome nicht erreichbar war. Falls es wieder hakt, kurz die Erweiterung prüfen.",
+  "Nach 16:30 Uhr 20 Minuten raus an die frische Luft, ohne Handy. Das zählt als vollwertiger Termin.",
+  "Die Eventreihe darf diese Woche klein bleiben: Eine Idee für Gather Studio notieren reicht."
  ]
 }
