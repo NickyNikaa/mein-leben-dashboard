@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine wörtlichen Zitate oder Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-26T13:06:01Z",
+ "updated": "2026-10-26T16:55:48Z",
  "account": "clero.app",
  "threads": [
   {
@@ -45,7 +45,7 @@
    "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
-   "last_message": "Hat mehrfach Clero in Stories erwähnt, wir haben mit Herz reagiert, nichts offen.",
+   "last_message": "Hat Clero in Stories erwähnt, nichts offen.",
    "last_at": "2026-10-23T08:00:00Z",
    "url": "https://www.instagram.com/direct/t/17846468748577511/",
    "lead": "Community",
@@ -122,6 +122,40 @@
    "url": "https://www.instagram.com/direct/t/17847584178049416/",
    "lead": "Creator",
    "handle": ""
+  },
+  {
+   "id": "17843722431656766",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat einen Beitrag zum Zusammenkommen der Münchner Communities geteilt, keine Frage.",
+   "last_at": "2026-10-01T17:09:00Z",
+   "draft": "Hey ihr Lieben, danke fürs Teilen des schönen Beitrags, das hat uns richtig gefreut! 💚 Lasst uns gern bald mal quatschen, wie wir zusammen weitermachen.",
+   "url": "https://www.instagram.com/direct/t/17843722431656766/",
+   "lead": "Community",
+   "unread": true
+  },
+  {
+   "id": "18057648707475624",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Findet das Konzept spannend, kann aktuell aber noch nicht einsteigen, meldet sich später selbst.",
+   "last_at": "2026-09-21T10:36:00Z",
+   "draft": "Hey, danke dir für deine ehrliche Rückmeldung und die netten Worte! 💚 Total verständlich, dass du erst dein Konzept und dein Branding sortierst. Melde dich einfach, wenn es bei dir so weit ist, wir freuen uns dann sehr.",
+   "url": "https://www.instagram.com/direct/t/18057648707475624/",
+   "lead": "Community, vorerst Absage"
+  },
+  {
+   "id": "18103294814056503",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat einen Anhang geschickt, Inhalt ohne direkte Frage.",
+   "last_at": "2026-10-05T12:00:00Z",
+   "draft": "[bitte prüfen] Hey, danke fürs Teilen! 💚 Hast du Lust, bald mal kurz zu quatschen, was wir zusammen auf die Beine stellen können?",
+   "url": "https://www.instagram.com/direct/t/18103294814056503/",
+   "unread": true
   }
  ]
 }

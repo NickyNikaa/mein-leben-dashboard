@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-26T16:53:18Z",
+ "updated": "2026-10-26T16:55:56Z",
  "agents": [
   {
    "id": "claire",
@@ -18,17 +18,17 @@
    "id": "clero-dm-sichtung",
    "name": "Clero: DM-Sichtung & Antwortentwürfe",
    "area": "clero",
-   "status": "running",
+   "status": "idle",
    "schedule": "täglich 9:52, 13:52, 17:52, auch am Wochenende",
    "note": "Chrome nicht erreichbar (Erweiterung nicht verbunden), Instagram konnte nicht gelesen werden",
-   "last_run": "2026-10-26T13:06:02Z",
-   "next_run": "2026-10-27T12:52:00Z",
+   "last_run": "2026-10-26T16:55:56Z",
+   "next_run": "2026-10-27T07:00:00Z",
    "started": "2026-10-26T16:53:18Z",
-   "task_now": "Öffnet die Instagram Inbox",
+   "task_now": "",
    "heartbeat": "2026-10-26T16:53:18Z",
-   "runs_today": 2,
+   "runs_today": 3,
    "runs_day": "2026-10-26",
-   "last_result": "3 offene DMs, 3 Entwürfe, 3 bekannte Leads"
+   "last_result": "6 offene DMs, 6 Entwürfe, 0 bekannte Leads (Notion nicht verfügbar)"
   },
   {
    "id": "clero-ig-outreach",
@@ -105,11 +105,6 @@
   }
  ],
  "log": [
-  {
-   "at": "2026-10-15T07:55:25Z",
-   "agent": "Clero: DM-Sichtung & Antwortentwürfe",
-   "text": "6 offene DMs, 3 Entwürfe, 2 bekannte Leads (Notion Abgleich übersprungen)"
-  },
   {
    "at": "2026-10-16T06:12:31Z",
    "agent": "Pipeline",
@@ -404,6 +399,11 @@
    "at": "2026-10-26T13:06:02Z",
    "agent": "Clero: DM-Sichtung & Antwortentwürfe",
    "text": "3 offene DMs, 3 Entwürfe, 3 bekannte Leads"
+  },
+  {
+   "at": "2026-10-26T16:55:56Z",
+   "agent": "Clero: DM-Sichtung & Antwortentwürfe",
+   "text": "6 offene DMs, 6 Entwürfe, 0 bekannte Leads (Notion nicht verfügbar)"
   }
  ]
 }
