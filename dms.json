@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine wörtlichen Zitate oder Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-27T12:59:54Z",
+ "updated": "2026-10-27T16:55:36Z",
  "account": "clero.app",
  "threads": [
   {
@@ -20,13 +20,13 @@
    "status": "entwurf",
    "name": "Milena",
    "category": "creator",
-   "last_message": "Hat ein Reel über das Gastgeben und Einladen geteilt, keine direkte Frage.",
-   "last_at": "2026-10-27T12:53:00Z",
+   "last_message": "Hat einen Beitrag zum Gastgeben geteilt (Absagen, Aufwand) und fragt, was vom Einladen abhält.",
+   "last_at": "2026-10-27T13:53:00Z",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
    "lead": "Creator",
    "handle": "",
    "unread": true,
-   "draft": "Hey Milena, danke fürs Teilen! 💚 Das Thema Gastgeben ist uns auch so wichtig, dieser Moment, wenn sich zwei Leute zum ersten Mal kennenlernen, ist unbezahlbar. Magst du mir erzählen, was du dir von einer Community in München wünschst?"
+   "draft": "Hey Milena, danke fürs Teilen! 💚 Die kurzfristigen Absagen kennen wir von vielen Hosts, das Thema beschäftigt uns auch. Was würde dir als Gastgeberin in München am meisten helfen, damit es leichter wird?"
   },
   {
    "id": "18064966235351708",
@@ -104,77 +104,16 @@
    "handle": ""
   },
   {
-   "id": "17843722431656766",
-   "status": "entwurf",
-   "name": "Unbekannt",
-   "category": "host",
-   "last_message": "Hat einen Beitrag zum Zusammenkommen der Münchner Communities geteilt, keine Frage.",
-   "last_at": "2026-10-01T17:09:00Z",
-   "draft": "Hey ihr Lieben, danke fürs Teilen des schönen Beitrags, das hat uns richtig gefreut! 💚 Lasst uns gern bald mal quatschen, wie wir zusammen weitermachen.",
-   "url": "https://www.instagram.com/direct/t/17843722431656766/",
-   "lead": "Community",
-   "unread": true,
-   "handle": ""
-  },
-  {
-   "id": "18057648707475624",
-   "status": "entwurf",
-   "name": "Unbekannt",
-   "category": "host",
-   "last_message": "Hat sich für das Gespräch bedankt, kann aktuell noch nicht einsteigen, meldet sich später.",
-   "last_at": "2026-09-21T10:36:00Z",
-   "draft": "Hey, danke dir für deine ehrliche Rückmeldung! 💚 Kein Stress, melde dich einfach, wenn es bei dir passt. Wir freuen uns jederzeit auf dich.",
-   "url": "https://www.instagram.com/direct/t/18057648707475624/",
-   "lead": "Community, vorerst Absage",
-   "handle": ""
-  },
-  {
-   "id": "18103294814056503",
-   "status": "entwurf",
-   "name": "Unbekannt",
-   "category": "partner",
-   "last_message": "Hat einen Anhang geschickt, Inhalt ohne direkte Frage.",
-   "last_at": "2026-10-05T12:00:00Z",
-   "draft": "[bitte prüfen] Hey, danke fürs Teilen! 💚 Hast du Lust, bald mal kurz zu quatschen, was wir zusammen auf die Beine stellen können?",
-   "url": "https://www.instagram.com/direct/t/18103294814056503/",
-   "unread": true,
-   "handle": ""
-  },
-  {
    "id": "17850479943367243",
    "status": "entwurf",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat eine Story geteilt, in der Clero vermutlich erwähnt wird, keine Frage.",
-   "last_at": "2026-10-27T07:05:00Z",
+   "last_at": "2026-10-27T08:05:00Z",
    "draft": "Hey ihr Lieben, danke fürs Teilen eurer Story! 💚 Das freut uns sehr. Habt ihr Lust, bald mal kurz zu quatschen, wie wir als Community zusammen weitermachen können?",
    "url": "https://www.instagram.com/direct/t/17850479943367243/",
    "lead": "Community",
    "unread": true,
-   "handle": ""
-  },
-  {
-   "id": "119668546089336",
-   "status": "entwurf",
-   "name": "Unbekannt",
-   "category": "partner",
-   "last_message": "Hat nach unserer Collab Anfrage ein Reel geschickt, keine direkte Frage.",
-   "last_at": "2026-10-06T12:00:00Z",
-   "draft": "[bitte prüfen] Hey ihr Lieben, danke für euer Reel und eure Zeit! 💚 Habt ihr Lust, kurz zu telefonieren, wie eine Zusammenarbeit zwischen uns aussehen könnte?",
-   "url": "https://www.instagram.com/direct/t/119668546089336/",
-   "lead": "Community, angeschrieben",
-   "handle": ""
-  },
-  {
-   "id": "116481126407496",
-   "status": "entwurf",
-   "name": "Milena",
-   "category": "creator",
-   "last_message": "Hat mehrere Reels und Beiträge zu Community Events geschickt, keine direkte Frage.",
-   "last_at": "2026-10-08T22:49:00Z",
-   "draft": "Hey Milena, danke fürs Schicken der Beiträge, die Events sehen richtig cool aus! 💚 Falls du magst, erzähl mir gern, welche Communities du in München am spannendsten findest.",
-   "url": "https://www.instagram.com/direct/t/116481126407496/",
-   "lead": "Creator",
    "handle": ""
   }
  ]

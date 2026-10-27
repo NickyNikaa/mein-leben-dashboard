@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-10-27T16:53:11Z",
+ "updated": "2026-10-27T16:55:36Z",
  "agents": [
   {
    "id": "claire",
@@ -18,17 +18,17 @@
    "id": "clero-dm-sichtung",
    "name": "Clero: DM-Sichtung & Antwortentwürfe",
    "area": "clero",
-   "status": "running",
+   "status": "idle",
    "schedule": "täglich 9:52, 13:52, 17:52, auch am Wochenende",
    "note": "Chrome nicht erreichbar (Erweiterung nicht verbunden), Instagram konnte nicht gelesen werden",
-   "last_run": "2026-10-27T12:59:54Z",
-   "next_run": "2026-10-28T12:50:00Z",
+   "last_run": "2026-10-27T16:55:36Z",
+   "next_run": "2026-10-28T08:00:00Z",
    "started": "2026-10-27T16:53:11Z",
-   "task_now": "Öffnet die Instagram Inbox",
+   "task_now": "",
    "heartbeat": "2026-10-27T16:53:11Z",
-   "runs_today": 2,
+   "runs_today": 3,
    "runs_day": "2026-10-27",
-   "last_result": "10 offene DMs, 10 Entwürfe, 5 bekannte Leads"
+   "last_result": "5 offene DMs, 5 Entwürfe, 5 bekannte Leads"
   },
   {
    "id": "clero-ig-outreach",
@@ -105,11 +105,6 @@
   }
  ],
  "log": [
-  {
-   "at": "2026-10-16T08:18:05Z",
-   "agent": "Persönliche Assistenz",
-   "text": "Morgenbriefing geschrieben"
-  },
   {
    "at": "2026-10-16T14:15:32Z",
    "agent": "Clero: DM-Sichtung & Antwortentwürfe",
@@ -404,6 +399,11 @@
    "at": "2026-10-27T12:59:54Z",
    "agent": "Clero: DM-Sichtung & Antwortentwürfe",
    "text": "10 offene DMs, 10 Entwürfe, 5 bekannte Leads"
+  },
+  {
+   "at": "2026-10-27T16:55:36Z",
+   "agent": "Clero: DM-Sichtung & Antwortentwürfe",
+   "text": "5 offene DMs, 5 Entwürfe, 5 bekannte Leads"
   }
  ]
 }
