@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-27T09:18:29Z",
- "message": "Heute zählt Clero nach WPP: Schau zuerst die 3 DM Entwürfe mit Prüfhinweis an, der Rest hat Zeit. Bis 16:30 ist dein Tag voll, danach gehört der Abend dir.",
+ "updated": "2026-10-27T18:23:53Z",
+ "message": "Heute liefen 3 DM Sichtungen und die Pipeline durch. 5 DMs warten mit Entwurf, 4 sind beantwortet. Magst du im Reiter Claire kurz zurückblicken, was heute gut lief?",
  "nudges": [
-  "Weekly 15:00 und All Hands 15:30 liegen direkt hintereinander: Hol dir vorher 10 Minuten Luft, Wasser und kurz die Augen vom Bildschirm.",
-  "Clero nach Feierabend: 10 DMs sind offen, davon 3 mit Prüfhinweis. 20 Minuten reichen, mehr musst du heute nicht schaffen.",
-  "Die DM Sichtung konnte Instagram heute nicht lesen (Chrome nicht verbunden), die Liste kann etwas veraltet sein. Kein Drama, nur zur Info.",
-  "Morgen Abend wartet das Wyngs Konzert. Halte den Abend heute ruhig und freu dich schon mal darauf."
+  "Fokus für morgen: die 5 DM Entwürfe prüfen, vor allem den mit Prüfhinweis. WPP startet um 8:00, bis 16:30 ist dein Tag gesetzt.",
+  "Im Reiter Claire wartet dein Tagesrückblick. Ein paar Zeilen reichen, oder kipp offene Gedanken rein, ich sortiere sie für dich.",
+  "Mach jetzt Feierabend und gönn dir einen ruhigen Abend. Morgen um 18:20 ist das Wyngs Konzert, dafür darfst du Energie tanken.",
+  "Im Büro: Die DM Sichtung meldet noch, dass Chrome nicht verbunden war. Schau bei Gelegenheit, ob die Erweiterung läuft."
  ]
 }
