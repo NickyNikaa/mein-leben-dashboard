@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine wörtlichen Zitate oder Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-28T13:12:33Z",
+ "updated": "2026-10-28T19:43:45Z",
  "account": "clero.app",
  "threads": [
   {
@@ -17,16 +17,16 @@
   },
   {
    "id": "18073813787446121",
-   "status": "entwurf",
+   "status": "abgelegt",
    "name": "Milena",
    "category": "creator",
-   "last_message": "Hat einen Beitrag zum Gastgeben geteilt, heute kam noch ein weiterer geteilter Beitrag eines Sportclubs dazu.",
+   "last_message": "Teilt Beiträge zum Gastgeben, interne Kontaktperson, keine Frage.",
    "last_at": "2026-10-28T06:23:00Z",
    "url": "https://www.instagram.com/direct/t/18073813787446121/",
    "lead": "Creator",
    "handle": "",
-   "unread": true,
-   "draft": "Hey Milena, danke fürs Teilen! 💚 Die kurzfristigen Absagen kennen wir von vielen Hosts, das Thema beschäftigt uns auch. Was würde dir als Gastgeberin in München am meisten helfen, damit es leichter wird?"
+   "unread": false,
+   "ablage": "Teammitglied teilt Beiträge, keine Antwort nötig"
   },
   {
    "id": "18064966235351708",
@@ -43,15 +43,16 @@
   },
   {
    "id": "17846468748577511",
-   "status": "beantwortet",
+   "status": "entwurf",
    "name": "Unbekannt",
-   "category": "host",
-   "last_message": "Hat Clero in Stories erwähnt, nichts offen.",
-   "last_at": "2026-10-23T08:00:00Z",
+   "category": "partner",
+   "last_message": "Hat den Post zur gemeinsamen Kleidertauschparty am 18.11. mit Clero geteilt, keine Frage.",
+   "last_at": "2026-10-28T17:55:00Z",
    "url": "https://www.instagram.com/direct/t/17846468748577511/",
-   "lead": "Community",
+   "lead": "Community, angeschrieben",
    "handle": "",
-   "unread": false
+   "unread": true,
+   "draft": "Hey ihr Lieben, danke fürs Teilen! 💚 Wir freuen uns sehr auf die Kleidertauschparty am 18.11. und teilen den Post auch bei uns. Sag Bescheid, falls ihr noch etwas von uns braucht."
   },
   {
    "id": "17844047247549499",
@@ -118,7 +119,7 @@
   },
   {
    "id": "116481126407496",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Milena",
    "category": "sonstiges",
    "last_message": "Hat mehrere Reels zu Community Events in München geschickt, keine Frage.",
