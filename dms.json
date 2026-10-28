@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine wörtlichen Zitate oder Wortlaute aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-27T16:55:36Z",
+ "updated": "2026-10-28T08:54:56Z",
  "account": "clero.app",
  "threads": [
   {
@@ -115,6 +115,16 @@
    "lead": "Community",
    "unread": true,
    "handle": ""
+  },
+  {
+   "id": "116481126407496",
+   "status": "entwurf",
+   "name": "Milena",
+   "category": "sonstiges",
+   "last_message": "Hat mehrere Reels zu Community Events in München geschickt, keine Frage.",
+   "last_at": "2026-10-14T20:49:00Z",
+   "draft": "Hey Milena, danke fürs Teilen der Reels, die Events sehen richtig schön aus! 💚 Falls du Lust hast, erzähle ich dir gern, woran wir bei Clero gerade arbeiten.",
+   "url": "https://www.instagram.com/direct/t/116481126407496/"
   }
  ]
 }
