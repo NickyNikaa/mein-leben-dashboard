@@ -1,11 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-27T18:23:53Z",
- "message": "Heute liefen 3 DM Sichtungen und die Pipeline durch. 5 DMs warten mit Entwurf, 4 sind beantwortet. Magst du im Reiter Claire kurz zurückblicken, was heute gut lief?",
+ "updated": "2026-10-28T09:17:52Z",
+ "message": "Heute zählt: die 6 DM Entwürfe prüfen, zuerst den mit Prüfhinweis. WPP läuft bis 16:30, danach gehört der Abend dir und dem Wyngs Konzert.",
  "nudges": [
-  "Fokus für morgen: die 5 DM Entwürfe prüfen, vor allem den mit Prüfhinweis. WPP startet um 8:00, bis 16:30 ist dein Tag gesetzt.",
-  "Im Reiter Claire wartet dein Tagesrückblick. Ein paar Zeilen reichen, oder kipp offene Gedanken rein, ich sortiere sie für dich.",
-  "Mach jetzt Feierabend und gönn dir einen ruhigen Abend. Morgen um 18:20 ist das Wyngs Konzert, dafür darfst du Energie tanken.",
-  "Im Büro: Die DM Sichtung meldet noch, dass Chrome nicht verbunden war. Schau bei Gelegenheit, ob die Erweiterung läuft."
+  "Der Entwurf mit Prüfhinweis (Gespräch zum Founding Programm) braucht deinen Blick, bevor er rausgeht. Die anderen fünf sind kurz und unkompliziert.",
+  "Die DM Sichtung konnte Instagram heute nicht lesen, Chrome war nicht verbunden. Prüf bei Gelegenheit, ob die Erweiterung läuft.",
+  "Das Wyngs Konzert startet um 18:20. Plan nach WPP eine kleine Pause ein, iss etwas Gutes und geh mit Vorfreude hin."
  ]
 }
