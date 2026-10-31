@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-30T08:54:14Z",
+ "updated": "2026-10-31T14:54:32Z",
  "account": "clero.app",
  "threads": [
   {
@@ -103,18 +103,6 @@
    "url": "https://www.instagram.com/direct/t/17850479943367243/",
    "lead": "Community",
    "unread": true,
-   "handle": ""
-  },
-  {
-   "id": "17847584178049416",
-   "status": "abgelegt",
-   "name": "Naomi",
-   "category": "creator",
-   "last_message": "Gespräch über Musik in einem Video, endet mit freundlichem Abschluss, keine offene Frage.",
-   "last_at": "2026-10-16T12:00:00Z",
-   "url": "https://www.instagram.com/direct/t/17847584178049416/",
-   "ablage": "Gespräch abgeschlossen, keine Antwort nötig",
-   "lead": "Creator",
    "handle": ""
   }
  ]
