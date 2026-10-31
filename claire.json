@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-10-30T09:21:00Z",
- "message": "Heute zählt eins: die 5 DM Entwürfe in einer kurzen Pause prüfen und abschicken, die meisten sind Dankesantworten auf geteilte Posts. Abends wartet Sosi + Anna um 19:30, freu dich drauf.",
+ "updated": "2026-10-31T14:58:00Z",
+ "message": "Samstag ohne Termine: nimm dir 10 Minuten für die 5 offenen DM Entwürfe, meist Dankesantworten auf geteilte Posts. Danach gehört der Tag dir.",
  "nudges": [
-  "Zwischen zwei WPP Blöcken 10 Minuten für die DM Entwürfe. Beim Entwurf zur Story Erwähnung steht bitte prüfen, schau dort zuerst drauf.",
-  "Die DM Sichtung konnte Instagram heute früh nicht lesen, Chrome war nicht verbunden. Prüf bei Gelegenheit die Erweiterung.",
-  "Mittagspause ohne Bildschirm: zehn Minuten rausgehen, frische Luft und etwas Warmes trinken, bevor der Nachmittag startet.",
-  "Lass Clero nach 16:30 ruhen. Offene Gedanken kannst du im Reiter Claire ablegen, dann sortieren wir sie gemeinsam."
+  "Fang beim Entwurf mit bitte prüfen an (Story Erwähnung, Founding), die anderen vier sind schnell durch.",
+  "Die DM Sichtung lief seit gestern früh nicht mehr, Chrome war nicht verbunden. Wirf bei Gelegenheit einen Blick auf die Erweiterung.",
+  "Geh heute raus, ein Spaziergang oder ein Kaffee in der Sonne, ganz ohne Handy in der Hand.",
+  "Die Kleidertauschparty am 18.11. steht an. Ein kurzer Post dazu reicht, mehr braucht es heute nicht."
  ]
 }
