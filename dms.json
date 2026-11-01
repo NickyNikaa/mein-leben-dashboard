@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-11-01T12:55:10Z",
+ "updated": "2026-11-01T18:30:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -38,7 +38,7 @@
    "draft": "Hey you, thank you so much for the post, we are really happy about it! 💚 It was great having you at the Challenge. Let us catch up soon and think about what we can do together next.",
    "url": "https://www.instagram.com/direct/t/18064966235351708/",
    "lead": "Community, Founding 20 dabei",
-   "unread": true,
+   "unread": false,
    "handle": ""
   },
   {
@@ -51,7 +51,7 @@
    "url": "https://www.instagram.com/direct/t/17846468748577511/",
    "lead": "Community, angeschrieben",
    "handle": "",
-   "unread": true,
+   "unread": false,
    "draft": "Hey ihr Lieben, danke fürs Teilen! 💚 Wir freuen uns sehr auf die Kleidertauschparty am 18.11. und teilen den Post auch bei uns. Sag Bescheid, falls ihr noch etwas von uns braucht."
   },
   {
@@ -63,23 +63,22 @@
    "last_at": "2026-10-22T11:54:06Z",
    "draft": "Hey ihr Lieben, danke für den schönen Beitrag, das bedeutet uns viel! 💚 Es war toll, euch beim Event dabeizuhaben. Habt ihr Lust, bald mal zu quatschen, wie wir zusammen weitermachen?",
    "url": "https://www.instagram.com/direct/t/17844047247549499/",
-   "unread": true,
+   "unread": false,
    "handle": "",
    "lead": "Community, angeschrieben"
   },
   {
    "id": "930735036652085",
-   "status": "abgelegt",
+   "status": "entwurf",
    "name": "Julia",
    "category": "creator",
-   "last_message": "Gruppen Rundnachricht der Community Leiterin zu neu aufgesetzter Community, kein direkter Bezug zu Clero.",
-   "last_at": "2026-10-29T11:33:00Z",
+   "last_message": "Bittet um Support mit Like, Kommentar und Speichern unter ihrem neuen Video.",
+   "last_at": "2026-11-01T18:15:00Z",
    "url": "https://www.instagram.com/direct/t/930735036652085/",
    "unread": false,
    "handle": "",
-   "lead": "Creator",
-   "draft": "",
-   "ablage": "Gruppen Rundnachricht, keine Antwort nötig"
+   "lead": "Creator, dabei",
+   "draft": "Hey Julia, klar, wir schauen direkt vorbei und unterstützen dein Video! 💚 Danke dir für die Info zur neuen Community, wir drücken die Daumen fürs erste Event."
   },
   {
    "id": "18103547569846917",
@@ -91,7 +90,7 @@
    "draft": "[bitte prüfen] Hey ihr Lieben, danke fürs Erwähnen in eurer Story, das freut mich riesig! 💚 Wenn ihr magst, erzähle ich euch gern in einem kurzen Gespräch, was hinter dem Founding Programm steckt und ob es für euch passt.",
    "url": "https://www.instagram.com/direct/t/18103547569846917/",
    "lead": "Community, angeschrieben",
-   "unread": true,
+   "unread": false,
    "handle": ""
   },
   {
@@ -104,7 +103,7 @@
    "draft": "Hey ihr Lieben, danke fürs Teilen eurer Story! 💚 Das freut uns sehr. Habt ihr Lust, bald mal kurz zu quatschen, wie wir als Community zusammen weitermachen können?",
    "url": "https://www.instagram.com/direct/t/17850479943367243/",
    "lead": "Community",
-   "unread": true,
+   "unread": false,
    "handle": ""
   },
   {
@@ -138,6 +137,19 @@
    "last_at": "2026-10-04T12:00:00Z",
    "draft": "[bitte prüfen] Danke dir fürs Teilen! Magst du mir kurz sagen, was du dir von uns vorstellst? Gerne tauschen wir uns in einem kurzen Gespräch aus.",
    "url": "https://www.instagram.com/direct/t/18103294814056503/"
+  },
+  {
+   "id": "17842228430287174",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "sonstiges",
+   "last_message": "Hat dem Founding 30 Angebot abgesagt und wünscht viel Erfolg mit dem Projekt.",
+   "last_at": "2026-11-01T17:45:00Z",
+   "url": "https://www.instagram.com/direct/t/17842228430287174/",
+   "lead": "Community, angeschrieben",
+   "unread": true,
+   "handle": "",
+   "draft": "Danke dir für die ehrliche Rückmeldung und die lieben Wünsche! 💚 Alles Gute für euch, die Tür bei Clero bleibt offen, falls es später doch passt."
   }
  ]
 }
