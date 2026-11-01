@@ -1,10 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-11-01T09:58:20Z",
- "message": "Heute ist Sonntag und dein Kalender ist frei. Fokus: die 5 DM Entwürfe in Ruhe prüfen, zum Beispiel die zur Kleidertauschparty am 18.11. Danach darfst du abschalten.",
+ "updated": "2026-11-01T18:25:00Z",
+ "message": "Heute liefen die DM Sichtung (3 Läufe) und die Pipeline durch, 10 Antwortentwürfe warten auf dich. Magst du im Reiter Claire kurz festhalten, was heute gut lief?",
  "nudges": [
-  "Eine ruhige Viertelstunde reicht: die 5 DM Entwürfe lesen, anpassen und abschicken. Mehr ist heute nicht nötig.",
-  "Die DM Sichtung meldet, dass Chrome nicht verbunden ist. Schau kurz, ob die Erweiterung aktiv ist, wenn du am Rechner bist.",
-  "Gönn dir heute etwas nur für dich: ein Spaziergang an der frischen Luft oder ein langes Frühstück ohne Bildschirm."
+  "Fokus für morgen: die 10 DM Entwürfe in Ruhe prüfen, den zur Kleidertauschparty am 18.11. zuerst. Mehr braucht der Tag nicht.",
+  "Im Reiter Claire wartet der Tagesrückblick. Schreib auf, was dich heute gefreut hat, oder sortier offene Gedanken, ich helfe dir dabei.",
+  "Morgen steht Urlaub im Kalender, zugleich ein WPP Termin ab 8 Uhr. Schau kurz, was davon gilt.",
+  "Es ist Abend: Bildschirm zu, etwas Warmes essen, früh ins Bett. Der Rest wartet."
  ]
 }
