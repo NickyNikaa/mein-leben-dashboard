@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-10-31T14:54:32Z",
+ "updated": "2026-11-01T09:59:51Z",
  "account": "clero.app",
  "threads": [
   {
@@ -104,6 +104,49 @@
    "lead": "Community",
    "unread": true,
    "handle": ""
+  },
+  {
+   "id": "18057648707475624",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Hat sich fürs Gespräch bedankt, kann aktuell wegen laufender Verträge nicht einsteigen, meldet sich später.",
+   "last_at": "2026-09-21T10:36:00Z",
+   "draft": "Danke dir für deine ehrliche Antwort, das verstehen wir total! Melde dich sehr gern, sobald es bei dir passt, die Tür bei Clero bleibt offen. Alles Gute für deinen Aufbau bis dahin 💚",
+   "url": "https://www.instagram.com/direct/t/18057648707475624/",
+   "lead": "Community, angeschrieben"
+  },
+  {
+   "id": "119668546089336",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat einen Beitrag oder Anhang geschickt, Inhalt nicht geprüft.",
+   "last_at": "2026-10-04T12:00:00Z",
+   "draft": "[bitte prüfen] Danke dir fürs Teilen! Magst du mir kurz sagen, was du dir von uns vorstellst? Gerne tauschen wir uns in einem kurzen Gespräch aus.",
+   "url": "https://www.instagram.com/direct/t/119668546089336/",
+   "unread": true
+  },
+  {
+   "id": "18103294814056503",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat einen Beitrag oder Anhang geschickt, Inhalt nicht geprüft.",
+   "last_at": "2026-10-04T12:00:00Z",
+   "draft": "[bitte prüfen] Danke dir fürs Teilen! Magst du mir kurz sagen, was du dir von uns vorstellst? Gerne tauschen wir uns in einem kurzen Gespräch aus.",
+   "url": "https://www.instagram.com/direct/t/18103294814056503/"
+  },
+  {
+   "id": "17847584178049416",
+   "status": "abgelegt",
+   "name": "Naomi",
+   "category": "creator",
+   "last_message": "Gespräch zu Musikrechten bei einem Video ist abgeschlossen, letzte Nachricht war ein freundlicher Abschluss.",
+   "last_at": "2026-10-10T10:28:00Z",
+   "url": "https://www.instagram.com/direct/t/17847584178049416/",
+   "ablage": "Gespräch erledigt, keine Antwort nötig",
+   "lead": "Creator"
   }
  ]
 }
