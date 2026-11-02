@@ -1,11 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-11-01T18:25:00Z",
- "message": "Heute liefen die DM Sichtung (3 Läufe) und die Pipeline durch, 10 Antwortentwürfe warten auf dich. Magst du im Reiter Claire kurz festhalten, was heute gut lief?",
+ "updated": "2026-11-02T11:00:00Z",
+ "message": "Heute steht Urlaub im Kalender, also darf der Tag weich sein. Wenn du magst: ein Blick auf die 10 DM Entwürfe, zuerst Kleidertauschparty am 18.11. Mehr braucht es nicht.",
  "nudges": [
-  "Fokus für morgen: die 10 DM Entwürfe in Ruhe prüfen, den zur Kleidertauschparty am 18.11. zuerst. Mehr braucht der Tag nicht.",
-  "Im Reiter Claire wartet der Tagesrückblick. Schreib auf, was dich heute gefreut hat, oder sortier offene Gedanken, ich helfe dir dabei.",
-  "Morgen steht Urlaub im Kalender, zugleich ein WPP Termin ab 8 Uhr. Schau kurz, was davon gilt.",
-  "Es ist Abend: Bildschirm zu, etwas Warmes essen, früh ins Bett. Der Rest wartet."
+  "Die DM Sichtung ist heute noch nicht gelaufen, der letzte Stand ist von gestern Abend (Chrome war nicht verbunden). Schau bei Gelegenheit nach der Verbindung.",
+  "Zwei Antworten sind neu: eine Absage zu Founding 30 und Julias Bitte um Support. Beide Entwürfe liegen bereit, ein Daumen hoch reicht.",
+  "Urlaubstag: Plane etwas nur für dich ein, zum Beispiel einen langen Spaziergang oder einen Kaffee ohne Handy. Das zählt als Fortschritt."
  ]
 }
