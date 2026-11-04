@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-11-04T08:00:00Z",
+ "updated": "2026-11-04T20:55:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -18,7 +18,7 @@
   },
   {
    "id": "18064966235351708",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "partner",
    "last_message": "Hat einen Beitrag über die Community Challenge geteilt und sich bei Clero bedankt.",
@@ -31,7 +31,7 @@
   },
   {
    "id": "17846468748577511",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "partner",
    "last_message": "Hat den Post zur gemeinsamen Kleidertauschparty am 18.11. mit Clero geteilt, keine Frage.",
@@ -44,7 +44,7 @@
   },
   {
    "id": "17844047247549499",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat einen Beitrag zum Challenges Event geteilt und Clero erwähnt, keine Frage.",
@@ -57,7 +57,7 @@
   },
   {
    "id": "930735036652085",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Julia",
    "category": "creator",
    "last_message": "Bittet um Support mit Like, Kommentar und Speichern unter ihrem neuen Video.",
@@ -70,7 +70,7 @@
   },
   {
    "id": "18103547569846917",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat die Founding Nachricht mit einer Reaktion bedacht und Clero in der Story erwähnt, keine Frage.",
@@ -83,7 +83,7 @@
   },
   {
    "id": "17850479943367243",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Hat eine Story geteilt, in der Clero vermutlich erwähnt wird, keine Frage.",
@@ -93,38 +93,6 @@
    "lead": "Community",
    "unread": false,
    "handle": ""
-  },
-  {
-   "id": "18057648707475624",
-   "status": "entwurf",
-   "name": "Unbekannt",
-   "category": "host",
-   "last_message": "Hat sich fürs Gespräch bedankt, kann aktuell wegen laufender Verträge nicht einsteigen, meldet sich später.",
-   "last_at": "2026-09-21T10:36:00Z",
-   "draft": "Danke dir für deine ehrliche Antwort, das verstehen wir total! Melde dich sehr gern, sobald es bei dir passt, die Tür bei Clero bleibt offen. Alles Gute für deinen Aufbau bis dahin 💚",
-   "url": "https://www.instagram.com/direct/t/18057648707475624/",
-   "lead": "Community, angeschrieben"
-  },
-  {
-   "id": "119668546089336",
-   "status": "entwurf",
-   "name": "Unbekannt",
-   "category": "partner",
-   "last_message": "Hat einen Beitrag oder Anhang geschickt, Inhalt nicht geprüft.",
-   "last_at": "2026-10-04T12:00:00Z",
-   "draft": "[bitte prüfen] Danke dir fürs Teilen! Magst du mir kurz sagen, was du dir von uns vorstellst? Gerne tauschen wir uns in einem kurzen Gespräch aus.",
-   "url": "https://www.instagram.com/direct/t/119668546089336/",
-   "unread": true
-  },
-  {
-   "id": "18103294814056503",
-   "status": "entwurf",
-   "name": "Unbekannt",
-   "category": "partner",
-   "last_message": "Hat einen Beitrag oder Anhang geschickt, Inhalt nicht geprüft.",
-   "last_at": "2026-10-04T12:00:00Z",
-   "draft": "[bitte prüfen] Danke dir fürs Teilen! Magst du mir kurz sagen, was du dir von uns vorstellst? Gerne tauschen wir uns in einem kurzen Gespräch aus.",
-   "url": "https://www.instagram.com/direct/t/18103294814056503/"
   },
   {
    "id": "17842228430287174",
