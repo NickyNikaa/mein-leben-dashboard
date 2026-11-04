@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-11-04T10:38:00Z",
- "message": "Heute zählt eine Sache: die 11 Clero DM Entwürfe sichten, zuerst die mit Prüfhinweis. Nach WPP und Zahnreinigung darf der Abend dir gehören.",
+ "updated": "2026-11-04T20:42:56Z",
+ "message": "Die DM Sichtung war heute dreimal unterwegs: 11 Entwürfe liegen bereit, 1 DM ist abgelegt. Magst du im Reiter Claire kurz festhalten, was heute gut lief?",
  "nudges": [
-  "Zehn Minuten reichen: erst die Entwürfe mit Prüfhinweis, dann die Absage zum Founding 30 mit einem kurzen Dank beantworten.",
-  "Heute WPP bis 16:30, um 17:00 Zahnreinigung. Plane danach nichts mehr ein und lass den Abend ruhig ausklingen.",
-  "Gönn dir zwischendurch zehn Minuten ohne Bildschirm: kurz raus an die Luft oder einen Tee in Ruhe trinken.",
-  "Die DM Sichtung meldete zuletzt, dass Chrome nicht erreichbar war. Prüf bei Gelegenheit, ob die Erweiterung verbunden ist."
+  "Fokus für morgen: nur die 3 Entwürfe mit Prüfhinweis sichten und freigeben. Das reicht für den Clero Teil.",
+  "Morgen WPP von 8:00 bis 16:30, um 17:30 David. Dazwischen bleibt wenig Luft, plane nichts Zusätzliches ein.",
+  "Im Reiter Claire wartet dein Tagesrückblick. Ein paar Stichpunkte genügen, offene Gedanken kannst du dort gleich mit ablegen.",
+  "Es ist spät: Bildschirm zu, Tee, früh schlafen. Der Rest wartet morgen ohne Druck auf dich."
  ]
 }
