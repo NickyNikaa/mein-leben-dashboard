@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-11-03T12:57:02Z",
+ "updated": "2026-11-04T08:00:00Z",
  "account": "clero.app",
  "threads": [
   {
@@ -137,18 +137,19 @@
    "lead": "Community, angeschrieben",
    "unread": true,
    "handle": "",
-   "draft": "Danke dir für die ehrliche Rückmeldung und die lieben Wünsche! 💚 Alles Gute für euch, die Tür bei Clero bleibt offen, falls es später doch passt."
+   "draft": "Thank you so much for the kind feedback and the good wishes! 💚 All the best to you, and if it ever fits later, our door stays open."
   },
   {
    "id": "17843443190688395",
-   "status": "beantwortet",
+   "status": "entwurf",
    "name": "Unbekannt",
    "category": "partner",
-   "last_message": "Hat einen Beitrag zu den Startup Pitches am 13.11. geteilt, bei denen Clero dabei ist, keine Frage.",
-   "last_at": "2026-11-03T12:57:02Z",
+   "last_message": "Hat den Post zu den Startup Pitches am 13.11. beim Festival geteilt, keine Frage.",
+   "last_at": "2026-11-02T17:51:00Z",
    "draft": "Hey ihr Lieben, danke fürs Teilen! 💚 Wir freuen uns sehr, bei den Startup Pitches am 13.11. dabei zu sein, und teilen den Post auch bei uns. Sag Bescheid, falls ihr vorab noch etwas von uns braucht.",
    "url": "https://www.instagram.com/direct/t/17843443190688395/",
-   "lead": "Community, dabei"
+   "lead": "Community, dabei",
+   "unread": false
   }
  ]
 }
