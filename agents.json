@@ -1,6 +1,6 @@
 {
  "_hinweis": "Wird von den Agents befüllt (siehe agent_status.py). Status: running | idle | paused | error. Zeitangaben in ISO-8601 UTC.",
- "updated": "2026-11-04T10:37:12Z",
+ "updated": "2026-11-04T16:17:50Z",
  "agents": [
   {
    "id": "claire",
@@ -18,14 +18,14 @@
    "id": "clero-dm-sichtung",
    "name": "Clero: DM-Sichtung & Antwortentwürfe",
    "area": "clero",
-   "status": "idle",
+   "status": "running",
    "schedule": "täglich 9:52, 13:52, 17:52, auch am Wochenende",
    "note": "Chrome nicht erreichbar (Erweiterung nicht verbunden), Instagram konnte nicht gelesen werden",
    "last_run": "2026-11-04T08:54:49Z",
    "next_run": "2026-11-05T08:00:00Z",
-   "started": "2026-11-04T08:53:12Z",
-   "task_now": "",
-   "heartbeat": "2026-11-04T08:53:12Z",
+   "started": "2026-11-04T16:17:50Z",
+   "task_now": "Öffnet die Instagram Inbox",
+   "heartbeat": "2026-11-04T16:17:50Z",
    "runs_today": 2,
    "runs_day": "2026-11-04",
    "last_result": "11 offene DMs, 11 Entwürfe, 9 bekannte Leads"
