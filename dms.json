@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-11-04T20:55:00Z",
+ "updated": "2026-11-05T08:55:09Z",
  "account": "clero.app",
  "threads": [
   {
@@ -118,6 +118,18 @@
    "url": "https://www.instagram.com/direct/t/17843443190688395/",
    "lead": "Community, dabei",
    "unread": false
+  },
+  {
+   "id": "18119627785595679",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "partner",
+   "last_message": "Hat Clero in zwei Stories erwähnt, keine Frage, neue Erwähnung heute früh.",
+   "last_at": "2026-11-05T06:17:00Z",
+   "draft": "Hey ihr Lieben, danke fürs Erwähnen in eurer Story! 💚 Das freut uns riesig. Habt ihr Lust, bald mal kurz zu quatschen, wie wir als Community zusammen weitermachen können?",
+   "url": "https://www.instagram.com/direct/t/18119627785595679/",
+   "lead": "Community, unbekannt",
+   "unread": true
   }
  ]
 }
