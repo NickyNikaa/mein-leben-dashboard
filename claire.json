@@ -1,10 +1,10 @@
 {
   "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
-  "updated": "2026-11-06T13:24:16Z",
-  "message": "Heute hat die DM Sichtung 7 Entwürfe bereitgelegt, 2 DMs sind beantwortet, 1 abgelegt. Nimm dir kurz Zeit für eine Reflexion: Was war heute gut?",
+  "updated": "2026-11-06T13:27:00Z",
+  "message": "Fokus heute: die 7 DM Entwürfe von Clero sichten, vor allem Kleidertauschparty am 18.11. und das Danke ans Challenge Team. Danach darf dein Tag leicht ausklingen.",
   "nudges": [
-    "Fokus für morgen: die 7 DM Entwürfe sichten und freigeben. Ein ruhiger 20 Minuten Block reicht, dein Kalender ist frei.",
-    "Öffne den Reiter Claire und fülle den Tagesrückblick aus oder sortiere offene Gedanken, ein paar Stichworte genügen.",
-    "Feierabend darf jetzt sein: Handy weg, etwas Warmes trinken, früh abschalten. Morgen ist Samstag."
+    "Die DM Sichtung konnte Instagram heute nicht lesen (Chrome nicht verbunden). Prüf kurz die Erweiterung, dann stimmen die Zahlen wieder.",
+    "Zwei Entwürfe sind fast fertig: Challenge Dank und Kleidertauschparty. Ein 15 Minuten Block reicht zum Freigeben.",
+    "Nach dem WPP Tag: 20 Minuten raus an die frische Luft, ohne Handy. Das gehört heute fest dazu."
   ]
 }
