@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-11-06T08:54:06Z",
+ "updated": "2026-11-06T21:58:23Z",
  "account": "clero.app",
  "threads": [
   {
@@ -112,12 +112,12 @@
    "status": "entwurf",
    "name": "Unbekannt",
    "category": "partner",
-   "last_message": "Hat Clero in zwei Stories erwähnt, keine Frage, neue Erwähnung heute früh.",
-   "last_at": "2026-11-05T06:17:00Z",
+   "last_message": "Hat Clero erneut in der Story erwähnt, keine Frage.",
+   "last_at": "2026-11-06T10:52:00Z",
    "draft": "Hey ihr Lieben, danke fürs Erwähnen in eurer Story! 💚 Das freut uns riesig. Habt ihr Lust, bald mal kurz zu quatschen, wie wir als Community zusammen weitermachen können?",
    "url": "https://www.instagram.com/direct/t/18119627785595679/",
    "lead": "Community, unbekannt",
-   "unread": false,
+   "unread": true,
    "handle": ""
   },
   {
@@ -132,6 +132,18 @@
    "lead": "Community, angeschrieben",
    "unread": false,
    "handle": ""
+  },
+  {
+   "id": "17846762814678392",
+   "status": "entwurf",
+   "name": "Unbekannt",
+   "category": "host",
+   "last_message": "Gruppe schlägt ein persönliches Kennenlernen am 16.11. um 16:30 in einem Café am Sendlinger Tor vor.",
+   "last_at": "2026-11-06T17:50:00Z",
+   "draft": "[bitte prüfen] Hey, wie schön, danke für deine Nachricht! 💚 Wir freuen uns sehr darauf, euch kennenzulernen. Ich schaue kurz in meinen Kalender und melde mich gleich mit einer Bestätigung für den 16.11. bei dir.",
+   "url": "https://www.instagram.com/direct/t/17846762814678392/",
+   "lead": "Community, angeschrieben",
+   "unread": true
   }
  ]
 }
