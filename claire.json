@@ -1,10 +1,10 @@
 {
- "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-11-05T09:18:17Z",
- "message": "Für Clero reicht heute ein kleiner Block: 3 DM Entwürfe warten, 2 davon ungelesen. Danach gehört der Tag WPP und um 17:30 David, du darfst es ruhig angehen.",
- "nudges": [
-  "Mittagspause: 3 offene DM Entwürfe sichten, darunter eine freundliche Absage zum Founding 30. Fünf Minuten genügen.",
-  "Am 13.11. sind die Startup Pitches, am 18.11. die Kleidertauschparty. Trag beides kurz ein, dann musst du es nicht im Kopf halten.",
-  "Zwischen WPP und David: 15 Minuten raus an die frische Luft, ohne Handy. Das darfst du dir heute fest gönnen."
- ]
+  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
+  "updated": "2026-11-06T13:24:16Z",
+  "message": "Heute hat die DM Sichtung 7 Entwürfe bereitgelegt, 2 DMs sind beantwortet, 1 abgelegt. Nimm dir kurz Zeit für eine Reflexion: Was war heute gut?",
+  "nudges": [
+    "Fokus für morgen: die 7 DM Entwürfe sichten und freigeben. Ein ruhiger 20 Minuten Block reicht, dein Kalender ist frei.",
+    "Öffne den Reiter Claire und fülle den Tagesrückblick aus oder sortiere offene Gedanken, ein paar Stichworte genügen.",
+    "Feierabend darf jetzt sein: Handy weg, etwas Warmes trinken, früh abschalten. Morgen ist Samstag."
+  ]
 }
