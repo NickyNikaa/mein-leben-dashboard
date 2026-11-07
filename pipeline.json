@@ -1,6 +1,6 @@
 {
   "_hinweis": "Nur Zahlen aus den Notion-Listen. Keine Namen, Handles oder Kontaktdaten, weil dieses Repo oeffentlich ist.",
-  "updated": "2026-11-06T13:26:12Z",
+  "updated": "2026-11-07T14:26:34Z",
   "lists": [
     {
       "id": "community",
@@ -9,7 +9,7 @@
       "stages": [
         [
           "Nicht begonnen",
-          136
+          135
         ],
         [
           "Angeschrieben",
@@ -21,7 +21,7 @@
         ],
         [
           "LOI Signed",
-          27
+          28
         ],
         [
           "On hold",
@@ -39,7 +39,7 @@
         ],
         [
           "Nicht begonnen mit Passung Hoch",
-          3
+          2
         ]
       ]
     },
