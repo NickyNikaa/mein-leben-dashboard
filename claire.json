@@ -1,11 +1,11 @@
 {
   "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
-  "updated": "2026-11-08T15:44:00Z",
-  "message": "Heute zählt eine Sache: Bestätige den Kennenlerntermin am 16.11. um 16:30, der Entwurf liegt bereit. Danach ist Sonntag, und der gehört dir.",
+  "updated": "2026-11-08T20:50:38Z",
+  "message": "Heute lief die Pipeline mit 426 Community und 111 Creator, und die DM-Sichtung hat 7 Entwürfe vorbereitet. Magst du kurz den Tag reflektieren?",
   "nudges": [
-    "Zwei ungelesene DMs: Termin am 16.11. bestätigen, Story-Erwähnung beantworten. Entwürfe liegen bereit, 10 Minuten reichen.",
-    "Die DM-Sichtung meldet, dass Chrome samt Erweiterung nicht erreichbar ist. Prüf kurz, ob Chrome auf dem Mac läuft.",
-    "Am 13.11. sind die Startup Pitches, am 18.11. die Kleidertauschparty. Notier heute pro Termin nur eine Sache.",
-    "Sonntag heißt Pause: Spaziergang, Kaffee oder ein langes Bad. Plan etwas ein, das nur dir guttut, ganz ohne Leistungsdruck."
+    "Fokus morgen: Kennenlerntermin am 16.11. bestätigen. Der Entwurf liegt bereit, 10 Minuten reichen.",
+    "Im Reiter Claire kannst du den Tagesrückblick ausfüllen oder offene Gedanken sortieren.",
+    "Morgen um 8:00 startet WPP. Leg dir heute Abend nur das Nötigste zurecht, der Rest hat Zeit.",
+    "Es ist spät am Sonntag: Handy weg, Tee, früh schlafen. Du hast heute genug getan."
   ]
 }
