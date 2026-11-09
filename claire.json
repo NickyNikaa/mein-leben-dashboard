@@ -1,11 +1,11 @@
 {
-  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
-  "updated": "2026-11-09T09:18:11Z",
-  "message": "Heute ist WPP bis 16:30. Dein Clero Fokus: das Kennenlernen am 16.11. klären, denn im Kalender steht ab 14.11. Thailand. Eins nach dem anderen, du schaffst das.",
-  "nudges": [
-    "Kennenlerntermin 16.11. in München: Passt das zu deiner Thailand Reise ab 14.11.? Wenn nicht, schlag kurz einen anderen Tag vor.",
-    "3 DMs warten ungelesen, u.a. der Termin am Sendlinger Tor. Entwürfe liegen bereit, 10 Minuten in der Mittagspause reichen.",
-    "Die DM-Sichtung kam heute nicht in Instagram rein (Chrome Erweiterung nicht verbunden). Kurz Chrome öffnen, dann klappt der nächste Lauf.",
-    "Gönn dir heute nach WPP einen Spaziergang oder Tee ohne Handy. Erholung zählt genauso wie Erledigtes."
-  ]
+ "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
+ "updated": "2026-11-09T19:37:17Z",
+ "message": "Heute liefen DM-Sichtung, Pipeline (426 Community, 111 Creator) und dein Morgenbriefing. 7 DMs haben Entwürfe. Magst du kurz reflektieren, was dir heute leichtfiel?",
+ "nudges": [
+  "Fokus morgen: Kennenlerntermin 16.11. klären, bevor du am 14.11. nach Thailand startest. WPP bis 16:30, Weekly um 15:00.",
+  "Im Reiter Claire wartet der Tagesrückblick. Fünf Minuten reichen, oder kipp offene Gedanken einfach dort aus, dann sortieren wir sie.",
+  "7 DMs mit Entwürfen warten, 10 Minuten in der Mittagspause reichen. Die Chrome Erweiterung war heute nicht verbunden.",
+  "Jetzt ist Feierabend: Handy weg, Tee, früh ins Bett. Morgen um 18:00 wartet der Ai Apero, den darfst du genießen."
+ ]
 }
