@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-11-09T19:37:17Z",
- "message": "Heute liefen DM-Sichtung, Pipeline (426 Community, 111 Creator) und dein Morgenbriefing. 7 DMs haben Entwürfe. Magst du kurz reflektieren, was dir heute leichtfiel?",
+ "updated": "2026-11-10T20:08:00Z",
+ "message": "Heute lief die Pipeline (426 Community, 111 Creator), die DM-Sichtung und dein Morgenbriefing. 5 DMs sind erledigt. Magst du kurz reflektieren, was gut lief?",
  "nudges": [
-  "Fokus morgen: Kennenlerntermin 16.11. klären, bevor du am 14.11. nach Thailand startest. WPP bis 16:30, Weekly um 15:00.",
-  "Im Reiter Claire wartet der Tagesrückblick. Fünf Minuten reichen, oder kipp offene Gedanken einfach dort aus, dann sortieren wir sie.",
-  "7 DMs mit Entwürfen warten, 10 Minuten in der Mittagspause reichen. Die Chrome Erweiterung war heute nicht verbunden.",
-  "Jetzt ist Feierabend: Handy weg, Tee, früh ins Bett. Morgen um 18:00 wartet der Ai Apero, den darfst du genießen."
+  "Fokus morgen: Kennenlerntermin 16.11. klären, bevor du am 14.11. nach Thailand startest. WPP 8:00 bis 16:30, um 17:00 Zahnreinigung.",
+  "Im Reiter Claire wartet der Tagesrückblick. Fünf Minuten reichen, oder kipp offene Gedanken dort aus, dann sortieren wir sie.",
+  "Noch 6 DMs mit Entwürfen offen, 10 Minuten in der Mittagspause reichen. Die Chrome Erweiterung war heute nicht verbunden.",
+  "Es ist nach 21 Uhr: Feierabend. Handy weg, Tee, früh ins Bett. Morgen reicht es, wieder mit einem Ding zu starten."
  ]
 }
