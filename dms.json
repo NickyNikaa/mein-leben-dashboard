@@ -1,6 +1,6 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtlichen Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-11-09T08:54:25Z",
+ "updated": "2026-11-10T08:53:58Z",
  "account": "clero.app",
  "threads": [
   {
@@ -135,15 +135,15 @@
   },
   {
    "id": "17846762814678392",
-   "status": "entwurf",
+   "status": "beantwortet",
    "name": "Unbekannt",
    "category": "host",
    "last_message": "Schlägt ein Kennenlernen am 16.11. um 16:30 Uhr in einem Café am Sendlinger Tor vor.",
-   "last_at": "2026-11-07T18:00:00Z",
+   "last_at": "2026-11-10T08:53:58Z",
    "draft": "[bitte prüfen] Hey ihr Lieben, wie schön, dass es geklappt hat! 💚 Wir freuen uns sehr auf ein Kennenlernen. Der 16.11. um 16:30 am Sendlinger Tor klingt gut, ich bestätige dir den Termin kurz, sobald ich in den Kalender geschaut habe.",
    "url": "https://www.instagram.com/direct/t/17846762814678392/",
    "lead": "Community, angeschrieben",
-   "unread": true
+   "unread": false
   }
  ]
 }
