@@ -1,11 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-11-11T09:18:02Z",
- "message": "Heute: Den Kennenlerntermin am 16.11. im Café Lozzi bestätigen, die Antwort liegt als Entwurf bereit. WPP bis 16:30, danach Zahnreinigung um 17 Uhr. Eins nach dem anderen reicht.",
+ "updated": "2026-11-11T18:23:19Z",
+ "message": "Heute lief im Büro vieles still für dich: Die Pipeline ist aktuell (426 Community, 111 Creator), 5 DMs sind beantwortet oder abgelegt. Magst du den Tag kurz reflektieren?",
  "nudges": [
-  "Die DM zum Kennenlerntermin am 16.11. wartet auf dein Okay. Der Entwurf steht, zwei Minuten in der Mittagspause reichen.",
-  "Beim letzten DM Lauf war Chrome nicht verbunden, Instagram wurde nicht gelesen. Prüf kurz die Erweiterung.",
-  "Vor den Startup Pitches am 13.11. und Thailand am 14.11.: Schreib dir drei Dinge auf, die vorher noch raus müssen.",
-  "Nach der Zahnreinigung: Spaziergang oder Tee ohne Handy. Du darfst heute etwas nur für dich tun."
+  "Fokus für morgen: Gib vor WPP (8 bis 16:30) oder in der Mittagspause die offenen DM Entwürfe frei. Eine Sache reicht.",
+  "Im Reiter Claire wartet der Tagesrückblick: Was lief gut, was darf leichter werden? Offene Gedanken kannst du dort auch sortieren.",
+  "Es ist schon spät: Nichts mehr nachschieben, etwas Warmes essen, Tee, früh ins Bett. Morgen startet WPP um 8 Uhr.",
+  "Der DM Lauf konnte heute Chrome nicht erreichen, Instagram wurde nicht gelesen. Prüf morgen kurz die Erweiterung."
  ]
 }
