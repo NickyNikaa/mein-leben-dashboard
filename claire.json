@@ -1,11 +1,10 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
- "message": "Im Büro ist es ruhig: Pipeline steht bei 426 Community und 111 Creator, 5 von 11 DMs sind beantwortet oder abgelegt. Magst du den Tag kurz reflektieren?",
+ "updated": "2026-11-13T09:18:28Z",
+ "message": "Heute WPP bis 16:30, danach ist Clero dran: 4 ungelesene Host DMs warten auf deine Freigabe. Eins nach dem anderen, mehr braucht der Tag nicht.",
  "nudges": [
-  "Fokus für morgen: Thailand beginnt. Gib vorher die 6 offenen DM Entwürfe frei, alles andere darf warten.",
-  "Im Reiter Claire wartet der Rückblick: Was lief gut, was darf leichter werden? Offene Gedanken sortieren wir dort.",
-  "Morgen um 15:30 ist Jeaninnes Geburtstag. Heute Feierabend: etwas Warmes essen, Tee, früh ins Bett.",
-  "Der DM Lauf konnte zuletzt Chrome nicht erreichen, Instagram wurde nicht gelesen. Prüf kurz die Erweiterung."
+  "Nach Feierabend zuerst die frischen Entwürfe prüfen: SOYL, Munich und die Zusage fürs Café am 16.11. um 16:30.",
+  "Der DM Lauf kam zuletzt nicht an Chrome, Instagram wurde nicht gelesen. Prüf kurz, ob die Erweiterung verbunden ist.",
+  "Heute Abend darfst du abschalten: kurzer Spaziergang, etwas Warmes essen, früh ins Bett. Das Wochenende gehört dir."
  ]
 }
