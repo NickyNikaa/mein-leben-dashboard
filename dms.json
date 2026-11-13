@@ -1,11 +1,11 @@
 {
  "_hinweis": "DATENSCHUTZ (Repo ist öffentlich): keine Instagram Handles, keine Wortlaute oder wörtliche Zitate aus fremden Nachrichten, keine Nachnamen, Telefonnummern oder Mailadressen. Nur Vorname, Kategorie, neutrale Zusammenfassungen in eigenen Worten (max. 140 Zeichen), Lead Status und Antwortentwurf. Das Feld handle bleibt leer.",
- "updated": "2026-11-11T08:54:47Z",
+ "updated": "2026-11-13T08:51:07Z",
  "account": "clero.app",
  "threads": [
   {
    "id": "18073813787446121",
-   "status": "abgelegt",
+   "status": "beantwortet",
    "name": "Milena",
    "category": "creator",
    "last_message": "Hat einen Anhang gesendet, interne Kontaktperson, keine Frage.",
@@ -143,6 +143,30 @@
    "draft": "Mega, danke euch! 💚 Dann sehen wir uns am 16.11. um 16:30 im Café Lozzi, Tjard freut sich schon auf euch. Bis dahin meldet euch gerne, falls noch etwas ist.",
    "url": "https://www.instagram.com/direct/t/17846762814678392/",
    "lead": "Community, angeschrieben",
+   "unread": true
+  },
+  {
+   "id": "18073127885405431",
+   "status": "entwurf",
+   "name": "SOYL",
+   "category": "host",
+   "last_message": "Hat Clero in der Story erwähnt (Host Stammtisch Vol. 2), keine Frage.",
+   "last_at": "2026-11-12T22:46:00Z",
+   "draft": "Hey ihr Lieben, danke fürs Erwähnen in eurer Story! 💚 Das freut uns riesig. Habt ihr Lust auf ein kurzes Gespräch, wie wir als Trailrunning Community zusammen weitermachen können?",
+   "url": "https://www.instagram.com/direct/t/18073127885405431/",
+   "lead": "Community, unbekannt",
+   "unread": true
+  },
+  {
+   "id": "17842421211431299",
+   "status": "entwurf",
+   "name": "Munich",
+   "category": "host",
+   "last_message": "Hat Clero in der Story erwähnt (Host Stammtisch Vol. 2), keine Frage.",
+   "last_at": "2026-11-12T22:00:00Z",
+   "draft": "Hey ihr Lieben, danke fürs Erwähnen in eurer Story! 💚 Das freut uns sehr. Habt ihr Lust auf ein kurzes Gespräch, was Clero für eure Running Community tun kann?",
+   "url": "https://www.instagram.com/direct/t/17842421211431299/",
+   "lead": "Community, unbekannt",
    "unread": true
   }
  ]
