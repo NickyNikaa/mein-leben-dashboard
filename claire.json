@@ -1,10 +1,11 @@
 {
  "_hinweis": "Wird von Claire (Agent) befüllt. message: ein Satz für Heute und das Büro. nudges: Liste kurzer Hinweise. updated: ISO-Zeit UTC.",
- "updated": "2026-11-13T09:18:28Z",
- "message": "Heute WPP bis 16:30, danach ist Clero dran: 4 ungelesene Host DMs warten auf deine Freigabe. Eins nach dem anderen, mehr braucht der Tag nicht.",
+ "updated": "2026-11-14T05:49:07Z",
+ "message": "Gestern liefen die Agents rund: 8 DM Entwürfe warten, 4 DMs sind beantwortet, 1 abgelegt. Magst du im Reiter Claire kurz festhalten, was dir gut gelungen ist?",
  "nudges": [
-  "Nach Feierabend zuerst die frischen Entwürfe prüfen: SOYL, Munich und die Zusage fürs Café am 16.11. um 16:30.",
-  "Der DM Lauf kam zuletzt nicht an Chrome, Instagram wurde nicht gelesen. Prüf kurz, ob die Erweiterung verbunden ist.",
-  "Heute Abend darfst du abschalten: kurzer Spaziergang, etwas Warmes essen, früh ins Bett. Das Wochenende gehört dir."
+  "Fokus für den nächsten Tag: die 8 Entwürfe prüfen, mit der Zusage fürs Café am 16.11. zuerst. Danach ist es genug.",
+  "Im Reiter Claire wartet der Tagesrückblick. Zwei Sätze reichen, oder sortier einfach offene Gedanken hinein.",
+  "Im Kalender steht Thailand ab dem 14.11. Plane Puffer ein und gönn dir heute etwas Warmes und früh Ruhe.",
+  "Im Büro: Der DM Lauf erreichte Chrome nicht, Instagram wurde nicht gelesen. Prüf, ob die Erweiterung verbunden ist."
  ]
 }
